@@ -1,7 +1,8 @@
 # Simponi Portal
 
 ## Guide
-[Gitlab MD Guide](https://docs.gitlab.com/ee/user/markdown.html) - klik link ini untuk dokumentasi gitlab MD (markdown)   
+klik link ini untuk dokumentasi gitlab MD (markdown)  
+[Gitlab MD Guide](https://docs.gitlab.com/ee/user/markdown.html)  
 [Gitlab MD Guide - local] (http://devtass:8880/help/markdown/markdown)
 
 ## Branch Info
