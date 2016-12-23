@@ -1,4 +1,10 @@
-node_modules
+# Laravel
+/node_modules
+/public/storage
+/vendor
+Homestead.json
+Homestead.yaml
+.env
 
 # IntelliJ project files
 .idea/
