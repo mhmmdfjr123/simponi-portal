@@ -178,6 +178,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Additional Service Provider
+         */
+        Yajra\Oci8\Oci8ServiceProvider::class,
     ],
 
     /*
