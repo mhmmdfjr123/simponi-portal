@@ -1,7 +1,13 @@
 <?php
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
+/**
+ * Class DatabaseSeeder
+ *
+ * @author efriandika
+ */
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -11,6 +17,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        Model::unguard();
+
+        $this->call('AccountTableSeeder');
+        $this->command->info('Account table seeded!');
+
+        // Must be executed after Account Table Execution.
+        $this->call('AclTableSeeder');
+        $this->command->info('Acl table seeded!');
     }
 }
