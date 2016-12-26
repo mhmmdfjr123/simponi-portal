@@ -1,6 +1,16 @@
 <?php
 
 return [
+    /*
+	|--------------------------------------------------------------------------
+	| Global Config Variable (common)
+	|--------------------------------------------------------------------------
+	|
+	| Common variable. place your common variable here
+    | Author: Efriandika Pratama
+	|
+	*/
+    // 'example_var' => 'value'.
 
     /*
     |--------------------------------------------------------------------------
@@ -13,6 +23,16 @@ return [
     */
 
     'name' => 'Laravel',
+
+    /*
+     |--------------------------------------------------------------------------
+     | Application Security
+     |--------------------------------------------------------------------------
+     |
+     | True => https, false => http
+     |
+     */
+    'secure'=> env('APP_SECURE', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -64,7 +84,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Jakarta',
 
     /*
     |--------------------------------------------------------------------------
@@ -77,7 +97,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'id',
 
     /*
     |--------------------------------------------------------------------------
@@ -103,7 +123,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => env('APP_KEY', 'base64:RMOXBk/9WLQQPFoMdtizWP9hMXK7EMq/BtjQuOOkyL4='),
 
     'cipher' => 'AES-256-CBC',
 
@@ -120,7 +140,7 @@ return [
     |
     */
 
-    'log' => env('APP_LOG', 'single'),
+    'log' => env('APP_LOG', 'daily'),
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
@@ -181,6 +201,9 @@ return [
         /*
          * Additional Service Provider
          */
+        Arrilot\Widgets\ServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
+        Kodeine\Acl\AclServiceProvider::class,
         Yajra\Oci8\Oci8ServiceProvider::class,
     ],
 
@@ -230,6 +253,12 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        /*
+         * Additional Facade Aliases
+         */
+        'AsyncWidget'   => Arrilot\Widgets\AsyncFacade::class,
+        'Image'         => Intervention\Image\Facades\Image::class,
+        'Widget'        => Arrilot\Widgets\Facade::class,
     ],
 
 ];

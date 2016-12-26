@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Support\ServiceProvider;
+use Way\Generators\GeneratorsServiceProvider;
+use Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +16,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Boot helper
+        foreach (glob(app_path().'/Helpers/*.php') as $filename){
+            require_once($filename);
+        }
     }
 
     /**
@@ -23,6 +29,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        if ($this->app->environment() !== 'production') {
+            $this->app->register(IdeHelperServiceProvider::class);
+            $this->app->register(GeneratorsServiceProvider::class);
+            $this->app->register(MigrationsGeneratorServiceProvider::class);
+        }
     }
 }

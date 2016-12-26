@@ -1,20 +1,40 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "efriandika/laravel",
+    "description": "The Laravel Framework Starter for Rapid Development by Efriandika Pratama",
+    "keywords": ["framework", "laravel", "starter", "cms"],
+    "version": "1.1.0",
+    "homepage": "http://bitbucket.org/efriandika/laravel",
     "license": "MIT",
     "type": "project",
+    "authors": [
+        {
+            "name": "Efriandika Pratama",
+            "email": "efriandika@gmail.com",
+            "homepage": "http://www.efriandika.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "efriandika@gmail.com",
+        "issues": "http://bitbucket.org/efriandika/laravel/issues"
+    },
     "require": {
         "php": ">=5.6.4",
         "laravel/framework": "5.3.*",
-        "yajra/laravel-oci8": "5.3.*"
+        "yajra/laravel-oci8": "5.3.*",
+        "arrilot/laravel-widgets": "^3.6",
+        "kodeine/laravel-acl": "~1.0@dev",
+        "intervention/image": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~5.0",
         "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*"
+        "symfony/dom-crawler": "3.1.*",
+        "barryvdh/laravel-ide-helper": "^2.2",
+        "way/generators": "dev-feature/laravel-five-stable",
+        "xethron/migrations-generator": "^2.0"
     },
     "autoload": {
         "classmap": [
@@ -42,10 +62,18 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan ide-helper:generate",
+            "php artisan ide-helper:meta",
             "php artisan optimize"
         ]
     },
     "config": {
         "preferred-install": "dist"
+    },
+    "repositories": {
+        "repo-name": {
+            "type": "vcs",
+            "url": "https://github.com/jamisonvalenta/Laravel-4-Generators.git"
+        }
     }
 }
