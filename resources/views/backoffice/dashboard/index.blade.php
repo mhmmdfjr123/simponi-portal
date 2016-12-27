@@ -1,320 +1,327 @@
 @extends('layouts.backoffice')
 
+@section('headScript')
+    <script>
+        requirejs.config({
+            paths: { demo: '../../demo/demo' }
+        });
+    </script>
+    <script>require(['demo']);</script>
+@endsection
+
 @section('content')
-    <ul class="breadcrumb breadcrumb-page">
-        <!-- Auto Breadcrumbs -->
-    </ul>
-
-    <div class="page-header">
-
+    <div class="page-header m-b-0">
         <div class="row">
-            <!-- Page header, center on small screens -->
-            <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-dashboard page-header-icon"></i>&nbsp;&nbsp;Dashboard</h1>
-
-            <div class="col-xs-12 col-sm-8">
-                <div class="row">
-                    <hr class="visible-xs no-grid-gutter-h">
-                    <!--
-                    <div class="pull-right col-xs-12 col-sm-auto"><a href="#" class="btn btn-primary btn-labeled" style="width: 100%;"><span class="btn-label icon fa fa-plus"></span>Create project</a></div>
-                    -->
-                </div>
-            </div>
-        </div>
-    </div> <!-- / .page-header -->
-
-
-    <div class="row">
-        <div class="col-md-8">
-
-            <!-- 5. $UPLOADS_CHART =============================================================================
-
-                            Uploads chart
-            -->
-            <!-- Javascript -->
-            <script>
-                init.push(function () {
-                    var uploads_data = [
-                        { day: '2014-03-10', v: 20 },
-                        { day: '2014-03-11', v: 10 },
-                        { day: '2014-03-12', v: 15 },
-                        { day: '2014-03-13', v: 12 },
-                        { day: '2014-03-14', v: 5  },
-                        { day: '2014-03-15', v: 5  },
-                        { day: '2014-03-16', v: 20 }
-                    ];
-                    Morris.Line({
-                        element: 'hero-graph',
-                        data: uploads_data,
-                        xkey: 'day',
-                        ykeys: ['v'],
-                        labels: ['Value'],
-                        lineColors: ['#fff'],
-                        lineWidth: 2,
-                        pointSize: 4,
-                        gridLineColor: 'rgba(255,255,255,.5)',
-                        resize: true,
-                        gridTextColor: '#fff',
-                        xLabels: "day",
-                        xLabelFormat: function(d) {
-                            return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov', 'Dec'][d.getMonth()] + ' ' + d.getDate();
-                        }
-                    });
-                });
-            </script>
-            <!-- / Javascript -->
-
-            <div class="stat-panel">
-                <div class="stat-row">
-                    <!-- Small horizontal padding, bordered, without right border, top aligned text -->
-                    <div class="stat-cell col-sm-4 padding-sm-hr bordered no-border-r valign-top">
-                        <!-- Small padding, without top padding, extra small horizontal padding -->
-                        <h4 class="padding-sm no-padding-t padding-xs-hr"><i class="fa fa-cloud-upload text-primary"></i>&nbsp;&nbsp;Uploads</h4>
-                        <!-- Without margin -->
-                        <ul class="list-group no-margin">
-                            <!-- Without left and right borders, extra small horizontal padding, without background, no border radius -->
-                            <li class="list-group-item no-border-hr padding-xs-hr no-bg no-border-radius">
-                                Documents <span class="label label-pa-purple pull-right">34</span>
-                            </li> <!-- / .list-group-item -->
-                            <!-- Without left and right borders, extra small horizontal padding, without background -->
-                            <li class="list-group-item no-border-hr padding-xs-hr no-bg">
-                                Audio <span class="label label-danger pull-right">128</span>
-                            </li> <!-- / .list-group-item -->
-                            <!-- Without left and right borders, without bottom border, extra small horizontal padding, without background -->
-                            <li class="list-group-item no-border-hr no-border-b padding-xs-hr no-bg">
-                                Videos <span class="label label-success pull-right">12</span>
-                            </li> <!-- / .list-group-item -->
-                        </ul>
-                    </div> <!-- /.stat-cell -->
-                    <!-- Primary background, small padding, vertically centered text -->
-                    <div class="stat-cell col-sm-8 bg-primary padding-sm valign-middle">
-                        <div id="hero-graph" class="graph" style="height: 230px;"></div>
-                    </div>
-                </div>
-            </div> <!-- /.stat-panel -->
-            <!-- /5. $UPLOADS_CHART -->
-
-            <!-- 6. $EASY_PIE_CHARTS ===========================================================================
-
-                            Easy Pie charts
-            -->
-            <!-- Javascript -->
-            <script>
-                init.push(function () {
-                    // Easy Pie Charts
-                    var easyPieChartDefaults = {
-                        animate: 2000,
-                        scaleColor: false,
-                        lineWidth: 6,
-                        lineCap: 'square',
-                        size: 90,
-                        trackColor: '#e5e5e5'
-                    }
-                    $('#easy-pie-chart-1').easyPieChart($.extend({}, easyPieChartDefaults, {
-                        barColor: PixelAdmin.settings.consts.COLORS[1]
-                    }));
-                    $('#easy-pie-chart-2').easyPieChart($.extend({}, easyPieChartDefaults, {
-                        barColor: PixelAdmin.settings.consts.COLORS[1]
-                    }));
-                    $('#easy-pie-chart-3').easyPieChart($.extend({}, easyPieChartDefaults, {
-                        barColor: PixelAdmin.settings.consts.COLORS[1]
-                    }));
-                });
-            </script>
-            <!-- / Javascript -->
-
-            <div class="row">
-                <div class="col-xs-4">
-                    <!-- Centered text -->
-                    <div class="stat-panel text-center">
-                        <div class="stat-row">
-                            <!-- Dark gray background, small padding, extra small text, semibold text -->
-                            <div class="stat-cell bg-dark-gray padding-sm text-xs text-semibold">
-                                <i class="fa fa-globe"></i>&nbsp;&nbsp;BANDWIDTH
-                            </div>
-                        </div> <!-- /.stat-row -->
-                        <div class="stat-row">
-                            <!-- Bordered, without top border, without horizontal padding -->
-                            <div class="stat-cell bordered no-border-t no-padding-hr">
-                                <div class="pie-chart" data-percent="43" id="easy-pie-chart-1">
-                                    <div class="pie-chart-label">12.3TB</div>
-                                </div>
-                            </div>
-                        </div> <!-- /.stat-row -->
-                    </div> <!-- /.stat-panel -->
-                </div>
-                <div class="col-xs-4">
-                    <div class="stat-panel text-center">
-                        <div class="stat-row">
-                            <!-- Dark gray background, small padding, extra small text, semibold text -->
-                            <div class="stat-cell bg-dark-gray padding-sm text-xs text-semibold">
-                                <i class="fa fa-flash"></i>&nbsp;&nbsp;PICK LOAD
-                            </div>
-                        </div> <!-- /.stat-row -->
-                        <div class="stat-row">
-                            <!-- Bordered, without top border, without horizontal padding -->
-                            <div class="stat-cell bordered no-border-t no-padding-hr">
-                                <div class="pie-chart" data-percent="93" id="easy-pie-chart-2">
-                                    <div class="pie-chart-label">93%</div>
-                                </div>
-                            </div>
-                        </div> <!-- /.stat-row -->
-                    </div> <!-- /.stat-panel -->
-                </div>
-                <div class="col-xs-4">
-                    <div class="stat-panel text-center">
-                        <div class="stat-row">
-                            <!-- Dark gray background, small padding, extra small text, semibold text -->
-                            <div class="stat-cell bg-dark-gray padding-sm text-xs text-semibold">
-                                <i class="fa fa-cloud"></i>&nbsp;&nbsp;USED RAM
-                            </div>
-                        </div> <!-- /.stat-row -->
-                        <div class="stat-row">
-                            <!-- Bordered, without top border, without horizontal padding -->
-                            <div class="stat-cell bordered no-border-t no-padding-hr">
-                                <div class="pie-chart" data-percent="75" id="easy-pie-chart-3">
-                                    <div class="pie-chart-label">12GB</div>
-                                </div>
-                            </div>
-                        </div> <!-- /.stat-row -->
-                    </div> <!-- /.stat-panel -->
-                </div>
-            </div>
-        </div>
-        <!-- /6. $EASY_PIE_CHARTS -->
-
-        <div class="col-md-4">
-            <div class="row">
-
-                <!-- 7. $EARNED_TODAY_STAT_PANEL ===================================================================
-
-                                    Earned today stat panel
-                -->
-                <div class="col-sm-4 col-md-12">
-                    <div class="stat-panel">
-                        <!-- Danger background, vertically centered text -->
-                        <div class="stat-cell bg-danger valign-middle">
-                            <!-- Stat panel bg icon -->
-                            <i class="fa fa-trophy bg-icon"></i>
-                            <!-- Extra large text -->
-                            <span class="text-xlg"><span class="text-lg text-slim">$</span><strong>147</strong></span><br>
-                            <!-- Big text -->
-                            <span class="text-bg">Earned today</span><br>
-                            <!-- Small text -->
-                            <span class="text-sm"><a href="#">See details in your profile</a></span>
-                        </div> <!-- /.stat-cell -->
-                    </div> <!-- /.stat-panel -->
-                </div>
-                <!-- /7. $EARNED_TODAY_STAT_PANEL -->
-
-
-                <!-- 8. $RETWEETS_GRAPH_STAT_PANEL =================================================================
-
-                                    Retweets graph stat panel
-                -->
-                <div class="col-sm-4 col-md-12">
-                    <!-- Javascript -->
-                    <script>
-                        init.push(function () {
-                            $("#stats-sparklines-3").pixelSparkline([275,490,397,487,339,403,402,312,300], {
-                                type: 'line',
-                                width: '100%',
-                                height: '45px',
-                                fillColor: '',
-                                lineColor: '#fff',
-                                lineWidth: 2,
-                                spotColor: '#ffffff',
-                                minSpotColor: '#ffffff',
-                                maxSpotColor: '#ffffff',
-                                highlightSpotColor: '#ffffff',
-                                highlightLineColor: '#ffffff',
-                                spotRadius: 4,
-                                highlightLineColor: '#ffffff'
-                            });
-                        });
-                    </script>
-                    <!-- / Javascript -->
-
-                    <div class="stat-panel">
-                        <div class="stat-row">
-                            <!-- Purple background, small padding -->
-                            <div class="stat-cell bg-pa-purple padding-sm">
-                                <!-- Extra small text -->
-                                <div class="text-xs" style="margin-bottom: 5px;">RETWEETS GRAPH</div>
-                                <div class="stats-sparklines" id="stats-sparklines-3" style="width: 100%"></div>
-                            </div>
-                        </div> <!-- /.stat-row -->
-                        <div class="stat-row">
-                            <!-- Bordered, without top border, horizontally centered text -->
-                            <div class="stat-counters bordered no-border-t text-center">
-                                <!-- Small padding, without horizontal padding -->
-                                <div class="stat-cell col-xs-4 padding-sm no-padding-hr">
-                                    <!-- Big text -->
-                                    <span class="text-bg"><strong>312</strong></span><br>
-                                    <!-- Extra small text -->
-                                    <span class="text-xs text-muted">TWEETS</span>
-                                </div>
-                                <!-- Small padding, without horizontal padding -->
-                                <div class="stat-cell col-xs-4 padding-sm no-padding-hr">
-                                    <!-- Big text -->
-                                    <span class="text-bg"><strong>1000</strong></span><br>
-                                    <!-- Extra small text -->
-                                    <span class="text-xs text-muted">FOLLOWERS</span>
-                                </div>
-                                <!-- Small padding, without horizontal padding -->
-                                <div class="stat-cell col-xs-4 padding-sm no-padding-hr">
-                                    <!-- Big text -->
-                                    <span class="text-bg"><strong>523</strong></span><br>
-                                    <!-- Extra small text -->
-                                    <span class="text-xs text-muted">FOLLOWING</span>
-                                </div>
-                            </div> <!-- /.stat-counters -->
-                        </div> <!-- /.stat-row -->
-                    </div> <!-- /.stat-panel -->
-                </div>
-                <!-- /8. $RETWEETS_GRAPH_STAT_PANEL -->
-
-                <!-- 9. $UNIQUE_VISITORS_STAT_PANEL ================================================================
-
-                                    Unique visitors stat panel
-                -->
-                <div class="col-sm-4 col-md-12">
-                    <!-- Javascript -->
-                    <script>
-                        init.push(function () {
-                            $("#stats-sparklines-2").pixelSparkline(
-                                    [275,490,397,487,339,403,402,312,300,294,411,367,319,416,355,416,371,479,279,361,312,269,402,327,474,422,375,283,384,372], {
-                                        type: 'bar',
-                                        height: '36px',
-                                        width: '100%',
-                                        barSpacing: 2,
-                                        zeroAxis: false,
-                                        barColor: '#ffffff'
-                                    });
-                        });
-                    </script>
-                    <!-- / Javascript -->
-
-                    <div class="stat-panel">
-                        <div class="stat-row">
-                            <!-- Warning background -->
-                            <div class="stat-cell bg-warning">
-                                <!-- Big text -->
-                                <span class="text-bg">11% more</span><br>
-                                <!-- Small text -->
-                                <span class="text-sm">Unique visitors today</span>
-                            </div>
-                        </div> <!-- /.stat-row -->
-                        <div class="stat-row">
-                            <!-- Warning background, small padding, without top padding, horizontally centered text -->
-                            <div class="stat-cell bg-warning padding-sm no-padding-t text-center">
-                                <div id="stats-sparklines-2" class="stats-sparklines" style="width: 100%"></div>
-                            </div>
-                        </div> <!-- /.stat-row -->
-                    </div> <!-- /.stat-panel -->
-                </div>
+            <div class="col-md-4">
+                <h1><i class="page-header-icon ion-arrow-graph-up-right"></i>Financial <span class="text-muted font-weight-light">Dashboard</span></h1>
             </div>
         </div>
     </div>
-    <!-- /9. $UNIQUE_VISITORS_STAT_PANEL -->
+
+    <!-- Balance -->
+    <div class="page-wide-block">
+        <div class="box m-b-0 valign-middle bg-white">
+
+            <div class="box-cell col-md-7 p-a-4">
+                <div>
+                    <span class="font-size-18 font-weight-light">Balance</span>&nbsp;&nbsp;
+                    <span class="text-success">12% <i class="ion-arrow-up-c"></i></span>
+                </div>
+                <div class="font-size-34"><small class="font-weight-light text-muted">$</small><strong>31,600</strong></div>
+            </div>
+
+            <!-- Balance chart -->
+            <div class="box-cell col-sm-5 p-a-4">
+                <span id="balance-chart"></span>
+            </div>
+
+            <script>
+                require(['jquery', 'demo', 'px/util', 'px/plugins/px-sparkline'], function($, pxDemo, pxUtil) {
+                    var chartColor = pxDemo.getRandomColors(1)[0];
+                    var data = [pxDemo.getRandomData(40000, 20000), pxDemo.getRandomData(40000, 20000), pxDemo.getRandomData(40000, 20000), pxDemo.getRandomData(40000, 20000), pxDemo.getRandomData(40000, 20000), pxDemo.getRandomData(40000, 20000), pxDemo.getRandomData(40000, 20000), pxDemo.getRandomData(40000, 20000), pxDemo.getRandomData(40000, 20000), pxDemo.getRandomData(40000, 20000), 31600];
+
+                    $("#balance-chart").pxSparkline(data, {
+                        type: 'line',
+                        width: '100%',
+                        height: '60px',
+                        fillColor: pxUtil.default.hexToRgba(chartColor, 0.3),
+                        lineColor: chartColor,
+                        lineWidth: 1,
+                        spotColor: null,
+                        minSpotColor: null,
+                        maxSpotColor: null,
+                        highlightSpotColor: chartColor,
+                        highlightLineColor: chartColor,
+                        spotRadius: 3,
+                    });
+                });
+            </script>
+        </div>
+    </div>
+
+    <!-- / Balance -->
+
+    <!-- Money flow charts -->
+
+    <div class="page-wide-block">
+        <div class="box border-radius-0 bg-black">
+
+            <!-- Revenue -->
+            <div class="box-cell col-md-6 p-a-4 bg-black darken">
+                <div>
+                    <span class="font-size-17 font-weight-light">Revenue</span>&nbsp;&nbsp;
+                    <span class="text-success">9% <i class="ion-arrow-up-c"></i></span>
+                </div>
+                <div class="text-muted font-size-11 font-weight-light">past 30 days</div>
+                <div class="font-size-34"><small class="font-weight-light text-muted">$</small><strong>3,239</strong></div>
+
+                <!-- Chart -->
+                <div class="p-t-4">
+                    <canvas id="revenue-chart" width="400" height="150"></canvas>
+                </div>
+            </div>
+
+            <script>
+                require(['demo', 'px/util', 'px-libs/Chart'], function(pxDemo, pxUtil, Chart) {
+                    var chartColor = pxDemo.getRandomColors(1)[0];
+                    var data = {
+                        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                        datasets: [{
+                            label:           'Revenue, $',
+                            data:            [pxDemo.getRandomData(5000, 2000), pxDemo.getRandomData(5000, 2000), pxDemo.getRandomData(5000, 2000), pxDemo.getRandomData(5000, 2000), pxDemo.getRandomData(5000, 2000), pxDemo.getRandomData(5000, 2000), 3239],
+                            borderWidth:     1,
+                            backgroundColor: pxUtil.default.hexToRgba(chartColor, 0.3),
+                            borderColor:     chartColor
+                        }]
+                    };
+
+                    new Chart(document.getElementById('revenue-chart').getContext("2d"), {
+                        type: 'line',
+                        data: data,
+                        options: {
+                            legend: { display: false },
+                        },
+                    });
+                });
+            </script>
+
+            <hr class="m-a-0 visible-xs visible-sm">
+
+            <!-- Expenses -->
+            <div class="box-cell col-md-6 p-a-4">
+                <div>
+                    <span class="font-size-17 font-weight-light">Expenses</span>&nbsp;&nbsp;
+                    <span class="text-danger">5% <i class="ion-arrow-down-c"></i></span>
+                </div>
+                <div class="text-muted font-size-11 font-weight-light">past 30 days</div>
+                <div class="font-size-34"><small class="font-weight-light text-muted">$</small><strong>1,273</strong></div>
+
+                <!-- Chart -->
+                <div class="p-t-4">
+                    <canvas id="expenses-chart" width="400" height="150"></canvas>
+                </div>
+            </div>
+
+            <script>
+                require(['demo', 'px/util', 'px-libs/Chart'], function(pxDemo, pxUtil, Chart) {
+                    var chartColor = pxDemo.getRandomColors(1)[0];
+                    var data = {
+                        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                        datasets: [{
+                            label:           'Expenses, $',
+                            data:            [pxDemo.getRandomData(3000, 900), pxDemo.getRandomData(3000, 900), pxDemo.getRandomData(3000, 900), pxDemo.getRandomData(3000, 900), pxDemo.getRandomData(3000, 900), pxDemo.getRandomData(3000, 900), 1273],
+                            borderWidth:     1,
+                            backgroundColor: pxUtil.default.hexToRgba(chartColor, 0.3),
+                            borderColor:     chartColor,
+                        }],
+                    };
+
+                    new Chart(document.getElementById('expenses-chart').getContext("2d"), {
+                        type: 'bar',
+                        data: data,
+                        options: {
+                            legend: { display: false },
+                        },
+                    });
+                });
+            </script>
+
+        </div>
+    </div>
+
+    <!-- / Money flow charts -->
+
+    <!-- Accounts -->
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel clearfix text-default">
+                <div class="panel-title">
+                    <i class="panel-title-icon ion-social-usd font-size-16 text-primary"></i> Accounts
+                </div>
+
+                <a href="#" class="col-xs-12 p-x-3 p-y-2 b-t-1 bg-white">
+                    <div class="pull-xs-right font-size-18"><small class="font-size-13">$</small><strong>10,501</strong></div>
+                    <div class="font-size-15">Bank of America</div>
+                    <div class="text-muted font-size-14">**********1312</div>
+                </a>
+
+                <a href="#" class="col-xs-12 p-x-3 p-y-2 b-t-1 bg-white">
+                    <div class="pull-xs-right font-size-18"><small class="font-size-13">$</small><strong>5,241</strong></div>
+                    <div class="font-size-15">Citigroup</div>
+                    <div class="text-muted font-size-14">**********3265</div>
+                </a>
+
+                <a href="#" class="col-xs-12 p-x-3 p-y-2 b-t-1 bg-white">
+                    <div class="pull-xs-right font-size-18"><small class="font-size-13">$</small><strong>2,042</strong></div>
+                    <div class="font-size-15">J.P.Morgan Chase & Co</div>
+                    <div class="text-muted font-size-14">**********6294</div>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- / Accounts -->
+
+        <!-- Cards -->
+
+        <div class="col-md-6">
+            <div class="panel clearfix text-default">
+                <div class="panel-title">
+                    <i class="panel-title-icon ion-card font-size-16 text-primary"></i> Cards
+                </div>
+
+                <a href="#" class="box m-a-0 p-x-3 p-y-2 b-t-1 bg-white">
+                    <div class="box-cell valign-middle" style="width: 54px;">
+                        <i class="fa fa-cc-visa text-muted font-size-28"></i>
+                    </div>
+                    <div class="box-cell">
+                        <div class="pull-xs-right font-size-18"><small class="font-size-13">$</small><strong>5,312</strong></div>
+                        <div class="font-size-15">Salary card <span class="text-muted font-size-12">- Bank of America</span></div>
+                        <div class="text-muted font-size-14">**** **** **** 1313</div>
+                    </div>
+                </a>
+
+                <a href="#" class="box m-a-0 p-x-3 p-y-2 b-t-1 bg-white">
+                    <div class="box-cell valign-middle" style="width: 54px;">
+                        <i class="fa fa-cc-amex text-muted font-size-28"></i>
+                    </div>
+                    <div class="box-cell">
+                        <div class="pull-xs-right font-size-18"><small class="font-size-13">$</small><strong>2,150</strong></div>
+                        <div class="font-size-15">Shopping card <span class="text-muted font-size-12">- Citigroup</span></div>
+                        <div class="text-muted font-size-14">**** **** **** 3266</div>
+                    </div>
+                </a>
+
+                <a href="#" class="box m-a-0 p-x-3 p-y-2 b-t-1 bg-white">
+                    <div class="box-cell valign-middle" style="width: 54px;">
+                        <i class="fa fa-cc-mastercard text-muted font-size-28"></i>
+                    </div>
+                    <div class="box-cell">
+                        <div class="pull-xs-right font-size-18"><small class="font-size-13">$</small><strong>6,454</strong></div>
+                        <div class="font-size-15">Funded card <span class="text-muted font-size-12">- J.P.Morgan Chase & Co</span></div>
+                        <div class="text-muted font-size-14">**** **** **** 6295</div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- / Cards -->
+
+    </div>
+
+    <!-- Latest transactions -->
+
+    <div class="panel">
+        <div class="panel-title">
+            Latest transactions
+            <div class="panel-heading-controls">
+                <a href="#" class="btn btn-xs btn-primary btn-outline btn-outline-colorless">Show all transactions</a>
+            </div>
+        </div>
+
+        <hr class="m-a-0">
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th class="text-xs-right">Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><span class="label label-danger">OUTCOME</span></td>
+                    <td>07/12/2016</td>
+                    <td>Monthly service subscription payment</td>
+                    <td class="text-xs-right"><strong>$102.00</strong></td>
+                </tr>
+                <tr>
+                    <td><span class="label label-danger">OUTCOME</span></td>
+                    <td>07/05/2016</td>
+                    <td>Shopping</td>
+                    <td class="text-xs-right"><strong>$82.00</strong></td>
+                </tr>
+                <tr>
+                    <td><span class="label label-success">INCOME</span></td>
+                    <td>07/02/2016</td>
+                    <td>Monthly salary</td>
+                    <td class="text-xs-right"><strong>$3000.00</strong></td>
+                </tr>
+                <tr>
+                    <td><span class="label label-success">INCOME</span></td>
+                    <td>06/29/2016</td>
+                    <td>Freelance salary</td>
+                    <td class="text-xs-right"><strong>$1230.00</strong></td>
+                </tr>
+                <tr>
+                    <td><span class="label label-danger">OUTCOME</span></td>
+                    <td>06/23/2016</td>
+                    <td>Monthly bills</td>
+                    <td class="text-xs-right"><strong>$862.00</strong></td>
+                </tr>
+                <tr>
+                    <td><span class="label label-danger">OUTCOME</span></td>
+                    <td>06/12/2016</td>
+                    <td>Monthly service subscription payment</td>
+                    <td class="text-xs-right"><strong>$102.00</strong></td>
+                </tr>
+                <tr>
+                    <td><span class="label label-danger">OUTCOME</span></td>
+                    <td>06/05/2016</td>
+                    <td>Shopping</td>
+                    <td class="text-xs-right"><strong>$82.00</strong></td>
+                </tr>
+                <tr>
+                    <td><span class="label label-success">INCOME</span></td>
+                    <td>06/02/2016</td>
+                    <td>Monthly salary</td>
+                    <td class="text-xs-right"><strong>$3000.00</strong></td>
+                </tr>
+                <tr>
+                    <td><span class="label label-success">INCOME</span></td>
+                    <td>05/29/2016</td>
+                    <td>Freelance salary</td>
+                    <td class="text-xs-right"><strong>$1230.00</strong></td>
+                </tr>
+                <tr>
+                    <td><span class="label label-danger">OUTCOME</span></td>
+                    <td>05/23/2016</td>
+                    <td>Monthly bills</td>
+                    <td class="text-xs-right"><strong>$862.00</strong></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- / Latest transactions -->
+@endsection
+
+@section('footScript')
 
 @endsection
