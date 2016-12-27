@@ -9,22 +9,15 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,800,300&subset=latin" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300italic,400italic,600italic,700italic,400,600,700,800,300&subset=latin" rel="stylesheet" type="text/css">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/holder/2.9.0/holder.js"></script>
 
-    <!-- Light version -->
     <link href="{{ asset('theme/backoffice/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('theme/backoffice/css/pixeladmin.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('theme/backoffice/css/widgets.min.css') }}" rel="stylesheet" type="text/css">
-    <!-- / -->
-
-    <!-- Theme -->
     <link href="{{ asset('theme/backoffice/css/themes/dust.min.css') }}" rel="stylesheet" type="text/css">
-    <!-- / Theme -->
-
-    <!-- holder.js -->
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/holder/2.9.0/holder.js"></script>
 
     <!-- require.js -->
     <script src="{{ asset('theme/backoffice/js/requirejs.min.js') }}"></script>
@@ -34,6 +27,7 @@
         });
     </script>
 
+    <link href="{{ asset('theme/backoffice/ext/app.css') }}" rel="stylesheet" type="text/css">
     @yield('headScript')
 </head>
 <body class="px-navbar-fixed">
@@ -51,20 +45,16 @@
                 <div><strong>{{ Auth::user()->name }}</strong></div>
             </div>
             <div class="btn-group" style="margin-top: 4px;">
-                <a href="#" class="btn btn-xs btn-primary btn-outline"><i class="fa fa-envelope"></i></a>
-                <a href="#" class="btn btn-xs btn-primary btn-outline"><i class="fa fa-user"></i></a>
-                <a href="#" class="btn btn-xs btn-primary btn-outline"><i class="fa fa-cog"></i></a>
-                <a href="#" class="btn btn-xs btn-danger btn-outline"><i class="fa fa-power-off"></i></a>
+                <a href="javascript:void(0)" onclick="alertPopUp('Pusat Bantuan', 'Butuh bantuan? <br /> hubungi <strong>efriandika@gmail.com</strong>', 'Tutup')" title="Bantuan" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-support"></i></a>
+                <a href="{{ url('backoffice/profile/edit') }}" title="Edit Profile" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>
+                <a href="javascript:void(0)" onclick="confirmDirectPopUp('{{ url('logout') }}', 'Konfirmasi Logout', 'Apakah anda yakin ingin keluar?', 'Ya', 'Tidak');" class="btn btn-xs btn-danger btn-outline dark"><i class="fa fa-power-off"></i></a>
             </div>
 
-            <!--
-            TODO add layout style for role list
-            <ul class="fa-ul" style="font-size: 9pt; margin-bottom: 15px">
+            <ul class="fa-ul" style="font-size: 9pt; margin-top: 13px">
                 @foreach(Auth::user()->roles as $role)
                     <li><i class="fa-li fa fa-arrow-right"></i>{{ $role->name }}</li>
                 @endforeach
             </ul>
-            -->
         </li>
 
         <li class="px-nav-item">
@@ -244,8 +234,7 @@
 
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <img src="{{ asset('theme/backoffice/demo/avatars/1.jpg') }}" alt="" class="px-navbar-image">
-                    {{--<img data-name="{{ Auth::user()->name }}" class="img-profile-name" />--}}
+                    <img data-name="{{ Auth::user()->name }}" class="img-profile-name px-navbar-image" />
                     <span class="text-capitalize hidden-md">
                         {{ Auth::user()->name }}
                         <i class="fa fa-sort-desc"></i>
@@ -255,16 +244,7 @@
                     <li><a href="{{ url('backoffice/profile/edit') }}">Ubah Profile</a></li>
                     <li><a href="{{ url('backoffice/profile/change-password') }}" class="btn-load-popup">Ganti Password</a></li>
                     <li class="divider"></li>
-                    {{--<li><a href="javascript:void(0)" onclick="confirmDirectPopUp('{{ url('logout') }}', 'Konfirmasi Logout', 'Apakah anda yakin ingin keluar?', 'Ya', 'Tidak');"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Keluar</a></li>--}}
-                    <li>
-                        <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="dropdown-icon fa fa-power-off"></i> Logout
-                        </a>
-
-                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                    </li>
+                    <li><a href="javascript:void(0)" onclick="confirmDirectPopUp('{{ url('logout') }}', 'Konfirmasi Logout', 'Apakah anda yakin ingin keluar?', 'Ya', 'Tidak');"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Keluar</a></li>
                 </ul>
             </li>
 
@@ -272,29 +252,11 @@
     </div><!-- /.navbar-collapse -->
 </nav>
 
-<script>
-    require(['jquery', 'px/extensions/perfect-scrollbar.jquery'], function($) {
-        $('#navbar-notifications').perfectScrollbar();
-        $('#navbar-messages').perfectScrollbar();
-    });
-</script>
-
 <div class="px-content">
     @yield('content')
 </div>
 
-<script type="text/javascript">
-    require(['jquery', 'px/pixeladmin', 'px/plugins/px-nav', 'px/plugins/px-navbar'], function($) {
-        // Activate current nav item
-        var url = String(document.location + '').replace(/\#.*?$/, '');
-        $('.px-nav')
-            .find('.px-nav-item > a[href="' + url + '"]')
-            .parent()
-            .addClass('active');
-
-        $('#px-nav-main').pxNav();
-    });
-</script>
+<script src="{{ asset('theme/backoffice/ext/app.js') }}"></script>
 
 @yield('footScript')
 </body>

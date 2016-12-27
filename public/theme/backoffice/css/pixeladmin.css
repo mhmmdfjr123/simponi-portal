@@ -13019,4 +13019,98 @@ html[dir="rtl"] .noUi-tooltip {
             transform: translateY(-50%);
     width: 100%; }
 
+/*
+ *  jquery-facebox - v2.1.0
+ *  A Simple jQuery Modal.
+ *  http://github.com/efriandika/jquery-facebox
+ *
+ *  Made by: Efriandika Pratama (efriandika@gmail.com)
+ *
+ *  Under MIT License
+ */
+#facebox-wrapper {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1041;
+  overflow-y: auto;
+  display: block; }
+
+#facebox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: left;
+  /* font-family: "Helvetica Neue", sans-serif, arial; */ }
+
+#facebox .facebox-content {
+  position: relative;
+  width: 400px;
+  margin-bottom: 50px;
+  display: table;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.3); }
+
+@media (max-width: 768px) {
+  #facebox {
+    top: 10px !important;
+    left: 0 !important;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px; }
+  #facebox .facebox-content {
+    width: 100% !important;
+    min-width: 250px; } }
+
+.facebox-open {
+  overflow: hidden; }
+
+/* FB STYLE by Efriandika Pratama */
+.fbox-header {
+  border-top: rgba(0, 0, 0, 0.2) solid 1px;
+  border-right: rgba(0, 0, 0, 0.2) solid 1px;
+  border-left: rgba(0, 0, 0, 0.2) solid 1px;
+  padding: 12px 12px;
+  background-color: #F6F7F8;
+  border-bottom: 1px solid #E5E5E5;
+  border-radius: 3px 3px 0px 0px; }
+
+.fbox-header h4 {
+  font-family: "Helvetica Neue", "Open Sans", arial;
+  margin: 0px;
+  font-weight: 400;
+  color: #141823;
+  font-size: 13pt; }
+
+.fbox-container {
+  border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
+  border-left: 1px rgba(0, 0, 0, 0.2) solid;
+  border-right: 1px rgba(0, 0, 0, 0.2) solid;
+  background-color: #FFFFFF;
+  border-radius: 0 0 3px 3px;
+  padding: 10px 12px; }
+
+.fbox-content {
+  font-size: 10pt;
+  padding-top: 4px;
+  padding-bottom: 14px;
+  font-weight: 300; }
+
+.fbox-footer {
+  border-top: 1px solid #E5E5E5;
+  padding-top: 12px;
+  text-align: right;
+  border-radius: 0 0 3px 3px; }
+
+.fbox-footer .btn-default {
+  background: #fcfcfc; }
+
+#facebox fieldset {
+  border: 0px;
+  padding: 0px; }
+
 /*# sourceMappingURL=pixeladmin.css.map */

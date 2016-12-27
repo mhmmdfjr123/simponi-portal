@@ -1,9 +1,7 @@
 <!-- Default Ajax Form -->
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('#change-password-alert-error').hide();
-
-        $("#ajax-form-change-password").validate({
+    require(['jquery', 'px-bootstrap/button', 'px-bootstrap/alert', 'px/plugins/px-validate'], function($) {
+        $("#ajax-form-change-password").pxValidate({
             meta : "validate",
             focusInvalid: false,
             rules: {
@@ -63,20 +61,20 @@
         <fieldset>
 
             <div class='fbox-content'>
-                <div class="alert alert-danger" id="change-password-alert-error">
+                <div class="alert alert-danger" id="change-password-alert-error" style="display: none">
                     <button class="close" data-dismiss="alert" type="button"><i class="fa fa-times"></i></button>
                     <span id="change-password-alert-error-text"></span>
                 </div>
                 <!-- Content -->
-                <div class="form-group">
+                <div class="form-group form-message-light">
                     <label>Password Lama</label>
                     <input type="password" name="old-password" maxlength="30" class="form-control" />
                 </div>
-                <div class="form-group">
+                <div class="form-group form-message-light">
                     <label>Password Baru</label>
                     <input type="password" name="password" id="password" maxlength="30" class="form-control" />
                 </div>
-                <div class="form-group">
+                <div class="form-group form-message-light">
                     <label>Ketik Ulang Password Baru</label>
                     <input type="password" name="password-confirm" maxlength="30" class="form-control" />
                 </div>
