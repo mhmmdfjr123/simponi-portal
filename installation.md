@@ -38,7 +38,9 @@ Since simponi portal uses oracle as database, you need to add PHP OCI8 driver Ex
 
 1. Clone from repository: 
 
+
        git clone http://devtass:8880/simponi/simponi-portal.git
+
 
 2. Install Laravel Dependencies
 
