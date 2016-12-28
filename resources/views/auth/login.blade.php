@@ -34,9 +34,14 @@
                 <span class="custom-control-indicator"></span>
                 Remember me
             </label>
-            <a href="{{ url('/password/reset') }}" class="font-size-12 text-muted pull-xs-right" id="page-signin-forgot-link">Forgot your password?</a>
+            <!-- TODO updated reset password form -->
+            {{--<a href="{{ url('/password/reset') }}" class="font-size-12 text-muted pull-xs-right" id="page-signin-forgot-link">Forgot your password?</a>--}}
         </div>
 
         <button type="submit" class="btn btn-block btn-lg btn-primary m-t-3">Login</button>
     </form>
+@endsection
+
+@section('footScript')
+
 @endsection
