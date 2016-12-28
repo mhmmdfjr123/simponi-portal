@@ -15,7 +15,7 @@
 
 You can check your PHP version in console:
 
-    $ php -v
+    php -v
     
 ### Oracle Driver for PHP
 
@@ -36,23 +36,29 @@ Since simponi portal uses oracle as database, you need to add PHP OCI8 driver Ex
 
 ## How to Install
 
-1. Clone from repository: 
+1. Open your terminal / console
+
+2. Clone from repository: 
 
         git clone http://devtass:8880/simponi/simponi-portal.git
+    
+    And then change directory to `simponi-portal` project
+    
+        cd simponi-portal
 
-2. Install Laravel Dependencies
+3. Install Laravel Dependencies
 
         composer install
     
-3. Create .env file based on .env.example, or you can try the following command:
+4. Create .env file based on .env.example, or you can try the following command:
 
         cp .env.example to .env
 
-4. Install node modules
+5. Install node modules
 
         npm install
 
-5. Cihuyy.. you can run your project
+6. Cihuyy.. you can run your project
 
         php artisan serve
 
