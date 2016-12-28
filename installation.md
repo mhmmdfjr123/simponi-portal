@@ -38,25 +38,23 @@ Since simponi portal uses oracle as database, you need to add PHP OCI8 driver Ex
 
 1. Clone from repository: 
 
-
-       git clone http://devtass:8880/simponi/simponi-portal.git
-
+        git clone http://devtass:8880/simponi/simponi-portal.git
 
 2. Install Laravel Dependencies
 
-       composer install
+        composer install
     
 3. Create .env file based on .env.example, or you can try the following command:
 
-       cp .env.example to .env
+        cp .env.example to .env
 
 4. Install node modules
 
-       npm install
+        npm install
 
 5. Cihuyy.. you can run your project
 
-       php artisan serve
+        php artisan serve
 
 Any question? send email to: efriandika.pratama@bni.co.id
 
