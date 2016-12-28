@@ -54,7 +54,7 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']],
 
 Route::get('backoffice', function() {
     return Redirect::to('backoffice/dashboard');
-});
+})->name('backoffice');
 
 Route::group(['middleware' => 'web'], function () {
     // Authentication Routes...
@@ -67,13 +67,15 @@ Route::group(['middleware' => 'web'], function () {
     // Route::post('register', 'Auth\RegisterController@register');
 
     // Password Reset Routes...
-    Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+    Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password-reset');
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
     Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+});
 
-    /*
-     * Front End Routes
-     */
-    Route::get('/home', 'HomeController@index');
+/*
+ * Front End Routes
+ */
+Route::group(['middleware' => 'web'], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
 });
