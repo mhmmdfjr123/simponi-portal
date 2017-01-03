@@ -2,46 +2,40 @@
 
 <!-- Main Content -->
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <h2 class="m-t-0 m-b-4 text-xs-center font-weight-semibold font-size-20">Reset Password</h2>
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Send Password Reset Link
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+    <form role="form" method="POST" action="{{ url('/password/email') }}" class="panel p-a-4" id="form-forgot-password">
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
             </div>
+        @endif
+
+        {{ csrf_field() }}
+
+        <fieldset class="form-group form-group-lg{{ $errors->has('email') ? ' has-error' : '' }} form-message-light">
+            <input type="email" class="form-control" placeholder="Masukan email anda" name="email" value="{{ old('email') }}" required>
+        </fieldset>
+
+        <button type="submit" class="btn btn-block btn-lg btn-primary m-t-3" id="btn-reset">Reset Password</button>
+        <div class="m-t-2 text-muted">
+            <a href="{{ route('login') }}" id="page-signin-forgot-back">&larr; Login</a>
         </div>
-    </div>
-</div>
+    </form>
+@endsection
+
+@section('footScript')
+    <script type="text/javascript">
+        require(['jquery', 'px-bootstrap/button', 'px-bootstrap/alert', 'px/plugins/px-validate'], function($) {
+            var $formForgotPassword = $("#form-forgot-password");
+
+            $formForgotPassword.pxValidate();
+            $formForgotPassword.submit(function(e){
+                if($(this).valid()){
+                    $('input.form-control').attr('readonly', true);
+                    $('#btn-reset').button('loading');
+                }
+            });
+        });
+    </script>
 @endsection

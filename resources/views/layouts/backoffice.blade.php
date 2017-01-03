@@ -28,6 +28,7 @@
     </script>
 
     <link href="{{ asset('theme/backoffice/ext/app.css') }}" rel="stylesheet" type="text/css">
+
     @yield('headScript')
 </head>
 <body class="px-navbar-fixed">
@@ -61,13 +62,10 @@
             <a href="{{ route('backoffice-dashboard') }}"><i class="px-nav-icon ion-ios-pulse-strong"></i><span class="px-nav-label">Dashboard</span></a>
         </li>
         <li class="px-nav-item px-nav-dropdown">
-            <a href="#"><i class="px-nav-icon ion-ios-analytics"></i><span class="px-nav-label">Boxes</span></a>
+            <a href="#"><i class="px-nav-icon ion-ios-people"></i><span class="px-nav-label">Administrasi</span></a>
 
             <ul class="px-nav-dropdown-menu">
-                <li class="px-nav-item"><a href="dashboards-analytics.html"><span class="px-nav-label">Analytics</span></a></li>
-                <li class="px-nav-item"><a href="dashboards-videos.html"><span class="px-nav-label">Videos</span></a></li>
-                <li class="px-nav-item"><a href="dashboards-financial.html"><span class="px-nav-label">Financial</span></a></li>
-                <li class="px-nav-item"><a href="dashboards-blog.html"><span class="px-nav-label">Blog</span></a></li>
+                <li class="px-nav-item"><a href="{{ url('backoffice/administration/user') }}"><span class="px-nav-label">Pengguna</span></a></li>
             </ul>
         </li>
 
@@ -257,6 +255,25 @@
 </div>
 
 <script src="{{ asset('theme/backoffice/ext/app.js') }}"></script>
+<script type="text/javascript">
+    @if(count($errors) > 0 || Session::has('success') || Session::has('warning'))
+    require(['jquery', 'px-libs/toastr'], function($, toastr) {
+        toastr.options.closeButton = true;
+
+        @if (count($errors) > 0)
+            @foreach ($errors->all() as $error)
+                toastr.error('{{ $error }}', 'Terjadi suatu kesalahan.');
+            @endforeach
+        @endif
+        @if (Session::has('success'))
+            toastr.success('{{ Session::get('success') }}', 'Sukses.');
+        @endif
+        @if (Session::has('warning'))
+            toastr.warning('{{ Session::get('warning') }}', 'Peringatan.');
+        @endif
+    });
+    @endif
+</script>
 
 @yield('footScript')
 </body>

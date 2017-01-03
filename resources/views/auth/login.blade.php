@@ -9,7 +9,7 @@
         {{ csrf_field() }}
 
         <fieldset class="form-group form-group-lg{{ $errors->has('email') ? ' has-error' : '' }} form-message-light">
-            <input type="text" class="form-control" placeholder="Username or Email" name="email" value="{{ old('email') }}" required autofocus>
+            <input type="text" class="form-control" placeholder="Username atau Email" name="email" value="{{ old('email') }}" required autofocus>
 
             @if ($errors->has('email'))
                 <span class="help-block">
@@ -34,11 +34,10 @@
                 <span class="custom-control-indicator"></span>
                 Ingat Saya
             </label>
-            <!-- TODO updated reset password form -->
-            {{--<a href="{{ url('/password/reset') }}" class="font-size-12 text-muted pull-xs-right" id="page-signin-forgot-link">Forgot your password?</a>--}}
+            <a href="{{ url('/password/reset') }}" class="font-size-12 text-muted pull-xs-right" id="page-signin-forgot-link">Lupa password?</a>
         </div>
 
-        <button type="submit" class="btn btn-block btn-lg btn-primary m-t-3" id="btn-login">Login</button>
+        <button type="submit" class="btn btn-block btn-lg btn-primary m-t-3" id="btn-login" data-loading-text="Please wait...">Login</button>
     </form>
 @endsection
 

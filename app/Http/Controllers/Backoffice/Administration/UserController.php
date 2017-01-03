@@ -33,7 +33,7 @@ class UserController extends Controller {
         $status = $request->get('userStatus');
         $role = $request->get('userRole');
 		
-		$data = User::select([DB::raw('row_number() OVER (ORDER BY name) AS rownum'), 'users.id', 'users.name', 'users.username', 'users.email', 'users.status', 'users.deleted_at']);
+		$data = User::select(['users.id', 'users.name', 'users.username', 'users.email', 'users.status', 'users.deleted_at']);
 
         if($status != '' && strtolower($status) == "deleted"){
             $data->onlyTrashed();
@@ -44,14 +44,19 @@ class UserController extends Controller {
             $data->whereNotExists(function ($query) {
                 $query->select(DB::raw(1))
                     ->from('role_user')
-                    ->whereRaw('role_user.user_id = users.id');
+                    ->whereRaw(DB::getTablePrefix().'role_user.user_id = '.DB::getTablePrefix().'users.id');
             });
         }else if($role != ''){
             $data->join('role_user', 'role_user.user_id', '=', 'users.id');
             $data->where('role_user.role_id', $role);
         }
 
+        $rowNum = 1;
+
 		return Datatables::of($data)
+            ->addColumn('rownum', function () use (&$rowNum) {
+                return $rowNum++;
+            })
             ->editColumn('role', function($model) {
                 $rowRole = '<ul style="padding-left: 10px; margin: 0; list-style: square;">';
                 foreach($model->roles as $role){
@@ -66,7 +71,7 @@ class UserController extends Controller {
             })
 			->addColumn('action', function ($model) {
                 if($model->deleted_at == ''){
-                    if($model->id != 1 || $model->id != Auth::user()->id)
+                    if($model->id != -1 || $model->id != Auth::user()->id)
                         $button = '
                            <div class="btn-group">
                                <a href="'.url('backoffice/administration/user/edit/'.$model->id).'" title="Ubah" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a>

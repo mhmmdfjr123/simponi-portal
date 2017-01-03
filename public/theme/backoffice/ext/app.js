@@ -23,8 +23,9 @@ require(['jquery', 'px/pixeladmin', 'px/plugins/px-nav', 'px/plugins/px-navbar',
      * Default Config
      */
     // Default validate tag
-    $('.validate').pxValidate();
-    $('.validate').submit(function(e){
+    var $validateElement = $('.validate');
+    $validateElement.pxValidate();
+    $validateElement.submit(function(e){
         if($(this).valid()){
             $(".btn-save").button('loading');
         }

@@ -22,7 +22,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel Starter',
+    'name' => 'Simponi Portal',
 
     /*
      |--------------------------------------------------------------------------
@@ -204,6 +204,7 @@ return [
         Arrilot\Widgets\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Kodeine\Acl\AclServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
         Yajra\Oci8\Oci8ServiceProvider::class,
     ],
 

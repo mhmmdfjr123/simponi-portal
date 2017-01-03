@@ -34,7 +34,6 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']],
     Route::get('profile/change-password', 'Backoffice\ProfileController@showChangePasswordForm');
     Route::post('profile/change-password', 'Backoffice\ProfileController@postChangePassword');
 
-    /*
     Route::group(['is' => 'super-administrator'], function () {
         // Administration - Users Routes
         Route::get('administration/user', 'Backoffice\Administration\UserController@index');
@@ -49,7 +48,6 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']],
 
     Route::get('administration/user/check-email/{id?}', 'Backoffice\Administration\UserController@checkEmail');
     Route::get('administration/user/check-username/{id?}', 'Backoffice\Administration\UserController@checkUsername');
-    */
 });
 
 Route::get('backoffice', function() {

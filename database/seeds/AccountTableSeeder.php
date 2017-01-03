@@ -19,7 +19,7 @@ class AccountTableSeeder extends Seeder {
         $account->name = 'Super Administrator';
         $account->username = 'admin';
         $account->email = 'efriandika@gmail.com';
-        $account->password = bcrypt('AB123456CD');
+        $account->password = bcrypt('12345678');
         $account->gender = config('enums.user.gender.male');
         $account->date_of_birth = '1991-12-05';
         $account->status = config('enums.user.status.active');

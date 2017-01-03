@@ -19,7 +19,7 @@
     <script src="{{ asset('theme/backoffice/js/requirejs.min.js') }}"></script>
     <script>
         requirejs.config({
-            baseUrl: 'theme/backoffice/js/amd'
+            baseUrl: '{{ asset('theme/backoffice/js/amd') }}'
         });
     </script>
 
@@ -28,6 +28,16 @@
         h2 {
             letter-spacing: -0.9px;
         }
+
+        /*
+        div.px-responsive-bg {
+            -webkit-filter: blur(30px);
+            -moz-filter: blur(25px);
+            -o-filter: blur(25px);
+            -ms-filter: blur(25px);
+            filter: blur(25px);
+        }
+        */
 
         .page-signin-header {
             box-shadow: 0 2px 2px rgba(0,0,0,.05), 0 1px 0 rgba(0,0,0,.05);
@@ -71,35 +81,25 @@
     <a class="text-default" href="{{ route('home') }}">
         {{ config('app.name') }}
     </a>
-    <a href="{{ route('home') }}" class="btn btn-primary">Back to Homepage</a>
+    <a href="{{ route('home') }}" class="btn btn-primary">Kembali ke Beranda</a>
 </div>
 
 <div class="page-signin-container" id="page-signin-forgot-form">
     @yield('content')
 </div>
 
-<!-- Reset form -->
-<!--
-<h2 class="m-t-0 m-b-4 text-xs-center font-weight-semibold font-size-20">Password reset</h2>
-
-    <form action="index.html" class="panel p-a-4">
-        <fieldset class="form-group form-group-lg">
-            <input type="email" class="form-control" placeholder="Your Email">
-        </fieldset>
-
-        <button type="submit" class="btn btn-block btn-lg btn-primary m-t-3">Send password reset link</button>
-        <div class="m-t-2 text-muted">
-            <a href="#" id="page-signin-forgot-back">&larr; Back</a>
-        </div>
-    </form>
--->
-<!-- / Reset form -->
-
 <!-- Javascript -->
 <script>
     require(['jquery', 'px/extensions/tooltip', 'px/plugins/px-responsive-bg'], function($) {
         $(function() {
             $('[data-toggle="tooltip"]').tooltip();
+            /*
+            $('body').pxResponsiveBg({
+                backgroundImage: '{{ asset('theme/backoffice/images/bg.jpg') }}',
+                overlay:         '#F1EFEB',
+                overlayOpacity:  0.3
+            });
+            */
         });
     });
 </script>

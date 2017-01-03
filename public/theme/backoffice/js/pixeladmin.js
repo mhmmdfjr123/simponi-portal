@@ -119788,4 +119788,23 @@ function log() {
 }));
 
 
+
+
+// Extensions / Datatables Bootstrap
+// --------------------------------------------------
+
+(function ($) {
+    'use strict';
+
+    if (!$.fn.dataTable) {
+        throw new Error('jquery.dataTables.js required.');
+    }
+
+    // Default Config for Classes
+    $.extend(true, $.fn.dataTable.ext.classes, {
+        sProcessing: "dataTables_processing"
+    });
+})(jQuery);
+
+
 //# sourceMappingURL=pixeladmin.js.map

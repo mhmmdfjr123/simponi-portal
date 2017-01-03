@@ -51,14 +51,14 @@ if (!function_exists('menuTypeText')){
     }
 }
 
-if (!function_exists('accountStatusTextWithStyle')){
+if (!function_exists('userStatusTextWithStyle')){
     /**
-     * Change account status code to text with bootstrap style
+     * Change user status code to text with bootstrap style
      *
      * @param $status
      * @return string
      */
-    function accountStatusTextWithStyle($status){
+    function userStatusTextWithStyle($status){
         $status = strtoupper($status);
 
         switch ($status) {
@@ -77,14 +77,14 @@ if (!function_exists('accountStatusTextWithStyle')){
     }
 }
 
-if (!function_exists('accountStatusText')){
+if (!function_exists('userStatusText')){
     /**
-     * Change account status code without style
+     * Change user status code without style
      *
      * @param $status
      * @return string
      */
-    function accountStatusText($status){
+    function userStatusText($status){
         $status = strtoupper($status);
 
         switch ($status) {

@@ -1,7 +1,9 @@
 <!-- Default Ajax Form -->
 <script type="text/javascript">
     require(['jquery', 'px-bootstrap/button', 'px-bootstrap/alert', 'px/plugins/px-validate'], function($) {
-        $("#ajax-form-change-password").pxValidate({
+        var $ajaxFormChangePassword = $("#ajax-form-change-password");
+
+        $ajaxFormChangePassword.pxValidate({
             meta : "validate",
             focusInvalid: false,
             rules: {
@@ -21,7 +23,7 @@
             }
         });
 
-        $("#ajax-form-change-password").ajaxForm({
+        $ajaxFormChangePassword.ajaxForm({
             beforeSubmit : function() {
                 $('fieldset').attr('disabled', true);
                 $(".fbox-footer button[type=submit]").button('loading');

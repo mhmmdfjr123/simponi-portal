@@ -1,27 +1,28 @@
 @extends('layouts.backoffice')
 
 @section('content')
-        <ul class="breadcrumb breadcrumb-page">
-			<!-- Auto breadcrumbs -->
-		</ul>
-		<div class="page-header">
-			
-			<div class="row">
-				<!-- Page header, center on small screens -->
-				<h1 class="col-xs-12 col-sm-3 text-center text-left-sm"><i class="fa fa-user page-header-icon"></i>&nbsp;&nbsp;<?php echo $pageTitle?></h1>
+    <ol class="breadcrumb page-breadcrumb">
+        <li><a href="{{ route('backoffice-dashboard') }}">Dashboard</a></li>
+        <!-- Auto Breadcrumbs -->
+        <li class="active"><a href="#">Daftar Pengguna</a></li>
+    </ol>
 
-				<div class="col-xs-12 col-sm-9">
-					<div class="row">
-						<hr class="visible-xs no-grid-gutter-h">
-						<!-- "Create project" button, width=auto on desktops -->
-						<div class="pull-right col-xs-12 col-sm-auto"><a href="<?php echo url('backoffice/administration/user/add')?>" class="btn btn-primary btn-labeled" style="width: 100%;"><span class="btn-label icon fa fa-plus"></span>Tambah Pengguna</a></div>
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-4 text-xs-center text-md-left text-nowrap">
+                <h1><i class="page-header-icon fa fa-user"></i> {{ $pageTitle }}</h1>
+            </div>
 
-						<!-- Margin -->
-						<div class="visible-xs clearfix form-group-margin"></div>
-					</div>
-				</div>
-			</div>
-		</div> <!-- / .page-header -->
+            <hr class="page-wide-block visible-xs visible-sm">
+
+            <div class="col-xs-12 width-md-auto width-lg-auto width-xl-auto pull-md-right">
+                <a href="{{ url('backoffice/administration/user/add') }}" class="btn btn-primary btn-block" style="width: 100%;"><span class="btn-label-icon left fa fa-plus"></span>Tambah Pengguna</a>
+            </div>
+
+            <!-- Spacer -->
+            <div class="m-b-2 visible-xs visible-sm clearfix"></div>
+        </div>
+    </div>
 
         <div class="row">
             <div class="col-sm-12">
@@ -64,77 +65,82 @@
                         </form>
                         <!-- ./filter -->
 
-						<table class="table table-striped table-hover table-bordered" id="jq-datatable">
-							<thead>
-								<tr>
-									<th style="width: 30px">No.</th>
-									<th style="width: 200px;">Nama</th>
-									<th>Username</th>
-									<th>Email</th>
+                        <div class="table-light">
+                            <table class="table table-striped table-hover table-bordered" id="jq-datatable">
+                                <thead>
+                                <tr>
+                                    <th style="width: 30px">No.</th>
+                                    <th style="width: 200px;">Nama</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
                                     <th style="width: 120px;">Role</th>
                                     <th style="width: 120px;">Status</th>
-									<th style="width: 60px;">Aksi</th>
-								</tr>
-							</thead>
-						</table>
+                                    <th style="width: 80px;">Aksi</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+
 					</div>
 				</div>
 			</div>
 		</div>
-		
-		<script type="text/javascript">
-            var status = '';
-            var role = '';
+@endsection
 
-    		init.push(function () {
-                resetAllFilter();
+@section('footScript')
+    <script type="text/javascript">
+        var status = '';
+        var role = '';
 
-                var oTable = $('#jq-datatable').DataTable({
-    		        "processing": true,
-    		        "serverSide": true,
-    		        "paginationType": "full_numbers",
-    		        "ajax": {
-                        "url": "<?php echo url('backoffice/administration/user/list-data')?>",
-                        "data": function (d) {
-                            d.userStatus = status;
-                            d.userRole = role;
-                        }
-                    },
-    		        "language": {
-    		            "processing": "<div style='padding-top: 6px;'>Mohon Tunggu.. Sedang memproses data..</div>"
-    		        },
-    		        "columns": [
-                        {data: 'rownum', name: 'rownum', "searchable": false, className: "text-center", orderable: false},
-						{data: 'name', name: 'name'},
-                        {data: 'username', name: 'username'},
-                        {data: 'email', name: 'users.email'},
-                        {data: 'role', name: 'role', "searchable": false, className: "text-left", orderable: false},
-                        {data: 'status', name: 'status', "searchable": false, className: "text-center", orderable: false},
-                        {data: 'action', name: 'action', "searchable": false, className: "text-center", orderable: false}
-    		    	]
-    		    } );
+        require(['jquery', 'px/extensions/datatables', 'px/custom/extensions/datatables', 'px-bootstrap/tab'], function($) {
+            resetAllFilter();
 
-                $('#jq-datatable_wrapper .dataTables_filter input').hide();
+            var oTable = $('#jq-datatable').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "paginationType": "full_numbers",
+                "ajax": {
+                    "url": "<?php echo url('backoffice/administration/user/list-data')?>",
+                    "data": function (d) {
+                        d.userStatus = status;
+                        d.userRole = role;
+                    }
+                },
+                "language": {
+                    "processing": "Mohon Tunggu.. Sedang memproses data.."
+                },
+                "columns": [
+                    {data: 'rownum', name: 'rownum', "searchable": false, className: "text-center", orderable: false},
+                    {data: 'name', name: 'name'},
+                    {data: 'username', name: 'username'},
+                    {data: 'email', name: 'users.email'},
+                    {data: 'role', name: 'role', "searchable": false, className: "text-left", orderable: false},
+                    {data: 'status', name: 'status', "searchable": false, className: "text-center", orderable: false},
+                    {data: 'action', name: 'action', "searchable": false, className: "text-center", orderable: false}
+                ]
+            } );
 
-                $('#search-user').on('keyup', function (){
-                    oTable.search($(this).val()).draw();
-                });
+            $('#jq-datatable_wrapper .dataTables_filter input').hide();
 
-                $('#filter-by-role').on('change', function (){
-                    role = $(this).val();
-                    oTable.draw();
-                });
+            $('#search-user').on('keyup', function (){
+                oTable.search($(this).val()).draw();
+            });
+
+            $('#filter-by-role').on('change', function (){
+                role = $(this).val();
+                oTable.draw();
+            });
 
 
-                $('#navtab-status li a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                    status = $(this).parent().data('status');
-                    oTable.draw();
-                });
-    		});
+            $('#navtab-status li a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                status = $(this).parent().data('status');
+                oTable.draw();
+            });
+        });
 
-            function resetAllFilter(){
-                $('#filter-by-role').val('');
-                $('#search-user').val('');
-            }
-		</script>
+        function resetAllFilter(){
+            $('#filter-by-role').val('');
+            $('#search-user').val('');
+        }
+    </script>
 @endsection

@@ -1,26 +1,28 @@
 @extends('layouts.backoffice')
 
 @section('content')
-    <ul class="breadcrumb breadcrumb-page">
+    <ol class="breadcrumb page-breadcrumb">
+        <li><a href="{{ route('backoffice-dashboard') }}">Dashboard</a></li>
         <!-- Auto Breadcrumbs -->
         <li class="active"><a href="#">Ubah Profil</a></li>
-    </ul>
+    </ol>
 
     <div class="page-header">
         <div class="row">
-            <!-- Page header, center on small screens -->
-            <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-user page-header-icon"></i>&nbsp;&nbsp;{{ $pageTitle }}</h1>
-
-            <div class="col-xs-12 col-sm-8">
-                <div class="row">
-                    <hr class="visible-xs no-grid-gutter-h" />
-                    <!-- "Create project" button, width=auto on desktops -->
-                    <div class="pull-right col-xs-12 col-sm-auto"><a href="{{ url('backoffice/profile/change-password') }}" class="btn btn-primary btn-labeled btn-load-popup" style="width: 100%;"><span class="btn-label icon fa fa-lock"></span> Ubah Password</a></div>
-
-                </div>
+            <div class="col-md-4 text-xs-center text-md-left text-nowrap">
+                <h1><i class="page-header-icon ion-person"></i> {{ $pageTitle }}</h1>
             </div>
+
+            <hr class="page-wide-block visible-xs visible-sm">
+
+            <div class="col-xs-12 width-md-auto width-lg-auto width-xl-auto pull-md-right">
+                <a href="{{ url('backoffice/profile/change-password') }}" class="btn btn-primary btn-block btn-load-popup" style="width: 100%;"><span class="btn-label-icon left ion-ios-locked"></span> Ubah Password</a>
+            </div>
+
+            <!-- Spacer -->
+            <div class="m-b-2 visible-xs visible-sm clearfix"></div>
         </div>
-    </div> <!-- / .page-header -->
+    </div>
 
     <div class="row">
         <div class="col-sm-12">
@@ -29,7 +31,7 @@
                     <span class="panel-title">Ubah Profile Pengguna</span>
                 </div>
                 <div class="panel-body">
-                    <form action="<?php echo url('backoffice/profile/edit'); ?>" class="form-horizontal" id="form-validate" method="post">
+                    <form action="{{ url('backoffice/profile/edit') }}" class="form-horizontal" id="form-validate" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <input type="hidden" name="id" value="{{ $obj->id }}" />
 
@@ -101,21 +103,22 @@
 @endsection
 
 
-@section('jsscript')
+@section('footScript')
     <script type="text/javascript">
-        $(document).ready(function() {
-            // Setup validation
-            $("#form-validate").validate({
+        require(['jquery', 'px/extensions/bootstrap-datepicker', 'px-bootstrap/button', 'px/plugins/px-validate'], function($) {
+            var $formValidate = $("#form-validate");
+
+            $formValidate.pxValidate({
                 focusInvalid: false,
                 rules: {
                     'username': {
                         required: true,
-                        remote: "<?php echo url('backoffice/administration/user/check-username/'.$obj->id)?>"
+                        remote: "{{ url('backoffice/administration/user/check-username/'.$obj->id) }}"
                     },
                     'email': {
                         required: true,
                         email: true,
-                        remote: "<?php echo url('backoffice/administration/user/check-email/'.$obj->id)?>"
+                        remote: "{{ url('backoffice/administration/user/check-email/'.$obj->id) }}"
                     }
                 },
                 messages: {
@@ -128,7 +131,7 @@
                 }
             });
 
-            $("#form-validate").submit(function(e){
+            $formValidate.submit(function(e){
                 if($(this).valid()){
                     $(".btn-save").button('loading');
                 }
