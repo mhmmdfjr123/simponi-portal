@@ -6,6 +6,7 @@ Homestead.json
 Homestead.yaml
 .env
 .phpstorm.meta.php
+.vagrant/
 
 # IntelliJ project files
 .idea/
