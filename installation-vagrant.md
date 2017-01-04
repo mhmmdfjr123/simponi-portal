@@ -43,54 +43,54 @@ Install Vagrant Proxy Conf
 3. Copy Homestead configuration from `vagrant/Homestead.yaml.example` to `Homestead.yaml`
    Then, setup project folders map path. For Example:
    
-       # DON'T FORGET TO SETUP FOLDER MAP
-       # EXAMPLE:
-       #       FOR WINDOWS     -> C:/Some_dir/some_dir_again/project
-       #       FOR Mac / Linux -> /Some_dir/some_dir_again/project
-       folders:
-           - map: "/Users/efriandika/P/PHP/simponi-portal" # Paste your project path to this line
-             to: "/home/vagrant/simponi-portal"
+        # DON'T FORGET TO SETUP FOLDER MAP
+        # EXAMPLE:
+        #       FOR WINDOWS     -> C:/Some_dir/some_dir_again/project
+        #       FOR Mac / Linux -> /Some_dir/some_dir_again/project
+        folders:
+            - map: "/Users/efriandika/P/PHP/simponi-portal" # Paste your project path to this line
+              to: "/home/vagrant/simponi-portal"
              
 4. Edit `/etc/hosts` file:
 
-       192.168.10.10	simponi.app
+        192.168.10.10	simponi.app
 
 5. Run Vagrant
 
-       vagrant up
+        vagrant up
        
-   Useful command:
+    Useful command:
    
-       # To destroy vagrant, it will reset vagrant box configuration
-       vagrant destroy --force
+        # To destroy vagrant, it will reset vagrant box configuration
+        vagrant destroy --force
        
-       # To turn off your vagrant machine. It will NOT reset your vagrant box
-       vagrant halt
+        # To turn off your vagrant machine. It will NOT reset your vagrant box
+        vagrant halt
        
-       # To Run vagrant.
-       vagrant up
+        # To Run vagrant.
+        vagrant up
 
 6. Login to your vagrant
 
-       vagrant ssh
+        vagrant ssh
        
-   Change directory to your project (shared directory)
+    Change directory to your project (shared directory)
    
-       cd simponi-portal
+        cd simponi-portal
 
-3. Install Laravel Dependencies
+7. Install Laravel Dependencies
 
-       composer install
+        composer install
     
-4. Create .env file based on .env.example, or you can try the following command:
+8. Create .env file based on .env.example, or you can try the following command:
 
-       cp .env.example to .env
+        cp .env.example to .env
 
-5. Install node modules
+9. Install node modules
 
-       npm install
+        npm install
 
-6. Cihuyy.. you can access your project from browser `http://simponi.app`
+10. Cihuyy.. you can access your project from browser `http://simponi.app`
 
 
 Any question? send email to: efriandika.pratama@bni.co.id
