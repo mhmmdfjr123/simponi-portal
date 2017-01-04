@@ -41,9 +41,9 @@ echo 'include_path=".:/usr/share/php:/usr/share/php/PEAR"' | sudo tee --append /
 
 echo "Restarting services..."
 sudo service php7.1-fpm restart
-sudo service nginx restart;
+sudo service nginx restart
 
-sudo pecl channel-update pecl.php.net
+# sudo pecl channel-update pecl.php.net
 printf "instantclient,/opt/oracle/instantclient_12_1" | sudo pecl install oci8
 
 echo 'extension=oci8.so' | sudo tee --append /etc/php/7.1/fpm/php.ini

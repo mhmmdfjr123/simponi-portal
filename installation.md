@@ -1,5 +1,8 @@
 # Simponi Portal Installation for Development
 
+This documentation is designed to develop in Linux / macOS (Without Vagrant). 
+If you prefer to use vagrant (it can be run in windows as well), please [check this out](installation-vagrant.md) 
+
 ## Prerequisite
 
 ### PHP
