@@ -15,12 +15,6 @@ Since Vagrant needs virtualbox, you have to [Download](https://www.vagrantup.com
 ### Install Vagrant
 
 [Download](https://www.vagrantup.com/downloads.html) and Install vagrant
-
-    vagrant up
-    
-    vagrant destroy --force
-    
-    vagrant halt
     
 ### Configure vagrant behind proxy:
 
