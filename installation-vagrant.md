@@ -86,7 +86,7 @@ Install Vagrant Proxy Conf
     
 8. Create .env file based on .env.example, or you can try the following command:
 
-        cp .env.example to .env
+        cp .env.example .env
 
 9. Install node modules
 

@@ -55,7 +55,7 @@ Since simponi portal uses oracle as database, you need to add PHP OCI8 driver Ex
     
 4. Create .env file based on .env.example, or you can try the following command:
 
-        cp .env.example to .env
+        cp .env.example .env
 
 5. Install node modules
 

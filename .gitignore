@@ -1,5 +1,6 @@
 # Laravel
 /node_modules
+yarn-error.log
 /public/storage
 /vendor
 Homestead.json

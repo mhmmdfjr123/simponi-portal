@@ -8,12 +8,12 @@
     <form action="{{ url('/login') }}" class="panel p-a-4" method="POST" id="form-login">
         {{ csrf_field() }}
 
-        <fieldset class="form-group form-group-lg{{ $errors->has('email') ? ' has-error' : '' }} form-message-light">
-            <input type="text" class="form-control" placeholder="Username atau Email" name="email" value="{{ old('email') }}" required autofocus>
+        <fieldset class="form-group form-group-lg{{ $errors->has('username') ? ' has-error' : '' }} form-message-light">
+            <input type="text" class="form-control" placeholder="Username atau Email" name="username" value="{{ old('username') }}" required autofocus>
 
-            @if ($errors->has('email'))
+            @if ($errors->has('username'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('email') }}</strong>
+                    <strong>{{ $errors->first('username') }}</strong>
                 </span>
             @endif
         </fieldset>
