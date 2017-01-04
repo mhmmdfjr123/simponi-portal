@@ -4,7 +4,7 @@ Welcome to Simponi Portal
 
 ## How to Install
 
-[Check the documentation](installation.md)
+Check the documentation to install with [vagrant](installation.md) (macOS / Linux / Windows) or [without vagrant](installation-vagrant.md) (macOS / Linux)
 
 ## Development
 
