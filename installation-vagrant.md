@@ -40,7 +40,7 @@ Install Vagrant Proxy Conf
     
         cd simponi-portal
 
-3. Copy Homestead configuration from `vagrant/Homestead.yaml.example` to `Homestead.yaml`
+3. Copy Homestead configuration from `<project root>/vagrant/Homestead.yaml.example` to `<project root>/Homestead.yaml`
    Then, setup project folders map path. For Example:
    
         # DON'T FORGET TO SETUP FOLDER MAP
@@ -54,6 +54,8 @@ Install Vagrant Proxy Conf
 4. Edit `/etc/hosts` file:
 
         192.168.10.10	simponi.app
+        
+   If you work behind the proxy, add `simponi.app` to exception list.
 
 5. Run Vagrant
 
