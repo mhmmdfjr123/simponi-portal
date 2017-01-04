@@ -55,7 +55,7 @@ Install Vagrant Proxy Conf
 
         192.168.10.10	simponi.app
         
-   If you work behind the proxy, add `simponi.app` to exception list.
+    If you work behind the proxy, add `simponi.app` to exception list.
 
 5. Run Vagrant
 
