@@ -2,7 +2,6 @@
 
 @section('content')
     <ol class="breadcrumb page-breadcrumb">
-        <li><a href="{{ route('backoffice-dashboard') }}">Dashboard</a></li>
         <!-- Auto Breadcrumbs -->
         <li class="active"><a href="#">Tambah Pengguna</a></li>
     </ol>
@@ -150,6 +149,9 @@
 @section('footScript')
     <script type="text/javascript">
         require(['jquery', 'px/extensions/bootstrap-datepicker', 'px-bootstrap/button', 'px/plugins/px-validate'], function($) {
+            // Menu State
+            $('#menu-user').addClass('active');
+
             var $formValidate = $("#form-validate");
 
             // Setup validation

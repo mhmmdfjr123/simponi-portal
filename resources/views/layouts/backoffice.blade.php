@@ -39,7 +39,7 @@
         <span class="px-nav-toggle-label font-size-11">HIDE MENU</span>
     </button>
 
-    <ul class="px-nav-content">
+    <ul class="px-nav-content" id="main-navigation">
         <li class="px-nav-box p-a-3 b-b-1">
             <div class="font-size-16">
                 <span class="font-weight-light text-capitalize">Welcome, </span>
@@ -61,16 +61,41 @@
         <li class="px-nav-item">
             <a href="{{ route('backoffice-dashboard') }}"><i class="px-nav-icon ion-ios-pulse-strong"></i><span class="px-nav-label">Dashboard</span></a>
         </li>
+
         <li class="px-nav-item px-nav-dropdown">
-            <a href="#"><i class="px-nav-icon ion-ios-people"></i><span class="px-nav-label">Administrasi</span></a>
+            <a href="#"><i class="px-nav-icon fa fa-file-text-o"></i><span class="px-nav-label">Artikel</span></a>
 
             <ul class="px-nav-dropdown-menu">
-                <li class="px-nav-item"><a href="{{ url('backoffice/administration/user') }}"><span class="px-nav-label">Pengguna</span></a></li>
+                <li class="px-nav-item"><a href="javascript:maintenance();"><span class="px-nav-label">Daftar Artikel</span></a></li>
+                <li class="px-nav-item"><a href="javascript:maintenance();"><span class="px-nav-label">Buat Artikel Baru</span></a></li>
+                <li class="px-nav-item"><a href="javascript:maintenance();"><span class="px-nav-label">Kategori</span></a></li>
+            </ul>
+        </li>
+        <li class="px-nav-item px-nav-dropdown">
+            <a href="#"><i class="px-nav-icon fa fa-file-o"></i><span class="px-nav-label">Halaman</span></a>
+
+            <ul class="px-nav-dropdown-menu">
+                <li class="px-nav-item"><a href="javascript:maintenance();"><span class="px-nav-label">Daftar Halaman</span></a></li>
+                <li class="px-nav-item"><a href="javascript:maintenance();"><span class="px-nav-label">Buat Halaman Baru</span></a></li>
+            </ul>
+        </li>
+        <li class="px-nav-item px-nav-dropdown">
+            <a href="#"><i class="px-nav-icon fa fa-desktop"></i><span class="px-nav-label">Tampilan</span></a>
+
+            <ul class="px-nav-dropdown-menu">
+                <li class="px-nav-item"><a href="javascript:maintenance();"><span class="px-nav-label">Manajemen Menu</span></a></li>
+            </ul>
+        </li>
+        <li class="px-nav-item px-nav-dropdown">
+            <a href="#"><i class="px-nav-icon fa fa-users"></i><span class="px-nav-label">Administrasi</span></a>
+
+            <ul class="px-nav-dropdown-menu">
+                <li class="px-nav-item" id="menu-user"><a href="{{ url('backoffice/administration/user') }}"><span class="px-nav-label">Pengguna</span></a></li>
             </ul>
         </li>
 
         <li class="px-nav-box b-t-1 p-a-2">
-            <a href="index.html" class="btn btn-primary btn-block btn-outline">Go to Homepage</a>
+            <a href="{{ route('home') }}" class="btn btn-primary btn-block btn-outline">Go to Homepage</a>
         </li>
     </ul>
 </nav>
@@ -78,7 +103,7 @@
 <nav class="navbar px-navbar">
     <!-- Header -->
     <div class="navbar-header">
-        <a class="navbar-brand px-demo-brand" href="index.html">
+        <a class="navbar-brand px-demo-brand" href="{{ route('backoffice') }}">
             {!! config('app.name') !!}
         </a>
     </div>
@@ -276,5 +301,18 @@
 </script>
 
 @yield('footScript')
+
+<script>
+    require(['jquery', 'px/plugins/px-nav'], function($) {
+        // Activate current nav item
+        var url = String(document.location + '').replace(/\#.*?$/, '');
+        $('.px-nav')
+            .find('.px-nav-item > a[href="' + url + '"]')
+            .parent()
+            .addClass('active');
+
+        $('#px-nav-main').pxNav();
+    });
+</script>
 </body>
 </html>

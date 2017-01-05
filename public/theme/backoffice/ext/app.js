@@ -7,15 +7,6 @@ require(['jquery', 'px/pixeladmin', 'px/plugins/px-nav', 'px/plugins/px-navbar',
     $('#navbar-notifications').perfectScrollbar();
     $('#navbar-messages').perfectScrollbar();
 
-    // Activate current nav item
-    var url = String(document.location + '').replace(/\#.*?$/, '');
-    $('.px-nav')
-        .find('.px-nav-item > a[href="' + url + '"]')
-        .parent()
-        .addClass('active');
-
-    $('#px-nav-main').pxNav();
-
     // Set Initial.js
     $('.img-profile-name').initial({charCount:2, fontSize: 52});
 
@@ -51,23 +42,25 @@ require(['jquery', 'px/pixeladmin', 'px/plugins/px-nav', 'px/plugins/px-navbar',
 
     // Global Config hyperlink to popup (loadIntoBox)
     $('.btn-load-popup').facebox();
+
+    makeBreadCrumb();
 });
 
 /*
- * Update BreadCrumbs by Clicked Menu
+ * Update BreadCrumbs Automatically
  * Author: Efriandika Pratama
  */
 function makeBreadCrumb() {
-    var navElements = $('ul.navigation li.active > a'),
-        breadElement = $('ul.breadcrumb-page'),
-        breadElementChild = $('ul.breadcrumb-page li');
+    var navElements = $('ul#main-navigation li.active > a'),
+        breadElement = $('ol.page-breadcrumb'),
+        breadElementChild = $('ol.page-breadcrumb li');
 
     var mergeElement = $.merge(navElements, breadElementChild),
         count = mergeElement.length;
 
     //console.log("breadcrumb")
     breadElement.empty();
-    breadElement.append($("<li>Home</li>"));
+    breadElement.append($("<li>Dashboard</li>"));
 
     mergeElement.each(function() {
         var $href = $(this).attr('href');
