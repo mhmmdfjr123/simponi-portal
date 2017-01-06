@@ -3,7 +3,7 @@
 @section('content')
     <ol class="breadcrumb page-breadcrumb">
         <!-- Auto Breadcrumbs -->
-        <li class="active"><a href="#">Tambah Pengguna</a></li>
+        <li class="active" data-active-menu="#menu-user"><a href="#">Tambah Pengguna</a></li>
     </ol>
 
     <div class="page-header">
@@ -149,9 +149,6 @@
 @section('footScript')
     <script type="text/javascript">
         require(['jquery', 'px/extensions/bootstrap-datepicker', 'px-bootstrap/button', 'px/plugins/px-validate'], function($) {
-            // Menu State
-            $('#menu-user').addClass('active');
-
             var $formValidate = $("#form-validate");
 
             // Setup validation

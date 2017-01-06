@@ -301,18 +301,5 @@
 </script>
 
 @yield('footScript')
-
-<script>
-    require(['jquery', 'px/plugins/px-nav'], function($) {
-        // Activate current nav item
-        var url = String(document.location + '').replace(/\#.*?$/, '');
-        $('.px-nav')
-            .find('.px-nav-item > a[href="' + url + '"]')
-            .parent()
-            .addClass('active');
-
-        $('#px-nav-main').pxNav();
-    });
-</script>
 </body>
 </html>

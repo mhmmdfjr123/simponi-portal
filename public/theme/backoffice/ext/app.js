@@ -7,7 +7,16 @@ require(['jquery', 'px/pixeladmin', 'px/plugins/px-nav', 'px/plugins/px-navbar',
     $('#navbar-notifications').perfectScrollbar();
     $('#navbar-messages').perfectScrollbar();
 
-    // Set Initial.js
+    // Activate current nav item
+    var url = String(document.location + '').replace(/\#.*?$/, '');
+    $('.px-nav')
+        .find('.px-nav-item > a[href="' + url + '"]')
+        .parent()
+        .addClass('active');
+    $('#px-nav-main').pxNav();
+
+
+        // Set Initial.js
     $('.img-profile-name').initial({charCount:2, fontSize: 52});
 
     /**
@@ -51,6 +60,13 @@ require(['jquery', 'px/pixeladmin', 'px/plugins/px-nav', 'px/plugins/px-navbar',
  * Author: Efriandika Pratama
  */
 function makeBreadCrumb() {
+    // Active menu state checking
+    var activeMenu = $('ol.page-breadcrumb li.active').data('active-menu');
+
+    if(typeof activeMenu != 'undefined')
+        setMenuState(activeMenu)
+
+    // Creating breadcrumbs
     var navElements = $('ul#main-navigation li.active > a'),
         breadElement = $('ol.page-breadcrumb'),
         breadElementChild = $('ol.page-breadcrumb li');
@@ -58,7 +74,6 @@ function makeBreadCrumb() {
     var mergeElement = $.merge(navElements, breadElementChild),
         count = mergeElement.length;
 
-    //console.log("breadcrumb")
     breadElement.empty();
     breadElement.append($("<li>Dashboard</li>"));
 
@@ -73,10 +88,15 @@ function makeBreadCrumb() {
         else
             breadElement.append($("<li></li>").html("<a href='" + $href + "'>" + $.trim($(this).clone().children(".badge").remove().end().text()) + "</a>"));
 
-        // update title when breadcrumb is finished...
+        // update title when creating a breadcrumb is finished...
         //if (!--count) document.title = breadElement.find("li:last-child").text();
     });
 
+}
+
+function setMenuState(idName){
+    $(idName).addClass('active')
+        .parent().parent().addClass('px-open active');
 }
 
 function load(page,div){
