@@ -2,9 +2,8 @@
 
 @section('content')
     <ol class="breadcrumb page-breadcrumb">
-        <li><a href="{{ route('backoffice-dashboard') }}">Dashboard</a></li>
         <!-- Auto Breadcrumbs -->
-        <li class="active"><a href="#">Ubah Pengguna</a></li>
+        <li class="active" data-active-menu="#menu-user"><a href="#">Ubah Pengguna</a></li>
     </ol>
 
     <div class="page-header">

@@ -116,7 +116,8 @@
                     {data: 'role', name: 'role', "searchable": false, className: "text-left", orderable: false},
                     {data: 'status', name: 'status', "searchable": false, className: "text-center", orderable: false},
                     {data: 'action', name: 'action', "searchable": false, className: "text-center", orderable: false}
-                ]
+                ],
+                "order": [[ 1, "asc" ]]
             } );
 
             $('#jq-datatable_wrapper .dataTables_filter input').hide();

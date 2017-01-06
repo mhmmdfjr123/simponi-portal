@@ -52,10 +52,11 @@ class UserController extends Controller {
         }
 
         $rowNum = 1;
+        $startPage = $request->get('start');
 
 		return Datatables::of($data)
-            ->addColumn('rownum', function () use (&$rowNum) {
-                return $rowNum++;
+            ->addColumn('rownum', function () use (&$rowNum, $startPage) {
+                return $startPage + ($rowNum++);
             })
             ->editColumn('role', function($model) {
                 $rowRole = '<ul style="padding-left: 10px; margin: 0; list-style: square;">';
