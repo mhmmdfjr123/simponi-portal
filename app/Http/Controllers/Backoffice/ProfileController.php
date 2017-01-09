@@ -7,6 +7,11 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * Class ProfileController
+ * @package App\Http\Controllers\Backoffice
+ * @author efriandika
+ */
 class ProfileController extends Controller {
     private $auth;
 

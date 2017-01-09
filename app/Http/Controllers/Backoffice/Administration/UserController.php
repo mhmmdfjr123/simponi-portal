@@ -9,11 +9,23 @@ use Illuminate\Support\Facades\DB;
 use Kodeine\Acl\Models\Eloquent\Role;
 use Yajra\Datatables\Datatables;
 
+/**
+ * This class handle User Management
+ *
+ * @package App\Http\Controllers\Backoffice\Administration
+ * @author efriandika
+ */
 class UserController extends Controller {
 	public function __construct(){
 
 	}
 
+    /**
+     * Show users list page
+     *
+     * @param User $user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
 	public function index(User $user){
 		$countListAll = $user->count();
 		$countListTrash = $user->onlyTrashed()->count();
@@ -29,6 +41,12 @@ class UserController extends Controller {
 		return view('backoffice.administration.user.index', $data);
 	}
 
+    /**
+     * Return list of users (datatables)
+     *
+     * @param Request $request
+     * @return mixed
+     */
 	public function listData(Request $request){
         $status = $request->get('userStatus');
         $role = $request->get('userRole');
@@ -103,6 +121,11 @@ class UserController extends Controller {
 			->make(true);
 	}
 
+    /**
+     * To show new users form
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
 	public function add(){
 		$data = [
             'pageTitle' => 'Tambah Pengguna',
@@ -112,6 +135,12 @@ class UserController extends Controller {
 		return view('backoffice.administration.user.add', $data);
 	}
 
+    /**
+     * To show edit form
+     *
+     * @param $id
+     * @return mixed
+     */
 	public function edit($id){
 		try {
 			$obj = User::find($id);
@@ -138,6 +167,12 @@ class UserController extends Controller {
 		}
 	}
 
+    /**
+     * To remove a user (soft delete)
+     *
+     * @param $id
+     * @return mixed
+     */
 	public function delete($id){
 		try {
 			$obj = User::find($id);
@@ -160,6 +195,12 @@ class UserController extends Controller {
 		}
 	}
 
+    /**
+     *
+     * @param User $userModel
+     * @param $id
+     * @return mixed
+     */
 	public function deleteRestore(User $userModel, $id){
 		try {
 			$obj = $userModel::onlyTrashed()->find($id);
@@ -182,6 +223,11 @@ class UserController extends Controller {
 		}
 	}
 
+    /**
+     * @param User $userModel
+     * @param $id
+     * @return mixed
+     */
 	public function deletePermanent(User $userModel, $id){
 		try {
 			$obj = $userModel::onlyTrashed()->find($id);
@@ -218,6 +264,12 @@ class UserController extends Controller {
 			return "true";
 	}
 
+    /**
+     * Handling data form user form
+     *
+     * @param Request $request
+     * @return mixed
+     */
 	public function submit(Request $request){
 		try {
 			if($request->input('id') != ""){

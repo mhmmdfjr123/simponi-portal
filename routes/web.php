@@ -11,13 +11,33 @@
 |
 */
 
+
+/*
+|--------------------------------------------------------------------------
+| Front End Routes
+|--------------------------------------------------------------------------
+*/
 Route::get('/', function () {
-    return view('welcome');
+    return Redirect::route('home');
+});
+
+Route::group(['middleware' => 'web'], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+});
+
+Route::group(['prefix' => 'portal', 'middleware' => 'web'], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
 });
 
 /*
- * Backoffice Routes
- */
+|--------------------------------------------------------------------------
+| BackOffice Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('backoffice', function() {
+    return Redirect::to('backoffice/dashboard');
+})->name('backoffice');
+
 Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']], function(){
     Route::get('dashboard', 'Backoffice\DashboardController@index')->name('backoffice-dashboard');
 
@@ -50,10 +70,6 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']],
     Route::get('administration/user/check-username/{id?}', 'Backoffice\Administration\UserController@checkUsername');
 });
 
-Route::get('backoffice', function() {
-    return Redirect::to('backoffice/dashboard');
-})->name('backoffice');
-
 Route::group(['middleware' => 'web'], function () {
     // Authentication Routes...
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -69,11 +85,4 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
     Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-});
-
-/*
- * Front End Routes
- */
-Route::group(['middleware' => 'web'], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
 });
