@@ -28,6 +28,13 @@
         }
     });
 
+    // Offset for AboveFold button
+    $('.abovefold').affix({
+        offset: {
+            top: 50
+        }
+    });
+
     // Initialize and Configure Scroll Reveal Animation
     window.sr = ScrollReveal();
     sr.reveal('.sr-icons', {

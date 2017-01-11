@@ -23,7 +23,7 @@ elixir(mix => {
     // Copy vendor files
     mix.copy(['node_modules/bootstrap/dist/**/*', '!**/npm.js', '!**/bootstrap-theme.*', '!**/*.map'], frontThemePath + 'vendor/bootstrap');
     mix.copy(['node_modules/jquery/dist/jquery.js', 'node_modules/jquery/dist/jquery.min.js'], frontThemePath + 'vendor/jquery');
-    mix.copy(['node_modules/magnific-popup/dist/*'], frontThemePath + 'vendor/magnific-popup');
+    mix.copy(['node_modules/magnific-popup/dist/**'], frontThemePath + 'vendor/magnific-popup');
     mix.copy(['node_modules/scrollreveal/dist/*.js'], frontThemePath + 'vendor/scrollreveal');
     mix.copy([
         'node_modules/font-awesome/**',
