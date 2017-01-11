@@ -25,7 +25,8 @@
         "arrilot/laravel-widgets": "^3.6",
         "kodeine/laravel-acl": "~1.0@dev",
         "intervention/image": "^2.3",
-        "yajra/laravel-datatables-oracle": "~6.0"
+        "yajra/laravel-datatables-oracle": "~6.0",
+        "guzzlehttp/guzzle": "~6.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

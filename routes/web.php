@@ -26,7 +26,13 @@ Route::group(['middleware' => 'web'], function () {
 });
 
 Route::group(['prefix' => 'portal', 'middleware' => 'web'], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/dashboard', 'Portal\DashboardController@index')->name('portal-dashboard');
+});
+
+Route::group(['prefix' => 'portal', 'middleware' => 'web'], function () {
+    Route::get('/login', 'Portal\Auth\LoginController@showLoginForm')->name('portal-login');
+    Route::post('/login', 'Portal\Auth\LoginController@login');
+    Route::get('/logout', 'Portal\Auth\LoginController@logout')->name('portal-logout');
 });
 
 /*

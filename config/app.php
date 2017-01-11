@@ -10,7 +10,7 @@ return [
     | Author: Efriandika Pratama
 	|
 	*/
-    // 'example_var' => 'value'.
+    'portal_api_base_uri' => env('PORTAL_API_BASE_URI', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------
