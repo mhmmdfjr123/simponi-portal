@@ -218,8 +218,8 @@
 <footer>
     <div class="container">
         <small>Copyright © 2017 PT. Bank Negara Indonesia (Persero) Tbk.</small>
-        <img src="images/logo_OJK.png" alt="BNI Simponi Otoritas Jasa Keuangan (OJK)">
-        <img src="images/logo_LPS.png" alt="BNI Simponi Lembaga Penjamin Simpanan (LPS)">
+        <img src="{{ asset('theme/front/images/logo_OJK.png') }}" alt="BNI Simponi Otoritas Jasa Keuangan (OJK)">
+        <img src="{{ asset('theme/front/images/logo_LPS.png') }}" alt="BNI Simponi Lembaga Penjamin Simpanan (LPS)">
     </div>
 </footer>
 
@@ -228,7 +228,7 @@
     <div>
         <b>Masukkan alamat <i>email</i> dan kata sandi Anda untuk masuk.</b>
         <form>
-            <img src="images/BNI-logo-dark.png" alt="BNI Simponi" />
+            <img src="{{ asset('theme/front/images/BNI-logo-dark.png') }}" alt="BNI Simponi" />
             <small>Email</small>
             <input type="text" />
             <small>Kata Sandi</small>
