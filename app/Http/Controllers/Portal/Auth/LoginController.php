@@ -18,10 +18,15 @@ class LoginController extends PortalBaseController
     public function __construct()
     {
         parent::__construct();
-        $this->middleware('guest', ['except' => 'logout']);
+        // $this->middleware('guest', ['except' => 'logout']);
     }
 
     public function showLoginForm()
+    {
+        return view('portal.auth.login');
+    }
+
+    public function login()
     {
         try {
             $response = $this->apiGet('http://172.18.2.112:9090/admin/login');
@@ -35,11 +40,6 @@ class LoginController extends PortalBaseController
             }
         }
 
-        return view('portal.auth.login');
-    }
-
-    public function login()
-    {
         return 'This is Login';
     }
 

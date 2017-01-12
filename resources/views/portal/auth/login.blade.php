@@ -1,1 +1,1 @@
-This is login
+@extends('layouts.portal')
