@@ -25,7 +25,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 });
 
-Route::group(['prefix' => 'portal', 'middleware' => 'web'], function () {
+Route::group(['prefix' => 'portal', 'middleware' => ['web', 'auth.portal']], function () {
     Route::get('/dashboard', 'Portal\DashboardController@index')->name('portal-dashboard');
 });
 
