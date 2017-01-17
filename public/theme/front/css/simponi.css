@@ -4,6 +4,7 @@ body {
   width: 100%;
 }
 body {
+  position: relative;
   font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 300;
 }
@@ -43,12 +44,13 @@ iframe {
   border: none;
 }
 .bg-primary {
-  background: url(../images/textures/arches.png);
-  background-color: #f05921;
+  background: #f05921 url(../images/textures/arches.png);
 }
 .bg-secondary {
-  background: url(../images/textures/arches.png);
-  background-color: #005c69;
+  background: #005c69 url(../images/textures/arches.png);
+}
+.bg-featured {
+  background: #eeeeee url(../images/textures/arches.png);
 }
 .bg-dark {
   background-color: #222222;
@@ -57,41 +59,40 @@ iframe {
 .text-faded {
   color: rgba(255, 255, 255, 0.7);
 }
-section {
-  position: relative;
-  padding: 100px 0;
-}
-section#about .abovefold {
+.abovefold {
   -webkit-transition: all 0.35s;
   transition: all 0.35s;
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
+  visibility: visible;
+  opacity: 1;
+  z-index: 1;
+}
+.abovefold.affix {
+  visibility: hidden;
+  opacity: 0;
+}
+.abovefold a {
   margin: 0;
   padding: 12px 0;
   font-size: 30px;
   text-align: center;
   color: white;
   cursor: pointer;
-  visibility: visible;
-  opacity: 1;
 }
-section#about .abovefold:hover {
+.abovefold a:hover {
   text-decoration: none;
 }
-section#about .abovefold.affix {
-  visibility: hidden;
-  opacity: 0;
-}
-section#about .abovefold .fa {
+.abovefold a .fa {
   position: absolute;
   margin-left: 10px;
   -webkit-animation: moving-arrow 0.8s infinite;
   animation: moving-arrow 0.8s infinite;
 }
+section {
+  position: relative;
+  padding: 100px 0;
+}
 section#featured {
-  padding: 2px 0;
+  padding: 1px 0;
 }
 section#featured .container {
   width: 100%;
@@ -99,18 +100,55 @@ section#featured .container {
 section#featured .row > div {
   padding: 1px;
 }
-section#featured .row > div span {
-  background: #eeeeee;
-  padding: 22px 0;
+section#featured .row > div > span {
+  background: #eeeeee url(../images/textures/arches.png);
+  padding: 20px 0;
   font-size: 16px;
   font-weight: bold;
   color: #555555;
 }
 section#featured .row > div > div {
-  background: #eeeeee;
+  position: relative;
+  background: #eeeeee url(../images/textures/arches.png);
   height: 300px;
   padding: 0 20px;
   overflow: hidden;
+}
+section#featured .row > div > div > div {
+  height: 280px;
+}
+section#featured .row > div > div > div ul {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: justify;
+}
+section#featured .row > div > div > div ul * {
+  display: block;
+}
+section#featured .row > div > div > div ul li a {
+  padding-bottom: 15px;
+}
+section#featured .row > div > div > div ul li a:hover {
+  opacity: .8;
+  color: #f05921;
+  text-decoration: none;
+}
+section#featured .row > div > div > div ul li a:hover > *:first-child {
+  text-decoration: underline;
+}
+section#featured .row > div > div > div ul li a span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+section#featured .row > div > div > div ul li a img {
+  width: 100%;
+  margin: 5px 0;
+}
+section#featured .row > div > div > div ul li:last-child a {
+  padding-bottom: 0;
 }
 section#featured .row > div > div iframe {
   margin-bottom: 10px;
@@ -120,6 +158,9 @@ section#featured .row > div > div p {
   width: 100%;
   float: left;
   text-align: justify;
+}
+section#featured .row > div > div p:last-of-type {
+  margin-bottom: 0;
 }
 section#content img {
   display: block;
@@ -132,6 +173,39 @@ section#content img.contentimage {
 section#content h2 {
   margin-top: 50px;
   color: #005c69;
+}
+section#content select {
+  cursor: pointer;
+}
+section#content .date-control {
+  display: block;
+  width: 100%;
+}
+section#content .date-control select.form-control {
+  display: inline-block;
+  width: auto;
+}
+section#content .radio label:not(:last-child) {
+  margin-right: 20px;
+}
+section#content .radio label input[type="radio"] {
+  cursor: pointer;
+}
+section#content .identity {
+  border-right: 1px solid #eeeeee;
+}
+section#content .identity,
+section#content .billing {
+  margin-top: 20px;
+}
+section#content .variables {
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  margin: 10px 0;
+  padding: 10px 0;
+}
+section#content canvas#simulation {
+  margin-top: 40px;
 }
 section.bg-secondary {
   color: white;
@@ -364,10 +438,9 @@ header .information div ul a span {
 }
 .carousel-caption {
   top: 40%;
-  left: 40%;
-  right: 10%;
+  left: 20%;
+  right: 20%;
   bottom: auto;
-  text-align: justify;
 }
 .carousel-inner > .item > img {
   width: 100%;

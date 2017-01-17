@@ -25,6 +25,14 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 });
 
+Route::group(['middleware' => 'web'], function () {
+    Route::get('/content', 'ContentController@index')->name('content');
+});
+
+Route::group(['middleware' => 'web'], function () {
+    Route::get('/simulation', 'ContentController@simulation')->name('simulation');
+});
+
 Route::group(['prefix' => 'portal', 'middleware' => 'web'], function () {
     Route::get('/dashboard', 'Portal\DashboardController@index')->name('portal-dashboard');
 });

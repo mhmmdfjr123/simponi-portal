@@ -9,6 +9,7 @@ body {
 }
 
 body {
+    position: relative;
     .body-font;
     font-weight: 300;
 }
@@ -54,13 +55,15 @@ iframe {
 }
 
 .bg-primary {
-    background: url(../images/textures/arches.png);
-    background-color: @theme-primary;
+    background: @theme-primary url(../images/textures/arches.png);
 }
 
 .bg-secondary {
-    background: url(../images/textures/arches.png);
-    background-color: @theme-secondary;
+    background: @theme-secondary url(../images/textures/arches.png);
+}
+
+.bg-featured {
+    background: @gray-lighter url(../images/textures/arches.png);
 }
 
 .bg-dark {
@@ -72,57 +75,96 @@ iframe {
     color: fade(white, 70%);
 }
 
+.abovefold {
+    .transition-all;
+    visibility: visible;
+    opacity: 1;
+    z-index: 1;
+    &.affix {
+        visibility: hidden;
+        opacity: 0;
+    }
+    a {
+        margin: 0;
+        padding: 12px 0;
+        font-size: 30px;
+        text-align: center;
+        color: white;
+        cursor: pointer;
+        &:hover {
+            text-decoration: none;
+        }
+        .fa {
+            position: absolute;
+            margin-left: 10px;
+            animation: moving-arrow .8s infinite;
+        }
+    }
+}
+
 section {
     position: relative;
     padding: 100px 0;
-    &#about {
-        .abovefold {
-            .transition-all;
-            position: absolute;
-            width: 100%;
-            top: 0;
-            left: 0;
-            margin: 0;
-            padding: 12px 0;
-            font-size: 30px;
-            text-align: center;
-            color: white;
-            cursor: pointer;
-            visibility: visible;
-            opacity: 1;
-            &:hover {
-                text-decoration: none;
-            }
-            &.affix {
-                visibility: hidden;
-                opacity: 0;
-            }
-            .fa {
-                position: absolute;
-                margin-left: 10px;
-                animation: moving-arrow .8s infinite;
-            }
-        }
-    }
     &#featured {
-        padding: 2px 0;
+        padding: 1px 0;
         .container {
             width: 100%;
         }
         .row > div {
             padding: 1px;
-            span {
-                background: @gray-lighter;
-                padding: 22px 0;
+            & > span {
+                .bg-featured;
+                padding: 20px 0;
                 font-size: 16px;
                 font-weight: bold;
                 color: @gray;
             }
             & > div {
-                background: @gray-lighter;
+                position: relative;
+                .bg-featured;
                 height: 300px;
                 padding: 0 20px;
                 overflow: hidden;
+                & > div {
+                    height: 280px;
+                    ul {
+                        display: block;
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+                        text-align: justify;
+                        * {
+                            display: block;
+                        }
+                        li {
+                            a {
+                                padding-bottom: 15px;
+                                &:hover {
+                                    opacity: .8;
+                                    color: @theme-primary;
+                                    text-decoration: none;
+                                    & > *:first-child {
+                                        text-decoration: underline;
+                                    }
+                                }
+                                span {
+                                    overflow: hidden;
+                                    white-space: nowrap;
+                                    text-overflow: ellipsis;
+                                }
+                                img {
+                                    width: 100%;
+                                    margin: 5px 0;
+                                }
+                            }
+                            &:last-child {
+                                a {
+                                    padding-bottom: 0;
+                                }
+                            }
+                        }
+                    }
+                }
                 iframe {
                     margin-bottom: 10px;
                     padding: 0;
@@ -131,6 +173,9 @@ section {
                     width: 100%;
                     float: left;
                     text-align: justify;
+                    &:last-of-type {
+                        margin-bottom: 0;
+                    }
                 }
             }
         }
@@ -147,6 +192,40 @@ section {
         h2 {
             margin-top: 50px;
             color: @theme-secondary;
+        }
+        select {
+            cursor: pointer;
+        }
+        .date-control {
+            display: block;
+            width: 100%;
+            select.form-control {
+                display: inline-block;
+                width: auto;
+            }
+        }
+        .radio label {
+            &:not(:last-child) {
+                margin-right: 20px;
+            }
+            input[type="radio"] {
+                cursor: pointer;
+            }
+        }
+        .identity {
+            border-right: 1px solid @gray-lighter;
+        }
+        .identity, .billing {
+            margin-top: 20px;
+        }
+        .variables {
+            border-top: 1px solid @gray-lighter;
+            border-bottom: 1px solid @gray-lighter;
+            margin: 10px 0;
+            padding: 10px 0;
+        }
+        canvas#simulation {
+            margin-top: 40px;
         }
     }
     &.bg-secondary {
@@ -383,10 +462,9 @@ header {
 
 .carousel-caption {
     top: 40%;
-    left: 40%;
-    right: 10%;
+    left: 20%;
+    right: 20%;
     bottom: auto;
-    text-align: justify;
 }
 
 .carousel-inner > .item > img {
