@@ -32,6 +32,8 @@ Route::group(['prefix' => 'portal', 'middleware' => ['web', 'auth.portal']], fun
 Route::group(['prefix' => 'portal', 'middleware' => 'web'], function () {
     Route::get('/login', 'Portal\Auth\LoginController@showLoginForm')->name('portal-login');
     Route::post('/login', 'Portal\Auth\LoginController@login');
+    Route::get('/login/register', 'Portal\Auth\LoginController@showRegistrationForm')->name('portal-register');
+    Route::post('/login/register', 'Portal\Auth\LoginController@register');
     Route::get('/logout', 'Portal\Auth\LoginController@logout')->name('portal-logout');
 });
 

@@ -39,7 +39,7 @@ class LoginController extends PortalBaseController {
             $body = json_decode($response->getBody());
 
             $this->setToken($body->tokenJWT);
-            $this->setSession($body->personal);
+            $this->setSession($body->fresh, $body->userType, $body->personal);
 
             return $this->authenticated($request, $body);
         } catch (RequestException $e) {
@@ -63,16 +63,55 @@ class LoginController extends PortalBaseController {
         }
     }
 
-    /**
-     * The user has been authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
-     * @return mixed
-     */
-    public function authenticated(Request $request, $user)
-    {
-        return redirect()->route('portal-dashboard');
+    public function showRegistrationForm() {
+        if(!$this->getSession()['fresh']) {
+            return redirect()->route('portal-login');
+        }
+
+        return view('portal.auth.register');
+    }
+
+    public function register(Request $request) {
+        $this->validate($request, [
+            'accountNumber' => 'required', 'username' => 'required', 'password' => 'required', 'email' => 'required'
+        ]);
+
+        $data = [
+            'accountNumber' => $request->get('accountNumber'),
+            'username'      => $request->get('username'),
+            'password'      => $request->get('password'),
+            'email'         => $request->get('email'),
+        ];
+
+        try {
+            $response = $this->apiRequest('POST', 'api/person/register', ['json' => $data]);
+            $body = json_decode($response->getBody());
+
+            $this->clearSession();
+
+            return redirect()->route('portal-login')->with('success', $body->message);
+        } catch (RequestException $e) {
+            if($e->hasResponse()) {
+                $response = json_decode($e->getResponse()->getBody());
+
+                return redirect()->back()
+                    ->withInput($request->only('accountNumber', 'username', 'email'))
+                    ->withErrors([
+                        (isset($response->message)) ? $response->message : 'An error occurred, please call your administrator.'
+                ]);
+            } else {
+                return redirect()->back()
+                    ->withInput($request->only('accountNumber', 'username', 'email'))
+                    ->withErrors([
+                        $e->getMessage()
+                ]);
+            }
+        }
+    }
+
+    public function logout() {
+        $this->clearSession();
+        return redirect()->route('portal-login');
     }
 
     /**
@@ -81,16 +120,26 @@ class LoginController extends PortalBaseController {
      * @param  \Illuminate\Http\Request  $request
      * @return void
      */
-    protected function validateLogin(Request $request)
-    {
+    private function validateLogin(Request $request) {
         $this->validate($request, [
             'username' => 'required', 'password' => 'required',
         ]);
     }
 
-    public function logout()
-    {
-        $this->clearSession();
-        return redirect()->route('portal-login');
+    /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    private function authenticated(Request $request, $user) {
+        if($user->fresh){
+            $this->setLoggedIn(false);
+            return redirect()->route('portal-register');
+        } else {
+            $this->setLoggedIn();
+            return redirect()->route('portal-dashboard');
+        }
     }
 }

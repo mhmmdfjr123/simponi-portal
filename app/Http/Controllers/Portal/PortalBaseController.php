@@ -47,14 +47,30 @@ class PortalBaseController extends Controller
     }
 
     protected function getToken() {
-        return \Session::get('portal_session')['jwt_token'];
+        return $this->getSession()['jwt_token'];
     }
 
-    protected function setSession($attr) {
-        \Session::put('portal_session.personal', $attr);
+    protected function setSession($fresh, $userType, $personal) {
+        \Session::put('portal_session.fresh', $fresh);
+        \Session::put('portal_session.userType', $userType);
+        \Session::put('portal_session.personal', $personal);
+    }
+
+    protected function getSession(){
+        return \Session::get('portal_session');
     }
 
     protected function clearSession() {
         \Session::forget('portal_session');
+    }
+
+    protected function setLoggedIn($value = true)
+    {
+        \Session::put('portal_session.logged_in', $value);
+    }
+
+    protected function isLoggedIn()
+    {
+        return \Session::get('portal_session.logged_in');
     }
 }

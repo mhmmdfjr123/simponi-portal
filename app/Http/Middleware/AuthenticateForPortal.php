@@ -15,7 +15,8 @@ class AuthenticateForPortal
      */
     public function handle($request, Closure $next)
     {
-        if (\Session::get('portal_session')['jwt_token'] != '') {
+        if (\Session::get('portal_session')['jwt_token'] != '' && \Session::get('portal_session')['personal'] != '' &&
+            \Session::get('portal_session')['logged_in']) {
             return $next($request);
         }
 

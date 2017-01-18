@@ -15,10 +15,11 @@ class RedirectIfAuthenticatedInPortal
      */
     public function handle($request, Closure $next)
     {
-        if (\Session::get('portal_session')['jwt_token'] == '') {
-            return $next($request);
+        if (\Session::get('portal_session')['jwt_token'] != '' && \Session::get('portal_session')['personal'] != '' &&
+            \Session::get('portal_session')['logged_in']) {
+            return redirect()->route('portal-dashboard');
         }
 
-        return redirect()->route('portal-dashboard');
+        return $next($request);
     }
 }
