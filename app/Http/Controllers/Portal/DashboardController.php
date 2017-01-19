@@ -10,13 +10,6 @@ use App\Http\Controllers\Controller;
  */
 class DashboardController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the dashboard.
@@ -25,6 +18,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        echo 'This is 7 - Dashboard';
+        return view('portal.dashboard.index');
     }
 }

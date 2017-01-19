@@ -2,14 +2,24 @@
 
 @section('content')
     <h2 class="m-t-0 m-b-3 text-xs-center font-weight-semibold font-size-20">
-        Login Portal
+        Register Akun Baru
     </h2>
 
-    <form action="{{ route('portal-login') }}" class="panel p-a-4" method="POST" id="form-login">
+    <form action="{{ route('portal-register') }}" class="panel p-a-4" method="POST" id="form-login">
         {{ csrf_field() }}
 
+        <fieldset class="form-group form-group-lg{{ $errors->has('accountNumber') ? ' has-error' : '' }} form-message-light">
+            <input type="text" class="form-control" placeholder="Masukan Nomor DPLK" name="accountNumber" value="{{ old('accountNumber') }}" required>
+
+            @if ($errors->has('accountNumber'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('accountNumber') }}</strong>
+                </span>
+            @endif
+        </fieldset>
+
         <fieldset class="form-group form-group-lg{{ $errors->has('username') ? ' has-error' : '' }} form-message-light">
-            <input type="text" class="form-control" placeholder="Username" name="username" value="{{ old('username') }}" required autofocus>
+            <input type="text" class="form-control" placeholder="Masukan Username Baru" name="username" value="{{ old('username') }}" required autofocus>
 
             @if ($errors->has('username'))
                 <span class="help-block">
@@ -19,7 +29,7 @@
         </fieldset>
 
         <fieldset class="form-group form-group-lg{{ $errors->has('password') ? ' has-error' : '' }} form-message-light">
-            <input type="password" class="form-control" placeholder="Password" name="password" required>
+            <input type="password" class="form-control" placeholder="Masukan Password Baru" name="password" required>
 
             @if ($errors->has('password'))
                 <span class="help-block">
@@ -28,18 +38,17 @@
             @endif
         </fieldset>
 
-        <div class="clearfix">
-            <!--
-            <label class="custom-control custom-checkbox pull-xs-left">
-                <input type="checkbox" class="custom-control-input" name="remember">
-                <span class="custom-control-indicator"></span>
-                Ingat Saya
-            </label>
-            -->
-            <a href="{{ url('/password/reset') }}" class="font-size-12 text-muted pull-xs-right" id="page-signin-forgot-link">Lupa password?</a>
-        </div>
+        <fieldset class="form-group form-group-lg{{ $errors->has('email') ? ' has-error' : '' }} form-message-light">
+            <input type="email" class="form-control" placeholder="Masukan Email Baru" name="email" value="{{ old('email') }}" required>
 
-        <button type="submit" class="btn btn-block btn-lg btn-primary m-t-3" id="btn-login" data-loading-text="Please wait...">Login</button>
+            @if ($errors->has('email'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </span>
+            @endif
+        </fieldset>
+
+        <button type="submit" class="btn btn-block btn-lg btn-primary m-t-3" id="btn-login" data-loading-text="Please wait...">Submit</button>
     </form>
 @endsection
 
