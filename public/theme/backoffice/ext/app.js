@@ -1,5 +1,5 @@
 require(['jquery', 'px/pixeladmin', 'px/plugins/px-nav', 'px/plugins/px-navbar', 'px/extensions/perfect-scrollbar.jquery',
-        'px/plugins/px-validate', 'px-libs/initial', 'px-libs/jquery.facebox', 'px-libs/jquery.form'],
+        'px/plugins/px-validate', 'px-libs/initial', 'px-libs/jquery.facebox', 'px-libs/jquery.form', 'px-bootstrap/button'],
     function($) {
     /**
      * Theme Config

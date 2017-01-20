@@ -17,7 +17,7 @@
     <link href="{{ asset('theme/backoffice/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('theme/backoffice/css/pixeladmin.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('theme/backoffice/css/widgets.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('theme/backoffice/css/themes/dust.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('theme/backoffice/css/themes/bni.min.css') }}" rel="stylesheet" type="text/css">
 
     <!-- require.js -->
     <script src="{{ asset('theme/backoffice/js/requirejs.min.js') }}"></script>
@@ -75,8 +75,8 @@
             <a href="#"><i class="px-nav-icon fa fa-file-o"></i><span class="px-nav-label">Halaman</span></a>
 
             <ul class="px-nav-dropdown-menu">
-                <li class="px-nav-item"><a href="javascript:maintenance();"><span class="px-nav-label">Daftar Halaman</span></a></li>
-                <li class="px-nav-item"><a href="javascript:maintenance();"><span class="px-nav-label">Buat Halaman Baru</span></a></li>
+                <li class="px-nav-item" id="menu-page"><a href="{{ url('backoffice/pages') }}"><span class="px-nav-label">Daftar Halaman</span></a></li>
+                <li class="px-nav-item"><a href="{{ url('backoffice/pages/add') }}"><span class="px-nav-label">Buat Halaman Baru</span></a></li>
             </ul>
         </li>
         <li class="px-nav-item px-nav-dropdown">
@@ -114,9 +114,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="px-demo-navbar-collapse">
         <ul class="nav navbar-nav">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="{{ route('home') }}">Beranda</a></li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu Pintas</a>
                 <ul class="dropdown-menu">
                     <li><a href="#">Action</a></li>
                     <li><a href="#">Another action</a></li>
@@ -245,14 +245,6 @@
 
                     <a href="#" class="widget-more-link">MORE MESSAGES</a>
                 </div> <!-- / .dropdown-menu -->
-            </li>
-
-            <li>
-                <form class="navbar-form" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search" style="width: 140px;">
-                    </div>
-                </form>
             </li>
 
             <li class="dropdown">

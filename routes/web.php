@@ -65,13 +65,6 @@ Route::get('backoffice', function() {
 Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']], function(){
     Route::get('dashboard', 'Backoffice\DashboardController@index')->name('backoffice-dashboard');
 
-    /*
-    Route::controllers([
-        'setting/contact'   => 'Backoffice\Setting\ContactController',
-        'setting/general'   => 'Backoffice\Setting\GeneralController'
-    ]);
-    */
-
     // Profile
     Route::get('profile/edit', 'Backoffice\ProfileController@showEditForm');
     Route::post('profile/edit', 'Backoffice\ProfileController@postEdit');
@@ -92,6 +85,15 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']],
 
     Route::get('administration/user/check-email/{id?}', 'Backoffice\Administration\UserController@checkEmail');
     Route::get('administration/user/check-username/{id?}', 'Backoffice\Administration\UserController@checkUsername');
+
+    Route::get('pages', 'Backoffice\Page\PageController@index');
+    Route::get('pages/list-data', 'Backoffice\Page\PageController@listData');
+    Route::get('pages/add', 'Backoffice\Page\PageController@showNewForm');
+    Route::get('pages/edit/{id}', 'Backoffice\Page\PageController@showEditForm');
+    Route::post('pages/submit', 'Backoffice\Page\PageController@submit');
+    Route::get('pages/delete/{id}', 'Backoffice\Page\PageController@delete');
+    Route::get('pages/delete/{id}/restore', 'Backoffice\Page\PageController@restoreDeletedData');
+    Route::get('pages/delete/{id}/force', 'Backoffice\Page\PageController@forceDelete');
 });
 
 Route::group(['middleware' => 'web'], function () {
