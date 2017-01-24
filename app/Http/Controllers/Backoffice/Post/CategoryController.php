@@ -2,45 +2,49 @@
 
 use App\Http\Controllers\Controller;
 use App\Models\PostCategory;
-use App\Services\DatatablesService;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
+/**
+ * Class CategoryController
+ * @package App\Http\Controllers\Backoffice\Post
+ * @author efriandika
+ */
 class CategoryController extends Controller {
 
     public function __construct(){
 
     }
 
-    public function getIndex(){
+    public function index(){
         $data = [
-            'pageTitle' => 'Ketegori'
+            'pageTitle' => 'Kategori'
         ];
 
-        return view('backoffice.post.category.getIndex', $data);
+        return view('backoffice.post.category.index', $data);
     }
 
-    public function getAjaxList(PostCategory $postCategoryModel){
+    public function listData(PostCategory $postCategoryModel){
         $data = [
             'listData' => $postCategoryModel->listHierarchy()
         ];
 
-        return view('backoffice.post.category.getAjaxList', $data);
+        return view('backoffice.post.category.listData', $data);
     }
 
-    public function getAdd(Request $request, PostCategory $postCategoryModel){
+    public function add(Request $request, PostCategory $postCategoryModel){
         if(!$request->ajax())
             return redirect('backoffice/post/category');
 
         $data = [
-            'listParent' => $postCategoryModel->listParent(),
+            'listParent' => $postCategoryModel->listParent('', true),
             'nextSequenceOrder' => $postCategoryModel->max('order') + 1
         ];
 
-        return view('backoffice.post.category.getAdd', $data);
+        return view('backoffice.post.category.add', $data);
     }
 
-    public function getEdit(Request $request, PostCategory $postCategoryModel, $id){
+    public function edit(Request $request, PostCategory $postCategoryModel, $id){
         if(!$request->ajax())
             return redirect('backoffice/post/category');
 
@@ -50,11 +54,11 @@ class CategoryController extends Controller {
             if(count($obj) > 0){
                 $data = [
                     'pageTitle'  => 'Ubah Kategori',
-                    'listParent' => $postCategoryModel->listParent($id),
+                    'listParent' => $postCategoryModel->listParent($id, true),
                     'obj'        => $obj
                 ];
 
-                return view('backoffice.post.category.getEdit', $data);
+                return view('backoffice.post.category.edit', $data);
             }else{
                 return response('Not Found.', 404);
             }
@@ -65,7 +69,7 @@ class CategoryController extends Controller {
         }
     }
 
-    public function getDelete($id){
+    public function delete($id){
         try {
             $obj = PostCategory::find($id);
 
@@ -87,7 +91,7 @@ class CategoryController extends Controller {
         }
     }
 
-    public function postSubmit(PostCategory $postCategoryModel, Request $request){
+    public function submit(PostCategory $postCategoryModel, Request $request){
         try {
             $id = $request->input('id');
 

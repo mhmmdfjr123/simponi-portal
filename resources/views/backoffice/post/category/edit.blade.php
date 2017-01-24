@@ -1,10 +1,14 @@
 <!-- Default Ajax Form -->
 <script type="text/javascript">
-    $(document).ready(function() {
-        $("#ajax-form").validate({
+    require(['jquery', 'px-libs/toastr', 'px-bootstrap/button', 'px/plugins/px-validate', 'px-libs/select2.full'],
+        function($, toastr) {
+
+        var $ajaxForm = $("#ajax-form");
+
+        $ajaxForm.validate({
             meta : "validate"
         });
-        $("#ajax-form").ajaxForm({
+        $ajaxForm.ajaxForm({
             beforeSubmit : function() {
                 $('fieldset').attr('disabled', true);
                 $(".fbox-footer button[type=submit]").button('loading');
@@ -19,10 +23,10 @@
 
                 if (statusText == "success") {
                     if(response.status == 'ok'){
-                        $.growl.notice({ message: response.message });
+                        toastr.success(response.message, 'Sukses.');
                         loadList();
                     }else{
-                        $.growl.error({ message: response.message });
+                        toastr.error(response.message, 'Oppss.');
                     }
 
                     jQuery.facebox.close();
@@ -32,19 +36,13 @@
             }
         });
 
-        $('#switcher-status').switcher({
-            theme: 'square',
-            on_state_content: '<span class="fa fa-check"></span>',
-            off_state_content: '<span class="fa fa-times"></span>'
-        });
-
         $("#select2-parent").select2({
             allowClear: true,
             placeholder: "Pilih parent"
         });
     });
 
-    function setAlias(obj){
+    function setAlias(obj) {
         var text = $(obj).val().toLowerCase().replace(/([^0-9^A-z])/gi, '-');
         $("#alias").val(text);
     }
@@ -86,8 +84,16 @@
                     <textarea name="desc" maxlength="300" class="form-control">{{ $obj->desc }}</textarea>
                 </div>
                 <div class="form-group">
-                    <label>Status</label>
-                    <div><input type="checkbox" name="status" id="switcher-status" value="Y" <?php if($obj->status == 'Y')echo 'checked="checked"' ?> /></div>
+                    <label>Aktif?</label>
+                    <div style="margin-top: 3px">
+                        <label for="switcher-success" class="switcher switcher-success">
+                            <input id="switcher-success" type="checkbox" name="status" value="Y" <?php if($obj->status == 'Y')echo 'checked="checked"' ?>>
+                            <div class="switcher-indicator">
+                                <div class="switcher-yes">YES</div>
+                                <div class="switcher-no">NO</div>
+                            </div>
+                        </label>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Urutan</label>

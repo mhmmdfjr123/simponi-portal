@@ -17,8 +17,8 @@
             <td>{!! postCategoryStatusTextWithStyle($category['data']->status) !!}</td>
             <td>
                 <div class="btn-group">
-                    <a href="javascript:void(0)" onclick="loadIntoBox('{{ url('backoffice/post/category/edit/'.$category['data']->id) }}')" title="Ubah" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a>
-                    <a href="javascript:void(0)" onclick="confirmDirectPopUp('{{ url('backoffice/post/category/delete/'.$category['data']->id) }}', 'Konfirmasi', 'Apakah anda yakin ingin menghapus?', 'Ya, Hapus Data', 'Tidak')" title="Hapus" class="btn btn-xs btn-default"><i class="fa fa-trash"></i></a>
+                    <a href="javascript:void(0)" onclick="loadIntoBox('{{ url('backoffice/post/category/'.$category['data']->id.'/edit') }}')" title="Ubah" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a>
+                    <a href="javascript:void(0)" onclick="confirmDirectPopUp('{{ url('backoffice/post/category/'.$category['data']->id.'/delete') }}', 'Konfirmasi', 'Apakah anda yakin ingin menghapus?', 'Ya, Hapus Data', 'Tidak')" title="Hapus" class="btn btn-xs btn-default"><i class="fa fa-trash"></i></a>
                 </div>
             </td>
         </tr>

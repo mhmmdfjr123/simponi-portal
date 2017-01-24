@@ -1,3 +1,25 @@
+define("app-default", ['jquery'], function ($) {
+    // Ajax Global Config
+    $.ajaxSetup({
+        statusCode: {
+            400: function() {
+                alertDirectPopUp('Informasi', 'Telah terjadi Bad Request. Harap ulangi beberapa saat lagi.', 'OK', '');
+            },
+            401: function() {
+                alertDirectPopUp('Informasi', 'Maaf, sesi anda telah habis. Silahkan login kembali untuk melanjutkan', 'Login', '');
+            },
+            404: function() {
+                alertDirectPopUp('Informasi', 'Data tidak ditemukan.', 'Tutup', '');
+            },
+            500: function() {
+                alertDirectPopUp('Kesalahan', 'Telah terjadi kesalahan 500. Harap hubungi administrator.', 'OK', '');
+            }
+        }
+    });
+
+    return $;z
+});
+
 require(['jquery', 'px/pixeladmin', 'px/plugins/px-nav', 'px/plugins/px-navbar', 'px/extensions/perfect-scrollbar.jquery',
         'px/plugins/px-validate', 'px-libs/initial', 'px-libs/jquery.facebox', 'px-libs/jquery.form', 'px-bootstrap/button'],
     function($) {
@@ -28,24 +50,6 @@ require(['jquery', 'px/pixeladmin', 'px/plugins/px-nav', 'px/plugins/px-navbar',
     $validateElement.submit(function(e){
         if($(this).valid()){
             $(".btn-save").button('loading');
-        }
-    });
-
-    // Ajax Global Config
-    $.ajaxSetup({
-        statusCode: {
-            400: function() {
-                alertDirectPopUp('Informasi', 'Telah terjadi Bad Request. Harap ulangi beberapa saat lagi.', 'OK', '');
-            },
-            401: function() {
-                alertDirectPopUp('Informasi', 'Maaf, sesi anda telah habis. Silahkan login kembali untuk melanjutkan', 'Login', '');
-            },
-            404: function() {
-                alertDirectPopUp('Informasi', 'Data tidak ditemukan.', 'Tutup', '');
-            },
-            500: function() {
-                alertDirectPopUp('Kesalahan', 'Telah terjadi kesalahan 500. Harap hubungi administrator.', 'OK', '');
-            }
         }
     });
 

@@ -37,7 +37,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/customer', 'CustomerController@index')->name('customer');
 });
 
-Route::group(['prefix' => 'portal', 'middleware' => 'web'], function () {
+Route::group(['prefix' => 'portal', 'middleware' => ['web', 'auth.portal']], function () {
     Route::get('/dashboard', 'Portal\DashboardController@index')->name('portal-dashboard');
 });
 
@@ -85,6 +85,13 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']],
 
     Route::get('administration/user/check-email/{id?}', 'Backoffice\Administration\UserController@checkEmail');
     Route::get('administration/user/check-username/{id?}', 'Backoffice\Administration\UserController@checkUsername');
+
+    Route::get('post/category', 'Backoffice\Post\CategoryController@index');
+    Route::get('post/category/list-data', 'Backoffice\Post\CategoryController@listData');
+    Route::get('post/category/add', 'Backoffice\Post\CategoryController@add');
+    Route::get('post/category/{id}/edit', 'Backoffice\Post\CategoryController@edit');
+    Route::post('post/category/submit', 'Backoffice\Post\CategoryController@submit');
+    Route::get('post/category/{id}/delete', 'Backoffice\Post\CategoryController@delete');
 
     Route::get('pages', 'Backoffice\Page\PageController@index');
     Route::get('pages/list-data', 'Backoffice\Page\PageController@listData');

@@ -1,10 +1,13 @@
 <!-- Default Ajax Form -->
 <script type="text/javascript">
-    $(document).ready(function() {
-        $("#ajax-form").validate({
+    require(['jquery', 'px-libs/toastr', 'px-bootstrap/button', 'px/plugins/px-validate', 'px-libs/select2.full'],
+        function($, toastr) {
+        var $ajaxForm = $("#ajax-form");
+
+        $ajaxForm.pxValidate({
             meta : "validate"
         });
-        $("#ajax-form").ajaxForm({
+        $ajaxForm.ajaxForm({
             beforeSubmit : function() {
                 $('fieldset').attr('disabled', true);
                 $(".fbox-footer button[type=submit]").button('loading');
@@ -19,10 +22,10 @@
 
                 if (statusText == "success") {
                     if(response.status == 'ok'){
-                        $.growl.notice({ message: response.message });
+                        toastr.success(response.message, 'Sukses.');
                         loadList();
                     }else{
-                        $.growl.error({ message: response.message });
+                        toastr.error(response.message, 'Oppss.');
                     }
 
                     jQuery.facebox.close();
@@ -30,12 +33,6 @@
                     alertError();
                 }
             }
-        });
-
-        $('#switcher-status').switcher({
-            theme: 'square',
-            on_state_content: '<span class="fa fa-check"></span>',
-            off_state_content: '<span class="fa fa-times"></span>'
         });
 
         $("#select2-parent").select2({
@@ -61,16 +58,16 @@
 
             <div class='fbox-content'>
                 <!-- Content -->
-                <div class="form-group">
+                <div class="form-group form-message-light">
                     <label>Nama Kategori</label>
                     <input type="text" name="name" onkeyup="setAlias(this);" onblur="setAlias(this);" maxlength="50" class="form-control required" />
                 </div>
-                <div class="form-group">
+                <div class="form-group form-message-light">
                     <label>Alias</label>
                     <input type="text" name="alias" id="alias" maxlength="50" class="form-control required" />
                     <p class="help-block">Sebagai permalink dari kategori</p>
                 </div>
-                <div class="form-group">
+                <div class="form-group form-message-light">
                     <label>Parent</label>
                     <select name="parent" id="select2-parent" class="form-control">
                         <option value="">- Tidak ada Parent -</option>
@@ -79,15 +76,23 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="form-group form-message-light">
                     <label>Deskripsi</label>
                     <textarea name="desc" maxlength="300" class="form-control"></textarea>
                 </div>
-                <div class="form-group">
-                    <label>Status</label>
-                    <div><input type="checkbox" name="status" id="switcher-status" value="Y" checked="checked" /></div>
+                <div class="form-group form-message-light">
+                    <label>Aktif?</label>
+                    <div style="margin-top: 3px">
+                        <label for="switcher-success" class="switcher switcher-success">
+                            <input id="switcher-success" type="checkbox" name="status" value="Y" checked="checked">
+                            <div class="switcher-indicator">
+                                <div class="switcher-yes">YES</div>
+                                <div class="switcher-no">NO</div>
+                            </div>
+                        </label>
+                    </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group form-message-light">
                     <label>Urutan</label>
                     <input type="text" name="order" maxlength="3" value="{{ $nextSequenceOrder }}" class="form-control required number" />
                 </div>

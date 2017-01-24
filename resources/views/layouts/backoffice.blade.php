@@ -9,7 +9,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-    <link href="http://fonts.googleapis.com/css?family=Lato:300italic,400italic,600italic,700italic,400,600,700,800,300&subset=latin" rel="stylesheet" type="text/css">
+    {{--<link href="http://fonts.googleapis.com/css?family=Lato:300italic,400italic,600italic,700italic,400,600,700,800,300&subset=latin" rel="stylesheet" type="text/css">--}}
     <link href="{{ asset('theme/backoffice/ext/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('theme/backoffice/ext/vendor/ionicon/css/ionicons.min.css') }}" rel="stylesheet" type="text/css">
     {{--<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/holder/2.9.0/holder.js"></script>--}}
@@ -23,7 +23,11 @@
     <script src="{{ asset('theme/backoffice/js/requirejs.min.js') }}"></script>
     <script>
         requirejs.config({
-            baseUrl: '{{ asset('theme/backoffice/js/amd') }}'
+            baseUrl: '{{ asset('theme/backoffice/js/amd') }}',
+            map: {
+                '*': { 'jquery': 'app-default' },
+                'app-default': { 'jquery': 'jquery' }
+            }
         });
     </script>
 
@@ -68,7 +72,7 @@
             <ul class="px-nav-dropdown-menu">
                 <li class="px-nav-item"><a href="javascript:maintenance();"><span class="px-nav-label">Daftar Artikel</span></a></li>
                 <li class="px-nav-item"><a href="javascript:maintenance();"><span class="px-nav-label">Buat Artikel Baru</span></a></li>
-                <li class="px-nav-item"><a href="javascript:maintenance();"><span class="px-nav-label">Kategori</span></a></li>
+                <li class="px-nav-item"><a href="{{ url('backoffice/post/category') }}"><span class="px-nav-label">Kategori</span></a></li>
             </ul>
         </li>
         <li class="px-nav-item px-nav-dropdown">
