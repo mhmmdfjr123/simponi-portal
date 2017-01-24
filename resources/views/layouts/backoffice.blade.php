@@ -70,8 +70,8 @@
             <a href="#"><i class="px-nav-icon fa fa-file-text-o"></i><span class="px-nav-label">Artikel</span></a>
 
             <ul class="px-nav-dropdown-menu">
-                <li class="px-nav-item"><a href="javascript:maintenance();"><span class="px-nav-label">Daftar Artikel</span></a></li>
-                <li class="px-nav-item"><a href="javascript:maintenance();"><span class="px-nav-label">Buat Artikel Baru</span></a></li>
+                <li class="px-nav-item" id="menu-post"><a href="{{ url('backoffice/post') }}"><span class="px-nav-label">Daftar Artikel</span></a></li>
+                <li class="px-nav-item"><a href="{{ url('backoffice/post/add') }}"><span class="px-nav-label">Tambah Artikel Baru</span></a></li>
                 <li class="px-nav-item"><a href="{{ url('backoffice/post/category') }}"><span class="px-nav-label">Kategori</span></a></li>
             </ul>
         </li>
@@ -80,7 +80,7 @@
 
             <ul class="px-nav-dropdown-menu">
                 <li class="px-nav-item" id="menu-page"><a href="{{ url('backoffice/pages') }}"><span class="px-nav-label">Daftar Halaman</span></a></li>
-                <li class="px-nav-item"><a href="{{ url('backoffice/pages/add') }}"><span class="px-nav-label">Buat Halaman Baru</span></a></li>
+                <li class="px-nav-item"><a href="{{ url('backoffice/pages/add') }}"><span class="px-nav-label">Tambah Halaman Baru</span></a></li>
             </ul>
         </li>
         <li class="px-nav-item px-nav-dropdown">

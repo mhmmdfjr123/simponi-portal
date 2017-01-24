@@ -54,7 +54,7 @@ if (!function_exists('pageStatusTextWithStyle')){
 if (!function_exists('postCategoryStatusTextWithStyle')){
 
     /**
-     * Post Category STatus with stayle
+     * Post Category Status with style
      *
      * @param $status
      * @return string

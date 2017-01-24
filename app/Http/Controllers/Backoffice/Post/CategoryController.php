@@ -26,7 +26,7 @@ class CategoryController extends Controller {
 
     public function listData(PostCategory $postCategoryModel){
         $data = [
-            'listData' => $postCategoryModel->listHierarchy()
+            'listData' => $postCategoryModel->listHierarchy(false)
         ];
 
         return view('backoffice.post.category.listData', $data);
@@ -37,7 +37,7 @@ class CategoryController extends Controller {
             return redirect('backoffice/post/category');
 
         $data = [
-            'listParent' => $postCategoryModel->listParent('', true),
+            'listParent' => $postCategoryModel->listParent(),
             'nextSequenceOrder' => $postCategoryModel->max('order') + 1
         ];
 
@@ -54,7 +54,7 @@ class CategoryController extends Controller {
             if(count($obj) > 0){
                 $data = [
                     'pageTitle'  => 'Ubah Kategori',
-                    'listParent' => $postCategoryModel->listParent($id, true),
+                    'listParent' => $postCategoryModel->listParent($id),
                     'obj'        => $obj
                 ];
 

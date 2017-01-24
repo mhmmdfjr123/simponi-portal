@@ -1,26 +1,29 @@
-@extends('template.backoffice')
+@extends('layouts.backoffice')
 
 @section('content')
-    <ul class="breadcrumb breadcrumb-page">
+    <ol class="breadcrumb page-breadcrumb">
         <!-- Auto Breadcrumbs -->
-        <li class="active"><a href="#">Ubah Artikel</a></li>
-    </ul>
+        <li class="active" data-active-menu="#menu-post"><a href="#">Ubah Artikel</a></li>
+    </ol>
 
     <div class="page-header">
         <div class="row">
-            <!-- Page header, center on small screens -->
-            <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-file-text page-header-icon"></i>&nbsp;&nbsp;{{ $pageTitle }}</h1>
-
-            <div class="col-xs-12 col-sm-8">
-                <div class="row">
-                    <hr class="visible-xs no-grid-gutter-h" />
-                    <!-- <div class="pull-right col-xs-12 col-sm-auto"><a href="#" class="btn btn-default btn-labeled" style="width: 100%;"><span class="btn-label icon fa fa-eye"></span>Lihat Preview</a></div> -->
-                </div>
+            <div class="col-md-4 text-xs-center text-md-left text-nowrap">
+                <h1><i class="page-header-icon fa fa-file-text"></i> {{ $pageTitle }}</h1>
             </div>
-        </div>
-    </div> <!-- / .page-header -->
 
-    <form action="{{ url('backoffice/posts/submit') }}" method="post" class="" id="validate">
+            <hr class="page-wide-block visible-xs visible-sm">
+
+            <div class="col-xs-12 width-md-auto width-lg-auto width-xl-auto pull-md-right">
+                <a href="{{ url('backoffice/post') }}" class="btn btn-primary btn-block" style="width: 100%;"><span class="btn-label-icon left fa fa-arrow-left"></span>Kembali</a>
+            </div>
+
+            <!-- Spacer -->
+            <div class="m-b-2 visible-xs visible-sm clearfix"></div>
+        </div>
+    </div>
+
+    <form action="{{ url('backoffice/post/submit') }}" method="post" class="validate">
     <div class="row">
         <div class="col-md-8">
             <div class="form-group">
@@ -45,7 +48,8 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <label class="control-label">Kata Kunci</label>
-                        <input type="text" name="meta_key" value="{{ $obj->meta_key }}" maxlength="100" class="form-control" />
+                        <input type="text" name="meta_key" value="{{ $obj->meta_key }}" maxlength="100" class="form-control" data-role="tagsinput" />
+                        <p class="help-block">(Dipisahkan oleh koma, contoh: keyword1, keyword2, keyword3)</p>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Deskripsi</label>
@@ -63,7 +67,15 @@
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label class="control-label">Publish</label>
-                            <div><input type="checkbox" name="status" id="switcher-status" value="P" <?php if($obj->status == 'P')echo 'checked="checked"' ?> /></div>
+                            <div style="margin-top: 10px">
+                                <label for="switcher-success" class="switcher switcher-success">
+                                    <input id="switcher-success" <?php if($obj->status == 'P')echo 'checked="checked"' ?> type="checkbox" name="status" value="P">
+                                    <div class="switcher-indicator">
+                                        <div class="switcher-yes">YES</div>
+                                        <div class="switcher-no">NO</div>
+                                    </div>
+                                </label>
+                            </div>
                         </div>
                         <div class="form-group col-md-8">
                             <label class="control-label">Waktu Publish</label>
@@ -74,8 +86,8 @@
 
                 </div>
                 <div class="panel-footer">
-                    <button type="submit" class="btn btn-primary btn-labeled" id="btn-save" data-loading-text="Loading..."><span class="btn-label icon fa fa-floppy-o"></span>Simpan</button>
-                    <a href="{{ url('backoffice/posts') }}" class="btn btn-default pull-right">Kembali</a>
+                    <button type="submit" class="btn btn-primary btn-labeled btn-save" data-loading-text="Loading..."><span class="btn-label-icon left fa fa-floppy-o"></span>Simpan</button>
+                    <a href="{{ url('backoffice/post') }}" class="btn btn-default pull-right">Kembali</a>
                 </div>
             </div>
 
@@ -106,33 +118,13 @@
         </div>
     </div>
     </form>
-
-    <script type="text/javascript">
-        init.push(function () {
-            // Set state of menu
-            $('#menu-post').addClass('open').addClass('active');
-            $('#submenu-post-list').addClass('active');
-        });
-    </script>
 @endsection
 
-@section('jsscript')
-    <script src="{{ asset('theme/backoffice/js/plugins/tinymce/tinymce.min.js') }}" type="text/javascript"></script>
+@section('footScript')
+    <script src="{{ asset('theme/backoffice/ext/vendor/tinymce/tinymce.min.js') }}" type="text/javascript"></script>
     <script type="text/javascript">
-        tinymce.init(<?php echo json_encode(config('content.tinymce')) ?>);
-
-        function setAlias(obj){
-            var text = $(obj).val().toLowerCase().replace(/([^0-9^A-z])/gi, '-');
-            $("#alias").val(text);
-            $("#alias-text").text(text);
-        }
-
-        init.push(function () {
-            $('#switcher-status').switcher({
-                theme: 'square',
-                on_state_content: '<span class="fa fa-check"></span>',
-                off_state_content: '<span class="fa fa-times"></span>'
-            });
+        require(['jquery', 'px/extensions/bootstrap-datepicker', 'px/extensions/bootstrap-timepicker',
+            'px-libs/select2.full', 'px/extensions/bootstrap-tagsinput', 'px/plugins/px-validate'], function($) {
 
             $("#select2-parent").select2({
                 allowClear: true,
@@ -152,14 +144,13 @@
                 showInputs: false
             });
 
-            // Page Alert
-            @if (Session::has('success'))
-                var pageAlertOptions = {
-                    type: 'warning',
-                    namespace: 'pa_page_alerts_default'
-                };
-                PixelAdmin.plugins.alerts.add('Postingan telah berhasil disimpan. <a href="{{ url('post/'.$obj->alias) }}" target="_blank"><strong>Lihat Postingan</strong><a>.', pageAlertOptions);
-            @endif
-        })
+            tinymce.init(<?php echo json_encode(config('content.tinymce')) ?>);
+        });
+
+        function setAlias(obj){
+            var text = $(obj).val().toLowerCase().replace(/([^0-9^A-z])/gi, '-');
+            $("#alias").val(text);
+            $("#alias-text").text(text);
+        }
     </script>
 @endsection

@@ -23,7 +23,7 @@ class PostCategory extends Model {
         return $this->belongsToMany('App\Models\Post', 'post_category_rel', 'post_category_id', 'post_id');
     }
 
-    public function listParent($itsId = '', $activeOnly = false){
+    public function listParent($itsId = '', $activeOnly = true){
         return $this->_getParent(null, $itsId, 1, $activeOnly);
     }
 
@@ -53,7 +53,7 @@ class PostCategory extends Model {
         return $returnData;
     }
 
-    public function listHierarchy($activeOnly = false){
+    public function listHierarchy($activeOnly = true){
         return $this->_getParent(null, '', 1, $activeOnly);
     }
 }

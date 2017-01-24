@@ -40,6 +40,7 @@
                         <div class="form-group">
                             <label class="control-label">Kata Kunci</label>
                             <input type="text" name="meta_key" maxlength="100" class="form-control" data-role="tagsinput" />
+                            <p class="help-block">(Dipisahkan oleh koma, contoh: keyword1, keyword2, keyword3)</p>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Deskripsi</label>

@@ -86,6 +86,15 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']],
     Route::get('administration/user/check-email/{id?}', 'Backoffice\Administration\UserController@checkEmail');
     Route::get('administration/user/check-username/{id?}', 'Backoffice\Administration\UserController@checkUsername');
 
+    Route::get('post', 'Backoffice\Post\PostController@index');
+    Route::get('post/list-data', 'Backoffice\Post\PostController@listData');
+    Route::get('post/add', 'Backoffice\Post\PostController@add');
+    Route::get('post/{id}/edit', 'Backoffice\Post\PostController@edit');
+    Route::post('post/submit', 'Backoffice\Post\PostController@submit');
+    Route::get('post/{id}/delete', 'Backoffice\Post\PostController@delete');
+    Route::get('post/{id}/delete/restore', 'Backoffice\Post\PostController@restoreDeletedData');
+    Route::get('post/{id}/delete/force', 'Backoffice\Post\PostController@forceDelete');
+
     Route::get('post/category', 'Backoffice\Post\CategoryController@index');
     Route::get('post/category/list-data', 'Backoffice\Post\CategoryController@listData');
     Route::get('post/category/add', 'Backoffice\Post\CategoryController@add');
