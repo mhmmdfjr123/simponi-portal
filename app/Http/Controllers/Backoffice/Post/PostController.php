@@ -30,6 +30,8 @@ class PostController extends Controller {
 
         $data = $post->select(['id', 'title', 'status', 'created_at', 'deleted_at', 'publish_date_start', 'publish_date_end']);
 
+        $data->orderBy('created_at', 'desc');
+
         if($status != '' && strtolower($status) == "deleted"){
             $data->onlyTrashed();
         }else if($status != '')

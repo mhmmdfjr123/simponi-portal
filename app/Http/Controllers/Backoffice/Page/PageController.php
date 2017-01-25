@@ -28,6 +28,8 @@ class PageController extends Controller {
 
         $data = $page->select(['id', 'title', 'status', 'created_at', 'deleted_at', 'publish_date_start', 'publish_date_end']);
 
+        $data->orderBy('order');
+
         if($status != '' && strtolower($status) == "deleted"){
             $data->onlyTrashed();
         }else if($status != '')

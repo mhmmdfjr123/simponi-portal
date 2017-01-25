@@ -16,7 +16,7 @@ class CreateMenuTable extends Migration {
 		{
 			$table->integer('id', true);
 			$table->integer('menu_category_id')->nullable()->index('menu_category_id');
-			$table->string('menu_name', 50)->nullable();
+			$table->string('menu_name', 80)->nullable();
 			$table->string('menu_type', 3)->nullable();
 			$table->string('menu_type_param', 500)->nullable();
 			$table->integer('menu_parent')->nullable()->index('menu_parent');

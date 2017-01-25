@@ -53,7 +53,7 @@
                 <!-- Content -->
                 <div class="form-group">
                     <label>Nama</label>
-                    <input type="text" name="menu_name" value="{{ $obj->menu_name }}" maxlength="25" class="form-control required" />
+                    <input type="text" name="menu_name" value="{{ $obj->menu_name }}" maxlength="80" class="form-control required" />
                 </div>
                 @if($menuType == 'URL')
                     <div class="form-group">
