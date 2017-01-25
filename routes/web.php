@@ -110,6 +110,18 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']],
     Route::get('pages/delete/{id}', 'Backoffice\Page\PageController@delete');
     Route::get('pages/delete/{id}/restore', 'Backoffice\Page\PageController@restoreDeletedData');
     Route::get('pages/delete/{id}/force', 'Backoffice\Page\PageController@forceDelete');
+
+    Route::get('layout/menu', 'Backoffice\Layout\MenuController@index');
+    Route::get('layout/menu/list-menu', 'Backoffice\Layout\MenuController@listMenu');
+    Route::post('layout/menu/menu-index', 'Backoffice\Layout\MenuController@menuIndex');
+    Route::get('layout/menu/add', 'Backoffice\Layout\MenuController@add');
+    Route::get('layout/menu/edit/{id}', 'Backoffice\Layout\MenuController@edit');
+    Route::post('layout/menu/submit', 'Backoffice\Layout\MenuController@submit');
+    Route::get('layout/menu/delete', 'Backoffice\Layout\MenuController@delete');
+    Route::get('layout/menu/add-cat', 'Backoffice\Layout\MenuController@addCategory');
+    Route::get('layout/menu/edit-cat/{id}', 'Backoffice\Layout\MenuController@editCategory');
+    Route::get('layout/menu/delete-cat/{id}', 'Backoffice\Layout\MenuController@deleteCategory');
+    Route::post('layout/menu/submit-cat', 'Backoffice\Layout\MenuController@submitCategory');
 });
 
 Route::group(['middleware' => 'web'], function () {

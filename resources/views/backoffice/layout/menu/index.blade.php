@@ -1,36 +1,49 @@
-@extends('template.backoffice')
+@extends('layouts.backoffice')
 
-@section('headscript')
-    <link rel="stylesheet" type="text/css" href="<?php echo asset('theme/backoffice/js/plugins/nestable/jquery.nestable.min.css')?>" />
+@section('headScript')
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme/backoffice/ext/vendor/nestable/jquery.nestable.min.css') }}" />
+    <script>
+        requirejs.config({
+            paths:{
+                "nestable":"{{ asset('theme/backoffice/ext/vendor/nestable/jquery.nestable.min') }}"
+            },
+            shim:{
+                'nestable': {
+                    deps: ['jquery']
+                }
+            }
+        });
+    </script>
 @endsection
 
 @section('content')
-    <ul class="breadcrumb breadcrumb-page">
+    <ol class="breadcrumb page-breadcrumb">
         <!-- Auto Breadcrumbs -->
-    </ul>
+    </ol>
 
     <div class="page-header">
         <div class="row">
-            <!-- Page header, center on small screens -->
-            <h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-sort-amount-asc page-header-icon"></i>&nbsp;&nbsp;{{ $pageTitle }}</h1>
-
-            <div class="col-xs-12 col-sm-8">
-                <div class="row">
-                    <hr class="visible-xs no-grid-gutter-h" />
-                    <!-- Add Menu Category
-                    <div class="pull-right col-xs-12 col-sm-auto"><a href="{{ url('backoffice/layout/menu/add-cat') }}" class="btn btn-primary btn-labeled btn-load-popup" style="width: 100%;"><span class="btn-label icon fa fa-plus"></span> Tambah Kategori Menu</a></div>
-                    -->
-                </div>
+            <div class="col-md-4 text-xs-center text-md-left text-nowrap">
+                <h1><i class="page-header-icon fa fa-sitemap"></i> {{ $pageTitle }}</h1>
             </div>
+
+            <hr class="page-wide-block visible-xs visible-sm">
+
+            {{--<div class="col-xs-12 width-md-auto width-lg-auto width-xl-auto pull-md-right">--}}
+                {{--<a href="{{ url('backoffice/layout/menu/add-cat') }}" class="btn btn-primary btn-block btn-load-popup" style="width: 100%;"><span class="btn-label-icon left fa fa-plus"></span>Tambah Kategori Menu</a>--}}
+            {{--</div>--}}
+
+            <!-- Spacer -->
+            <div class="m-b-2 visible-xs visible-sm clearfix"></div>
         </div>
-    </div> <!-- / .page-header -->
+    </div>
 
     <div class="row">
         <div class="col-md-3" style="margin-bottom: 10px;">
-            <a href="javascript:void(0)" onclick="loadToMenuForm('URL')" title="Tambah Menu" class="btn btn-md btn-block btn-default btn-labeled"><i class="btn-label icon fa fa-plus-square"></i> Tambah Menu Hyperlink</a>
-            <a href="javascript:void(0)" onclick="loadToMenuForm('PA')" title="Tambah Menu" class="btn btn-md btn-block btn-default btn-labeled"><i class="btn-label icon fa fa-plus-square"></i> Tambah Menu Halaman</a>
-            <a href="javascript:void(0)" onclick="loadToMenuForm('PO')" title="Tambah Menu" class="btn btn-md btn-block btn-default btn-labeled"><i class="btn-label icon fa fa-plus-square"></i> Tambah Menu Kategori</a>
-            <a href="javascript:void(0)" onclick="loadToMenuForm('S')" title="Tambah Menu" class="btn btn-md btn-block btn-default btn-labeled"><i class="btn-label icon fa fa-plus-square"></i> Tambah Menu Spesial</a>
+            <a href="javascript:void(0)" onclick="loadToMenuForm('URL')" title="Tambah Menu" class="btn btn-md btn-block btn-default btn-labeled"><i class="btn-label-icon left fa fa-plus-square"></i> Tambah Menu Hyperlink</a>
+            <a href="javascript:void(0)" onclick="loadToMenuForm('PA')" title="Tambah Menu" class="btn btn-md btn-block btn-default btn-labeled"><i class="btn-label-icon left fa fa-plus-square"></i> Tambah Menu Halaman</a>
+            <a href="javascript:void(0)" onclick="loadToMenuForm('PO')" title="Tambah Menu" class="btn btn-md btn-block btn-default btn-labeled"><i class="btn-label-icon left fa fa-plus-square"></i> Tambah Menu Kategori</a>
+            <a href="javascript:void(0)" onclick="loadToMenuForm('S')" title="Tambah Menu" class="btn btn-md btn-block btn-default btn-labeled"><i class="btn-label-icon left fa fa-plus-square"></i> Tambah Menu Spesial</a>
         </div>
         <div class="col-md-9">
             <!-- Tabs -->
@@ -42,9 +55,9 @@
             <div class="tab-content tab-content-bordered" id="bs-content-menu-builder">
                 @foreach($listMenuCategory as $mcNav)
                     <div class="tab-pane" id="bs-tabdrop-tab-{{ $mcNav->id }}">
-                        <a href="javascript:void(0)" onclick="loadIntoBox('{{ url('backoffice/layout/menu/edit-cat/'.$mcNav->id) }}')" title="Ubah" class="btn btn-xs btn-default btn-labeled"><i class="btn-label icon fa fa-edit"></i> Ubah</a>
+                        <a href="javascript:void(0)" onclick="loadIntoBox('{{ url('backoffice/layout/menu/edit-cat/'.$mcNav->id) }}')" title="Ubah" class="btn btn-xs btn-default btn-labeled"><i class="btn-label-icon left fa fa-edit"></i> Ubah</a>
                         @if($mcNav->id > 0)
-                            <a href="javascript:void(0)" onclick="confirmDirectPopUp('{{ url('backoffice/layout/menu/delete-cat/'.$mcNav->id) }}', 'Konfirmasi', 'Apakah anda yakin ingin menghapus?', 'Ya, Hapus Data', 'Tidak');" title="Hapus" class="btn btn-xs btn-default btn-labeled"><i class="btn-label icon fa fa-trash"></i> Hapus</a>
+                            <a href="javascript:void(0)" onclick="confirmDirectPopUp('{{ url('backoffice/layout/menu/delete-cat/'.$mcNav->id) }}', 'Konfirmasi', 'Apakah anda yakin ingin menghapus?', 'Ya, Hapus Data', 'Tidak');" title="Hapus" class="btn btn-xs btn-default btn-labeled"><i class="btn-label-icon left fa fa-trash"></i> Hapus</a>
                         @endif
 
                         <p>
@@ -64,19 +77,19 @@
             </div>
         </div>
     </div>
-
-
 @endsection
 
-@section('jsscript')
-    <script src="{{ asset('theme/backoffice/js/plugins/nestable/jquery.nestable.min.js') }}" type="text/javascript"></script>
-
+@section('footScript')
     <script type="text/javascript">
-        init.push(function () {
+        var toastr;
+
+        require(['jquery', 'px-libs/toastr', 'px-bootstrap/tab'], function($, toastrObj) {
+            toastr = toastrObj;
+
             menuTabEvent('ul.bs-tabdrop-menu-builder li a[data-toggle="tab"]');
 
             $('ul.bs-tabdrop-menu-builder a:first').tab('show');
-            $('ul.bs-tabdrop-menu-builder').tabdrop();
+            // $('ul.bs-tabdrop-menu-builder').tabdrop();
         });
 
         function menuTabEvent(selector){
@@ -99,9 +112,9 @@
                 success: function(response, statusText, xhr, $form){
                     if (statusText == "success") {
                         if(response.status == 'ok'){
-                            $.growl.notice({ message: response.message });
+                            toastr.success(response.message, 'Sukses.');
                         }else{
-                            $.growl.error({ message: response.message });
+                            toastr.error(response.message, 'Oppss.');
                         }
 
                         loadListMenu();
@@ -154,7 +167,7 @@
                 $('#mc-desc-'+data.id).text(data.desc);
             }
 
-            $('ul.bs-tabdrop-menu-builder').tabdrop();
+            // $('ul.bs-tabdrop-menu-builder').tabdrop();
         }
 
         function loadToMenuForm(type){

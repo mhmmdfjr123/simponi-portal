@@ -1,10 +1,12 @@
 <!-- Default Ajax Form -->
 <script type="text/javascript">
-    $(document).ready(function() {
-        $("#ajax-form").validate({
+    require(['jquery', 'px-libs/toastr', 'px-bootstrap/button', 'px-bootstrap/alert', 'px/plugins/px-validate'], function($, toastr) {
+        var $ajaxForm = $("#ajax-form");
+
+        $ajaxForm.pxValidate({
             meta : "validate"
         });
-        $("#ajax-form").ajaxForm({
+        $ajaxForm.ajaxForm({
             beforeSubmit : function() {
                 $('fieldset').attr('disabled', true);
                 $(".fbox-footer button[type=submit]").button('loading');
@@ -19,14 +21,14 @@
 
                 if (statusText == "success") {
                     if(response.status == 'ok'){
-                        $.growl.notice({ message: response.message });
+                        toastr.success(response.message, 'Sukses.');
                         loadListMenuCat('add', response.data);
                         //console.dir(response.data);
                     }else{
-                        $.growl.error({ message: response.message });
+                        toastr.error(response.message, 'Oppss.');
                     }
 
-                    jQuery.facebox.close();
+                    $.facebox.close();
                 } else {
                     alertError();
                 }

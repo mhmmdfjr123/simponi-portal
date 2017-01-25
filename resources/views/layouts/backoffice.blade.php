@@ -87,7 +87,7 @@
             <a href="#"><i class="px-nav-icon fa fa-desktop"></i><span class="px-nav-label">Tampilan</span></a>
 
             <ul class="px-nav-dropdown-menu">
-                <li class="px-nav-item"><a href="javascript:maintenance();"><span class="px-nav-label">Manajemen Menu</span></a></li>
+                <li class="px-nav-item"><a href="{{ url('backoffice/layout/menu') }}"><span class="px-nav-label">Manajemen Menu</span></a></li>
             </ul>
         </li>
         <li class="px-nav-item px-nav-dropdown">

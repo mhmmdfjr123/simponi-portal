@@ -1,10 +1,12 @@
 <!-- Default Ajax Form -->
 <script type="text/javascript">
-    $(document).ready(function() {
-        $("#ajax-form").validate({
+    require(['jquery', 'px-libs/toastr', 'px-bootstrap/button', 'px-bootstrap/alert', 'px/plugins/px-validate'], function($, toastr) {
+        var $ajaxForm = $("#ajax-form");
+
+        $ajaxForm.pxValidate({
             meta : "validate"
         });
-        $("#ajax-form").ajaxForm({
+        $ajaxForm.ajaxForm({
             beforeSubmit : function() {
                 $('fieldset').attr('disabled', true);
                 $(".fbox-footer button[type=submit]").button('loading');
@@ -19,14 +21,14 @@
 
                 if (statusText == "success") {
                     if(response.status == 'ok'){
-                        $.growl.notice({ message: response.message });
+                        toastr.success(response.message, 'Sukses.');
                         loadListMenuCat('edit', response.data);
                         //console.dir(response.data);
                     }else{
-                        $.growl.error({ message: response.message });
+                        toastr.error(response.message, 'Oppss.');
                     }
 
-                    jQuery.facebox.close();
+                    $.facebox.close();
                 } else {
                     alertError();
                 }
@@ -60,7 +62,7 @@
             <div class='fbox-footer'>
                 <div class="btn-group">
                     <button type="submit" name="save" value="save" class="btn btn-primary btn-sm" data-loading-text="Loading...">Simpan</button>
-                    <a class="btn btn-default btn-sm" href='javascript:void(0)' onclick='jQuery.facebox.close()'>Batal</a>
+                    <a class="btn btn-default btn-sm" href='javascript:void(0)' onclick='$.facebox.close()'>Batal</a>
                 </div>
             </div>
 

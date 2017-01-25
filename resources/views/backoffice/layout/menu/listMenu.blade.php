@@ -51,7 +51,7 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function() {
+    require(['jquery', 'px-libs/toastr', 'nestable'], function($, toastr) {
         $('#dd-<?php echo $catId ?>').nestable({
             maxDepth    : 3,
             dropCallback: function(details) {
@@ -85,9 +85,9 @@
                     success: function(response, statusText, xhr, $form){
                         if (statusText == "success") {
                             if(response.status == 'ok'){
-                                $.growl.notice({ message: response.message });
+                                toastr.success(response.message, 'Sukses.');
                             }else{
-                                $.growl.error({ message: response.message });
+                                toastr.error(response.message, 'Oppss.');
                             }
 
                             jQuery.facebox.close();

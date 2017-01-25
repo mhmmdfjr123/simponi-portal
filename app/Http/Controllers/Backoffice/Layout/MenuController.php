@@ -16,16 +16,16 @@ class MenuController extends Controller {
 
     }
 
-    public function getIndex(){
+    public function index(){
         $data = [
             'pageTitle' => 'Manajemen Menu',
             'listMenuCategory' => MenuCategory::orderBy('created_at', 'asc')->get()
         ];
 
-        return view('backoffice.layout.menu.getIndex', $data);
+        return view('backoffice.layout.menu.index', $data);
     }
 
-    public function getListMenu(Menu $menu, Request $request){
+    public function listMenu(Menu $menu, Request $request){
         if(!$request->ajax())
             return redirect('backoffice/layout/menu');
 
@@ -34,10 +34,10 @@ class MenuController extends Controller {
             'catId'     => $request->get('menu_category_id')
         ];
 
-        return view('backoffice.layout.menu.getListMenu', $data);
+        return view('backoffice.layout.menu.listMenu', $data);
     }
 
-    public function getAdd(Request $request, PostCategory $postCategory){
+    public function add(Request $request, PostCategory $postCategory){
         if(!$request->ajax() || $request->get('menu_type') === null)
             return redirect('backoffice/layout/menu');
 
@@ -57,10 +57,10 @@ class MenuController extends Controller {
             $data['listData'] = Config::get('content.page.special');
         }
 
-        return view('backoffice.layout.menu.getAdd', $data);
+        return view('backoffice.layout.menu.add', $data);
     }
 
-    public function getEdit(Request $request, PostCategory $postCategory, $id){
+    public function edit(Request $request, PostCategory $postCategory, $id){
         if(!$request->ajax())
             return redirect('backoffice/layout/menu');
 
@@ -85,10 +85,10 @@ class MenuController extends Controller {
             $data['listData'] = Config::get('content.page.special');
         }
 
-        return view('backoffice.layout.menu.getEdit', $data);
+        return view('backoffice.layout.menu.edit', $data);
     }
 
-    public function postMenuIndex(Request $request, Menu $menuModel){
+    public function menuIndex(Request $request, Menu $menuModel){
         try {
             DB::beginTransaction();
 
@@ -125,7 +125,7 @@ class MenuController extends Controller {
         }
     }
 
-    public function postSubmit(Request $request){
+    public function submit(Request $request){
         try {
             $id = $request->input('id');
 
@@ -165,7 +165,7 @@ class MenuController extends Controller {
         }
     }
 
-    public function getDelete(Request $request){
+    public function delete(Request $request){
         try {
             $obj = Menu::find($request->get('id'));
 
@@ -191,7 +191,7 @@ class MenuController extends Controller {
         }
     }
 
-    public function getAddCat(Request $request){
+    public function addCategory(Request $request){
         if(!$request->ajax())
             return redirect('backoffice/layout/menu');
 
@@ -199,10 +199,10 @@ class MenuController extends Controller {
             'pageTitle'  => 'Tambah Kategori Menu',
         ];
 
-        return view('backoffice.layout.menu.getAddCat', $data);
+        return view('backoffice.layout.menu.addCategory', $data);
     }
 
-    public function getEditCat(Request $request, $id){
+    public function editCategory(Request $request, $id){
         if(!$request->ajax())
             return redirect('backoffice/layout/menu');
 
@@ -215,7 +215,7 @@ class MenuController extends Controller {
                     'obj'        => $obj
                 ];
 
-                return view('backoffice.layout.menu.getEditCat', $data);
+                return view('backoffice.layout.menu.editCategory', $data);
             }else{
                 return response('Not Found.', 404);
             }
@@ -226,7 +226,7 @@ class MenuController extends Controller {
         }
     }
 
-    public function getDeleteCat($id){
+    public function deleteCategory($id){
         try {
             $obj = MenuCategory::find($id);
 
@@ -251,7 +251,7 @@ class MenuController extends Controller {
         }
     }
 
-    public function postSubmitCat(Request $request){
+    public function submitCategory(Request $request){
         try {
             $id = $request->input('id');
 
