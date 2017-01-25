@@ -56,8 +56,8 @@ class PageController extends Controller {
                 if($model->deleted_at == ''){
                     $button = '
                         <div class="btn-group">
-                            <a href="'.url('backoffice/pages/edit/'.$model->id).'" title="Ubah" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a>
-                            <a href="javascript:void(0)" onclick="confirmDirectPopUp(\''.url('backoffice/pages/delete/'.$model->id).'\', \'Konfirmasi\', \'Apakah anda yakin ingin menghapus?\', \'Ya, Hapus Data\', \'Tidak\');" title="Hapus" class="btn btn-xs btn-default"><i class="fa fa-trash"></i></a>
+                            <a href="'.url('backoffice/pages/'.$model->id.'/edit').'" title="Ubah" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a>
+                            <a href="javascript:void(0)" onclick="confirmDirectPopUp(\''.url('backoffice/pages/'.$model->id.'/delete').'\', \'Konfirmasi\', \'Apakah anda yakin ingin menghapus?\', \'Ya, Hapus Data\', \'Tidak\');" title="Hapus" class="btn btn-xs btn-default"><i class="fa fa-trash"></i></a>
                         </div>
                     ';
                 }else{
@@ -65,8 +65,8 @@ class PageController extends Controller {
                         <div class="btn-group btn-group-xs">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-down"></i></button>
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a href="javascript:void(0)" onclick="confirmDirectPopUp(\''.url('backoffice/pages/delete/'.$model->id.'/restore').'\', \'Konfirmasi\', \'Apakah anda yakin ingin membatalkan penghapusan data ini?\', \'Ya, restore data\', \'Tidak\');" ><i class="fa fa-rotate-left"></i> Restore Data</a></li>
-                                <li><a href="javascript:void(0)" onclick="confirmDirectPopUp(\''.url('backoffice/pages/delete/'.$model->id.'/force').'\', \'Konfirmasi\', \'Apakah anda yakin ingin menghapus data ini secara permanen?<br />Info: Data yang sudah dihapus permanan <strong>tidak dapat dipulihkan</strong> kembali\', \'Ya, Hapus Permanen\', \'Tidak\');" ><i class="fa fa-times"></i> Hapus Permanen</a></li>
+                                <li><a href="javascript:void(0)" onclick="confirmDirectPopUp(\''.url('backoffice/pages/'.$model->id.'/delete/restore').'\', \'Konfirmasi\', \'Apakah anda yakin ingin membatalkan penghapusan data ini?\', \'Ya, restore data\', \'Tidak\');" ><i class="fa fa-rotate-left"></i> Restore Data</a></li>
+                                <li><a href="javascript:void(0)" onclick="confirmDirectPopUp(\''.url('backoffice/pages/'.$model->id.'/delete/force').'\', \'Konfirmasi\', \'Apakah anda yakin ingin menghapus data ini secara permanen?<br />Info: Data yang sudah dihapus permanan <strong>tidak dapat dipulihkan</strong> kembali\', \'Ya, Hapus Permanen\', \'Tidak\');" ><i class="fa fa-times"></i> Hapus Permanen</a></li>
                             </ul>
                         </div>
                     ';

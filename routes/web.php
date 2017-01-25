@@ -105,11 +105,11 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']],
     Route::get('pages', 'Backoffice\Page\PageController@index');
     Route::get('pages/list-data', 'Backoffice\Page\PageController@listData');
     Route::get('pages/add', 'Backoffice\Page\PageController@showNewForm');
-    Route::get('pages/edit/{id}', 'Backoffice\Page\PageController@showEditForm');
+    Route::get('pages/{id}/edit', 'Backoffice\Page\PageController@showEditForm');
     Route::post('pages/submit', 'Backoffice\Page\PageController@submit');
-    Route::get('pages/delete/{id}', 'Backoffice\Page\PageController@delete');
-    Route::get('pages/delete/{id}/restore', 'Backoffice\Page\PageController@restoreDeletedData');
-    Route::get('pages/delete/{id}/force', 'Backoffice\Page\PageController@forceDelete');
+    Route::get('pages/{id}/delete', 'Backoffice\Page\PageController@delete');
+    Route::get('pages/{id}/delete/restore', 'Backoffice\Page\PageController@restoreDeletedData');
+    Route::get('pages/{id}/delete/force', 'Backoffice\Page\PageController@forceDelete');
 
     Route::get('layout/menu', 'Backoffice\Layout\MenuController@index');
     Route::get('layout/menu/list-menu', 'Backoffice\Layout\MenuController@listMenu');
