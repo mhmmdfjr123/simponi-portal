@@ -1,4 +1,4 @@
-@extends('layouts.shared', ['navbar' => 'navbar-bg'])
+@extends('layouts.front', ['navBarClass' => 'navbar-bg'])
 
 @section('content')
     <section id="content">
