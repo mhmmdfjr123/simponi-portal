@@ -1,0 +1,68 @@
+// Global Components
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    position: relative;
+    .body-font;
+    font-weight: 300;
+}
+
+hr {
+    border-color: @theme-primary;
+    border-width: 3px;
+    max-width: 50px;
+}
+
+hr.light {
+    border-color: white;
+}
+
+// Extras
+// -- Highlight Color Customization
+::-moz-selection {
+    color: white;
+    text-shadow: none;
+    background: @gray-darker;
+}
+
+::selection {
+    color: white;
+    text-shadow: none;
+    background: @gray-darker;
+}
+
+img::selection {
+    color: white;
+    background: transparent;
+}
+
+img::-moz-selection {
+    color: white;
+    background: transparent;
+}
+
+body {
+    webkit-tap-highlight-color: @gray-darker;
+}
+
+@-webkit-keyframes moving-arrow {
+    0% {
+        bottom: 25px
+    }
+
+    50% {
+        bottom: 15px
+    }
+
+    100% {
+        bottom: 25px
+    }
+}
+
+iframe {
+    border: none;
+}
