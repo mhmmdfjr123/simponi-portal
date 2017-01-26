@@ -49,7 +49,7 @@
                 <img src="{{ asset('theme/front/images/BNI-logo-dark.png') }}" alt="BNI Simponi" />
                 <img src="{{ asset('theme/front/images/BNI-logo.png') }}" alt="BNI Simponi" />
             </a>
-        </div>w
+        </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             @widget('mainMenu', [])
