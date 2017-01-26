@@ -1,4 +1,4 @@
-@extends('layouts.front', ['navBarClass' => 'navbar-bg'])
+@extends('layouts.front')
 
 @section('content')
     <section id="customer">
