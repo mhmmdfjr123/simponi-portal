@@ -92,6 +92,7 @@
         <a class="col-sm-6 text-center page-scroll" href="#featured">Temukan Hal Menarik<span class="fa fa-angle-double-down"></span></a>
     </div> -->
 
+    {{--
     <section id="featured">
         <div class="container">
             <div class="row">
@@ -212,11 +213,7 @@
             </div>
         </div>
     </section>
-
-    <div class="col-sm-12 abovefold">
-        <a class="col-sm-12 text-center page-scroll" href="#about">Apa itu BNI Simponi?<span class="fa fa-angle-double-down"></span></a>
-        <!-- <a class="col-sm-6 text-center page-scroll" href="#featured">Temukan Hal Menarik<span class="fa fa-angle-double-down"></span></a> -->
-    </div>
+    --}}
 
     <section class="bg-secondary" id="about">
         <div class="container">
@@ -274,105 +271,6 @@
         </div>
     </section>
 
-    <!--
-    <section class="no-padding" id="portfolio">
-        <div class="container-fluid">
-            <div class="row no-gutter popup-gallery">
-                <div class="col-lg-4 col-sm-6">
-                    <a href="images/portfolio/fullsize/1.jpg" class="portfolio-box">
-                        <img src="images/portfolio/thumbnails/1.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="images/portfolio/fullsize/2.jpg" class="portfolio-box">
-                        <img src="images/portfolio/thumbnails/2.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="images/portfolio/fullsize/3.jpg" class="portfolio-box">
-                        <img src="images/portfolio/thumbnails/3.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="images/portfolio/fullsize/4.jpg" class="portfolio-box">
-                        <img src="images/portfolio/thumbnails/4.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="images/portfolio/fullsize/5.jpg" class="portfolio-box">
-                        <img src="images/portfolio/thumbnails/5.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="images/portfolio/fullsize/6.jpg" class="portfolio-box">
-                        <img src="images/portfolio/thumbnails/6.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    -->
-
     <aside class="bg-dark">
         <div class="container text-center">
             <div class="call-to-action">
@@ -383,7 +281,7 @@
         </div>
     </aside>
 
-    <section>
+    <section style="background: #F7FAFC">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">

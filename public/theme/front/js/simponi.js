@@ -28,13 +28,6 @@
         }
     });
 
-    // Offset for AboveFold button
-    $('.abovefold').affix({
-        offset: {
-            top: 250
-        }
-    });
-
     // Scroll Bar
     $('section#featured .row > div > div > div').perfectScrollbar();
 
@@ -192,16 +185,6 @@
         image: {
             tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
         }
-    });
-
-    $('.login').click(function() {
-        $('.loginform').addClass('active fade').delay(50).queue(function() {
-            $(this).addClass("in").dequeue();
-        });
-    });
-
-    $('.loginform .fa-close').click(function() {
-        $('.loginform').removeClass('active fade in');
     });
 
 })(jQuery); // End of use strict
