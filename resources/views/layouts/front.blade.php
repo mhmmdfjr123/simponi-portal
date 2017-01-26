@@ -28,6 +28,8 @@
     <!-- Theme CSS -->
     <link href="{{ asset('theme/front/css/simponi.css') }}" rel="stylesheet">
 
+    @yield('headScript')
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -63,9 +65,13 @@
 
 <footer>
     <div class="container">
-        <small>Copyright © 2017 PT. Bank Negara Indonesia (Persero) Tbk.</small>
-        <img src="{{ asset('theme/front/images/logo_OJK.png') }}" alt="BNI Simponi Otoritas Jasa Keuangan (OJK)">
-        <img src="{{ asset('theme/front/images/logo_LPS.png') }}" alt="BNI Simponi Lembaga Penjamin Simpanan (LPS)">
+        <div class="row">
+            <div class="col-md-12">
+                <small>Copyright © 2017 PT. Bank Negara Indonesia (Persero) Tbk.</small>
+                <img src="{{ asset('theme/front/images/logo_OJK.png') }}" alt="BNI Simponi Otoritas Jasa Keuangan (OJK)">
+                <img src="{{ asset('theme/front/images/logo_LPS.png') }}" alt="BNI Simponi Lembaga Penjamin Simpanan (LPS)">
+            </div>
+        </div>
     </div>
 </footer>
 
