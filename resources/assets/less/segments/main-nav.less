@@ -1,0 +1,156 @@
+// Navigation
+.navbar-default {
+    background-color: white;
+    border-color: fade(@gray-darker, 5%);
+    .sans-serif-font;
+    .transition-all;
+    .navbar-header .navbar-brand {
+        position: relative;
+        width: 105px;
+        height: 40px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        color: @theme-primary;
+        .sans-serif-font;
+        font-weight: 700;
+        text-transform: uppercase;
+        &:hover,
+        &:focus {
+            color: darken(@theme-primary, 10%);
+        }
+        /*img {
+            position: absolute;
+            left: auto;
+            .transition-all;
+            &:last-child {
+                visibility: hidden;
+                opacity: 0;
+            }
+        }*/
+        box-sizing: content-box;
+    }
+    /*&.affix,
+    &.navbar-bg, {
+        .navbar-header .navbar-brand img {
+            &:first-child {
+                visibility: hidden;
+                opacity: 0;
+            }
+            &:last-child {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+    }*/
+    .navbar-header .navbar-toggle {
+        font-weight: 700;
+        font-size: 12px;
+        color: @gray-darker;
+        text-transform: uppercase;
+    }
+    .nav {
+        & > li {
+            & > a,
+            & > a:focus {
+                text-transform: uppercase;
+                font-weight: 700;
+                font-size: 13px;
+                color: @gray-darker;
+                &:hover {
+                    color: @theme-primary;
+                }
+                &.login {
+                    color: @orange-middle;
+                    cursor: pointer;
+                    &:hover {
+                        color: @orange-light;
+                    }
+                    .material-icons {
+                        margin-right: 5px;
+                        font-size: 20px;
+                        vertical-align: bottom;
+                    }
+                }
+            }
+            &.active {
+                > a,
+                > a:focus {
+                    color: @theme-primary !important;
+                    background-color: transparent;
+                    &:hover {
+                        background-color: transparent;
+                    }
+                }
+            }
+            &:hover .dropdown-menu {
+                visibility: visible;
+                opacity: 1;
+            }
+            & .dropdown-menu {
+                display: block;
+                visibility: hidden;
+                opacity: 0;
+                .transition-all;
+                right: auto;
+                left: 0;
+            }
+        }
+    }
+    @media (min-width: 768px) {
+        background-color: transparent;
+        border-color: fade(white, 30%);
+        .navbar-header .navbar-brand {
+            color: fade(white, 90%);
+            &:hover,
+            &:focus {
+                color: white;
+            }
+        }
+        .nav > li > a,
+        .nav > li > a:focus {
+            color: fade(white, 90%);
+            &:hover {
+                color: white;
+            }
+        }
+        &.navbar-bg,
+        &.affix {
+            background-color: #005C6C;
+            border-color: fade(@gray-darker, 5%);
+            /*.navbar-header .navbar-brand {
+                color: @theme-primary;
+                font-size: 14px;
+                &:hover,
+                &:focus {
+                    color: darken(@theme-primary, 10%);
+                }
+            }
+            .nav > li > a,
+            .nav > li > a:focus {
+                color: @gray-darker;
+                &:hover {
+                    color: @theme-primary;
+                }
+            }*/
+            .dropdown.open > a:focus {
+                background: rgba(166, 166, 166, 0.28);
+            }
+        }
+        .dropdown.open > a:focus {
+            background: rgba(51, 51, 51, 0.48);
+            color: #ffffff;
+        }
+    }
+    @media (max-width: 768px) {
+        .navbar-header .navbar-brand img,
+        &.affix .navbar-header .navbar-brand img {
+            &:first-child {
+                display: none;
+            }
+            &:last-child {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+    }
+}
