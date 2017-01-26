@@ -178,3 +178,7 @@
         </div>
     </section>
 @endsection
+
+@section('footScript')
+    <script src="{{ asset('theme/front/vendor/chartjs/chart.min.js') }}"></script>
+@endsection

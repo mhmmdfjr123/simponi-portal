@@ -26,11 +26,19 @@ Route::group(['middleware' => 'web'], function () {
 });
 
 Route::group(['middleware' => 'web'], function () {
+    Route::get('/register', 'RegisterController@index')->name('register');
+});
+
+Route::group(['middleware' => 'web'], function () {
     Route::get('/content', 'ContentController@index')->name('content');
 });
 
 Route::group(['middleware' => 'web'], function () {
     Route::get('/simulation', 'ContentController@simulation')->name('simulation');
+});
+
+Route::group(['middleware' => 'web'], function () {
+    Route::get('/applynew', 'ContentController@applynew')->name('applynew');
 });
 
 Route::group(['middleware' => 'web'], function () {

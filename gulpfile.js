@@ -11,7 +11,7 @@ const elixir = require('laravel-elixir');
  |
  */
 
-let frontThemePath = 'public/theme/front/';
+const frontThemePath = 'public/theme/front/';
 
 elixir(mix => {
     // Compile less file to css

@@ -49,7 +49,7 @@
             </button>
             <a class="navbar-brand page-scroll" href="#page-top">
                 <img src="{{ asset('theme/front/images/BNI-logo-dark.png') }}" alt="BNI Simponi" />
-                <img src="{{ asset('theme/front/images/BNI-logo.png') }}" alt="BNI Simponi" />
+                <!-- <img src="{{ asset('theme/front/images/BNI-logo.png') }}" alt="BNI Simponi" /> -->
             </a>
         </div>
 
@@ -102,10 +102,12 @@
 <script src="{{ asset('theme/front/vendor/scrollreveal/scrollreveal.min.js') }}"></script>
 <script src="{{ asset('theme/front/vendor/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
 <script src="{{ asset('theme/front/vendor/perfect-scrollbar/perfect-scrollbar.jquery.min.js') }}"></script>
-<script src="{{ asset('theme/front/vendor/chartjs/chart.min.js') }}"></script>
 
 <!-- Theme JavaScript -->
 <script src="{{ asset('theme/front/js/simponi.js') }}"></script>
+
+@yield('footSrcipt')
+
 </body>
 
 </html>

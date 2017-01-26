@@ -11,7 +11,7 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <img class="first-slide" src="{{ asset('theme/front/images/header.jpg') }}" alt="First slide">
+                    <img class="first-slide" src="{{ asset('theme/front/images/banner-1.jpg') }}" alt="First slide">
                     <div class="container">
                         <div class="carousel-caption">
                             <h1>Example headline.</h1>
@@ -108,9 +108,29 @@
                                 </li>
                                 <li>
                                     <a href=#>
-                                        <b>GRATIS PULSA 10 RIBU SETIAP TOP UP DENGAN TOKOPEDIA</b>
-                                        <img src="https://ecs7.tokopedia.net/img/og_tokopedia.jpg" alt="Promo Top Up BNI Simponi" />
-                                        <span>Promo ini berlaku hingga tanggal 29 Februari 2017</span>
+                                        <b>NIKMATI MASA MUDA DI HARI TUA ANDA</b>
+                                        <span>Siapa bilang masa muda tidak bisa dinikmati nanti?</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href=#>
+                                        <b>BNI SIMPONI INVESTASI PASTI</b>
+                                        <span>Investasi tidak perlu menunggu tua. Berinvestasi dengan BNI Simponi sekarang dan dapatkan manfaatnya.</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 text-center">
+                    <span class="col-sm-12">PROMO</span>
+                    <div class="col-sm-12">
+                        <div class="col-sm-12">
+                            <ul>
+                                <li>
+                                    <a href=#>
+                                        <b>DAPATKAN VOUCHER BELANJA SETIAP TOP UP</b>
+                                        <span>Anda berhak mendapatkan voucher belanja hingga Rp1 Milyar untuk setiap top up Simponi.</span>
                                     </a>
                                 </li>
                                 <li>
@@ -130,15 +150,48 @@
                     </div>
                 </div>
                 <div class="col-sm-3 text-center">
-                    <span class="col-sm-12">SIMULASI</span>
+                    <span class="col-sm-12">Infografis</span>
                     <div class="col-sm-12">
                         <div class="col-sm-12">
-                            <iframe class="col-sm-12" src="http://www.youtube.com/embed/GkPv11RjFo8"></iframe>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum, libero id sodales tristique, mi erat molestie quam.</p>
+                            <ul>
+                                <li>
+                                    <a href=#>
+                                        <b>DAPATKAN VOUCHER BELANJA SETIAP TOP UP</b>
+                                        <span>Anda berhak mendapatkan voucher belanja hingga Rp1 Milyar untuk setiap top up Simponi.</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href=#>
+                                        <b>NIKMATI MASA MUDA DI HARI TUA ANDA</b>
+                                        <span>Siapa bilang masa muda tidak bisa dinikmati nanti?</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href=#>
+                                        <b>BNI SIMPONI INVESTASI PASTI</b>
+                                        <span>Investasi tidak perlu menunggu tua. Berinvestasi dengan BNI Simponi sekarang dan dapatkan manfaatnya.</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-3 text-center">
+                    <span class="col-sm-12">Simulasi</span>
+                    <div class="col-sm-12">
+                        <div class="col-sm-12">
+                            <ul>
+                                <li>
+                                    <a href="/simulation" target="_blank">
+                                        <b>SIMULASIKAN INVESTASI DPLK ANDA</b>
+                                        <span>Dengan menggunakan aplikasi simulasi, Anda bisa mengetahui dan mengatur rencana keuangan Anda di masa depan.</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-sm-3 text-center">
                     <span class="col-sm-12">DPLK Sekarang & Nanti</span>
                     <div class="col-sm-12">
                         <div class="col-sm-12">
@@ -155,7 +208,7 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum, libero id sodales tristique, mi erat molestie quam, et tristique sapien lacus nec tellus.</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -325,7 +378,7 @@
             <div class="call-to-action">
                 <h2>SIMULASI</h2>
                 <p class="text-faded">Anda dapat melakukan simulasi penghitungan biaya investasi Anda dengan hasil yang akan Anda dapatkan. Silakan tekan tombol di bawah.</p>
-                <a href="http://bni.co.id" class="btn btn-default btn-outline btn-xl sr-button">LAKUKAN SIMULASI</a>
+                <a href="/simulation" class="btn btn-default btn-outline btn-xl sr-button" target="_blank">LAKUKAN SIMULASI</a>
             </div>
         </div>
     </aside>

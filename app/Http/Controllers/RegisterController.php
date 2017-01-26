@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 /**
- * Class ContentController
+ * Class HomeController
  * @package App\Http\Controllers
- * @author rma
+ * @author efriandika
  */
-class ContentController extends Controller
+class RegisterController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,17 +24,6 @@ class ContentController extends Controller
      */
     public function index()
     {
-        return view('content');
+        return view('register');
     }
-
-    public function simulation()
-    {
-        return view('simulation');
-    }
-
-    public function applynew()
-    {
-        return view('applynew');
-    }
-    
 }

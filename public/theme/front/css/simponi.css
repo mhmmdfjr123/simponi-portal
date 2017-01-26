@@ -272,7 +272,7 @@ section#featured .row > div {
 }
 section#featured .row > div > span {
   background: #eeeeee url(../images/textures/arches.png);
-  padding: 20px 0;
+  padding: 18px 0;
   font-size: 16px;
   font-weight: bold;
   color: #555555;
@@ -280,12 +280,12 @@ section#featured .row > div > span {
 section#featured .row > div > div {
   position: relative;
   background: #eeeeee url(../images/textures/arches.png);
-  height: 300px;
+  height: 150px;
   padding: 0 20px;
   overflow: hidden;
 }
 section#featured .row > div > div > div {
-  height: 280px;
+  height: 120px;
 }
 section#featured .row > div > div > div ul {
   display: block;
@@ -347,6 +347,9 @@ section#content h2 {
 section#content select {
   cursor: pointer;
 }
+section#content select.form-control[disabled] {
+  cursor: not-allowed;
+}
 section#content .date-control {
   display: block;
   width: 100%;
@@ -355,11 +358,66 @@ section#content .date-control select.form-control {
   display: inline-block;
   width: auto;
 }
+section#content .phone-control select.form-control,
+section#content .phone-control input.form-control,
+section#content .phone-control b {
+  display: inline-block;
+  width: auto;
+}
+section#content .phone-control input.form-control {
+  width: 30px;
+  border-left: none;
+  border-top: none;
+  border-right: none;
+  border-radius: 0;
+  margin: 0 2px;
+  padding-left: 0;
+  padding-right: 0;
+  box-shadow: none;
+  text-align: center;
+}
+section#content .phone-control input.form-control:focus {
+  box-shadow: none;
+}
+section#content .phone-control input.form-control.minus {
+  border: none;
+}
+section#content .phone-control b {
+  margin: 0 10px;
+}
+section#content .address-control input.form-control,
+section#content .address-control b {
+  display: inline-block;
+  width: auto;
+}
+section#content .address-control input.form-control {
+  width: 75px;
+  text-align: center;
+}
+section#content .address-control b {
+  margin: 0 10px;
+}
 section#content .radio label:not(:last-child) {
   margin-right: 20px;
 }
 section#content .radio label input[type="radio"] {
   cursor: pointer;
+}
+section#content .checkbox label input[type="checkbox"] {
+  cursor: pointer;
+}
+section#content .applynew {
+  margin-top: 20px;
+}
+section#content .applynew .nationality select.form-control {
+  display: inline-block;
+  width: auto;
+}
+section#content .applynew .date-control {
+  width: 83.33%;
+}
+section#content .applynew .date-control .checkbox {
+  margin-bottom: 7px;
 }
 section#content .identity {
   border-right: 1px solid #eeeeee;
@@ -548,6 +606,19 @@ aside {
   font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   -webkit-transition: all 0.35s;
   transition: all 0.35s;
+  /*&.affix,
+    &.navbar-bg, {
+        .navbar-header .navbar-brand img {
+            &:first-child {
+                visibility: hidden;
+                opacity: 0;
+            }
+            &:last-child {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+    }*/
 }
 .navbar-default .navbar-header .navbar-brand {
   position: relative;
@@ -559,31 +630,20 @@ aside {
   font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
+  /*img {
+            position: absolute;
+            left: auto;
+            .transition-all;
+            &:last-child {
+                visibility: hidden;
+                opacity: 0;
+            }
+        }*/
   box-sizing: content-box;
 }
 .navbar-default .navbar-header .navbar-brand:hover,
 .navbar-default .navbar-header .navbar-brand:focus {
   color: #d0430e;
-}
-.navbar-default .navbar-header .navbar-brand img {
-  position: absolute;
-  left: auto;
-  -webkit-transition: all 0.35s;
-  transition: all 0.35s;
-}
-.navbar-default .navbar-header .navbar-brand img:last-child {
-  visibility: hidden;
-  opacity: 0;
-}
-.navbar-default.affix .navbar-header .navbar-brand img:first-child,
-.navbar-default.navbar-bg .navbar-header .navbar-brand img:first-child {
-  visibility: hidden;
-  opacity: 0;
-}
-.navbar-default.affix .navbar-header .navbar-brand img:last-child,
-.navbar-default.navbar-bg .navbar-header .navbar-brand img:last-child {
-  visibility: visible;
-  opacity: 1;
 }
 .navbar-default .navbar-header .navbar-toggle {
   font-weight: 700;
@@ -602,8 +662,17 @@ aside {
 .navbar-default .nav > li > a:focus:hover {
   color: #f05921;
 }
-.navbar-default .nav > li > a .material-icons,
-.navbar-default .nav > li > a:focus .material-icons {
+.navbar-default .nav > li > a.login,
+.navbar-default .nav > li > a:focus.login {
+  color: #ff7c00;
+  cursor: pointer;
+}
+.navbar-default .nav > li > a.login:hover,
+.navbar-default .nav > li > a:focus.login:hover {
+  color: #ff9633;
+}
+.navbar-default .nav > li > a.login .material-icons,
+.navbar-default .nav > li > a:focus.login .material-icons {
   margin-right: 5px;
   font-size: 20px;
   vertical-align: bottom;
@@ -630,16 +699,13 @@ aside {
   right: auto;
   left: 0;
 }
-.navbar-default .login {
-  cursor: pointer;
-}
 @media (min-width: 768px) {
   .navbar-default {
     background-color: transparent;
     border-color: rgba(255, 255, 255, 0.3);
   }
   .navbar-default .navbar-header .navbar-brand {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.9);
   }
   .navbar-default .navbar-header .navbar-brand:hover,
   .navbar-default .navbar-header .navbar-brand:focus {
@@ -647,7 +713,7 @@ aside {
   }
   .navbar-default .nav > li > a,
   .navbar-default .nav > li > a:focus {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.9);
   }
   .navbar-default .nav > li > a:hover,
   .navbar-default .nav > li > a:focus:hover {
@@ -655,31 +721,23 @@ aside {
   }
   .navbar-default.navbar-bg,
   .navbar-default.affix {
-    background-color: white;
+    background-color: #005C6C;
     border-color: rgba(34, 34, 34, 0.05);
-  }
-  .navbar-default.navbar-bg .navbar-header .navbar-brand,
-  .navbar-default.affix .navbar-header .navbar-brand {
-    color: #f05921;
-    font-size: 14px;
-  }
-  .navbar-default.navbar-bg .navbar-header .navbar-brand:hover,
-  .navbar-default.affix .navbar-header .navbar-brand:hover,
-  .navbar-default.navbar-bg .navbar-header .navbar-brand:focus,
-  .navbar-default.affix .navbar-header .navbar-brand:focus {
-    color: #d0430e;
-  }
-  .navbar-default.navbar-bg .nav > li > a,
-  .navbar-default.affix .nav > li > a,
-  .navbar-default.navbar-bg .nav > li > a:focus,
-  .navbar-default.affix .nav > li > a:focus {
-    color: #222222;
-  }
-  .navbar-default.navbar-bg .nav > li > a:hover,
-  .navbar-default.affix .nav > li > a:hover,
-  .navbar-default.navbar-bg .nav > li > a:focus:hover,
-  .navbar-default.affix .nav > li > a:focus:hover {
-    color: #f05921;
+    /*.navbar-header .navbar-brand {
+                color: @theme-primary;
+                font-size: 14px;
+                &:hover,
+                &:focus {
+                    color: darken(@theme-primary, 10%);
+                }
+            }
+            .nav > li > a,
+            .nav > li > a:focus {
+                color: @gray-darker;
+                &:hover {
+                    color: @theme-primary;
+                }
+            }*/
   }
   .navbar-default.navbar-bg .dropdown.open > a:focus,
   .navbar-default.affix .dropdown.open > a:focus {
