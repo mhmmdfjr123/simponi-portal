@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name='keywords' content='{{ (isset($metaKey) ? $metaKey : settings('meta_key')  ) }}' />
+    <meta name='description' content='{{ (isset($metaDesc) ? e($metaDesc) : e(settings('meta_desc') ) ) }}' />
 
-    <title>BNI Simponi</title>
+    <title>{{ (isset($pageTitle) ? $pageTitle : Config::get('app.name') ) }}</title>
 
     <link href="{{ asset('theme/front/images/favicon.png') }}" rel="shortcut icon" type="image/x-icon">
 
@@ -37,6 +37,7 @@
 </head>
 
 <body id="page-top">
+
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top {{ isset($navBarClass) ? $navBarClass : '' }}">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -48,83 +49,10 @@
                 <img src="{{ asset('theme/front/images/BNI-logo-dark.png') }}" alt="BNI Simponi" />
                 <img src="{{ asset('theme/front/images/BNI-logo.png') }}" alt="BNI Simponi" />
             </a>
-        </div>
+        </div>w
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <!-- // Sample menu for scroll spy
-                <li>
-                    <a class="page-scroll" href="#about">About</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#services">Services</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#portfolio">Portfolio</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#contact">Contact</a>
-                </li>
-                -->
-
-                <li class="dropdown">
-                    <a href="#">Profil</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Sejarah</a></li>
-                        <li><a href="#">Struktur Organisasi</a></li>
-                        <li><a href="#">Jumlah Aset & Peserta</a></li>
-                        <li><a href="#">Alamat Cabang Terdekat</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#">Jenis Program</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Individu</a></li>
-                        <li><a href="#">Kelompok</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#">Jadi Peserta</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Individu</a></li>
-                        <li><a href="#">Kelompok</a></li>
-                        <li><a href="#">Pembukaan Rekening Baru</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#">Pencairan Dana</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Individu</a></li>
-                        <li><a href="#">Kelompok</a></li>
-                        <li><a href="#">Pembukaan Rekening Baru</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">SIMULASI</a>
-                </li>
-                <li>
-                    <a href="#">FAQ</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#contact">HUBUNGI KAMI</a>
-                </li>
-                <!-- <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li> -->
-                <li>
-                    <a class="login"><i class="material-icons">launch</i>MASUK</a>
-                </li>
-            </ul>
+            @widget('mainMenu', [])
         </div>
         <!-- /.navbar-collapse -->
     </div>

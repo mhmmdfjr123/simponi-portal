@@ -37,6 +37,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/customer', 'CustomerController@index')->name('customer');
 });
 
+Route::get('/post/{alias?}', 'PostController@index');
+Route::get('/{alias}', 'PageController@index');
+
 Route::group(['prefix' => 'portal', 'middleware' => ['web', 'auth.portal']], function () {
     Route::get('/dashboard', 'Portal\DashboardController@index')->name('portal-dashboard');
 });

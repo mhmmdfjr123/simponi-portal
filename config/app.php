@@ -202,6 +202,7 @@ return [
          * Additional Service Provider
          */
         Arrilot\Widgets\ServiceProvider::class,
+        Efriandika\LaravelSettings\SettingsServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Kodeine\Acl\AclServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
@@ -259,6 +260,7 @@ return [
          */
         'AsyncWidget'   => Arrilot\Widgets\AsyncFacade::class,
         'Image'         => Intervention\Image\Facades\Image::class,
+        'Settings'      => Efriandika\LaravelSettings\Facades\Settings::class,
         'Widget'        => Arrilot\Widgets\Facade::class,
     ],
 
