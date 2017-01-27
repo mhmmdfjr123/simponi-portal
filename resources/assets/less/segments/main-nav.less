@@ -1,15 +1,13 @@
-// Navigation
 .navbar-default {
     background-color: white;
     border-color: fade(@gray-darker, 5%);
     .sans-serif-font;
     .transition-all;
     .navbar-header .navbar-brand {
-        position: relative;
-        width: 105px;
-        height: 40px;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        img {
+            margin-top: -3px;
+            height: 40px;
+        }
         color: @theme-primary;
         .sans-serif-font;
         font-weight: 700;
@@ -18,30 +16,7 @@
         &:focus {
             color: darken(@theme-primary, 10%);
         }
-        /*img {
-            position: absolute;
-            left: auto;
-            .transition-all;
-            &:last-child {
-                visibility: hidden;
-                opacity: 0;
-            }
-        }*/
-        box-sizing: content-box;
     }
-    /*&.affix,
-    &.navbar-bg, {
-        .navbar-header .navbar-brand img {
-            &:first-child {
-                visibility: hidden;
-                opacity: 0;
-            }
-            &:last-child {
-                visibility: visible;
-                opacity: 1;
-            }
-        }
-    }*/
     .navbar-header .navbar-toggle {
         font-weight: 700;
         font-size: 12px;
@@ -49,9 +24,9 @@
         text-transform: uppercase;
     }
     .nav {
-        & > li {
-            & > a,
-            & > a:focus {
+        > li {
+            > a,
+            > a:focus {
                 text-transform: uppercase;
                 font-weight: 700;
                 font-size: 13px;
@@ -60,15 +35,16 @@
                     color: @theme-primary;
                 }
                 &.login {
-                    color: @orange-middle;
+                    color: @orange-light;
                     cursor: pointer;
                     &:hover {
-                        color: @orange-light;
+                        color: @gray-light;
                     }
                     .material-icons {
+                        margin-top: -3px;
                         margin-right: 5px;
                         font-size: 20px;
-                        vertical-align: bottom;
+                        vertical-align: middle;
                     }
                 }
             }
@@ -97,27 +73,41 @@
         }
     }
     @media (min-width: 768px) {
-        background-color: transparent;
-        border-color: fade(white, 30%);
+        background-color: @theme-secondary;
+        border-bottom: 1px solid darken(@theme-secondary, 4%);
         .navbar-header .navbar-brand {
-            color: fade(white, 90%);
+            color: fade(white, 70%);
             &:hover,
             &:focus {
                 color: white;
             }
         }
-        .nav > li > a,
-        .nav > li > a:focus {
-            color: fade(white, 90%);
-            &:hover {
-                color: white;
+        .nav > li > .dropdown-menu {
+            background-color: darken(@theme-secondary, 4%);
+            a {
+                color: @gray-lighter;
+                padding-top: 6px;
+                padding-bottom: 6px;
+                font-weight: 300;
+
+                &:hover {
+                    background-color: @theme-primary;
+                }
             }
         }
-        &.navbar-bg,
+        .nav > li > a,
+        .nav > li > a:focus {
+            line-height: 60px;
+            height: 60px;
+            padding-top: 0;
+
+            color: @gray-lighter;
+            &:hover {
+                color: @orange-lighter;
+            }
+        }
         &.affix {
-            background-color: @theme-secondary;
-            border-bottom: 1px solid darken(@theme-secondary, 4%);
-            /*.navbar-header .navbar-brand {
+            .navbar-header .navbar-brand {
                 color: @theme-primary;
                 font-size: 14px;
                 &:hover,
@@ -125,31 +115,24 @@
                     color: darken(@theme-primary, 10%);
                 }
             }
-            .nav > li > a,
-            .nav > li > a:focus {
-                color: @gray-darker;
-                &:hover {
-                    color: @theme-primary;
-                }
-            }*/
-            .dropdown.open > a:focus {
-                background: rgba(166, 166, 166, 0.28);
-            }
-        }
-        .dropdown.open > a:focus {
-            background: rgba(51, 51, 51, 0.48);
-            color: #ffffff;
         }
     }
-    @media (max-width: 768px) {
-        .navbar-header .navbar-brand img,
-        &.affix .navbar-header .navbar-brand img {
-            &:first-child {
-                display: none;
-            }
-            &:last-child {
-                visibility: visible;
-                opacity: 1;
+}
+
+@media (min-width: 768px) {
+    body.with-affix-menu {
+        .navbar-default {
+            &.affix-top {
+                background-color: transparent;
+                border-color: fade(white, 30%);
+
+                .nav > li > a,
+                .nav > li > a:focus {
+                    color: fade(white, 70%);
+                    &:hover {
+                        color: white;
+                    }
+                }
             }
         }
     }

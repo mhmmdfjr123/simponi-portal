@@ -1,4 +1,4 @@
-@extends('layouts.front', ['transparentHeader' => true])
+@extends('layouts.front', ['bodyClass' => 'with-affix-menu'])
 
 @section('content')
     <header>
@@ -290,27 +290,7 @@
                 <div class="col-lg-6">
                     <h2 class="section-heading text-center">Dapatkan voucher belanja hingga Rp1 Milyar</h2>
                     <hr class="primary">
-                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elementum mauris ut congue luctus. In fringilla pellentesque nibh, ac hendrerit tortor euismod vitae. Phasellus rhoncus accumsan orci, eu efficitur ante fermentum et. Nunc interdum dapibus posuere. Proin a diam venenatis, consequat lacus maximus, laoreet risus. Pellentesque consectetur sem arcu, a placerat nunc faucibus ut. Duis justo diam, pellentesque nec elit et, iaculis commodo elit. Nullam viverra rhoncus sagittis. Quisque a faucibus velit. Integer sagittis cursus lorem, sit amet auctor ipsum dapibus fermentum. Donec in rutrum tellus. Donec eu bibendum lorem. Vestibulum pulvinar fermentum cursus. Pellentesque tincidunt velit quam, non pulvinar dolor semper eget. Donec in sagittis urna.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">HUBUNGI KAMI</h2>
-                    <hr class="primary">
-                    <p>Hubungi kami di <i>Call Center</i> atau <i>email</i> di bawah dan dapatkan penawaran menarik dari BNI Simponi.</p>
-                </div>
-                <div class="col-lg-4 col-lg-offset-2 text-center">
-                    <i class="fa fa-phone fa-3x sr-contact"></i>
-                    <p><a href="tel:1500046">1500046</a></p>
-                </div>
-                <div class="col-lg-4 text-center">
-                    <i class="fa fa-envelope-o fa-3x sr-contact"></i>
-                    <p><a href="mailto:bnicall@bni.co.id">bnicall@bni.co.id</a></p>
+                    <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elementum mauris ut congue luctus. In fringilla pellentesque nibh, ac hendrerit tortor euismod vitae. Phasellus rhoncus accumsan orci, eu efficitur ante fermentum et. Nunc interdum dapibus posuere. Proin a diam venenatis, consequat lacus maximus, laoreet risus. Pellentesque consectetur sem arcu, a placerat nunc faucibus ut. Duis justo diam, pellentesque nec elit et, iaculis commodo elit. Nullam viverra rhoncus sagittis. Quisque a faucibus velit. Integer sagittis cursus lorem, sit amet auctor ipsum dapibus fermentum. Donec in rutrum tellus. Donec eu bibendum lorem. Vestibulum pulvinar fermentum cursus. Pellentesque tincidunt velit quam, non pulvinar dolor semper eget. Donec in sagittis urna.</p>
                 </div>
             </div>
         </div>

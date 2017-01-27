@@ -2,6 +2,10 @@ body {
   position: relative;
   font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 300;
+  padding-top: 80px;
+}
+body.with-affix-menu {
+  padding-top: 0 !important;
 }
 hr {
   border-color: #f05921;
@@ -219,23 +223,23 @@ p {
   color: #f05921;
 }
 .no-padding {
-  padding: 0;
+  padding: 0 !important;
 }
 .no-padding-top {
-  padding-top: 0;
+  padding-top: 0 !important;
 }
 .no-padding-right {
-  padding-right: 0;
+  padding-right: 0 !important;
 }
 .no-padding-bottom {
-  padding-bottom: 0;
+  padding-bottom: 0 !important;
 }
 .no-padding-left {
-  padding-left: 0;
+  padding-left: 0 !important;
 }
 .no-gutter > [class*='col-'] {
-  padding-right: 0;
-  padding-left: 0;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
 }
 .clear {
   clear: both;
@@ -246,40 +250,16 @@ p {
   font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   -webkit-transition: all 0.35s;
   transition: all 0.35s;
-  /*&.affix,
-    &.navbar-bg, {
-        .navbar-header .navbar-brand img {
-            &:first-child {
-                visibility: hidden;
-                opacity: 0;
-            }
-            &:last-child {
-                visibility: visible;
-                opacity: 1;
-            }
-        }
-    }*/
 }
 .navbar-default .navbar-header .navbar-brand {
-  position: relative;
-  width: 105px;
-  height: 40px;
-  padding-top: 5px;
-  padding-bottom: 5px;
   color: #f05921;
   font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
-  /*img {
-            position: absolute;
-            left: auto;
-            .transition-all;
-            &:last-child {
-                visibility: hidden;
-                opacity: 0;
-            }
-        }*/
-  box-sizing: content-box;
+}
+.navbar-default .navbar-header .navbar-brand img {
+  margin-top: -3px;
+  height: 40px;
 }
 .navbar-default .navbar-header .navbar-brand:hover,
 .navbar-default .navbar-header .navbar-brand:focus {
@@ -304,18 +284,19 @@ p {
 }
 .navbar-default .nav > li > a.login,
 .navbar-default .nav > li > a:focus.login {
-  color: #ff7c00;
+  color: #ff9633;
   cursor: pointer;
 }
 .navbar-default .nav > li > a.login:hover,
 .navbar-default .nav > li > a:focus.login:hover {
-  color: #ff9633;
+  color: #aaaaaa;
 }
 .navbar-default .nav > li > a.login .material-icons,
 .navbar-default .nav > li > a:focus.login .material-icons {
+  margin-top: -3px;
   margin-right: 5px;
   font-size: 20px;
-  vertical-align: bottom;
+  vertical-align: middle;
 }
 .navbar-default .nav > li.active > a,
 .navbar-default .nav > li.active > a:focus {
@@ -341,76 +322,88 @@ p {
 }
 @media (min-width: 768px) {
   .navbar-default {
-    background-color: transparent;
-    border-color: rgba(255, 255, 255, 0.3);
+    background-color: #005c69;
+    border-bottom: 1px solid #004a55;
   }
   .navbar-default .navbar-header .navbar-brand {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.7);
   }
   .navbar-default .navbar-header .navbar-brand:hover,
   .navbar-default .navbar-header .navbar-brand:focus {
     color: white;
   }
+  .navbar-default .nav > li > .dropdown-menu {
+    background-color: #004a55;
+  }
+  .navbar-default .nav > li > .dropdown-menu a {
+    color: #e6e6e6;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-weight: 300;
+  }
+  .navbar-default .nav > li > .dropdown-menu a:hover {
+    background-color: #f05921;
+  }
   .navbar-default .nav > li > a,
   .navbar-default .nav > li > a:focus {
-    color: rgba(255, 255, 255, 0.9);
+    line-height: 60px;
+    height: 60px;
+    padding-top: 0;
+    color: #e6e6e6;
   }
   .navbar-default .nav > li > a:hover,
   .navbar-default .nav > li > a:focus:hover {
-    color: white;
-  }
-  .navbar-default.navbar-bg,
-  .navbar-default.affix {
-    background-color: #005c69;
-    border-bottom: 1px solid #004a55;
-    /*.navbar-header .navbar-brand {
-                color: @theme-primary;
-                font-size: 14px;
-                &:hover,
-                &:focus {
-                    color: darken(@theme-primary, 10%);
-                }
-            }
-            .nav > li > a,
-            .nav > li > a:focus {
-                color: @gray-darker;
-                &:hover {
-                    color: @theme-primary;
-                }
-            }*/
-  }
-  .navbar-default.navbar-bg .dropdown.open > a:focus,
-  .navbar-default.affix .dropdown.open > a:focus {
-    background: rgba(166, 166, 166, 0.28);
-  }
-  .navbar-default .dropdown.open > a:focus {
-    background: rgba(51, 51, 51, 0.48);
     color: #ffffff;
   }
-}
-@media (max-width: 768px) {
-  .navbar-default .navbar-header .navbar-brand img:first-child,
-  .navbar-default.affix .navbar-header .navbar-brand img:first-child {
-    display: none;
+  .navbar-default.affix .navbar-header .navbar-brand {
+    color: #f05921;
+    font-size: 14px;
   }
-  .navbar-default .navbar-header .navbar-brand img:last-child,
-  .navbar-default.affix .navbar-header .navbar-brand img:last-child {
-    visibility: visible;
-    opacity: 1;
+  .navbar-default.affix .navbar-header .navbar-brand:hover,
+  .navbar-default.affix .navbar-header .navbar-brand:focus {
+    color: #d0430e;
+  }
+}
+@media (min-width: 768px) {
+  body.with-affix-menu .navbar-default.affix-top {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  body.with-affix-menu .navbar-default.affix-top .nav > li > a,
+  body.with-affix-menu .navbar-default.affix-top .nav > li > a:focus {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  body.with-affix-menu .navbar-default.affix-top .nav > li > a:hover,
+  body.with-affix-menu .navbar-default.affix-top .nav > li > a:focus:hover {
+    color: white;
   }
 }
 footer {
   padding: 20px 0;
-  margin-top: 30px;
+  margin-top: 20px;
   background: #F7F7F7;
   border-top: 1px solid #e6e6e6;
 }
 footer .container .copyright {
-  padding-top: 7px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  font-size: 9pt;
 }
-footer .container img {
-  margin-left: 20px;
-  float: right;
+footer .container .footer-logo {
+  text-align: right;
+}
+footer .container .footer-logo img {
+  margin-left: 15px;
+}
+@media (max-width: 992px) {
+  footer .container .copyright {
+    padding-top: 0;
+    text-align: center !important;
+    margin-bottom: 15px;
+  }
+  footer .container .footer-logo {
+    text-align: center !important;
+  }
 }
 .loginform {
   position: fixed;
@@ -521,7 +514,7 @@ footer .container img {
 }
 section {
   position: relative;
-  padding: 100px 0;
+  padding: 70px 0;
 }
 section#featured {
   padding: 1px 0;

@@ -38,8 +38,8 @@
     <![endif]-->
 </head>
 
-<body id="page-top">
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top {{ isset($transparentHeader) && $transparentHeader ? '' : 'navbar-bg' }}">
+<body id="page-top" class="{{ isset($bodyClass) ? $bodyClass : '' }}">
+    <nav id="main-nav" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -62,15 +62,36 @@
 
     @yield('content')
 
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h2 class="section-heading">HUBUNGI KAMI</h2>
+                    <hr class="primary">
+                    <p>Hubungi kami di <i>Call Center</i> atau <i>email</i> di bawah dan dapatkan penawaran menarik dari BNI Simponi.</p>
+                </div>
+                <div class="col-md-4 col-md-offset-2 text-center">
+                    <i class="fa fa-phone fa-3x sr-contact"></i>
+                    <p><a href="tel:1500046">1 5000 46</a></p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <i class="fa fa-envelope-o fa-3x sr-contact"></i>
+                    <p><a href="mailto:bnicall@bni.co.id">bnicall@bni.co.id</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-md-6 copyright">
-                    Copyright &copy; 2017 - PT. Bank Negara Indonesia (Persero) Tbk.
+                <div class="col-md-8 copyright">
+                    <small>BNI Simponi terdaftar dan diawasi oleh Otoritas Jasa Keuangan (OJK) serta dijamin oleh Lembaga Penjamin Simpanan (LPS).</small>
+                    <div>Copyright &copy; 2017 - PT. Bank Negara Indonesia (Persero) Tbk.</div>
                 </div>
-                <div class="col-md-6 text-right">
-                    <img src="{{ asset('theme/front/images/logo_OJK.png') }}" alt="BNI Simponi Otoritas Jasa Keuangan (OJK)">
+                <div class="col-md-4 footer-logo">
                     <img src="{{ asset('theme/front/images/logo_LPS.png') }}" alt="BNI Simponi Lembaga Penjamin Simpanan (LPS)">
+                    <img src="{{ asset('theme/front/images/logo_OJK.png') }}" alt="BNI Simponi Otoritas Jasa Keuangan (OJK)">
                 </div>
             </div>
         </div>

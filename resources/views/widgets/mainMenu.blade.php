@@ -6,7 +6,7 @@
             </li>
         @else
             <li class="dropdown">
-                <a href="#">{{ $m1['data']->menu_name }}</a>
+                <a href="{{ menuUrl($m1['data'], $m1['related']) }}">{{ $m1['data']->menu_name }}  <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     @foreach($m1['children'] as $m2)
                         <li>
@@ -19,6 +19,6 @@
     @endforeach
 
     <li>
-        <a class="login"><i class="material-icons">launch</i>MASUK</a>
+        <a class="login" href="{{ route('portal-login') }}"><i class="material-icons">launch</i> MASUK</a>
     </li>
 </ul>
