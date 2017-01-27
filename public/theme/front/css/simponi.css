@@ -7,10 +7,15 @@ body {
 body.with-affix-menu {
   padding-top: 0 !important;
 }
-hr {
+hr.title {
   border-color: #f05921;
   border-width: 3px;
   max-width: 50px;
+}
+hr.separator {
+  border-width: 1px;
+  border-style: dashed;
+  width: 50%;
 }
 iframe {
   border: none;
@@ -36,9 +41,6 @@ img::selection {
 img::-moz-selection {
   color: white;
   background: transparent;
-}
-body {
-  webkit-tap-highlight-color: #222222;
 }
 @-webkit-keyframes moving-arrow {
   0% {
@@ -194,7 +196,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 300;
   letter-spacing: -0.6px;
 }
@@ -316,18 +318,9 @@ p {
   background-color: transparent;
 }
 @media (min-width: 768px) {
-<<<<<<< Updated upstream
   .navbar-default .navbar-header .navbar-brand img {
     margin-top: -3px;
     height: 40px;
-=======
-  .navbar-default {
-    background-color: transparent;
-    background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.0001) 0, rgba(0, 0, 0, 0.5) 100%);
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.0001) 0, rgba(0, 0, 0, 0.5) 100%);
-    border: none;
-    /*border-color: fade(white, 30%);*/
->>>>>>> Stashed changes
   }
   .navbar-default .nav > li > .dropdown-menu {
     background-color: #004a55;
@@ -343,38 +336,9 @@ p {
   }
   .navbar-default .nav > li > a,
   .navbar-default .nav > li > a:focus {
-<<<<<<< Updated upstream
     line-height: 60px;
     height: 60px;
     padding-top: 0;
-=======
-    color: rgba(255, 255, 255, 0.9);
-  }
-  .navbar-default .nav > li > a:hover,
-  .navbar-default .nav > li > a:focus:hover {
-    color: white;
-  }
-  .navbar-default.navbar-bg,
-  .navbar-default.affix {
-    background-color: #005C6C;
-    background-image: none;
-    /*border-color: fade(@gray-darker, 5%);*/
-    /*.navbar-header .navbar-brand {
-                color: @theme-primary;
-                font-size: 14px;
-                &:hover,
-                &:focus {
-                    color: darken(@theme-primary, 10%);
-                }
-            }
-            .nav > li > a,
-            .nav > li > a:focus {
-                color: @gray-darker;
-                &:hover {
-                    color: @theme-primary;
-                }
-            }*/
->>>>>>> Stashed changes
   }
   .navbar-default .nav > li:hover .dropdown-menu {
     visibility: visible;
@@ -431,84 +395,25 @@ footer .container .footer-logo img {
     text-align: center !important;
   }
 }
-.loginform {
-  position: fixed;
-  display: none;
-  table-layout: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 2000;
+.content-container {
+  width: 80%;
+  margin: 0 auto 80px auto;
 }
-.loginform .fa-close {
-  position: absolute;
-  top: 50px;
-  right: 75px;
-  color: #e6e6e6;
+.content-header {
+  margin-bottom: 20px;
 }
-.loginform .fa-close:hover {
-  cursor: pointer;
-  text-decoration: none;
-}
-.loginform form {
-  background: #555555;
-  width: 480px;
-  border-radius: 0 0 3px 3px;
-  margin: auto;
-  padding: 20px 30px 30px;
-  color: white;
-}
-.loginform form > * {
-  display: block;
-  width: 100%;
-}
-.loginform form img {
-  width: auto;
-  margin: auto;
-  margin-bottom: 5px;
-}
-.loginform form input {
-  background: none;
-  border: none;
-  border-bottom: 1px solid #aaaaaa;
-  margin-bottom: 10px;
-  outline: none;
-}
-.loginform form input:focus {
-  border-bottom-color: #ff7c00;
-}
-.loginform form .forgotpassword {
-  margin-bottom: 30px;
-}
-.loginform form .forgotpassword a {
-  color: white;
-}
-.loginform b {
-  display: block;
-  background: white;
-  width: 480px;
-  border-radius: 3px 3px 0 0;
-  margin: auto;
-  padding: 10px;
+.content-header h1 {
   text-align: center;
+  color: #005c69;
 }
-.loginform.active {
-  display: table;
+.content-detail {
+  margin-bottom: 20px;
 }
-.loginform.fade {
-  -webkit-transition: all 0.35s;
-  transition: all 0.35s;
-  opacity: 0;
-}
-.loginform.fade.in {
-  opacity: 1;
-}
-.loginform > div {
-  display: table-cell;
-  width: 100%;
-  vertical-align: middle;
+@media (max-width: 768px) {
+  .content-container {
+    width: 100%;
+    margin: 0 auto;
+  }
 }
 .abovefold {
   -webkit-transition: all 0.35s;

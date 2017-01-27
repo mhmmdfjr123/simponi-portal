@@ -17,12 +17,12 @@
     });
 
     // Closes the Responsive Menu on Menu Item Click
-    $('.navbar-collapse ul li a').click(function() {
-        $('.navbar-toggle:visible').click();
-    });
+    // $('.navbar-collapse ul li a').click(function() {
+    //     $('.navbar-toggle:visible').click();
+    // });
 
     // Offset for Main Navigation
-    $('#mainNav').affix({
+    $('#main-nav').affix({
         offset: {
             top: 100
         }
@@ -38,35 +38,6 @@
     // Scroll Bar
     $('section#featured .row > div > div > div').perfectScrollbar();
 
-    //Phone control
-    /*$('.phone-control input[type="text"]').numeric().keydown(function(e) {
-        $(this).val('');
-        if (e.keyCode == 8) {
-            $(this).prevAll('input[type="text"]').first().focus();
-        }
-    }).keypress(function(e) {
-        if (e.keyCode != 8) {
-            $(this).nextAll('input[type="text"]').first().focus();
-        }
-    });*/
-
-    // Applynew
-    /*$('.applynew .nationality [type="radio"]').click(function() {
-        var parent = $(this).parent();
-        if (parent.index() > 0) {
-            parent.siblings('select').removeAttr('disabled');
-        } else {
-            parent.siblings('select').attr('disabled', true);
-        }
-    });
-    $('.applynew .date-control [type="checkbox"]').click(function() {
-        var parent = $(this).closest('.checkbox');
-        if ($(this).is(':checked')) {
-            parent.nextAll().attr('disabled', true);
-        } else {
-            parent.nextAll().removeAttr('disabled');
-        }
-    });*/
 
     // Initialize and Configure Scroll Reveal Animation
     window.sr = ScrollReveal();
@@ -100,17 +71,6 @@
             tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
         }
     });
-
-    /*$('.login').click(function() {
-        $('.loginform').addClass('active fade').delay(50).queue(function() {
-            $(this).addClass("in").dequeue();
-        });
-    });
-
-    $('.loginform .fa-close').click(function() {
-        $('.loginform').removeClass('active fade in');
-    });*/
-
 })(jQuery); // End of use strict
 
 //# sourceMappingURL=simponi.js.map

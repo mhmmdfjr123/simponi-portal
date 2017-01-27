@@ -46,7 +46,7 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
+                <a class="navbar-brand page-scroll" href="{{ route('home') }}">
                     <img src="{{ asset('theme/front/images/BNI-logo-dark.png') }}" alt="BNI Simponi" />
                     <!-- <img src="{{ asset('theme/front/images/BNI-logo.png') }}" alt="BNI Simponi" /> -->
                 </a>
@@ -66,8 +66,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center">
-                    <h2 class="section-heading">HUBUNGI KAMI</h2>
-                    <hr class="primary">
+                    <h3 class="section-heading">HUBUNGI KAMI</h3>
+                    <hr class="title">
                     <p>Hubungi kami di <i>Call Center</i> atau <i>email</i> di bawah dan dapatkan penawaran menarik dari BNI Simponi.</p>
                 </div>
                 <div class="col-md-4 col-md-offset-2 text-center">

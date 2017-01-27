@@ -11,45 +11,6 @@
 |
 */
 
-
-/*
-|--------------------------------------------------------------------------
-| Front End Routes
-|--------------------------------------------------------------------------
-*/
-Route::get('/', function () {
-    return Redirect::route('home');
-});
-
-Route::group(['middleware' => 'web'], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
-});
-
-Route::get('/register', 'RegisterController@index')->name('register');
-Route::get('/userlogin', 'LoginController@index')->name('userlogin');
-Route::get('/content', 'ContentController@index')->name('content');
-Route::get('/simulation', 'ContentController@simulation')->name('simulation');
-Route::get('/applynew', 'ContentController@applynew')->name('applynew');
-Route::get('/customer', 'CustomerController@index')->name('customer');
-Route::get('/post/{alias?}', 'PostController@index');
-Route::get('/{alias}', 'PageController@index');
-
-Route::group(['prefix' => 'portal', 'middleware' => ['web', 'auth.portal']], function () {
-    Route::get('/dashboard', 'Portal\DashboardController@index')->name('portal-dashboard');
-});
-
-Route::group(['prefix' => 'portal', 'middleware' => 'web'], function () {
-    Route::get('/login', 'Portal\Auth\LoginController@showLoginForm')->name('portal-login');
-    Route::post('/login', 'Portal\Auth\LoginController@login');
-    Route::get('/login/register', 'Portal\Auth\LoginController@showRegistrationForm')->name('portal-register');
-    Route::post('/login/register', 'Portal\Auth\LoginController@register');
-    Route::get('/logout', 'Portal\Auth\LoginController@logout')->name('portal-logout');
-    Route::get('/password/reset', 'Portal\Auth\LoginController@logout')->name('portal-forgot-password');
-    Route::post('/password/reset', 'Portal\Auth\LoginController@register');
-    Route::get('/password/login-token', 'Portal\Auth\LoginController@logout')->name('portal-login-token');
-    Route::post('/password/login-token', 'Portal\Auth\LoginController@register');
-});
-
 /*
 |--------------------------------------------------------------------------
 | BackOffice Routes
@@ -137,3 +98,44 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Front End Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('/', function () {
+    return Redirect::route('home');
+});
+
+Route::group(['middleware' => 'web'], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+});
+
+// Sample Controller
+Route::get('/register', 'RegisterController@index')->name('register');
+Route::get('/userlogin', 'LoginController@index')->name('userlogin');
+Route::get('/content', 'ContentController@index')->name('content');
+Route::get('/simulation', 'ContentController@simulation')->name('simulation');
+Route::get('/applynew', 'ContentController@applynew')->name('applynew');
+Route::get('/customer', 'CustomerController@index')->name('customer');
+// End of Sample Controller
+
+Route::group(['prefix' => 'portal', 'middleware' => ['web', 'auth.portal']], function () {
+    Route::get('/dashboard', 'Portal\DashboardController@index')->name('portal-dashboard');
+});
+
+Route::group(['prefix' => 'portal', 'middleware' => 'web'], function () {
+    Route::get('/login', 'Portal\Auth\LoginController@showLoginForm')->name('portal-login');
+    Route::post('/login', 'Portal\Auth\LoginController@login');
+    Route::get('/login/register', 'Portal\Auth\LoginController@showRegistrationForm')->name('portal-register');
+    Route::post('/login/register', 'Portal\Auth\LoginController@register');
+    Route::get('/logout', 'Portal\Auth\LoginController@logout')->name('portal-logout');
+    Route::get('/password/reset', 'Portal\Auth\LoginController@logout')->name('portal-forgot-password');
+    Route::post('/password/reset', 'Portal\Auth\LoginController@register');
+    Route::get('/password/login-token', 'Portal\Auth\LoginController@logout')->name('portal-login-token');
+    Route::post('/password/login-token', 'Portal\Auth\LoginController@register');
+});
+
+Route::get('/post/{alias?}', 'PostController@index');
+Route::get('/{alias}', 'PageController@index');

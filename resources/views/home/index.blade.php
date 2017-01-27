@@ -214,8 +214,9 @@
     </section> -->
 
     <div class="col-sm-12 abovefold">
-        <a class="col-sm-12 text-center page-scroll" href="#about">Apa itu BNI Simponi?<span class="fa fa-angle-double-down"></span></a>
-        <!-- <a class="col-sm-6 text-center page-scroll" href="#featured">Temukan Hal Menarik<span class="fa fa-angle-double-down"></span></a> -->
+        <a class="col-sm-12 text-center page-scroll" href="#about">
+            <span class="fa fa-angle-double-down"></span>
+        </a>
     </div>
 
     <section class="bg-secondary" id="about">
@@ -223,7 +224,7 @@
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2 text-center">
                     <h2 class="section-heading">Apa itu BNI Simponi?</h2>
-                    <hr class="light">
+                    <hr class="title">
                     <p class="text-faded">BNI Simponi adalah layanan program pensiun yang diselenggarakan oleh Dana Pensiun Lembaga Keuangan PT. Bank Negara Indonesia (Persero) Tbk  (DPLK BNI) sejak tahun 1994 berdasarkan Undang-Undang Nomor 11 Tahun 1992 tentang Dana Pensiun.</p>
                     <a href="#services" class="page-scroll btn btn-default btn-outline btn-xl sr-button">MULAI PENELUSURAN</a>
                 </div>
@@ -236,7 +237,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">At Your Service</h2>
-                    <hr class="primary">
+                    <hr class="title">
                 </div>
             </div>
         </div>
@@ -292,7 +293,7 @@
                 </div>
                 <div class="col-lg-6">
                     <h2 class="section-heading text-center">Dapatkan voucher belanja hingga Rp1 Milyar</h2>
-                    <hr class="primary">
+                    <hr class="title">
                     <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elementum mauris ut congue luctus. In fringilla pellentesque nibh, ac hendrerit tortor euismod vitae. Phasellus rhoncus accumsan orci, eu efficitur ante fermentum et. Nunc interdum dapibus posuere. Proin a diam venenatis, consequat lacus maximus, laoreet risus. Pellentesque consectetur sem arcu, a placerat nunc faucibus ut. Duis justo diam, pellentesque nec elit et, iaculis commodo elit. Nullam viverra rhoncus sagittis. Quisque a faucibus velit. Integer sagittis cursus lorem, sit amet auctor ipsum dapibus fermentum. Donec in rutrum tellus. Donec eu bibendum lorem. Vestibulum pulvinar fermentum cursus. Pellentesque tincidunt velit quam, non pulvinar dolor semper eget. Donec in sagittis urna.</p>
                 </div>
             </div>
