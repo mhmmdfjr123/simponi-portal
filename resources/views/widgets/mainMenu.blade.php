@@ -6,7 +6,7 @@
             </li>
         @else
             <li class="dropdown">
-                <a href="{{ menuUrl($m1['data'], $m1['related']) }}">{{ $m1['data']->menu_name }}  <span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="{{ menuUrl($m1['data'], $m1['related']) }}">{{ $m1['data']->menu_name }}  <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     @foreach($m1['children'] as $m2)
                         <li>
