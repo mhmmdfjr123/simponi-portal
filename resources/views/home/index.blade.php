@@ -41,14 +41,14 @@
                     </div>
                 </div>
             </div>
-            <a class="left carousel-control" href="#sim-carousel" role="button" data-slide="prev">
+            <!-- <a class="left carousel-control" href="#sim-carousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
             </a>
             <a class="right carousel-control" href="#sim-carousel" role="button" data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
-            </a>
+            </a> -->
         </div>
         <!-- End of Carousel -->
         <!--
@@ -92,8 +92,7 @@
         <a class="col-sm-6 text-center page-scroll" href="#featured">Temukan Hal Menarik<span class="fa fa-angle-double-down"></span></a>
     </div> -->
 
-    {{--
-    <section id="featured">
+    <!-- <section id="featured">
         <div class="container">
             <div class="row">
                 <div class="col-sm-3 text-center">
@@ -192,7 +191,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-sm-3 text-center">
+                <div class="col-sm-3 text-center">
                     <span class="col-sm-12">DPLK Sekarang & Nanti</span>
                     <div class="col-sm-12">
                         <div class="col-sm-12">
@@ -209,11 +208,15 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum, libero id sodales tristique, mi erat molestie quam, et tristique sapien lacus nec tellus.</p>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
-    </section>
-    --}}
+    </section> -->
+
+    <div class="col-sm-12 abovefold">
+        <a class="col-sm-12 text-center page-scroll" href="#about">Apa itu BNI Simponi?<span class="fa fa-angle-double-down"></span></a>
+        <!-- <a class="col-sm-6 text-center page-scroll" href="#featured">Temukan Hal Menarik<span class="fa fa-angle-double-down"></span></a> -->
+    </div>
 
     <section class="bg-secondary" id="about">
         <div class="container">

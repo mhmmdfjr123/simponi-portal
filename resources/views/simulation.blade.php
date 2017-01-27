@@ -181,4 +181,5 @@
 
 @section('footScript')
     <script src="{{ asset('theme/front/vendor/chartjs/chart.min.js') }}"></script>
+    <script src="{{ asset('theme/front/js/pages/simulation.js') }}"></script>
 @endsection

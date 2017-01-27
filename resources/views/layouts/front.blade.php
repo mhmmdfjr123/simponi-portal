@@ -110,9 +110,9 @@
     <script src="{{ asset('theme/front/vendor/perfect-scrollbar/perfect-scrollbar.jquery.min.js') }}"></script>
 
     <!-- Theme JavaScript -->
-    <script src="{{ asset('theme/front/js/simponi.js') }}"></script>
+    <script src="{{ asset('theme/front/js/global/simponi.js') }}"></script>
 
-    @yield('footSrcipt')
+    @yield('footScript')
 
 </body>
 

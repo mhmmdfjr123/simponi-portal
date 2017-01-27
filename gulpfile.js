@@ -18,7 +18,8 @@ elixir(mix => {
     mix.less('simponi.less', frontThemePath + 'css');
 
     // Copy and merge js files into single file (simponi.js)
-    mix.scriptsIn('resources/assets/js', frontThemePath + 'js/simponi.js');
+    mix.scriptsIn('resources/assets/js/global', frontThemePath + 'js/global/simponi.js');
+	mix.copy('resources/assets/js/pages', frontThemePath + 'js/pages');
 
     // Copy vendor files
     mix.copy(['node_modules/bootstrap/dist/**/*', '!**/npm.js', '!**/bootstrap-theme.*', '!**/*.map'], frontThemePath + 'vendor/bootstrap');

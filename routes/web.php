@@ -25,26 +25,12 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 });
 
-Route::group(['middleware' => 'web'], function () {
-    Route::get('/register', 'RegisterController@index')->name('register');
-});
-
-Route::group(['middleware' => 'web'], function () {
-    Route::get('/content', 'ContentController@index')->name('content');
-});
-
-Route::group(['middleware' => 'web'], function () {
-    Route::get('/simulation', 'ContentController@simulation')->name('simulation');
-});
-
-Route::group(['middleware' => 'web'], function () {
-    Route::get('/applynew', 'ContentController@applynew')->name('applynew');
-});
-
-Route::group(['middleware' => 'web'], function () {
-    Route::get('/customer', 'CustomerController@index')->name('customer');
-});
-
+Route::get('/register', 'RegisterController@index')->name('register');
+Route::get('/userlogin', 'LoginController@index')->name('userlogin');
+Route::get('/content', 'ContentController@index')->name('content');
+Route::get('/simulation', 'ContentController@simulation')->name('simulation');
+Route::get('/applynew', 'ContentController@applynew')->name('applynew');
+Route::get('/customer', 'CustomerController@index')->name('customer');
 Route::get('/post/{alias?}', 'PostController@index');
 Route::get('/{alias}', 'PageController@index');
 

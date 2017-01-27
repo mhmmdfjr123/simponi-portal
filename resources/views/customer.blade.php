@@ -165,3 +165,7 @@
         </div>
     </section>
 @endsection
+
+@section('footScript')
+    <script src="{{ asset('theme/front/js/pages/customer.js') }}"></script>
+@endsection
