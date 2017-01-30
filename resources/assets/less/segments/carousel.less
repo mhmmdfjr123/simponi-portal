@@ -1,0 +1,114 @@
+header.sim-carousel {
+    position: relative;
+
+    .carousel {
+        .item {
+            background-color: #777;
+        }
+    }
+
+    .carousel-caption {
+        top: 40%;
+        left: 20%;
+        right: 20%;
+        bottom: auto;
+    }
+
+    /*
+    .information {
+        position: absolute;
+        width: 1170px;
+        top: 25%;
+        left: calc(~"50% - 585px");
+        pointer-events: none;
+        div {
+            position: relative;
+            background: @theme-secondary;
+            box-shadow: 0 8px 6px -6px black;
+            width: 300px;
+            height: 400px;
+            border-top: 20px solid @theme-secondary;
+            border-bottom: 20px solid @theme-secondary;
+            color: white;
+            overflow: hidden;
+            pointer-events: auto;
+            h3 {
+                margin: 0;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            ul {
+                padding: 0 20px;
+                list-style: none;
+                height: 314px;
+                overflow: auto;
+                a {
+                    display: block;
+                    .transition-all;
+                    padding-bottom: 15px;
+                    text-decoration: none;
+                    &:hover {
+                        opacity: .6;
+                    }
+                    b {
+                        color: @theme-primary;
+                    }
+                    img {
+                        width: 100%;
+                        margin: 5px 0;
+                    }
+                    span {
+                        display: block;
+                        font-size: 12px;
+                        color: white;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
+        }
+    }
+    */
+}
+
+@media (min-width: 768px) {
+    header.sim-carousel {
+        #header-nav-masking {
+            height: 200px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            background-image: -webkit-linear-gradient(bottom,rgba(0,0,0,.001) 0,rgba(0,0,0,.5) 100%);
+            background-image: -o-linear-gradient(bottom,rgba(0,0,0,.001) 0,rgba(0,0,0,.5) 100%);
+            background-image: -webkit-gradient(linear,left bottom,left top,from(rgba(0,0,0,.001)),to(rgba(0,0,0,.5)));
+            background-image: linear-gradient(to top,rgba(0,0,0,.001) 0,rgba(0,0,0,.3) 100%);
+            // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=0);
+            background-repeat: repeat-x;
+
+            &.affix {
+                visibility: hidden;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    header.sim-carousel {
+        .item {
+            .carousel-caption {
+                h1 {
+                    font-size: 16px;
+                    margin-bottom: 5px;
+                }
+                p {
+                    font-size: 13px;
+
+                    .btn {
+                        visibility: hidden;
+                    }
+                }
+            }
+        }
+    }
+}
