@@ -74,7 +74,7 @@ header.sim-carousel {
 
 @media (min-width: 768px) {
     header.sim-carousel {
-        .header-nav-masking {
+        #header-nav-masking {
             height: 200px;
             width: 100%;
             position: absolute;
@@ -82,9 +82,13 @@ header.sim-carousel {
             background-image: -webkit-linear-gradient(bottom,rgba(0,0,0,.001) 0,rgba(0,0,0,.5) 100%);
             background-image: -o-linear-gradient(bottom,rgba(0,0,0,.001) 0,rgba(0,0,0,.5) 100%);
             background-image: -webkit-gradient(linear,left bottom,left top,from(rgba(0,0,0,.001)),to(rgba(0,0,0,.5)));
-            background-image: linear-gradient(to top,rgba(0,0,0,.001) 0,rgba(0,0,0,.5) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=0);
+            background-image: linear-gradient(to top,rgba(0,0,0,.001) 0,rgba(0,0,0,.3) 100%);
+            // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=0);
             background-repeat: repeat-x;
+
+            &.affix {
+                visibility: hidden;
+            }
         }
     }
 }

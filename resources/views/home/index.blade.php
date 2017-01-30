@@ -52,7 +52,7 @@
             </a>
             -->
 
-            <div class="header-nav-masking"></div>
+            <div id="header-nav-masking"></div>
 
             <div class="above-fold">
                 <a class="page-scroll" href="#about">

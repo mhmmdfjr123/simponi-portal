@@ -22,11 +22,17 @@
     // });
 
     // Offset for Main Navigation
+    var navOffsetTop = 150;
     $('#main-nav').affix({
         offset: {
-            top: 100
+            top: navOffsetTop
         }
     });
+    // $('#header-nav-masking').affix({
+    //     offset: {
+    //         top: navOffsetTop + 20
+    //     }
+    // });
 
     // Offset for AboveFold button
     $('.above-fold').affix({
