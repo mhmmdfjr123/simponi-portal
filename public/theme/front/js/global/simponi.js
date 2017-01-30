@@ -29,7 +29,7 @@
     });
 
     // Offset for AboveFold button
-    $('.abovefold').affix({
+    $('.above-fold').affix({
         offset: {
             top: 150
         }

@@ -26,6 +26,42 @@ iframe {
     border: none;
 }
 
+.above-fold {
+    .transition-all;
+    visibility: visible;
+    opacity: 1;
+    z-index: 1;
+    width: 100%;
+    position: relative;
+    text-align: center;
+
+    &.affix {
+        visibility: hidden;
+        opacity: 0;
+    }
+    a {
+        position: absolute;
+        top: 80px;
+        margin: 0;
+        padding: 0;
+        font-size: 40px;
+        text-align: center;
+        color: white;
+        cursor: pointer;
+        &:hover, &:focus {
+            text-decoration: none;
+        }
+        &:focus {
+            color: white;
+        }
+        .fa {
+            margin-left: -13px;
+            position: absolute;
+            animation: moving-arrow .8s infinite;
+        }
+    }
+}
+
 // -- Highlight Color Customization
 ::-moz-selection {
     color: white;
@@ -38,17 +74,6 @@ iframe {
     text-shadow: none;
     background: @gray-darker;
 }
-
-img::selection {
-    color: white;
-    background: transparent;
-}
-
-img::-moz-selection {
-    color: white;
-    background: transparent;
-}
-
 @-webkit-keyframes moving-arrow {
     0% {
         bottom: 25px

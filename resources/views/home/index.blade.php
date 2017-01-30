@@ -1,7 +1,7 @@
 @extends('layouts.front', ['bodyClass' => 'with-affix-menu'])
 
 @section('content')
-    <header>
+    <header class="sim-carousel">
         <!-- Carousel -->
         <div id="sim-carousel" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -41,14 +41,24 @@
                     </div>
                 </div>
             </div>
-            <!-- <a class="left carousel-control" href="#sim-carousel" role="button" data-slide="prev">
+            <!--
+            <a class="left carousel-control" href="#sim-carousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
             </a>
             <a class="right carousel-control" href="#sim-carousel" role="button" data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
-            </a> -->
+            </a>
+            -->
+
+            <div class="header-nav-masking"></div>
+
+            <div class="above-fold">
+                <a class="page-scroll" href="#about">
+                    <span class="fa fa-angle-double-down"></span>
+                </a>
+            </div>
         </div>
         <!-- End of Carousel -->
         <!--
@@ -86,11 +96,6 @@
         </div>
         -->
     </header>
-
-    <!-- <div class="col-sm-12 abovefold">
-        <a class="col-sm-6 text-center page-scroll" href="#about">Apa itu BNI Simponi?<span class="fa fa-angle-double-down"></span></a>
-        <a class="col-sm-6 text-center page-scroll" href="#featured">Temukan Hal Menarik<span class="fa fa-angle-double-down"></span></a>
-    </div> -->
 
     <!-- <section id="featured">
         <div class="container">
@@ -212,12 +217,6 @@
             </div>
         </div>
     </section> -->
-
-    <div class="col-sm-12 abovefold">
-        <a class="col-sm-12 text-center page-scroll" href="#about">
-            <span class="fa fa-angle-double-down"></span>
-        </a>
-    </div>
 
     <section class="bg-secondary" id="about">
         <div class="container">
