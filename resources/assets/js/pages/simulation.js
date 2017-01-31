@@ -62,9 +62,10 @@ $('.calculate').click(function() {
         checked = checked && ($(this).index() > 0);
     });
     if (checked) {
-        var dob = new Date((datecontrol.eq(2).val()) + '-' + (datecontrol.eq(1).children(':selected').index()) + '-' + (datecontrol.eq(0).children(':selected').index()));
+        /*var dob = new Date((datecontrol.eq(2).val()) + '-' + (datecontrol.eq(1).children(':selected').index()) + '-' + (datecontrol.eq(0).children(':selected').index()));
         var today = new Date();
-        var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
+        var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));*/
+        var age = parseInt($('#age option:selected').attr('data-value'));
         var retirementage = parseInt($('#retirement-age option:selected').attr('data-value'));
         var durationmonth = (60 - age) * 12;
         var fiveagestartingbalance = [];

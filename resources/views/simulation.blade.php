@@ -8,7 +8,7 @@
                     <img class="contentimage" src="{{ asset('theme/front/images/header/simulation.jpg') }}" alt="Content" />
                     <h2>Simulasi DPLK BNI.</h2>
                     <div class="identity col-sm-6 col-xs-12">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label>Nama Lengkap</label>
                             <input class="form-control" type="text" placeholder="Masukkan Nama Lengkap" />
                         </div>
@@ -89,6 +89,37 @@
                                     Laki-laki
                                 </label>
                             </div>
+                        </div> -->
+                        <div class="form-group">
+                            <label>Umur Anda</label>
+                            <select id="age" class="form-control">
+                                <option data-value="20">20 tahun</option>
+                                <option data-value="21">21 tahun</option>
+                                <option data-value="22">22 tahun</option>
+                                <option data-value="23">23 tahun</option>
+                                <option data-value="24">24 tahun</option>
+                                <option data-value="25">25 tahun</option>
+                                <option data-value="26">26 tahun</option>
+                                <option data-value="27">27 tahun</option>
+                                <option data-value="28">28 tahun</option>
+                                <option data-value="29">29 tahun</option>
+                                <option data-value="30">30 tahun</option>
+                                <option data-value="31">31 tahun</option>
+                                <option data-value="32">32 tahun</option>
+                                <option data-value="33">33 tahun</option>
+                                <option data-value="34">34 tahun</option>
+                                <option data-value="35">35 tahun</option>
+                                <option data-value="36">36 tahun</option>
+                                <option data-value="37">37 tahun</option>
+                                <option data-value="38">38 tahun</option>
+                                <option data-value="39">39 tahun</option>
+                                <option data-value="40">40 tahun</option>
+                                <option data-value="41">41 tahun</option>
+                                <option data-value="42">42 tahun</option>
+                                <option data-value="43">43 tahun</option>
+                                <option data-value="44">44 tahun</option>
+                                <option data-value="45">45 tahun</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Rencana Usia Pensiun</label>
