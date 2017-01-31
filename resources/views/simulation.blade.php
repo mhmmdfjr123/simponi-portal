@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <form class="col-lg-12 text-justify">
-                    <img class="contentimage" src="{{ asset('theme/front/images/simulation.jpg') }}" alt="Content" />
+                    <img class="contentimage" src="{{ asset('theme/front/images/header/simulation.jpg') }}" alt="Content" />
                     <h2>Simulasi DPLK BNI.</h2>
                     <div class="identity col-sm-6">
                         <div class="form-group">

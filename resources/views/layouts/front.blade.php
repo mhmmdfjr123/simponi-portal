@@ -47,8 +47,8 @@
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="{{ route('home') }}">
-                    <img src="{{ asset('theme/front/images/BNI-logo-dark.png') }}" alt="BNI Simponi" />
-                    <!-- <img src="{{ asset('theme/front/images/BNI-logo.png') }}" alt="BNI Simponi" /> -->
+                    <img src="{{ asset('theme/front/images/logo/BNI-logo-dark.png') }}" alt="BNI Simponi" />
+                    <!-- <img src="{{ asset('theme/front/images/logo/BNI-logo.png') }}" alt="BNI Simponi" /> -->
                 </a>
             </div>
 
@@ -90,8 +90,8 @@
                     <div>Copyright &copy; 2017 - PT. Bank Negara Indonesia (Persero) Tbk.</div>
                 </div>
                 <div class="col-md-4 footer-logo">
-                    <img src="{{ asset('theme/front/images/logo_LPS.png') }}" alt="BNI Simponi Lembaga Penjamin Simpanan (LPS)">
-                    <img src="{{ asset('theme/front/images/logo_OJK.png') }}" alt="BNI Simponi Otoritas Jasa Keuangan (OJK)">
+                    <img src="{{ asset('theme/front/images/logo/LPS-logo.png') }}" alt="BNI Simponi Lembaga Penjamin Simpanan (LPS)">
+                    <img src="{{ asset('theme/front/images/logo/OJK-logo.png') }}" alt="BNI Simponi Otoritas Jasa Keuangan (OJK)">
                 </div>
             </div>
         </div>
@@ -113,7 +113,6 @@
     <script src="{{ asset('theme/front/js/global/simponi.js') }}"></script>
 
     @yield('footScript')
-
 </body>
 
 </html>

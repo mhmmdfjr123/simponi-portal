@@ -11,7 +11,7 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <img class="first-slide" src="{{ asset('theme/front/images/banner-1.jpg') }}" alt="First slide">
+                    <img class="first-slide" src="{{ asset('theme/front/images/carousel/banner-1.jpg') }}" alt="First slide">
                     <div class="container">
                         <div class="carousel-caption">
                             <h1>Example headline.</h1>
@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img class="second-slide" src="{{ asset('theme/front/images/header.jpg') }}" alt="Second slide">
+                    <img class="second-slide" src="{{ asset('theme/front/images/carousel/banner-2.jpg') }}" alt="Second slide">
                     <div class="container">
                         <div class="carousel-caption">
                             <h1>Another example headline.</h1>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img class="third-slide" src="{{ asset('theme/front/images/header.jpg') }}" alt="Third slide">
+                    <img class="third-slide" src="{{ asset('theme/front/images/carousel/banner-1.jpg') }}" alt="Third slide">
                     <div class="container">
                         <div class="carousel-caption">
                             <h1>One more for good measure.</h1>
@@ -287,13 +287,13 @@
     <section style="background: #F7FAFC">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-md-6">
                     <iframe class="col-lg-12" src="http://www.youtube.com/embed/pqCL1dQm1cs" height="320"></iframe>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-md-6">
                     <h2 class="section-heading text-center">Dapatkan voucher belanja hingga Rp1 Milyar</h2>
                     <hr class="title">
-                    <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elementum mauris ut congue luctus. In fringilla pellentesque nibh, ac hendrerit tortor euismod vitae. Phasellus rhoncus accumsan orci, eu efficitur ante fermentum et. Nunc interdum dapibus posuere. Proin a diam venenatis, consequat lacus maximus, laoreet risus. Pellentesque consectetur sem arcu, a placerat nunc faucibus ut. Duis justo diam, pellentesque nec elit et, iaculis commodo elit. Nullam viverra rhoncus sagittis. Quisque a faucibus velit. Integer sagittis cursus lorem, sit amet auctor ipsum dapibus fermentum. Donec in rutrum tellus. Donec eu bibendum lorem. Vestibulum pulvinar fermentum cursus. Pellentesque tincidunt velit quam, non pulvinar dolor semper eget. Donec in sagittis urna.</p>
+                    <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elementum mauris ut congue luctus. In fringilla pellentesque nibh, ac hendrerit tortor euismod vitae. Phasellus rhoncus accumsan orci, eu efficitur ante fermentum et. Nunc interdum dapibus posuere. Proin a diam venenatis, consequat lacus maximus, laoreet risus. Pellentesque consectetur sem arcu, a placerat nunc faucibus ut. </p>
                 </div>
             </div>
         </div>
