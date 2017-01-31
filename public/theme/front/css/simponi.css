@@ -403,7 +403,6 @@ p {
 }
 footer {
   padding: 20px 0;
-  margin-top: 20px;
   background: #F7F7F7;
   border-top: 1px solid #e6e6e6;
 }
@@ -545,11 +544,11 @@ header.sim-carousel .carousel-caption {
   }
 }
 section {
-  padding: 70px 0;
+  padding: 100px 0;
 }
 section .col-content {
   text-align: center;
-  padding: 30px;
+  padding: 35px;
 }
 section .col-illustration {
   text-align: center;
@@ -558,6 +557,29 @@ section .col-illustration .embed-responsive {
   border-radius: 4px;
   background-color: #ffffff;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.12), 0 7px 17px 0 rgba(0, 0, 0, 0.1);
+}
+section .col-illustration .img-responsive {
+  margin-left: auto;
+  margin-right: auto;
+}
+section .col-content-list {
+  text-align: left;
+  font-size: 22px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+section .col-content-list .fa {
+  padding: 3px 0;
+  color: #f05921;
+}
+section.section-left {
+  text-align: left;
+}
+section.section-left .col-content {
+  text-align: left;
+}
+section.section-left hr {
+  margin-left: 0;
 }
 .section-heading {
   margin-top: 0;

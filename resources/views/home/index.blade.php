@@ -284,19 +284,22 @@
         </div>
     </aside>
 
-    <section>
+    <section class="section-left">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-illustration">
-                    <!-- 16:9 aspect ratio -->
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/pqCL1dQm1cs"></iframe>
-                    </div>
+                <div class="col-md-6 col-illustration">
+                    <img src="{{ asset('theme/front/images/elderly.png') }}" class="img-responsive">
                 </div>
-                <div class="col-lg-6 col-content">
-                    <h2 class="section-heading">Dapatkan voucher belanja hingga Rp1 Milyar</h2>
+                <div class="col-md-6 col-content">
+                    <h2 class="section-heading">Nikmati masa muda di hari tua anda</h2>
                     <hr class="title">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elementum mauris ut congue luctus. In fringilla pellentesque nibh, ac hendrerit tortor euismod vitae. Phasellus rhoncus accumsan orci, eu efficitur ante fermentum et. Nunc interdum dapibus posuere. Proin a diam venenatis, consequat lacus maximus, laoreet risus. Pellentesque consectetur sem arcu, a placerat nunc faucibus ut. </p>
+                    <ul class="fa-ul col-content-list">
+                        <li><i class="fa-li fa fa-check"></i>Lorem ipsum dolor sit amet 1</li>
+                        <li><i class="fa-li fa fa-check"></i>Lorem ipsum dolor sit amet 2</li>
+                        <li><i class="fa-li fa fa-check"></i>Lorem ipsum dolor sit amet 3</li>
+                        <li><i class="fa-li fa fa-check"></i>Lorem ipsum dolor sit amet 4</li>
+                    </ul>
+                    <a class="btn btn-md btn-primary btn-outline sr-button" href="#">Daftar Sekarang</a>
                 </div>
             </div>
         </div>
@@ -313,7 +316,7 @@
                 <div class="col-lg-6 col-illustration">
                     <!-- 16:9 aspect ratio -->
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/pqCL1dQm1cs"></iframe>
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/PdhPG4SdS54"></iframe>
                     </div>
                 </div>
             </div>
