@@ -70,11 +70,11 @@
                     <hr class="title">
                     <p>Hubungi kami di <i>Call Center</i> atau <i>email</i> di bawah dan dapatkan penawaran menarik dari BNI Simponi.</p>
                 </div>
-                <div class="col-md-4 col-md-offset-2 text-center">
+                <div class="col-xs-4 col-xs-offset-2 text-center">
                     <i class="fa fa-phone fa-3x sr-contact"></i>
                     <p><a href="tel:1500046">1 5000 46</a></p>
                 </div>
-                <div class="col-md-4 text-center">
+                <div class="col-xs-4 text-center">
                     <i class="fa fa-envelope-o fa-3x sr-contact"></i>
                     <p><a href="mailto:bnicall@bni.co.id">bnicall@bni.co.id</a></p>
                 </div>

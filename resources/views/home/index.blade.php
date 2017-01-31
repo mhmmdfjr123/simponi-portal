@@ -284,16 +284,37 @@
         </div>
     </aside>
 
-    <section style="background: #F7FAFC">
+    <section>
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <iframe class="col-lg-12" src="http://www.youtube.com/embed/pqCL1dQm1cs" height="320"></iframe>
+                <div class="col-lg-6 col-illustration">
+                    <!-- 16:9 aspect ratio -->
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/pqCL1dQm1cs"></iframe>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <h2 class="section-heading text-center">Dapatkan voucher belanja hingga Rp1 Milyar</h2>
+                <div class="col-lg-6 col-content">
+                    <h2 class="section-heading">Dapatkan voucher belanja hingga Rp1 Milyar</h2>
                     <hr class="title">
-                    <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elementum mauris ut congue luctus. In fringilla pellentesque nibh, ac hendrerit tortor euismod vitae. Phasellus rhoncus accumsan orci, eu efficitur ante fermentum et. Nunc interdum dapibus posuere. Proin a diam venenatis, consequat lacus maximus, laoreet risus. Pellentesque consectetur sem arcu, a placerat nunc faucibus ut. </p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elementum mauris ut congue luctus. In fringilla pellentesque nibh, ac hendrerit tortor euismod vitae. Phasellus rhoncus accumsan orci, eu efficitur ante fermentum et. Nunc interdum dapibus posuere. Proin a diam venenatis, consequat lacus maximus, laoreet risus. Pellentesque consectetur sem arcu, a placerat nunc faucibus ut. </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-softgray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-content">
+                    <h2 class="section-heading">Dapatkan voucher belanja hingga Rp1 Milyar</h2>
+                    <hr class="title">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elementum mauris ut congue luctus. In fringilla pellentesque nibh, ac hendrerit tortor euismod vitae. Phasellus rhoncus accumsan orci, eu efficitur ante fermentum et. Nunc interdum dapibus posuere. Proin a diam venenatis, consequat lacus maximus, laoreet risus. Pellentesque consectetur sem arcu, a placerat nunc faucibus ut. </p>
+                </div>
+                <div class="col-lg-6 col-illustration">
+                    <!-- 16:9 aspect ratio -->
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/pqCL1dQm1cs"></iframe>
+                    </div>
                 </div>
             </div>
         </div>

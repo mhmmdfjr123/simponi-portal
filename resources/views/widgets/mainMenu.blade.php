@@ -19,7 +19,7 @@
     @endforeach
 
     <li>
-        <!-- <a class="login" href="{{ route('portal-login') }}"><i class="material-icons">launch</i> MASUK</a> -->
-        <a class="login" href="/register"><i class="material-icons">launch</i>LOGIN</a>
+        <a class="login" href="{{ route('portal-login') }}"><i class="material-icons">launch</i> LOGIN</a>
+        {{--<a class="login" href="/register"><i class="material-icons">launch</i>LOGIN</a>--}}
     </li>
 </ul>
