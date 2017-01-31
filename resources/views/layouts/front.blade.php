@@ -108,6 +108,7 @@
     <script src="{{ asset('theme/front/vendor/scrollreveal/scrollreveal.min.js') }}"></script>
     <script src="{{ asset('theme/front/vendor/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('theme/front/vendor/perfect-scrollbar/perfect-scrollbar.jquery.min.js') }}"></script>
+    <script src="{{ asset('theme/front/vendor/jquery-numeric/jquery.numeric.min.js') }}"></script>
 
     <!-- Theme JavaScript -->
     <script src="{{ asset('theme/front/js/global/simponi.js') }}"></script>
