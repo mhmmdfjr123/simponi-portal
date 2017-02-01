@@ -2,6 +2,7 @@ body {
   position: relative;
   font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 300;
+  font-size: 16px;
   padding-top: 80px;
 }
 body.with-affix-menu {
@@ -371,18 +372,22 @@ p {
 footer {
   padding: 20px 0;
   background: #F7F7F7;
+  color: #4a4a4a;
   border-top: 1px solid #e6e6e6;
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
 }
 footer .container .copyright {
   padding-top: 3px;
   padding-bottom: 3px;
-  font-size: 9pt;
+  font-size: 14px;
 }
 footer .container .footer-logo {
   text-align: right;
 }
 footer .container .footer-logo img {
   margin-left: 15px;
+  height: 45px;
 }
 @media (max-width: 992px) {
   footer .container .copyright {
@@ -527,6 +532,7 @@ section.section-box .section-box-item .box-header .box-title-action {
   position: absolute;
   right: 0;
   top: 0;
+  font-size: 14px;
 }
 @media (max-width: 768px) {
   section.section-box {
