@@ -723,8 +723,20 @@ aside {
 #content .applynew .date-control .checkbox {
   margin-bottom: 7px;
 }
-#content .identity {
-  border-right: 1px solid #e6e6e6;
+#content .identity:after,
+#content .starting-balance:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  background: #e6e6e6;
+  width: 1px;
+  height: 100%;
+}
+#content .identity:after {
+  left: 100%;
+}
+#content .starting-balance:after {
+  left: 0;
 }
 #content .identity,
 #content .billing {
@@ -738,6 +750,22 @@ aside {
 }
 #content canvas#simulation {
   margin: 40px 0;
+}
+#content .simulationresult {
+  margin-bottom: 15px;
+}
+#content .simulationresult label {
+  display: block;
+}
+#content .simulationresult span,
+#content .simulationresult b {
+  display: inline-block;
+  vertical-align: top;
+  color: #004a55;
+  font-size: 28px;
+}
+#content .simulationresult b {
+  font-size: 40px;
 }
 @media (max-width: 768px) {
   #content {

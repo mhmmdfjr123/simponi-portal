@@ -171,8 +171,20 @@
             }
         }
     }
-    .identity {
-        border-right: 1px solid @gray-lighter;
+    .identity:after,
+    .starting-balance:after {
+        position: absolute;
+        content: '';
+        top: 0;
+        background: @gray-lighter;
+        width: 1px;
+        height: 100%;
+    }
+    .identity:after {
+        left: 100%;
+    }
+    .starting-balance:after {
+        left: 0;
     }
     .identity, .billing {
         margin-top: 20px;
@@ -185,6 +197,21 @@
     }
     canvas#simulation {
         margin: 40px 0;
+    }
+    .simulationresult {
+        margin-bottom: 15px;
+        label {
+            display: block;
+        }
+        span, b {
+            display: inline-block;
+            vertical-align: top;
+            color: #004a55;
+            font-size: 28px;
+        }
+        b {
+            font-size: 40px;
+        }
     }
     @media (max-width: 768px) {
         padding: 0;
