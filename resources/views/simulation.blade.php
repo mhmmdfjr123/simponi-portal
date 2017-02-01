@@ -210,26 +210,20 @@
                         </div>
                     </div>
                     <canvas id="simulation" class="col-xs-12" height="250"></canvas>
-                    <div class="form-group col-sm-4 col-xs-12">
+                    <div id="total-funding" class="simulationresult col-md-4 col-sm-6 col-xs-12">
                         <label>Total Iuran</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">Rp</div>
-                            <input id="total-funding" class="form-control" type="text" value="" data-value="" disabled />
-                        </div>
+                        <span>Rp</span>
+                        <b></b>
                     </div>
-                    <div class="form-group col-sm-4 col-xs-12">
+                    <div id="total-development" class="simulationresult col-md-4 col-sm-6 col-xs-12">
                         <label>Hasil Pengembangan</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">Rp</div>
-                            <input id="total-development" class="form-control" type="text" value="" data-value="" disabled />
-                        </div>
+                        <span>Rp</span>
+                        <b></b>
                     </div>
-                    <div class="form-group col-sm-4 col-xs-12">
+                    <div id="total-balance" class="simulationresult col-md-4 col-xs-12">
                         <label>Total Dana Manfaat</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">Rp</div>
-                            <input id="total-balance" class="form-control" type="text" value="" data-value="" disabled />
-                        </div>
+                        <span>Rp</span>
+                        <b></b>
                     </div>
                 </form>
             </div>

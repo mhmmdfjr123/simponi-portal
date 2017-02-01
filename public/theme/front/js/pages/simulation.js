@@ -17,7 +17,9 @@ $('input.percentage').numeric().keyup(function() {
 });
 
 $('input[name="topupRadio"]').click(function() {
-    $('input#starting-balance').removeAttr('disabled');
+    if (!$(this).parent().is(':first-child')) {
+        $('input#starting-balance').removeAttr('disabled');
+    }
 });
 
 $('input[name="billingRadio"]').click(function() {
@@ -126,18 +128,9 @@ $('.calculate').click(function() {
                 }
             }
         }
-        $('input#total-funding').attr({
-            'value': parseInt(accumulatedstartingbalance + accumulatedbilling).toString().replace(/(?!^)(?=(?:\d{3})+(?:\.|$))/gm, '.'),
-            'data-value': accumulatedstartingbalance + accumulatedbilling
-        });
-        $('input#total-development').attr({
-            'value': parseInt(fiveagedevelopment[fiveagedevelopment.length - 1]).toString().replace(/(?!^)(?=(?:\d{3})+(?:\.|$))/gm, '.'),
-            'data-value': fiveagedevelopment[fiveagedevelopment.length - 1]
-        });
-        $('input#total-balance').attr({
-            'value': parseInt(accumulatedfund).toString().replace(/(?!^)(?=(?:\d{3})+(?:\.|$))/gm, '.'),
-            'data-value': accumulatedfund
-        });
+        $('#total-funding b').text(parseInt(accumulatedstartingbalance + accumulatedbilling).toString().replace(/(?!^)(?=(?:\d{3})+(?:\.|$))/gm, '.'));
+        $('#total-development b').text(parseInt(fiveagedevelopment[fiveagedevelopment.length - 1]).toString().replace(/(?!^)(?=(?:\d{3})+(?:\.|$))/gm, '.'));
+        $('#total-balance b').text(parseInt(accumulatedfund).toString().replace(/(?!^)(?=(?:\d{3})+(?:\.|$))/gm, '.'));
         myChart = new Chart(ctx, {
             type: 'line',
             data: {
