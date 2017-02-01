@@ -1,6 +1,6 @@
 body {
   position: relative;
-  font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 300;
   font-size: 16px;
   padding-top: 80px;
@@ -375,7 +375,7 @@ footer {
   color: #4a4a4a;
   border-top: 1px solid #e6e6e6;
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-  font-weight: 400;
+  font-weight: 300;
 }
 footer .container .copyright {
   padding-top: 3px;
