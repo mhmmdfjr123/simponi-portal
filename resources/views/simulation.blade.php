@@ -152,7 +152,7 @@
                             <label>Dana Awal</label>
                             <div class="input-group">
                                 <div class="input-group-addon">Rp</div>
-                                <input id="starting-balance" class="form-control currency" type="text" placeholder="Masukkan Dana Awal" data-value="0" />
+                                <input id="starting-balance" class="form-control currency" type="text" placeholder="Masukkan Dana Awal" data-value="0" disabled />
                             </div>
                         </div>
                         <div class="form-group">
@@ -172,7 +172,7 @@
                             <label>Iuran</label>
                             <div class="input-group">
                                 <div class="input-group-addon">Rp</div>
-                                <input class="form-control currency" type="text" placeholder="Masukkan Iuran" data-value="0" />
+                                <input class="form-control currency" type="text" placeholder="Masukkan Iuran" data-value="0" disabled />
                             </div>
                         </div>
                         <div class="form-group">
@@ -187,11 +187,11 @@
                         <div class="form-group col-sm-4 col-xs-12">
                             <label>Tingkat Bunga DPLK</label>
                             <select id="interest-rate" class="form-control">
-                                <option data-value="8.0">8.0%</option>
-                                <option data-value="9.0">9.0%</option>
-                                <option data-value="10.0">10.0%</option>
-                                <option data-value="11.0">11.0%</option>
-                                <option data-value="12.0">12.0%</option>
+                                <option data-value="0.080">8.0%</option>
+                                <option data-value="0.090">9.0%</option>
+                                <option data-value="0.100">10.0%</option>
+                                <option data-value="0.110">11.0%</option>
+                                <option data-value="0.120">12.0%</option>
                             </select>
                         </div>
                         <div class="form-group col-sm-4 col-xs-12">
@@ -203,13 +203,34 @@
                         </div>
                         <div class="form-group col-sm-4 col-xs-12">
                             <label>Biaya Pengelolaan Dana</label>
-                            <input id="management-fee" class="form-control" type="text" value="0.85% dari akumulasi dana per tahun" data-value="0.85" disabled />
+                            <input id="management-fee" class="form-control" type="text" value="0.85% dari akumulasi dana per tahun" data-value="0.0085" disabled />
                         </div>
                         <div class="form-group col-sm-offset-4 col-sm-4 col-xs-12">
                             <a class="calculate col-xs-12 btn btn-lg btn-primary">Hitung</a>
                         </div>
                     </div>
                     <canvas id="simulation" class="col-xs-12" height="250"></canvas>
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label>Total Iuran</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">Rp</div>
+                            <input id="total-funding" class="form-control" type="text" value="" data-value="" disabled />
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label>Hasil Pengembangan</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">Rp</div>
+                            <input id="total-development" class="form-control" type="text" value="" data-value="" disabled />
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label>Total Dana Manfaat</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">Rp</div>
+                            <input id="total-balance" class="form-control" type="text" value="" data-value="" disabled />
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -218,5 +239,6 @@
 
 @section('footScript')
     <script src="{{ asset('theme/front/vendor/chartjs/chart.min.js') }}"></script>
+    <script src="{{ asset('theme/front/vendor/jquery-numeric/jquery.numeric.min.js') }}"></script>
     <script src="{{ asset('theme/front/js/pages/simulation.js') }}"></script>
 @endsection

@@ -1,7 +1,29 @@
+$('input.currency').numeric().keydown(function() {
+    $(this).val($(this).val().replace(/\./g, ''));
+}).keyup(function() {
+    if ($(this).val().length > 0) {
+        $(this).attr('data-value', $(this).val()).val($(this).val().replace(/(?!^)(?=(?:\d{3})+(?:\.|$))/gm, '.'));
+    } else {
+        $(this).attr('data-value', 0);
+    }
+});
+
+$('input.percentage').numeric().keyup(function() {
+    if ($(this).val().length > 0) {
+        $(this).attr('data-value', (parseFloat($(this).val()) / 100));
+    } else {
+        $(this).attr('data-value', 0);
+    }
+});
+
+$('input[name="topupRadio"]').click(function() {
+    $('input#starting-balance').removeAttr('disabled');
+});
+
 $('input[name="billingRadio"]').click(function() {
     var text = ($(this).parent().index() < 1) ? 'Bulan' : 'Tahun';
     $('.billing label').text('Iuran Per ' + text);
-    $('.billing input').attr('placeholder', 'Masukkan Iuran Per ' + text);
+    $('.billing input').attr('placeholder', 'Masukkan Iuran Per ' + text).removeAttr('disabled');
 });
 
 // Simulation Chart
@@ -65,45 +87,61 @@ $('.calculate').click(function() {
         /*var dob = new Date((datecontrol.eq(2).val()) + '-' + (datecontrol.eq(1).children(':selected').index()) + '-' + (datecontrol.eq(0).children(':selected').index()));
         var today = new Date();
         var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));*/
-        var age = parseInt($('#age option:selected').attr('data-value'));
-        var retirementage = parseInt($('#retirement-age option:selected').attr('data-value'));
-        var durationmonth = (60 - age) * 12;
-        var fiveagestartingbalance = [];
-        var fiveagebilling = [];
-        var fiveagedevelopment = [];
-        var fiveagefund = [];
-        var year = 0;
-        var isannualstartingbalance = $('input[name="topupRadio"]:checked').parent().is(':last-child');
-        var startingbalance = parseFloat($('#starting-balance').attr('data-value'));
-        var isannualbilling = $('input[name="billingRadio"]:checked').parent().is(':last-child');
-        var billing = parseFloat($('.billing input.currency').attr('data-value'));
-        var billingincrement = parseFloat($('#billing-increment').attr('data-value'));
-        var interestrate = parseFloat($('#interest-rate option:selected').attr('data-value'));
-        var administrationfee = parseFloat($('#administration-fee').attr('data-value'));
-        var managementfee = parseFloat($('#management-fee').attr('data-value'));
-        var accumulatedfund = startingbalance + billing + ((startingbalance + billing) * ((interestrate/100)/12));
-        var isnewyear = false;
+        var age = parseInt($('#age option:selected').attr('data-value')),
+            retirementage = parseInt($('#retirement-age option:selected').attr('data-value')),
+            durationmonth = (retirementage - age) * 12,
+            fiveagestartingbalance = [],
+            fiveagebilling = [],
+            fiveagedevelopment = [],
+            fiveagefund = [],
+            isannualstartingbalance = $('input[name="topupRadio"]:checked').parent().is(':last-child'),
+            startingbalance = parseFloat($('#starting-balance').attr('data-value')),
+            accumulatedstartingbalance = startingbalance,
+            isannualbilling = $('input[name="billingRadio"]:checked').parent().is(':last-child'),
+            billing = parseFloat($('.billing input.currency').attr('data-value')),
+            accumulatedbilling = billing;
+            billingincrement = parseFloat($('#billing-increment').attr('data-value')),
+            interestrate = parseFloat($('#interest-rate option:selected').attr('data-value')),
+            monthlyinterestrate = interestrate / 12;
+            administrationfee = parseFloat($('#administration-fee').attr('data-value')),
+            managementfee = parseFloat($('#management-fee').attr('data-value')),
+            accumulatedfund = startingbalance + billing + ((startingbalance + billing) * monthlyinterestrate),
+            isnewyear = false;
         for (var i = 2; i <= durationmonth; i++) {
+            accumulatedstartingbalance = (isannualstartingbalance && isnewyear) ? (accumulatedstartingbalance + startingbalance) : accumulatedstartingbalance;
+            accumulatedbilling = isannualbilling ? (isnewyear ? (accumulatedbilling + billing) : accumulatedbilling) : (accumulatedbilling + billing);
             accumulatedfund = (isannualstartingbalance && isnewyear) ? (accumulatedfund + startingbalance) : accumulatedfund;
-            accumulatedfund = isannualbilling ? (isnewyear ? (accumulatedfund + billing + ((accumulatedfund + billing) * ((interestrate/100)/12))) : (accumulatedfund + (accumulatedfund * ((interestrate/100)/12)))) : (accumulatedfund + billing + ((accumulatedfund + billing) * ((interestrate/100)/12)));
+            var tmpaccumulatedfund = accumulatedfund + billing;
+            accumulatedfund = isannualbilling ? (isnewyear ? (tmpaccumulatedfund + (tmpaccumulatedfund * monthlyinterestrate)) : (accumulatedfund + (accumulatedfund * monthlyinterestrate))) : (tmpaccumulatedfund + (tmpaccumulatedfund * monthlyinterestrate));
             isnewyear = (i % 12 == 0);
             if (isnewyear) {
-                accumulatedfund -= administrationfee + (accumulatedfund * (managementfee/100));
+                accumulatedfund -= administrationfee + (accumulatedfund * managementfee);
+                billing += (billing * billingincrement);
                 if (i == (durationmonth - ((4 - fiveagefund.length) * 60))) {
                     startingbalance = isannualstartingbalance ? startingbalance : 0;
-                    fiveagestartingbalance.push(startingbalance);
-                    fiveagebilling.push(billing);
-                    fiveagedevelopment.push(accumulatedfund - (startingbalance + billing));
+                    fiveagestartingbalance.push(accumulatedstartingbalance);
+                    fiveagebilling.push(accumulatedbilling);
+                    fiveagedevelopment.push(accumulatedfund - (accumulatedstartingbalance + accumulatedbilling));
                     fiveagefund.push(accumulatedfund);
                 }
-                billing += (billing * (billingincrement/100));
             }
         }
-        console.log(fiveagestartingbalance, fiveagebilling, fiveagedevelopment, fiveagefund);
+        $('input#total-funding').attr({
+            'value': parseInt(accumulatedstartingbalance + accumulatedbilling).toString().replace(/(?!^)(?=(?:\d{3})+(?:\.|$))/gm, '.'),
+            'data-value': accumulatedstartingbalance + accumulatedbilling
+        });
+        $('input#total-development').attr({
+            'value': parseInt(fiveagedevelopment[fiveagedevelopment.length - 1]).toString().replace(/(?!^)(?=(?:\d{3})+(?:\.|$))/gm, '.'),
+            'data-value': fiveagedevelopment[fiveagedevelopment.length - 1]
+        });
+        $('input#total-balance').attr({
+            'value': parseInt(accumulatedfund).toString().replace(/(?!^)(?=(?:\d{3})+(?:\.|$))/gm, '.'),
+            'data-value': accumulatedfund
+        });
         myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ["40", "45", "50", "55", "60"],
+                labels: [(retirementage - 20), (retirementage - 15), (retirementage - 10), (retirementage - 5), retirementage],
                 datasets: [
                     {
                         label: "Dana Awal",
