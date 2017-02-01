@@ -22,7 +22,6 @@
     <link href="{{ asset('theme/front/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
     <!-- Plugin CSS -->
-    <link href="{{ asset('theme/front/vendor/magnific-popup/magnific-popup.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('theme/front/vendor/perfect-scrollbar/perfect-scrollbar.min.css') }}" rel="stylesheet" type="text/css">
 
     <!-- Theme CSS -->
@@ -106,9 +105,7 @@
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="{{ asset('theme/front/vendor/scrollreveal/scrollreveal.min.js') }}"></script>
-    <script src="{{ asset('theme/front/vendor/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('theme/front/vendor/perfect-scrollbar/perfect-scrollbar.jquery.min.js') }}"></script>
-    <script src="{{ asset('theme/front/vendor/jquery-numeric/jquery.numeric.min.js') }}"></script>
 
     <!-- Theme JavaScript -->
     <script src="{{ asset('theme/front/js/global/simponi.js') }}"></script>

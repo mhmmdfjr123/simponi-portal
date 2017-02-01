@@ -52,6 +52,8 @@ Since simponi portal uses oracle as database, you need to add PHP OCI8 driver Ex
 3. Install Laravel Dependencies
 
         composer install
+        
+   If you are using Composer behind proxy, please [click here](http://stackoverflow.com/questions/17307600/php-composer-behind-http-proxy)
     
 4. Create .env file based on .env.example, or you can try the following command:
 

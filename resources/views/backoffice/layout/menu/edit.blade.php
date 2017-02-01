@@ -86,7 +86,7 @@
                         <select name="menu_type_param" class="form-control required">
                             <option value="">- Pilih Satu -</option>
                             @foreach($listData as $key => $row)
-                                <option value="{{ $key }}" <?php if($obj->menu_type_param == $key)echo 'selected="selected"' ?>>{{ $row['title'] }}</option>
+                                <option value="{{ $row['action'] }}" <?php if($obj->menu_type_param == $row['action'])echo 'selected="selected"' ?>>{{ $row['title'] }}</option>
                             @endforeach
                         </select>
                     </div>

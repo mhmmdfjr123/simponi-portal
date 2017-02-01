@@ -37,7 +37,19 @@ return [
             'contact'   => [
                 'title'     => 'Hubungi Kami',
                 'action'    => 'contact'
-            ]
+            ],
+            'faq' => [
+                'title'     => 'FAQ',
+                'action'    => 'faq'
+            ],
+            'fundFactSheet' => [
+                'title'     => 'Fund Fact Sheet',
+                'action'    => 'fund-fact-sheet'
+            ],
+            'simulation' => [
+                'title'     => 'Simulasi',
+                'action'    => 'simulation'
+            ],
         ]
     ],
 

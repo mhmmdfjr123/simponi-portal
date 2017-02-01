@@ -1,81 +1,7 @@
 section {
     position: relative;
     padding: 70px 0;
-    &#featured {
-        padding: 1px 0;
-        .container {
-            width: 100%;
-        }
-        .row > div {
-            padding: 1px;
-            & > span {
-                .bg-featured;
-                padding: 18px 0;
-                font-size: 16px;
-                font-weight: bold;
-                color: @gray;
-            }
-            & > div {
-                position: relative;
-                .bg-featured;
-                height: 150px;
-                padding: 0 20px;
-                overflow: hidden;
-                & > div {
-                    height: 120px;
-                    ul {
-                        display: block;
-                        margin: 0;
-                        padding: 0;
-                        list-style: none;
-                        text-align: justify;
-                        * {
-                            display: block;
-                        }
-                        li {
-                            a {
-                                padding-bottom: 15px;
-                                &:hover {
-                                    opacity: .8;
-                                    color: @theme-primary;
-                                    text-decoration: none;
-                                    & > *:first-child {
-                                        text-decoration: underline;
-                                    }
-                                }
-                                span {
-                                    overflow: hidden;
-                                    white-space: nowrap;
-                                    text-overflow: ellipsis;
-                                }
-                                img {
-                                    width: 100%;
-                                    margin: 5px 0;
-                                }
-                            }
-                            &:last-child {
-                                a {
-                                    padding-bottom: 0;
-                                }
-                            }
-                        }
-                    }
-                }
-                iframe {
-                    margin-bottom: 10px;
-                    padding: 0;
-                }
-                p {
-                    width: 100%;
-                    float: left;
-                    text-align: justify;
-                    &:last-of-type {
-                        margin-bottom: 0;
-                    }
-                }
-            }
-        }
-    }
+
     &#content {
         img {
             display: block;
@@ -347,9 +273,6 @@ section {
                 }
             }
         }
-    }
-    &.bg-secondary {
-        color: white;
     }
 }
 

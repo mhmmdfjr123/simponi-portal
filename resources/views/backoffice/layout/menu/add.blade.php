@@ -85,7 +85,7 @@
                         <select name="menu_type_param" class="form-control required">
                             <option value="">- Pilih Satu -</option>
                             @foreach($listData as $key => $row)
-                                <option value="{{ $key }}">{{ $row['title'] }}</option>
+                                <option value="{{ $row['action'] }}">{{ $row['title'] }}</option>
                             @endforeach
                         </select>
                     </div>

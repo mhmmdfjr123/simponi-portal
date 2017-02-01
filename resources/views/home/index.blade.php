@@ -56,167 +56,58 @@
 
             <div class="above-fold">
                 <a class="page-scroll" href="#about">
-                    <span class="fa fa-angle-double-down"></span>
+                    <div class="btn-scroll-arrow">
+                        <i class="fa fa-angle-double-down"></i>
+                    </div>
                 </a>
             </div>
         </div>
         <!-- End of Carousel -->
-        <!--
-        <div class="information">
-            <div>
-                <h3>INFORMASI</h3>
-                <ul>
-                    <li>
-                        <a href=#>
-                            <b>DAPATKAN VOUCHER BELANJA SETIAP TOP UP</b>
-                            <span>Anda berhak mendapatkan voucher belanja hingga Rp1 Milyar untuk setiap top up Simponi.</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href=#>
-                            <b>GRATIS PULSA 10 RIBU SETIAP TOP UP DENGAN TOKOPEDIA</b>
-                            <img src="https://ecs7.tokopedia.net/img/og_tokopedia.jpg" alt="Promo Top Up BNI Simponi" />
-                            <span>Promo ini berlaku hingga tanggal 29 Februari 2017</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href=#>
-                            <b>NIKMATI MASA MUDA DI HARI TUA ANDA</b>
-                            <span>Siapa bilang masa muda tidak bisa dinikmati nanti?</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href=#>
-                            <b>BNI SIMPONI INVESTASI PASTI</b>
-                            <span>Investasi tidak perlu menunggu tua. Berinvestasi dengan BNI Simponi sekarang dan dapatkan manfaatnya.</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        -->
     </header>
 
-    <!-- <section id="featured">
+    <section class="section-box featured bg-featured">
         <div class="container">
             <div class="row">
-                <div class="col-sm-3 text-center">
-                    <span class="col-sm-12">INFORMASI</span>
-                    <div class="col-sm-12">
-                        <div class="col-sm-12">
-                            <ul>
-                                <li>
-                                    <a href=#>
-                                        <b>DAPATKAN VOUCHER BELANJA SETIAP TOP UP</b>
-                                        <span>Anda berhak mendapatkan voucher belanja hingga Rp1 Milyar untuk setiap top up Simponi.</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href=#>
-                                        <b>NIKMATI MASA MUDA DI HARI TUA ANDA</b>
-                                        <span>Siapa bilang masa muda tidak bisa dinikmati nanti?</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href=#>
-                                        <b>BNI SIMPONI INVESTASI PASTI</b>
-                                        <span>Investasi tidak perlu menunggu tua. Berinvestasi dengan BNI Simponi sekarang dan dapatkan manfaatnya.</span>
-                                    </a>
-                                </li>
-                            </ul>
+                <div class="col-sm-4">
+                    <div class="section-box-item">
+                        <div class="box-header">
+                            <h4 class="box-title">Berita</h4>
+                            <div class="box-title-action"><a href="#">Lihat Semua <i class="fa fa-angle-double-right"></i></a></div>
+                        </div>
+                        <div class="box-body">
+                            {{--<ul>--}}
+                                {{--<li><a href="#">Mengapa perlu investasi?</a></li>--}}
+                                {{--<li><a href="#">BNI Simponi saat ini dan nanti</a></li>--}}
+                                {{--<li><a href="#">Mengenal lebih jauh produk investasi non bank</a></li>--}}
+                            {{--</ul>--}}
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3 text-center">
-                    <span class="col-sm-12">PROMO</span>
-                    <div class="col-sm-12">
-                        <div class="col-sm-12">
-                            <ul>
-                                <li>
-                                    <a href=#>
-                                        <b>DAPATKAN VOUCHER BELANJA SETIAP TOP UP</b>
-                                        <span>Anda berhak mendapatkan voucher belanja hingga Rp1 Milyar untuk setiap top up Simponi.</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href=#>
-                                        <b>NIKMATI MASA MUDA DI HARI TUA ANDA</b>
-                                        <span>Siapa bilang masa muda tidak bisa dinikmati nanti?</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href=#>
-                                        <b>BNI SIMPONI INVESTASI PASTI</b>
-                                        <span>Investasi tidak perlu menunggu tua. Berinvestasi dengan BNI Simponi sekarang dan dapatkan manfaatnya.</span>
-                                    </a>
-                                </li>
-                            </ul>
+                <div class="col-sm-4">
+                    <div class="section-box-item">
+                        <div class="box-header">
+                            <h4 class="box-title">Promosi</h4>
+                            <div class="box-title-action"><a href="#">Lihat Semua <i class="fa fa-angle-double-right"></i></a></div>
+                        </div>
+                        <div class="box-body">
+
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3 text-center">
-                    <span class="col-sm-12">Infografis</span>
-                    <div class="col-sm-12">
-                        <div class="col-sm-12">
-                            <ul>
-                                <li>
-                                    <a href=#>
-                                        <b>DAPATKAN VOUCHER BELANJA SETIAP TOP UP</b>
-                                        <span>Anda berhak mendapatkan voucher belanja hingga Rp1 Milyar untuk setiap top up Simponi.</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href=#>
-                                        <b>NIKMATI MASA MUDA DI HARI TUA ANDA</b>
-                                        <span>Siapa bilang masa muda tidak bisa dinikmati nanti?</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href=#>
-                                        <b>BNI SIMPONI INVESTASI PASTI</b>
-                                        <span>Investasi tidak perlu menunggu tua. Berinvestasi dengan BNI Simponi sekarang dan dapatkan manfaatnya.</span>
-                                    </a>
-                                </li>
-                            </ul>
+                <div class="col-sm-4">
+                    <div class="section-box-item">
+                        <div class="box-header">
+                            <h4 class="box-title">Fund Fact Sheet</h4>
+                            <div class="box-title-action"><a href="#">Lihat Semua <i class="fa fa-angle-double-right"></i></a></div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-sm-3 text-center">
-                    <span class="col-sm-12">Simulasi</span>
-                    <div class="col-sm-12">
-                        <div class="col-sm-12">
-                            <ul>
-                                <li>
-                                    <a href="/simulation" target="_blank">
-                                        <b>SIMULASIKAN INVESTASI DPLK ANDA</b>
-                                        <span>Dengan menggunakan aplikasi simulasi, Anda bisa mengetahui dan mengatur rencana keuangan Anda di masa depan.</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3 text-center">
-                    <span class="col-sm-12">DPLK Sekarang & Nanti</span>
-                    <div class="col-sm-12">
-                        <div class="col-sm-12">
-                            <iframe class="col-sm-12" src="http://www.youtube.com/embed/CKU4PLxbK0M"></iframe>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum, libero id sodales tristique, mi erat molestie quam, et tristique sapien lacus nec tellus.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3 text-center">
-                    <span class="col-sm-12">PROMOSI</span>
-                    <div class="col-sm-12">
-                        <div class="col-sm-12">
-                            <iframe class="col-sm-12" src="http://www.youtube.com/embed/Lp9OP4dvSTs"></iframe>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus interdum, libero id sodales tristique, mi erat molestie quam, et tristique sapien lacus nec tellus.</p>
+                        <div class="box-body">
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
 
     <section class="bg-secondary" id="about">
         <div class="container">
