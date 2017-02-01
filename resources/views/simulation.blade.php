@@ -8,7 +8,7 @@
                     <img class="contentimage" src="{{ asset('theme/front/images/header/simulation.jpg') }}" alt="Content" />
                     <h2>Simulasi DPLK BNI.</h2>
                     <div class="identity col-sm-6 col-xs-12">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label>Nama Lengkap</label>
                             <input class="form-control" type="text" placeholder="Masukkan Nama Lengkap" />
                         </div>
@@ -89,6 +89,37 @@
                                     Laki-laki
                                 </label>
                             </div>
+                        </div> -->
+                        <div class="form-group">
+                            <label>Umur Anda</label>
+                            <select id="age" class="form-control">
+                                <option data-value="20">20 tahun</option>
+                                <option data-value="21">21 tahun</option>
+                                <option data-value="22">22 tahun</option>
+                                <option data-value="23">23 tahun</option>
+                                <option data-value="24">24 tahun</option>
+                                <option data-value="25">25 tahun</option>
+                                <option data-value="26">26 tahun</option>
+                                <option data-value="27">27 tahun</option>
+                                <option data-value="28">28 tahun</option>
+                                <option data-value="29">29 tahun</option>
+                                <option data-value="30">30 tahun</option>
+                                <option data-value="31">31 tahun</option>
+                                <option data-value="32">32 tahun</option>
+                                <option data-value="33">33 tahun</option>
+                                <option data-value="34">34 tahun</option>
+                                <option data-value="35">35 tahun</option>
+                                <option data-value="36">36 tahun</option>
+                                <option data-value="37">37 tahun</option>
+                                <option data-value="38">38 tahun</option>
+                                <option data-value="39">39 tahun</option>
+                                <option data-value="40">40 tahun</option>
+                                <option data-value="41">41 tahun</option>
+                                <option data-value="42">42 tahun</option>
+                                <option data-value="43">43 tahun</option>
+                                <option data-value="44">44 tahun</option>
+                                <option data-value="45">45 tahun</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Rencana Usia Pensiun</label>
@@ -121,7 +152,7 @@
                             <label>Dana Awal</label>
                             <div class="input-group">
                                 <div class="input-group-addon">Rp</div>
-                                <input id="starting-balance" class="form-control currency" type="text" placeholder="Masukkan Dana Awal" data-value="0" />
+                                <input id="starting-balance" class="form-control currency" type="text" placeholder="Masukkan Dana Awal" data-value="0" disabled />
                             </div>
                         </div>
                         <div class="form-group">
@@ -141,7 +172,7 @@
                             <label>Iuran</label>
                             <div class="input-group">
                                 <div class="input-group-addon">Rp</div>
-                                <input class="form-control currency" type="text" placeholder="Masukkan Iuran" data-value="0" />
+                                <input class="form-control currency" type="text" placeholder="Masukkan Iuran" data-value="0" disabled />
                             </div>
                         </div>
                         <div class="form-group">
@@ -156,11 +187,11 @@
                         <div class="form-group col-sm-4 col-xs-12">
                             <label>Tingkat Bunga DPLK</label>
                             <select id="interest-rate" class="form-control">
-                                <option data-value="8.0">8.0%</option>
-                                <option data-value="9.0">9.0%</option>
-                                <option data-value="10.0">10.0%</option>
-                                <option data-value="11.0">11.0%</option>
-                                <option data-value="12.0">12.0%</option>
+                                <option data-value="0.080">8.0%</option>
+                                <option data-value="0.090">9.0%</option>
+                                <option data-value="0.100">10.0%</option>
+                                <option data-value="0.110">11.0%</option>
+                                <option data-value="0.120">12.0%</option>
                             </select>
                         </div>
                         <div class="form-group col-sm-4 col-xs-12">
@@ -172,13 +203,34 @@
                         </div>
                         <div class="form-group col-sm-4 col-xs-12">
                             <label>Biaya Pengelolaan Dana</label>
-                            <input id="management-fee" class="form-control" type="text" value="0.85% dari akumulasi dana per tahun" data-value="0.85" disabled />
+                            <input id="management-fee" class="form-control" type="text" value="0.85% dari akumulasi dana per tahun" data-value="0.0085" disabled />
                         </div>
                         <div class="form-group col-sm-offset-4 col-sm-4 col-xs-12">
                             <a class="calculate col-xs-12 btn btn-lg btn-primary">Hitung</a>
                         </div>
                     </div>
                     <canvas id="simulation" class="col-xs-12" height="250"></canvas>
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label>Total Iuran</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">Rp</div>
+                            <input id="total-funding" class="form-control" type="text" value="" data-value="" disabled />
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label>Hasil Pengembangan</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">Rp</div>
+                            <input id="total-development" class="form-control" type="text" value="" data-value="" disabled />
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-4 col-xs-12">
+                        <label>Total Dana Manfaat</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">Rp</div>
+                            <input id="total-balance" class="form-control" type="text" value="" data-value="" disabled />
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -187,5 +239,6 @@
 
 @section('footScript')
     <script src="{{ asset('theme/front/vendor/chartjs/chart.min.js') }}"></script>
+    <script src="{{ asset('theme/front/vendor/jquery-numeric/jquery.numeric.min.js') }}"></script>
     <script src="{{ asset('theme/front/js/pages/simulation.js') }}"></script>
 @endsection
