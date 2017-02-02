@@ -151,7 +151,7 @@ class PageController extends Controller {
             $page->publish_date_start = date('Y-m-d H:i:s', strtotime($request->input('publish_date_start').' '.$request->input('publish_time_start')));
             $page->save();
 
-            return redirect('backoffice/pages')->with('success', 'Data berhasil disimpan.');
+            return redirect('backoffice/pages/'.$page->id.'/edit')->with('success', 'Data berhasil disimpan.');
         }catch (QueryException $e){
             \Log::error($e->getMessage());
 

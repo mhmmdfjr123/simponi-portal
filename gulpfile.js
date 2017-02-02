@@ -16,8 +16,9 @@ const frontThemePath = 'public/theme/front/';
 elixir(mix => {
     // Compile less file to css
     mix.less('simponi.less', frontThemePath + 'css');
+    mix.less('tinymce.less', frontThemePath + 'css/tinymce.css');
 
-    // Copy and merge js files into single file (simponi.js)
+    // Copy and merge js files from resources
     mix.scriptsIn('resources/assets/js/global', frontThemePath + 'js/global/simponi.js');
 	mix.copy('resources/assets/js/pages', frontThemePath + 'js/pages');
 

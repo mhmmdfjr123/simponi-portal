@@ -17,7 +17,7 @@ define("app-default", ['jquery'], function ($) {
         }
     });
 
-    return $;z
+    return $;
 });
 
 require(['jquery', 'px/pixeladmin', 'px/plugins/px-nav', 'px/plugins/px-navbar', 'px/extensions/perfect-scrollbar.jquery',

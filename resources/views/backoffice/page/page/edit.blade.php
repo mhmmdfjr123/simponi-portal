@@ -12,6 +12,10 @@
                 <h1><i class="page-header-icon fa fa-file"></i> {{ $pageTitle }}</h1>
             </div>
 
+            <div class="col-xs-12 width-md-auto width-lg-auto width-xl-auto pull-md-right">
+                <a href="{{ url('backoffice/pages') }}" class="btn btn-primary btn-block" style="width: 100%;"><span class="btn-label-icon left fa fa-arrow-left"></span>Kembali</a>
+            </div>
+
             <!-- Spacer -->
             <div class="m-b-2 visible-xs visible-sm clearfix"></div>
         </div>
@@ -21,7 +25,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="form-group">
-                <input type="text" name="title" maxlength="250" onkeyup="setAlias(this);" onblur="setAlias(this);" value="{{ $obj->title }}" class="form-control required input-lg" placeholder="Judul Halaman" />
+                <input type="text" name="title" maxlength="250" value="{{ $obj->title }}" class="form-control required input-lg" placeholder="Judul Halaman" />
                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                 <input type="hidden" name="id" value="{{ $obj->id }}" />
             </div>
@@ -79,7 +83,7 @@
                 </div>
                 <div class="panel-footer">
                     <button type="submit" class="btn btn-primary btn-labeled btn-save" data-loading-text="Loading..."><span class="btn-label-icon left fa fa-floppy-o"></span>Simpan</button>
-                    <a href="{{ url('backoffice/pages') }}" class="btn btn-default pull-right">Batal</a>
+                    <a href="{{ url('backoffice/pages/'.$obj->id.'/edit') }}" class="btn btn-default pull-right">Batal</a>
                 </div>
             </div>
 

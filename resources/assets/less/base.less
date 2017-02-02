@@ -1,8 +1,6 @@
 body {
     position: relative;
     .body-font;
-    font-weight: 300;
-    font-size: 16px;
     padding-top: 80px;
 }
 
@@ -25,6 +23,11 @@ hr {
         border-style: dashed;
         width: 50%;
     }
+}
+
+ul, ol {
+    margin-top: 0;
+    margin-bottom: 30px;
 }
 
 iframe {
@@ -66,6 +69,10 @@ iframe {
                     margin-top: 3px;
                 }
             }
+        }
+
+        &:focus {
+            outline: none;
         }
 
         &:hover .btn-scroll-arrow {

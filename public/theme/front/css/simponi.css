@@ -21,6 +21,11 @@ hr.separator {
   border-style: dashed;
   width: 50%;
 }
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 30px;
+}
 iframe {
   border: none;
 }
@@ -61,6 +66,9 @@ iframe {
     font-size: 30px;
     margin-top: 3px;
   }
+}
+.above-fold a:focus {
+  outline: none;
 }
 .above-fold a:hover .btn-scroll-arrow {
   -webkit-transform: scale(1.1);

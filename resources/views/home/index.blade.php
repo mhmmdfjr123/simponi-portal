@@ -123,7 +123,9 @@
                 <div class="col-sm-8 col-sm-offset-2 text-center">
                     <h2 class="section-heading">Apa itu BNI Simponi?</h2>
                     <hr class="title">
-                    <p class="text-faded">BNI Simponi adalah layanan program pensiun yang diselenggarakan oleh Dana Pensiun Lembaga Keuangan PT. Bank Negara Indonesia (Persero) Tbk  (DPLK BNI) sejak tahun 1994 berdasarkan Undang-Undang Nomor 11 Tahun 1992 tentang Dana Pensiun.</p>
+                    <div class="text-faded">
+                        <p>BNI Simponi adalah <strong>layanan program pensiun</strong> yang diselenggarakan oleh Dana Pensiun Lembaga Keuangan PT. Bank Negara Indonesia (Persero) Tbk  (DPLK BNI) sejak tahun 1994 berdasarkan Undang-Undang Nomor 11 Tahun 1992 tentang Dana Pensiun. Selama 15 tahun terakhir sejak tahun 2001, DPLK BNI berhasil menjadi <strong>market leader</strong> dalam industri pengelolaan dana pensiun di Indonesia.</p>
+                    </div>
                     <a href="#services" class="page-scroll btn btn-default btn-outline btn-xl sr-button">MULAI PENELUSURAN</a>
                 </div>
             </div>
