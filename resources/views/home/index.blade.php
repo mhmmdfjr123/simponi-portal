@@ -68,40 +68,48 @@
     <section class="section-box featured bg-featured">
         <div class="container">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-md-4">
                     <div class="section-box-item">
                         <div class="box-header">
                             <h4 class="box-title">Berita</h4>
                             <div class="box-title-action"><a href="#">Lihat Semua <i class="fa fa-angle-double-right"></i></a></div>
                         </div>
                         <div class="box-body">
-                            {{--<ul>--}}
-                                {{--<li><a href="#">Mengapa perlu investasi?</a></li>--}}
-                                {{--<li><a href="#">BNI Simponi saat ini dan nanti</a></li>--}}
-                                {{--<li><a href="#">Mengenal lebih jauh produk investasi non bank</a></li>--}}
-                            {{--</ul>--}}
+                            <ul class="fa-ul">
+                                <li><i class="fa-li fa fa-check"></i> <a href="#">Mengapa perlu investasi?</a></li>
+                                <li><i class="fa-li fa fa-check"></i> <a href="#">BNI Simponi saat ini dan nanti</a></li>
+                                <li><i class="fa-li fa fa-check"></i> <a href="#">Mengenal lebih jauh produk investasi non bank</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-md-4">
                     <div class="section-box-item">
                         <div class="box-header">
                             <h4 class="box-title">Promosi</h4>
                             <div class="box-title-action"><a href="#">Lihat Semua <i class="fa fa-angle-double-right"></i></a></div>
                         </div>
                         <div class="box-body">
-
+                            <ul class="fa-ul">
+                                <li><i class="fa-li fa fa-bullhorn"></i> <a href="#">Mengapa perlu investasi?</a></li>
+                                <li><i class="fa-li fa fa-bullhorn"></i> <a href="#">BNI Simponi saat ini dan nanti</a></li>
+                                <li><i class="fa-li fa fa-bullhorn"></i> <a href="#">Mengenal lebih jauh produk investasi non bank</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-md-4">
                     <div class="section-box-item">
                         <div class="box-header">
                             <h4 class="box-title">Fund Fact Sheet</h4>
                             <div class="box-title-action"><a href="#">Lihat Semua <i class="fa fa-angle-double-right"></i></a></div>
                         </div>
                         <div class="box-body">
-
+                            <ul class="fa-ul">
+                                <li><i class="fa-li fa fa-download"></i> <a href="#">Mengapa perlu investasi?</a></li>
+                                <li><i class="fa-li fa fa-download"></i> <a href="#">BNI Simponi saat ini dan nanti</a></li>
+                                <li><i class="fa-li fa fa-download"></i> <a href="#">Mengenal lebih jauh produk investasi non bank</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>

@@ -69,6 +69,7 @@ section {
                 .box-title {
                     margin: 0;
                     color: @theme-secondary;
+                    font-weight: bold;
                 }
 
                 .box-title-action {
@@ -76,11 +77,29 @@ section {
                     right: 0;
                     top: 0;
                     font-size: 14px;
+                    font-weight: 400;
                 }
             }
 
             .box-body {
+                ul {
+                    padding-left: 0;
+                    margin-top: 12px;
 
+                    li {
+                        font-size: 16px;
+
+                        a {
+                            color: #6c6c6c;
+
+                            &:hover {
+                                text-decoration: none;
+                                color: @theme-primary;
+                                .transition-all;
+                            }
+                        }
+                    }
+                }
             }
         }
 
