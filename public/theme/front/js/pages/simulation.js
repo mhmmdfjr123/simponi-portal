@@ -1,6 +1,6 @@
 //Author: Romy Adzani A
 
-$('input.currency').numeric().keydown(function() {
+$('input.currency').numeric().keydown(function () {
     $(this).val($(this).val().replace(/\./g, ''));
 }).keyup(function() {
     if ($(this).val().length > 0) {
@@ -10,7 +10,7 @@ $('input.currency').numeric().keydown(function() {
     }
 });
 
-$('input.percentage').numeric().keyup(function() {
+$('input.percentage').numeric().keyup(function () {
     if ($(this).val().length > 0) {
         $(this).attr('data-value', (parseFloat($(this).val()) / 100));
     } else {
@@ -18,7 +18,7 @@ $('input.percentage').numeric().keyup(function() {
     }
 });
 
-$('input[name="topupRadio"]').click(function() {
+$('input[name="topupRadio"]').click(function () {
     if ($(this).parent().is(':first-child')) {
         $('input#starting-balance').attr('disabled', true);
     } else {
@@ -26,7 +26,7 @@ $('input[name="topupRadio"]').click(function() {
     }
 });
 
-$('input[name="billingRadio"]').click(function() {
+$('input[name="billingRadio"]').click(function () {
     var text = ($(this).parent().index() < 1) ? 'Bulan' : 'Tahun';
     $('.billing label').text('Iuran Per ' + text);
     $('.billing input').attr('placeholder', 'Masukkan Iuran Per ' + text).removeAttr('disabled');
@@ -39,9 +39,9 @@ $('[data-toggle="tooltip"]').tooltip();
 var ctx = $('canvas#simulation'),
     
     //Currency format will be applied for getting result only
-    getChartCurrencyFormat = function(isgetresult) {
+    getChartCurrencyFormat = function (isgetresult) {
         if (isgetresult) {
-            return [{ ticks: { beginAtZero: true, callback: function(value) {
+            return [{ ticks: { beginAtZero: true, callback: function (value) {
                 return 'Rp' + ((parseInt(value) >= 1000) ? value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : value);
             } } }];
         } else {
@@ -55,7 +55,7 @@ var ctx = $('canvas#simulation'),
     },
 
     //Create chart JSON
-    getChart = function(a, isgetresult) {
+    getChart = function (a, isgetresult) {
         return {
             type: 'line',
             data: {
@@ -74,12 +74,12 @@ var ctx = $('canvas#simulation'),
     //Initialize new chart
     myChart = new Chart(ctx, getChart([ [40, 45, 50, 55, 60], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0] ], false));
 
-$('.calculate').click(function() {
+$('.calculate').click(function () {
     var datecontrol = $('.date-control > *'),
         checked = true; //for future update of consumer record
     
     //for future update of consumer record (simulation can be used when birth date of consumer is fully set)
-    datecontrol.children(':selected').each(function() {
+    datecontrol.children(':selected').each(function () {
         checked = checked && ($(this).index() > 0);
     });
 
@@ -130,7 +130,7 @@ $('.calculate').click(function() {
                 }
             }
         }
-        var chartAnimateNumber = function(a) {
+        var chartAnimateNumber = function (a) {
             return {
                 number: a,
                 numberStep: $.animateNumber.numberStepFactories.separator('.'),
