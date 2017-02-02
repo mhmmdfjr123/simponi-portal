@@ -17,7 +17,9 @@ $('input.percentage').numeric().keyup(function() {
 });
 
 $('input[name="topupRadio"]').click(function() {
-    if (!$(this).parent().is(':first-child')) {
+    if ($(this).parent().is(':first-child')) {
+        $('input#starting-balance').attr('disabled', true);
+    } else {
         $('input#starting-balance').removeAttr('disabled');
     }
 });
@@ -27,6 +29,9 @@ $('input[name="billingRadio"]').click(function() {
     $('.billing label').text('Iuran Per ' + text);
     $('.billing input').attr('placeholder', 'Masukkan Iuran Per ' + text).removeAttr('disabled');
 });
+
+//Activate bootstrap tooltip
+$('[data-toggle="tooltip"]').tooltip();
 
 // Simulation Chart
 var ctx = $('canvas#simulation');
@@ -92,10 +97,9 @@ $('.calculate').click(function() {
         var age = parseInt($('#age option:selected').attr('data-value')),
             retirementage = parseInt($('#retirement-age option:selected').attr('data-value')),
             durationmonth = (retirementage - age) * 12,
-            fiveagestartingbalance = [],
-            fiveagebilling = [],
-            fiveagedevelopment = [],
-            fiveagefund = [],
+            datachart = [ [], [], [], [], [] ]; //5 years behind of retirement age
+            countlast = durationmonth / 60;
+            countlast = (countlast > 4) ? 4 : (countlast - 1);
             isannualstartingbalance = $('input[name="topupRadio"]:checked').parent().is(':last-child'),
             startingbalance = parseFloat($('#starting-balance').attr('data-value')),
             accumulatedstartingbalance = startingbalance,
@@ -119,22 +123,27 @@ $('.calculate').click(function() {
             if (isnewyear) {
                 accumulatedfund -= administrationfee + (accumulatedfund * managementfee);
                 billing += (billing * billingincrement);
-                if (i == (durationmonth - ((4 - fiveagefund.length) * 60))) {
+                var tmpcountlast = countlast - datachart[0].length;
+                if (i == (durationmonth - (tmpcountlast * 60))) {
+                    datachart[0].push(retirementage - (tmpcountlast * 5));
+                    datachart[1].push(accumulatedstartingbalance);
+                    datachart[2].push(accumulatedbilling);
+                    datachart[3].push(accumulatedfund - (accumulatedstartingbalance + accumulatedbilling));
+                    datachart[4].push(accumulatedfund);
                     startingbalance = isannualstartingbalance ? startingbalance : 0;
-                    fiveagestartingbalance.push(accumulatedstartingbalance);
-                    fiveagebilling.push(accumulatedbilling);
-                    fiveagedevelopment.push(accumulatedfund - (accumulatedstartingbalance + accumulatedbilling));
-                    fiveagefund.push(accumulatedfund);
                 }
             }
         }
-        $('#total-funding b').text(parseInt(accumulatedstartingbalance + accumulatedbilling).toString().replace(/(?!^)(?=(?:\d{3})+(?:\.|$))/gm, '.'));
-        $('#total-development b').text(parseInt(fiveagedevelopment[fiveagedevelopment.length - 1]).toString().replace(/(?!^)(?=(?:\d{3})+(?:\.|$))/gm, '.'));
-        $('#total-balance b').text(parseInt(accumulatedfund).toString().replace(/(?!^)(?=(?:\d{3})+(?:\.|$))/gm, '.'));
+        $('#total-funding span').text('Rp').siblings('b').text(parseInt(accumulatedstartingbalance + accumulatedbilling).toString().replace(/(?!^)(?=(?:\d{3})+(?:\.|$))/gm, '.'));
+        $('#total-development span').text('Rp').siblings('b').text(parseInt(datachart[3][datachart[3].length - 1]).toString().replace(/(?!^)(?=(?:\d{3})+(?:\.|$))/gm, '.'));
+        $('#total-fund span').text('Rp').siblings('b').text(parseInt(accumulatedfund).toString().replace(/(?!^)(?=(?:\d{3})+(?:\.|$))/gm, '.'));
+        $('iframe.chartjs-hidden-iframe').remove();
+        ctx.after('<canvas id="simulation" class="col-xs-12" height="250"></canvas>').remove();
+        ctx = $('canvas#simulation');
         myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: [(retirementage - 20), (retirementage - 15), (retirementage - 10), (retirementage - 5), retirementage],
+                labels: datachart[0],
                 datasets: [
                     {
                         label: "Dana Awal",
@@ -144,7 +153,7 @@ $('.calculate').click(function() {
                         pointBorderColor: "#fff",
                         pointHoverBackgroundColor: "#fff",
                         pointHoverBorderColor: "rgba(49,133,156,1)",
-                        data: fiveagestartingbalance
+                        data: datachart[1]
                     },
                     {
                         label: "Iuran",
@@ -154,7 +163,7 @@ $('.calculate').click(function() {
                         pointBorderColor: "#fff",
                         pointHoverBackgroundColor: "#fff",
                         pointHoverBorderColor: "rgba(192,80,77,1)",
-                        data: fiveagebilling
+                        data: datachart[2]
                     },
                     {
                         label: "Pengembangan",
@@ -164,7 +173,7 @@ $('.calculate').click(function() {
                         pointBorderColor: "#fff",
                         pointHoverBackgroundColor: "#fff",
                         pointHoverBorderColor: "rgba(119,147,60,1)",
-                        data: fiveagedevelopment
+                        data: datachart[3]
                     },
                     {
                         label: "Saldo Akhir",
@@ -174,9 +183,25 @@ $('.calculate').click(function() {
                         pointBorderColor: "#fff",
                         pointHoverBackgroundColor: "#fff",
                         pointHoverBorderColor: "rgba(179,181,198,1)",
-                        data: fiveagefund
+                        data: datachart[4]
                     }
                 ]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            callback: function(value) {
+                                if(parseInt(value) >= 1000){
+                                    return 'Rp' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                                } else {
+                                    return 'Rp' + value;
+                                }
+                            }
+                        }
+                    }]
+                }
             }
         });
     } else {

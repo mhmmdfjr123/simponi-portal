@@ -788,21 +788,6 @@ aside {
 #content .applynew .date-control .checkbox {
   margin-bottom: 7px;
 }
-#content .identity:after,
-#content .starting-balance:after {
-  position: absolute;
-  content: '';
-  top: 0;
-  background: #e6e6e6;
-  width: 1px;
-  height: 100%;
-}
-#content .identity:after {
-  left: 100%;
-}
-#content .starting-balance:after {
-  left: 0;
-}
 #content .identity,
 #content .billing {
   margin-top: 20px;
@@ -813,8 +798,16 @@ aside {
   margin: 10px 0;
   padding: 10px 0;
 }
+#content .material-icons.info {
+  margin-left: 5px;
+  font-size: 18px;
+  color: inherit;
+  vertical-align: text-top;
+  cursor: pointer;
+  text-decoration: none;
+}
 #content canvas#simulation {
-  margin: 40px 0;
+  padding: 40px 0;
 }
 #content .simulationresult {
   margin-bottom: 15px;
@@ -826,11 +819,33 @@ aside {
 #content .simulationresult b {
   display: inline-block;
   vertical-align: top;
-  color: #004a55;
+  color: #005c69;
   font-size: 28px;
 }
 #content .simulationresult b {
   font-size: 40px;
+}
+@media (max-width: 360px) {
+  #content .simulationresult b {
+    font-size: 35px;
+  }
+}
+@media (min-width: 768px) {
+  #content .identity:after,
+  #content .starting-balance:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    background: #e6e6e6;
+    width: 1px;
+    height: 100%;
+  }
+  #content .identity:after {
+    left: 100%;
+  }
+  #content .starting-balance:after {
+    left: 0;
+  }
 }
 @media (max-width: 768px) {
   #content {

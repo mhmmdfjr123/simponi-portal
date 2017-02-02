@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @section('content')
-    <section id="content">
+    <section id="content" class="section-box">
         <div class="container">
             <div class="row">
                 <form class="col-xs-12 text-justify">
@@ -206,24 +206,30 @@
                             <input id="management-fee" class="form-control" type="text" value="0.85% dari akumulasi dana per tahun" data-value="0.0085" disabled />
                         </div>
                         <div class="form-group col-sm-offset-4 col-sm-4 col-xs-12">
-                            <a class="calculate col-xs-12 btn btn-lg btn-primary">Hitung</a>
+                            <a class="calculate col-xs-12 btn btn-lg btn-primary page-scroll" href="#simulation">Hitung</a>
                         </div>
                     </div>
                     <canvas id="simulation" class="col-xs-12" height="250"></canvas>
-                    <div id="total-funding" class="simulationresult col-md-4 col-sm-6 col-xs-12">
-                        <label>Total Iuran</label>
-                        <span>Rp</span>
-                        <b></b>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div id="total-funding" class="simulationresult section-box-item">
+                            <label>Total Iuran<a class="material-icons info" data-toggle="tooltip" title="Total iuran adalah dana awal ditambah iuran Anda setiap bulan mulai dari pembukaan rekening hingga berkhirnya masa rekening (sesuai usia pensiun Anda).">info</a></label>
+                            <span>N/A</span>
+                            <b></b>
+                        </div>
                     </div>
-                    <div id="total-development" class="simulationresult col-md-4 col-sm-6 col-xs-12">
-                        <label>Hasil Pengembangan</label>
-                        <span>Rp</span>
-                        <b></b>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div id="total-development" class="simulationresult section-box-item">
+                            <label>Hasil Pengembangan<a class="material-icons info" data-toggle="tooltip" title="Hasil pengembangan adalah jumlah perkembangan dana iuran mulai dari pembukaan rekening DPLK hingga berakhirnya masa rekening DPLK (sesuai usia pensiun Anda).">info</a></label>
+                            <span>N/A</span>
+                            <b></b>
+                        </div>
                     </div>
-                    <div id="total-balance" class="simulationresult col-md-4 col-xs-12">
-                        <label>Total Dana Manfaat</label>
-                        <span>Rp</span>
-                        <b></b>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div id="total-fund" class="simulationresult section-box-item">
+                            <label>Total Dana Manfaat<a class="material-icons info" data-toggle="tooltip" title="Total dana manfaat adalah dana yang bisa Anda klaim di akhir masa rekening DPLK (sesuai usia pensiun Anda)">info</a></label>
+                            <span>N/A</span>
+                            <b></b>
+                        </div>
                     </div>
                 </form>
             </div>

@@ -171,21 +171,6 @@
             }
         }
     }
-    .identity:after,
-    .starting-balance:after {
-        position: absolute;
-        content: '';
-        top: 0;
-        background: @gray-lighter;
-        width: 1px;
-        height: 100%;
-    }
-    .identity:after {
-        left: 100%;
-    }
-    .starting-balance:after {
-        left: 0;
-    }
     .identity, .billing {
         margin-top: 20px;
     }
@@ -195,8 +180,16 @@
         margin: 10px 0;
         padding: 10px 0;
     }
+    .material-icons.info {
+        margin-left: 5px;
+        font-size: 18px;
+        color: inherit;
+        vertical-align: text-top;
+        cursor: pointer;
+        text-decoration: none;
+    }
     canvas#simulation {
-        margin: 40px 0;
+        padding: 40px 0;
     }
     .simulationresult {
         margin-bottom: 15px;
@@ -206,11 +199,31 @@
         span, b {
             display: inline-block;
             vertical-align: top;
-            color: #004a55;
+            color: @theme-secondary;
             font-size: 28px;
         }
         b {
             font-size: 40px;
+            @media (max-width: 360px) {
+                font-size: 35px;
+            }
+        }
+    }
+    @media (min-width: 768px) {
+        .identity:after,
+        .starting-balance:after {
+            position: absolute;
+            content: '';
+            top: 0;
+            background: @gray-lighter;
+            width: 1px;
+            height: 100%;
+        }
+        .identity:after {
+            left: 100%;
+        }
+        .starting-balance:after {
+            left: 0;
         }
     }
     @media (max-width: 768px) {
