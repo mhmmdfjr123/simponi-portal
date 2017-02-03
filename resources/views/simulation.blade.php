@@ -8,7 +8,7 @@
                     <img class="contentimage" src="{{ asset('theme/front/images/header/simulation.jpg') }}" alt="Content" />
                     <h2>Simulasi DPLK BNI.</h2>
                     <div class="identity col-sm-6 col-xs-12">
-                        <!-- <div class="form-group">
+                        {{-- <!-- <div class="form-group">
                             <label>Nama Lengkap</label>
                             <input class="form-control" type="text" placeholder="Masukkan Nama Lengkap" />
                         </div>
@@ -21,37 +21,9 @@
                             <div class="date-control">
                                 <select class="form-control">
                                     <option>Pilih Tanggal</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                    <option>7</option>
-                                    <option>8</option>
-                                    <option>9</option>
-                                    <option>10</option>
-                                    <option>11</option>
-                                    <option>12</option>
-                                    <option>13</option>
-                                    <option>14</option>
-                                    <option>15</option>
-                                    <option>16</option>
-                                    <option>17</option>
-                                    <option>18</option>
-                                    <option>19</option>
-                                    <option>20</option>
-                                    <option>21</option>
-                                    <option>22</option>
-                                    <option>23</option>
-                                    <option>24</option>
-                                    <option>25</option>
-                                    <option>26</option>
-                                    <option>27</option>
-                                    <option>28</option>
-                                    <option>29</option>
-                                    <option>30</option>
-                                    <option>31</option>
+                                    @for ($i = 1; $i <= 31; $i++)
+                                        <option data-value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
                                 </select>
                                 <select class="form-control">
                                     <option>Pilih Bulan</option>
@@ -89,44 +61,21 @@
                                     Laki-laki
                                 </label>
                             </div>
-                        </div> -->
+                        </div> --> --}}
                         <div class="form-group">
                             <label>Umur Anda</label>
                             <select id="age" class="form-control">
-                                <option data-value="20">20 tahun</option>
-                                <option data-value="21">21 tahun</option>
-                                <option data-value="22">22 tahun</option>
-                                <option data-value="23">23 tahun</option>
-                                <option data-value="24">24 tahun</option>
-                                <option data-value="25">25 tahun</option>
-                                <option data-value="26">26 tahun</option>
-                                <option data-value="27">27 tahun</option>
-                                <option data-value="28">28 tahun</option>
-                                <option data-value="29">29 tahun</option>
-                                <option data-value="30">30 tahun</option>
-                                <option data-value="31">31 tahun</option>
-                                <option data-value="32">32 tahun</option>
-                                <option data-value="33">33 tahun</option>
-                                <option data-value="34">34 tahun</option>
-                                <option data-value="35">35 tahun</option>
-                                <option data-value="36">36 tahun</option>
-                                <option data-value="37">37 tahun</option>
-                                <option data-value="38">38 tahun</option>
-                                <option data-value="39">39 tahun</option>
-                                <option data-value="40">40 tahun</option>
-                                <option data-value="41">41 tahun</option>
-                                <option data-value="42">42 tahun</option>
-                                <option data-value="43">43 tahun</option>
-                                <option data-value="44">44 tahun</option>
-                                <option data-value="45">45 tahun</option>
+                            @for ($i = 20; $i <= 50; $i++)
+                                <option data-value="{{ $i }}">{{ $i }} tahun</option>
+                            @endfor
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Rencana Usia Pensiun</label>
                             <select id="retirement-age" class="form-control">
-                                <option data-value="45">45 tahun</option>
-                                <option data-value="50">50 tahun</option>
-                                <option data-value="55">55 tahun</option>
+                            @for ($i = 45; $i <= 60; $i += 5)
+                                <option data-value="{{ $i }}">{{ $i }} tahun</option>
+                            @endfor
                             </select>
                         </div>
                     </div>

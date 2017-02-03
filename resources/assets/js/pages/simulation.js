@@ -38,15 +38,18 @@ $('[data-toggle="tooltip"]').tooltip();
 // Simulation Chart
 var ctx = $('canvas#simulation'),
     
-    //Currency format will be applied for getting result only
-    getChartCurrencyFormat = function (isgetresult) {
-        if (isgetresult) {
-            return [{ ticks: { beginAtZero: true, callback: function (value) {
-                return 'Rp' + ((parseInt(value) >= 1000) ? value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : value);
-            } } }];
-        } else {
-            return false;
-        }
+    getYAxes = function () {
+        return [{ ticks: { beginAtZero: true, callback: function (value) {
+            var tmpvalue = parseInt(value);
+            return 'Rp' + ((tmpvalue >= 1000) ? tmpvalue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : tmpvalue);
+        } } }];
+    },
+
+    getTooltips = function () {
+        return { callbacks: { label: function (value) {
+            var tmpvalue = parseInt(value.yLabel);
+            return 'Rp' + ((tmpvalue >= 1000) ? tmpvalue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") : tmpvalue);
+        } } };
     },
 
     //Get dataset style and dataset itself
@@ -55,7 +58,7 @@ var ctx = $('canvas#simulation'),
     },
 
     //Create chart JSON
-    getChart = function (a, isgetresult) {
+    getChart = function (a) {
         return {
             type: 'line',
             data: {
@@ -67,18 +70,18 @@ var ctx = $('canvas#simulation'),
                     getDatasets('Saldo Akhir', 'rgba(179,181,198,.2)', 'rgba(179,181,198,1)', 'rgba(179,181,198,1)', 'rgba(179,181,198,1)', a[4])
                 ]
             },
-            options: { scales: { xAxes: [{ scaleLabel: { display: true, labelString: 'Usia (dalam tahun)' } }], yAxes: getChartCurrencyFormat(isgetresult) } }
+            options: { scales: { xAxes: [{ scaleLabel: { display: true, labelString: 'Usia (dalam tahun)' } }], yAxes: getYAxes() }, tooltips: getTooltips() }
         }
     },
 
     //Initialize new chart
-    myChart = new Chart(ctx, getChart([ [40, 45, 50, 55, 60], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0] ], false));
+    myChart = new Chart(ctx, getChart([ [40, 45, 50, 55, 60], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0] ]));
 
 $('.calculate').click(function () {
     var datecontrol = $('.date-control > *'),
         checked = true; //for future update of consumer record
     
-    //for future update of consumer record (simulation can be used when birth date of consumer is fully set)
+    //For future update of consumer record (simulation can be used when birth date of consumer is fully set)
     datecontrol.children(':selected').each(function () {
         checked = checked && ($(this).index() > 0);
     });
@@ -130,19 +133,14 @@ $('.calculate').click(function () {
                 }
             }
         }
-        var chartAnimateNumber = function (a) {
-            return {
-                number: a,
-                numberStep: $.animateNumber.numberStepFactories.separator('.'),
-            }
-        };
+        var chartAnimateNumber = function (a) { return { number: a, numberStep: $.animateNumber.numberStepFactories.separator('.') } };
         $('#total-funding span').text('Rp').siblings('b').animateNumber(chartAnimateNumber(parseInt(accumulatedstartingbalance + accumulatedbilling)), 1500);
         $('#total-development span').text('Rp').siblings('b').animateNumber(chartAnimateNumber(parseInt(datachart[3][datachart[3].length - 1])), 1500);
         $('#total-fund span').text('Rp').siblings('b').animateNumber(chartAnimateNumber(parseInt(accumulatedfund)), 1500);
         $('iframe.chartjs-hidden-iframe').remove();
         ctx.after('<canvas id="simulation" class="col-xs-12" height="250"></canvas>').remove();
         ctx = $('canvas#simulation');
-        myChart = new Chart(ctx, getChart(datachart, true));
+        myChart = new Chart(ctx, getChart(datachart));
     } else {
         console.log('Mohon isi lengkap');
     }
