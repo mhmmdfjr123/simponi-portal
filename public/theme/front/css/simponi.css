@@ -12,9 +12,13 @@ hr.title {
   border-color: #f05921;
   border-width: 3px;
   max-width: 50px;
+  margin-bottom: 25px;
 }
 hr.title.left {
   margin-left: 0;
+}
+hr.title.right {
+  margin-right: 0;
 }
 hr.separator {
   border-width: 1px;
@@ -295,6 +299,12 @@ p {
 .no-gutter > [class*='col-'] {
   padding-right: 0 !important;
   padding-left: 0 !important;
+}
+.text-primary {
+  color: #f05921;
+}
+.text-secondary {
+  color: #005c69;
 }
 .clear {
   clear: both;
@@ -607,7 +617,7 @@ section.section-box .section-box-item .box-body ul li a:hover {
   -webkit-transition: all 0.35s;
   transition: all 0.35s;
 }
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   section.section-box {
     padding-top: 15px;
     padding-bottom: 0;
@@ -622,6 +632,9 @@ section.section-box .section-box-item .box-body ul li a:hover {
 aside {
   padding: 50px 0;
 }
+.call-to-action h2 {
+  margin: 0 auto 20px;
+}
 .service-box {
   max-width: 400px;
   margin: 50px auto 0;
@@ -634,8 +647,22 @@ aside {
 .service-box p {
   margin-bottom: 0;
 }
-.call-to-action h2 {
-  margin: 0 auto 20px;
+section#contact {
+  border-top: 1px dashed #f05921;
+  padding-top: 50px !important;
+  padding-bottom: 30px !important;
+}
+section#contact .contact-left {
+  text-align: left;
+}
+section#contact .contact-left hr {
+  margin-left: 0;
+}
+section#contact .contact-right {
+  text-align: left;
+}
+section#contact .contact-right hr {
+  margin-left: 0;
 }
 #featured {
   padding: 1px 0;
@@ -1018,9 +1045,6 @@ aside {
   right: 0;
   width: 18px;
   height: calc(100% + 50px);
-}
-#contact i.fa {
-  color: #f05921;
 }
 .calculate {
   margin-top: 40px;

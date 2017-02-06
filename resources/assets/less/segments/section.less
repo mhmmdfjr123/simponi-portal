@@ -103,7 +103,7 @@ section {
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             padding-top: 15px;
             padding-bottom: 0;
             .section-box-item {
@@ -121,6 +121,12 @@ aside {
     padding: 50px 0;
 }
 
+.call-to-action {
+    h2 {
+        margin: 0 auto 20px;
+    }
+}
+
 .service-box {
     max-width: 400px;
     margin: 50px auto 0;
@@ -133,8 +139,26 @@ aside {
     }
 }
 
-.call-to-action {
-    h2 {
-        margin: 0 auto 20px;
+section#contact {
+    border-top: 1px dashed @theme-primary;
+    padding-top: 50px !important;
+    padding-bottom: 30px !important;
+
+    .contact-left {
+        text-align: left;
+        hr {
+            margin-left: 0;
+        }
     }
+
+    .contact-right {
+        text-align: left;
+        hr {
+            margin-left: 0;
+        }
+    }
+}
+
+.contact-box {
+
 }
