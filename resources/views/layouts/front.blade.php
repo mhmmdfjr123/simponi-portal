@@ -59,25 +59,25 @@
 
     @yield('content')
 
-    {{--<section id="contact">--}}
-        {{--<div class="container">--}}
-            {{--<div class="row">--}}
-                {{--<div class="col-md-8 col-md-offset-2 text-center">--}}
-                    {{--<h3 class="section-heading">HUBUNGI KAMI</h3>--}}
-                    {{--<hr class="title">--}}
-                    {{--<p>Hubungi kami di <i>Call Center</i> atau <i>email</i> di bawah dan dapatkan penawaran menarik dari BNI Simponi.</p>--}}
-                {{--</div>--}}
-                {{--<div class="col-xs-4 col-xs-offset-2 text-center">--}}
-                    {{--<i class="fa fa-phone fa-3x sr-contact"></i>--}}
-                    {{--<p><a href="tel:1500046">1 5000 46</a></p>--}}
-                {{--</div>--}}
-                {{--<div class="col-xs-4 text-center">--}}
-                    {{--<i class="fa fa-envelope-o fa-3x sr-contact"></i>--}}
-                    {{--<p><a href="mailto:bnicall@bni.co.id">bnicall@bni.co.id</a></p>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</section>--}}
+    {{--<section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h3 class="section-heading">HUBUNGI KAMI</h3>
+                    <hr class="title">
+                    <p>Hubungi kami di <i>Call Center</i> atau <i>email</i> di bawah dan dapatkan penawaran menarik dari BNI Simponi.</p>
+                </div>
+                <div class="col-xs-4 col-xs-offset-2 text-center">
+                    <i class="fa fa-phone fa-3x sr-contact"></i>
+                    <p><a href="tel:1500046">1 5000 46</a></p>
+                </div>
+                <div class="col-xs-4 text-center">
+                    <i class="fa fa-envelope-o fa-3x sr-contact"></i>
+                    <p><a href="mailto:bnicall@bni.co.id">bnicall@bni.co.id</a></p>
+                </div>
+            </div>
+        </div>
+    </section>--}}
 
     <section id="contact">
         <div class="container">

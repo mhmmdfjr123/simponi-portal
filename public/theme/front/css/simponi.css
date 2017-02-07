@@ -362,7 +362,7 @@ p {
 .navbar-default .nav > li.open > a:focus.login:hover,
 .navbar-default .nav > li > a.login:hover,
 .navbar-default .nav > li > a:focus.login:hover {
-  color: #aaaaaa;
+  color: #daa520;
 }
 .navbar-default .nav > li.open > a.login .material-icons,
 .navbar-default .nav > li.open > a:focus.login .material-icons,
@@ -648,7 +648,7 @@ aside {
   margin-bottom: 0;
 }
 section#contact {
-  border-top: 1px dashed #f05921;
+  border-top: 1px solid #e8ecec;
   padding-top: 50px !important;
   padding-bottom: 30px !important;
 }

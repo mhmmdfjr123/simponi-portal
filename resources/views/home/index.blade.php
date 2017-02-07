@@ -217,7 +217,7 @@
                 <div class="col-lg-6 col-illustration">
                     <!-- 16:9 aspect ratio -->
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/PdhPG4SdS54"></iframe>
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/PdhPG4SdS54" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
