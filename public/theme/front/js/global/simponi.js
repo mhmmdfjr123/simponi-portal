@@ -47,26 +47,6 @@
         distance: '0px'
     }, 300);
 
-    /*
-    $('input.currency').numeric().keydown(function() {
-        $(this).val($(this).val().replace(/\./g, ''));
-    }).keyup(function() {
-        if ($(this).val().length > 0) {
-            $(this).attr('data-value', $(this).val()).val($(this).val().replace(/(?!^)(?=(?:\d{3})+(?:\.|$))/gm, '.'));
-        } else {
-            $(this).attr('data-value', 0);
-        }
-    });
-
-    $('input.percentage').numeric().keyup(function() {
-        if ($(this).val().length > 0) {
-            $(this).attr('data-value', $(this).val());
-        } else {
-            $(this).attr('data-value', 0);
-        }
-    });
-    */
-
 })(jQuery); // End of use strict
 
 //# sourceMappingURL=simponi.js.map

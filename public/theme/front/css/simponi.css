@@ -250,6 +250,11 @@ p {
   line-height: 1.5;
   margin-bottom: 20px;
 }
+.validation-warning {
+  display: block;
+  margin-top: 5px;
+  color: red;
+}
 .bg-primary {
   background: #f05921 url(../images/textures/arches.png);
   color: white;
@@ -823,10 +828,6 @@ section#contact .contact-right hr {
 #content .applynew .date-control .checkbox {
   margin-bottom: 7px;
 }
-#content .identity,
-#content .billing {
-  margin-top: 20px;
-}
 #content .variables {
   border-top: 1px solid #e6e6e6;
   border-bottom: 1px solid #e6e6e6;
@@ -840,6 +841,11 @@ section#contact .contact-right hr {
   vertical-align: text-top;
   cursor: pointer;
   text-decoration: none;
+}
+#content form#simulation-form {
+  padding-top: 20px;
+  padding-left: 0;
+  padding-right: 0;
 }
 #content canvas#simulation {
   padding: 40px 0;

@@ -20,9 +20,9 @@ $('input.percentage').numeric().keyup(function () {
 
 $('input[name="topupRadio"]').click(function () {
     if ($(this).parent().is(':first-child')) {
-        $('input#starting-balance').attr('disabled', true);
+        $('input#starting-balance').attr('disabled', true).removeAttr('required');
     } else {
-        $('input#starting-balance').removeAttr('disabled');
+        $('input#starting-balance').removeAttr('disabled').attr('required', true);
     }
 });
 
@@ -30,6 +30,11 @@ $('input[name="billingRadio"]').click(function () {
     var text = ($(this).parent().index() < 1) ? 'Bulan' : 'Tahun';
     $('.billing label').text('Iuran Per ' + text);
     $('.billing input').attr('placeholder', 'Masukkan Iuran Per ' + text).removeAttr('disabled');
+    $('#billing-increment').removeAttr('disabled');
+});
+
+$('input, select').focus(function () {
+    $(this).closest('.form-group').children('.validation-warning').remove();
 });
 
 //Activate bootstrap tooltip
@@ -78,15 +83,15 @@ var ctx = $('canvas#simulation'),
     myChart = new Chart(ctx, getChart([ [40, 45, 50, 55, 60], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0] ]));
 
 $('.calculate').click(function () {
-    var datecontrol = $('.date-control > *'),
-        checked = true; //for future update of consumer record
+    var simulationform = $(this).closest('form'),
+        datecontrol = $('.date-control > *'); //for future update of consumer record
     
     //For future update of consumer record (simulation can be used when birth date of consumer is fully set)
-    datecontrol.children(':selected').each(function () {
+    /*datecontrol.children(':selected').each(function () {
         checked = checked && ($(this).index() > 0);
-    });
+    });*/
 
-    if (checked) {
+    if (simulationform.validate()) { //see validator.js to see how to use
         
         //Lines below are for future update of consumer record
         /*var dob = new Date((datecontrol.eq(2).val()) + '-' + (datecontrol.eq(1).children(':selected').index()) + '-' + (datecontrol.eq(0).children(':selected').index()));
@@ -134,14 +139,15 @@ $('.calculate').click(function () {
             }
         }
         var chartAnimateNumber = function (a) { return { number: a, numberStep: $.animateNumber.numberStepFactories.separator('.') } };
-        $('#total-funding span').text('Rp').siblings('b').animateNumber(chartAnimateNumber(parseInt(accumulatedstartingbalance + accumulatedbilling)), 1500);
-        $('#total-development span').text('Rp').siblings('b').animateNumber(chartAnimateNumber(parseInt(datachart[3][datachart[3].length - 1])), 1500);
-        $('#total-fund span').text('Rp').siblings('b').animateNumber(chartAnimateNumber(parseInt(accumulatedfund)), 1500);
+        $('#total-funding span').text('Rp').siblings('b').animateNumber(chartAnimateNumber(parseInt(accumulatedstartingbalance + accumulatedbilling)), 1800);
+        $('#total-development span').text('Rp').siblings('b').animateNumber(chartAnimateNumber(parseInt(datachart[3][datachart[3].length - 1])), 1800);
+        $('#total-fund span').text('Rp').siblings('b').animateNumber(chartAnimateNumber(parseInt(accumulatedfund)), 1800);
         $('iframe.chartjs-hidden-iframe').remove();
         ctx.after('<canvas id="simulation" class="col-xs-12" height="250"></canvas>').remove();
         ctx = $('canvas#simulation');
-        myChart = new Chart(ctx, getChart(datachart));
+        setTimeout(function () { myChart = new Chart(ctx, getChart(datachart)); }, 500);
+        $('[href="#simulation"]').click();
     } else {
-        console.log('Mohon isi lengkap');
+        $('[href="#simulation-form"]').click();
     }
 });
