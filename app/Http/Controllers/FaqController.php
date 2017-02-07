@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
  * @package App\Http\Controllers
  * @author efriandika
  */
-class RegisterController extends Controller
+class FaqController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -18,12 +18,12 @@ class RegisterController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the faq index.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('register');
+        return view('faq.index');
     }
 }

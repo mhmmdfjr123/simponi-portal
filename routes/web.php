@@ -110,15 +110,15 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'web'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/simulation', 'SimulationController@showSimulationForm')->name('simulation');
+	Route::get('/faq', 'FaqController@index')->name('faq');
 });
 
 // Sample Controller
-Route::get('/register', 'RegisterController@index')->name('register');
-Route::get('/userlogin', 'LoginController@index')->name('userlogin');
-Route::get('/content', 'ContentController@index')->name('content');
-Route::get('/simulation', 'ContentController@simulation')->name('simulation');
-Route::get('/applynew', 'ContentController@applynew')->name('applynew');
-Route::get('/customer', 'CustomerController@index')->name('customer');
+Route::get('/register', 'SampleController@register')->name('register');
+Route::get('/userlogin', 'SampleController@userlogin')->name('userlogin');
+Route::get('/applynew', 'SampleController@applynew')->name('applynew');
+Route::get('/customer', 'SampleController@customer')->name('customer');
 // End of Sample Controller
 
 Route::group(['prefix' => 'portal', 'middleware' => ['web', 'auth.portal']], function () {

@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 /**
  * Class HomeController
  * @package App\Http\Controllers
- * @author efriandika
  */
-class CustomerController extends Controller
+class SampleController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -22,8 +21,23 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function register()
     {
-        return view('customer');
+        return view('sample.register');
     }
+
+	public function applynew()
+	{
+		return view('sample.applynew');
+	}
+
+	public function customer()
+	{
+		return view('sample.customer');
+	}
+
+	public function userlogin()
+	{
+		return view('sample.userlogin');
+	}
 }

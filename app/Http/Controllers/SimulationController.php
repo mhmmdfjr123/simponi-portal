@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
  * @package App\Http\Controllers
  * @author rma
  */
-class ContentController extends Controller
+class SimulationController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -18,23 +18,12 @@ class ContentController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the simulation form.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function showSimulationForm()
     {
-        return view('content');
+        return view('simulation.simulation');
     }
-
-    public function simulation()
-    {
-        return view('simulation');
-    }
-
-    public function applynew()
-    {
-        return view('applynew');
-    }
-    
 }
