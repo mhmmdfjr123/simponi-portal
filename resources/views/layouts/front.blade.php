@@ -16,11 +16,8 @@
 
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700|Merriweather:300,400,700|Lato:300,400,700|Open+Sans:300,400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:400,700|Open+Sans|Roboto:700,400,300" rel="stylesheet">
     <link href="{{ asset('theme/front/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-
-    <!-- Plugin CSS -->
-    <link href="{{ asset('theme/front/vendor/perfect-scrollbar/perfect-scrollbar.min.css') }}" rel="stylesheet" type="text/css">
 
     <!-- Theme CSS -->
     <link href="{{ asset('theme/front/css/simponi.css') }}" rel="stylesheet">
@@ -144,9 +141,8 @@
     <script src="{{ asset('theme/front/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="{{ asset('theme/front/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
     <script src="{{ asset('theme/front/vendor/scrollreveal/scrollreveal.min.js') }}"></script>
-    <script src="{{ asset('theme/front/vendor/perfect-scrollbar/perfect-scrollbar.jquery.min.js') }}"></script>
 
     <!-- Theme JavaScript -->
     <script src="{{ asset('theme/front/js/global/simponi.js') }}"></script>

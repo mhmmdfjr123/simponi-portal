@@ -473,6 +473,9 @@ footer .container .footer-logo img {
   width: 80%;
   margin: 0 auto 80px auto;
 }
+.content-container.full-width {
+  width: 100%;
+}
 .content-header {
   margin-bottom: 20px;
 }
@@ -482,6 +485,7 @@ footer .container .footer-logo img {
 }
 .content-detail {
   margin-bottom: 20px;
+  min-height: 270px;
 }
 @media (max-width: 768px) {
   .content-container {
@@ -668,6 +672,78 @@ section#contact .contact-right {
 }
 section#contact .contact-right hr {
   margin-left: 0;
+}
+#sidebar ul.nav-tabs {
+  width: 100%;
+  border-radius: 4px;
+  background: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+  margin-bottom: 20px;
+  margin-top: 2px;
+}
+#sidebar ul.nav-tabs li {
+  margin: 0;
+}
+#sidebar ul.nav-tabs li a {
+  margin: 0;
+  padding: 8px 16px;
+  border-radius: 0;
+  border-bottom: 0;
+  border-top: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+}
+#sidebar ul.nav-tabs li:first-child a {
+  border-radius: 4px 4px 0 0;
+}
+#sidebar ul.nav-tabs li:last-child a {
+  border-radius: 0 0 4px 4px;
+}
+#sidebar ul.nav-tabs li.active a,
+#sidebar ul.nav-tabs li.active a:hover {
+  color: #fff;
+  background: #005c69;
+  border-top-color: #005c69;
+  border-right-color: #005c69;
+  border-left-color: #005c69;
+}
+.faq-category-container {
+  margin-top: 40px;
+}
+.faq-category-container:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+.faq-category-container .faq-category-title {
+  margin-top: 0;
+}
+.faq-category-container .panel-heading:hover {
+  background-color: #efefef;
+}
+.faq-category-container .panel-heading a:focus {
+  outline: none;
+}
+.faq-category-container .panel-heading a,
+.faq-category-container .panel-heading a:hover,
+.faq-category-container .panel-heading a:focus {
+  text-decoration: none;
+  color: #777777;
+}
+.faq-category-container .active-faq {
+  border-left: 5px solid #f05921;
+}
+.faq-category-container .active-faq .panel-title {
+  color: #333333;
+}
+.faq-category-container .panel-faq {
+  border-radius: 0;
+}
+.faq-category-container .panel-faq .panel-heading {
+  border-radius: 0;
+}
+.faq-category-container .panel-faq .panel-heading .panel-title span {
+  font-size: 13px;
+  font-weight: normal;
 }
 #featured {
   padding: 1px 0;
