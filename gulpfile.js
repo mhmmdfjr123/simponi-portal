@@ -28,6 +28,7 @@ elixir(mix => {
     mix.copy(['node_modules/jquery/dist/jquery.js', 'node_modules/jquery/dist/jquery.min.js'], frontThemePath + 'vendor/jquery');
     mix.copy(['node_modules/magnific-popup/dist/**'], frontThemePath + 'vendor/magnific-popup');
     mix.copy(['node_modules/scrollreveal/dist/*.js'], frontThemePath + 'vendor/scrollreveal');
+    mix.copy(['node_modules/scrolltofixed/*.js'], frontThemePath + 'vendor/scrolltofixed');
     mix.copy([
         'node_modules/font-awesome/**',
         '!node_modules/font-awesome/**/*.map',
