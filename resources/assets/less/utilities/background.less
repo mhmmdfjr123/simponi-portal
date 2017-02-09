@@ -8,6 +8,22 @@
     color: white;
 }
 
+.bg-wisma46 {
+    @wisma46-overlay: rgba(0, 92, 100, 0.25);
+
+    color: white;
+    background:
+            linear-gradient(
+                    @wisma46-overlay,
+                    @wisma46-overlay
+            ),
+            url(../images/bg/wisma46.jpg) no-repeat center bottom fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 .bg-featured {
     background: @gray-lighter url(../images/textures/batik.png);
 }

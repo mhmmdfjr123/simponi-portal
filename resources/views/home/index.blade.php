@@ -175,7 +175,7 @@
         </div>
     </section>
 
-    <aside class="bg-dark">
+    <aside class="bg-wisma46">
         <div class="container text-center">
             <div class="call-to-action">
                 <h2>SIMULASI</h2>

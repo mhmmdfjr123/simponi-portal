@@ -33,5 +33,5 @@ Documentation for the framework can be found on the [Laravel website](http://lar
 6. [Laravel OCI8](https://github.com/yajra/laravel-oci8)
 
 ## Author
-1. [Efriandika Pratama](efriandika.pratama@bni.co.id)
-2. [Romy Adzani Putra](romy.adzani@bni.co.id)
+1. [Efriandika Pratama](mailto:efriandika.pratama@bni.co.id)
+2. [Romy Adzani Putra](mailto:romy.adzani@bni.co.id)

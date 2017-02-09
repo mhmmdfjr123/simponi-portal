@@ -5,7 +5,7 @@
     $('a.page-scroll').bind('click', function(event) {
         var $anchor = $(this);
         $('html, body').stop().animate({
-            scrollTop: ($($anchor.attr('href')).offset().top - 73)
+            scrollTop: ($($anchor.attr('href')).offset().top - 50)
         }, 1250, 'easeInOutExpo');
         event.preventDefault();
     });
@@ -17,12 +17,6 @@
             top: navOffsetTop
         }
     });
-    // $('#header-nav-masking').affix({
-    //     offset: {
-    //         top: navOffsetTop + 20
-    //     }
-    // });
-
 
     // Initialize and Configure Scroll Reveal Animation
     window.sr = ScrollReveal();
