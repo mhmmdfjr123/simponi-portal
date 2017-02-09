@@ -7,11 +7,12 @@
   "private": true,
   "devDependencies": {
     "bootstrap": "^3.3.7",
-    "chartjs": "^0.3.24",
+    "chart.js": "^2.5.0",
     "font-awesome": "^4.6.3",
     "gulp": "^3.9.1",
     "jquery": "^3.1.1",
     "jquery.easing": "^1.4.1",
+    "jquery-numeric": "github:samwm/jquery-numeric",
     "laravel-elixir": "^6.0.0-9",
     "magnific-popup": "^1.1.0",
     "perfect-scrollbar": "^0.6.16",
