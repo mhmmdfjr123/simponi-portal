@@ -544,15 +544,35 @@ header.sim-carousel {
 header.sim-carousel .carousel .item {
   background-color: #777;
 }
+header.sim-carousel .carousel .item .carousel-image {
+  height: 600px;
+  background-position: center center;
+  background-size: cover;
+}
+@media (min-width: 1900px) {
+  header.sim-carousel .carousel .item .carousel-image {
+    height: 890px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  header.sim-carousel .carousel .item .carousel-image {
+    height: 460px;
+  }
+}
+@media (max-width: 767px) {
+  header.sim-carousel .carousel .item .carousel-image {
+    height: 310px;
+  }
+}
 header.sim-carousel .carousel-caption {
   top: 40%;
   left: 20%;
   right: 20%;
   bottom: auto;
 }
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   header.sim-carousel .carousel-indicators {
-    bottom: 30px;
+    bottom: 0;
   }
 }
 @media (min-width: 768px) {
@@ -568,18 +588,6 @@ header.sim-carousel .carousel-caption {
     background-repeat: repeat-x;
   }
   header.sim-carousel #header-nav-masking.affix {
-    visibility: hidden;
-  }
-}
-@media (max-width: 768px) {
-  header.sim-carousel .item .carousel-caption h1 {
-    font-size: 16px;
-    margin-bottom: 5px;
-  }
-  header.sim-carousel .item .carousel-caption p {
-    font-size: 13px;
-  }
-  header.sim-carousel .item .carousel-caption p .btn {
     visibility: hidden;
   }
 }
@@ -760,11 +768,18 @@ section#contact .contact-right hr {
 .faq-category-container .faq-category-title {
   margin-top: 0;
 }
+.faq-category-container .panel-heading {
+  padding: 0;
+}
 .faq-category-container .panel-heading:hover {
   background-color: #efefef;
 }
 .faq-category-container .panel-heading a:focus {
   outline: none;
+}
+.faq-category-container .panel-heading a {
+  padding: 10px 15px;
+  display: block;
 }
 .faq-category-container .panel-heading a,
 .faq-category-container .panel-heading a:hover,

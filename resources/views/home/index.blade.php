@@ -3,7 +3,7 @@
 @section('content')
     <header class="sim-carousel">
         <!-- Carousel -->
-        <div id="sim-carousel" class="carousel slide" data-ride="carousel">
+        <div id="sim-carousel" class="carousel slide">
             <ol class="carousel-indicators">
                 <li data-target="#sim-carousel" data-slide-to="0" class="active"></li>
                 <li data-target="#sim-carousel" data-slide-to="1"></li>
@@ -11,17 +11,16 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <img class="first-slide" src="{{ asset('theme/front/images/carousel/banner-1.jpg') }}" alt="First slide">
-                    {{--<div class="container">
+                    <div class="carousel-image" style="background-image: url('{{ asset('theme/front/images/carousel/banner-1.jpg') }}')"></div>
+                    <div class="container">
                         <div class="carousel-caption">
                             <h1>Example headline.</h1>
                             <p>Example sub headline.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#" role="button">DAFTAR SEKARANG</a></p>
                         </div>
-                    </div>--}}
+                    </div>
                 </div>
                 <div class="item">
-                    <img class="second-slide" src="{{ asset('theme/front/images/carousel/banner-2.jpg') }}" alt="Second slide">
+                    <div class="carousel-image" style="background-image: url('{{ asset('theme/front/images/carousel/banner-2.jpg') }}')"></div>
                     {{--<div class="container">
                         <div class="carousel-caption">
                             <h1>Another example headline.</h1>
@@ -31,7 +30,7 @@
                     </div>--}}
                 </div>
                 <div class="item">
-                    <img class="third-slide" src="{{ asset('theme/front/images/carousel/banner-1.jpg') }}" alt="Third slide">
+                    <div class="carousel-image" style="background-image: url('{{ asset('theme/front/images/carousel/banner-1.jpg') }}')"></div>
                     {{--<div class="container">
                         <div class="carousel-caption">
                             <h1>One more for good measure.</h1>
@@ -180,7 +179,7 @@
             <div class="call-to-action">
                 <h2>SIMULASI</h2>
                 <p class="text-faded">Anda dapat melakukan simulasi penghitungan biaya investasi Anda dengan hasil yang akan Anda dapatkan. Silakan tekan tombol di bawah.</p>
-                <a href="/simulation" class="btn btn-default btn-outline btn-xl sr-button" target="_blank">LAKUKAN SIMULASI</a>
+                <a href="/simulation" class="btn btn-default btn-outline btn-xl sr-button">LAKUKAN SIMULASI</a>
             </div>
         </div>
     </aside>
@@ -223,4 +222,22 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('footScript')
+    <script src="{{ asset('theme/front/vendor/jquery-touch-events/jquery.mobile-events.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            const $simCarousel = $('#sim-carousel');
+
+            $simCarousel.bind('swipeleft', function(e) {
+                $simCarousel.carousel('next')
+            });
+
+            $simCarousel.bind('swiperight', function(e) {
+                $simCarousel.carousel('prev')
+            });
+
+        })
+    </script>
 @endsection
