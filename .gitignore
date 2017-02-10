@@ -2,6 +2,7 @@
 /node_modules
 yarn-error.log
 /public/storage
+/public/hot
 /vendor
 Homestead.json
 Homestead.yaml

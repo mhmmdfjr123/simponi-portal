@@ -15,7 +15,7 @@ class PostController extends Controller {
     }
 
     public function index(Post $postModel){
-        $data = [
+    	$data = [
             'pageTitle' => 'Daftar Artikel',
             'countListAllPage' => $postModel::count(),
             'countListTrashPage' => $postModel::onlyTrashed()->count(),
@@ -80,48 +80,6 @@ class PostController extends Controller {
             })
 	        ->rawColumns(['rownum', 'status', 'created_date', 'action'])
             ->make(true);
-
-            /*
-
-        // get result after running query and put it in array
-        $no = $start+1;
-        foreach ($listData->get() as $row) {
-            $record = array();
-
-            $record[] = $no++;
-            $record[] = $row->title;
-            $record[] = date('d-m-Y H:i:s', strtotime($row->created_at));
-
-            if($row->deleted_at == '') {
-                $record[] = pageStatusTextWithStyle($row->status, $row->publish_date_start, $row->publish_date_end);
-
-                $record[] = '
-	               <div class="btn-group">
-	                   <a href="'.url('backoffice/posts/edit/'.$row->id).'" title="Ubah" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a>
-	                   <a href="javascript:void(0)" onclick="confirmDirectPopUp(\''.url('backoffice/posts/delete/'.$row->id).'\', \'Konfirmasi\', \'Apakah anda yakin ingin menghapus?\', \'Ya, Hapus Data\', \'Tidak\');" title="Hapus" class="btn btn-xs btn-default"><i class="fa fa-trash"></i></a>
-	               </div>
-	            ';
-            } else {
-                $record[] = '-';
-
-                $record[] = '
-                    <div class="btn-group btn-group-xs">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-down"></i></button>
-						<ul class="dropdown-menu dropdown-menu-right">
-							<li><a href="javascript:void(0)" onclick="confirmDirectPopUp(\''.url('backoffice/posts/delete-restore/'.$row->id).'\', \'Konfirmasi\', \'Apakah anda yakin ingin membatalkan penghapusan data ini?\', \'Ya, restore data\', \'Tidak\');" ><i class="fa fa-rotate-left"></i> Restore Data</a></li>
-							<li><a href="javascript:void(0)" onclick="confirmDirectPopUp(\''.url('backoffice/posts/delete-permanent/'.$row->id).'\', \'Konfirmasi\', \'Apakah anda yakin ingin menghapus data ini secara permanen?<br />Info: Data yang sudah dihapus permanan <strong>tidak dapat dipulihkan</strong> kembali\', \'Ya, Hapus Permanen\', \'Tidak\');" ><i class="fa fa-times"></i> Hapus Permanen</a></li>
-						</ul>
-                    </div>
-	            ';
-            }
-
-
-            $output['data'][] = $record;
-        }
-
-        // format it to JSON, this output will be displayed in datatable
-        return response()->json($output);
-            */
     }
 
     public function add(PostCategory $postCategory){
