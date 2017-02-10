@@ -20,21 +20,19 @@
     },
     "require": {
         "php": ">=5.6.4",
-        "laravel/framework": "5.3.*",
-        "yajra/laravel-oci8": "5.3.*",
-        "arrilot/laravel-widgets": "^3.6",
-        "kodeine/laravel-acl": "~1.0@dev",
-        "intervention/image": "^2.3",
-        "yajra/laravel-datatables-oracle": "~6.0",
+        "arrilot/laravel-widgets": "^3.7",
+        "efriandika/laravel-settings": "dev-master",
         "guzzlehttp/guzzle": "~6.0",
-        "efriandika/laravel-settings": "dev-master"
+        "intervention/image": "^2.3",
+        "kodeine/laravel-acl": "~1.0@dev",
+        "laravel/framework": "5.4.*",
+        "yajra/laravel-datatables-oracle": "^7.1",
+        "yajra/laravel-oci8": "5.4.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5.0",
-        "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*",
+        "phpunit/phpunit": "~5.7",
         "barryvdh/laravel-ide-helper": "^2.2",
         "way/generators": "dev-feature/laravel-five-stable",
         "xethron/migrations-generator": "^2.0"
@@ -48,9 +46,9 @@
         }
     },
     "autoload-dev": {
-        "classmap": [
-            "tests/TestCase.php"
-        ]
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "scripts": {
         "post-root-package-install": [
@@ -71,7 +69,8 @@
         ]
     },
     "config": {
-        "preferred-install": "dist"
+        "preferred-install": "dist",
+        "sort-packages": true
     },
     "repositories": {
         "repo-name": {
