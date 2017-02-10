@@ -6,6 +6,11 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Facades\Datatables;
 
+/**
+ * Class PageController
+ * @package App\Http\Controllers\Backoffice\Page
+ * @author efriandika
+ */
 class PageController extends Controller {
 
     public function __construct(){

@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Facades\Datatables;
 
+/**
+ * Class PostController
+ * @package App\Http\Controllers\Backoffice\Post
+ * @author efriandika
+ */
 class PostController extends Controller {
 
     public function __construct(){

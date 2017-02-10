@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Class MenuController
+ * @package App\Http\Controllers\Backoffice\Layout
+ * @author efriandika
+ */
 class MenuController extends Controller {
 
     public function __construct(){

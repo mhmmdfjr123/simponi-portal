@@ -7,6 +7,11 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
+/**
+ * Class LoginController
+ * @package App\Http\Controllers\Auth
+ * @author efriandika
+ */
 class LoginController extends Controller
 {
     /*
