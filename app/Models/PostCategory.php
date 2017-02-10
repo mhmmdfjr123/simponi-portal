@@ -12,15 +12,15 @@ class PostCategory extends Model {
     protected $primaryKey = 'id';
 
     public function parent(){
-        return $this->belongsTo('App\Models\PostCategory', 'parent');
+        return $this->belongsTo(PostCategory::class, 'parent');
     }
 
     public function child(){
-        return $this->hasMany('App\Models\PostCategory', 'id');
+        return $this->hasMany(PostCategory::class, 'id');
     }
 
     public function posts(){
-        return $this->belongsToMany('App\Models\Post', 'post_category_rel', 'post_category_id', 'post_id');
+        return $this->belongsToMany(Post::class, 'post_category_rel', 'post_category_id', 'post_id');
     }
 
     public function listParent($itsId = '', $activeOnly = true){

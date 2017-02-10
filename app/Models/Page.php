@@ -17,11 +17,11 @@ class Page extends Model {
     protected $primaryKey = 'id';
 
     public function parent(){
-        return $this->belongsTo('App\Models\Page', 'parent');
+        return $this->belongsTo(Page::class, 'parent');
     }
 
     public function child(){
-        return $this->hasMany('App\Models\Page', 'id');
+        return $this->hasMany(Page::class, 'id');
     }
 
     public function listParent($itsId = ''){

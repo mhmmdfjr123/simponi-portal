@@ -12,11 +12,11 @@ class Post extends Model {
     protected $primaryKey = 'id';
 
     public function categories(){
-        return $this->belongsToMany('App\Models\PostCategory', 'post_category_rel', 'post_id', 'post_category_id');
+        return $this->belongsToMany(PostCategory::class, 'post_category_rel', 'post_id', 'post_category_id');
     }
 
     public function user(){
-        return $this->belongsTo('App\Models\User', 'created_by', 'id');
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 
     public function getListStatus(){

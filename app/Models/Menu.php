@@ -7,15 +7,15 @@ class Menu extends Model {
     protected $primaryKey = 'id';
 
     public function categories(){
-        return $this->belongsTo('App\Models\MenuCategory', 'menu_category_id', 'id');
+        return $this->belongsTo(MenuCategory::class, 'menu_category_id', 'id');
     }
 
     public function parent(){
-        return $this->belongsTo('App\Models\Menu', 'menu_parent', 'id');
+        return $this->belongsTo(Menu::class, 'menu_parent', 'id');
     }
 
     public function child(){
-        return $this->hasMany('App\Models\Menu', 'menu_parent', 'id');
+        return $this->hasMany(Menu::class, 'menu_parent', 'id');
     }
 
     private function _getParent($parentId, $catId, $level){

@@ -7,6 +7,6 @@ class MenuCategory extends Model {
     protected $primaryKey = 'id';
 
     public function menus(){
-        return $this->hasMany('App\Models\Menu', 'menu_category_id', 'id');
+        return $this->hasMany(Menu::class, 'menu_category_id', 'id');
     }
 }
