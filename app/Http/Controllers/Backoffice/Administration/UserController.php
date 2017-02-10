@@ -118,6 +118,7 @@ class UserController extends Controller {
 
 				return $button;
 			})
+			->rawColumns(['rownum', 'role', 'status', 'action'])
 			->make(true);
 	}
 

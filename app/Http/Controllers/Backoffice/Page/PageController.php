@@ -76,6 +76,7 @@ class PageController extends Controller {
 
                 return $button;
             })
+	        ->rawColumns(['rownum', 'status', 'publish_date', 'action'])
             ->make(true);
     }
 

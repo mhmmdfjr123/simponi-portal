@@ -78,6 +78,7 @@ class PostController extends Controller {
 
                 return $button;
             })
+	        ->rawColumns(['rownum', 'status', 'created_date', 'action'])
             ->make(true);
 
             /*
