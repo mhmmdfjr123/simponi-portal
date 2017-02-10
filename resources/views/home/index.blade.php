@@ -12,12 +12,12 @@
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
                     <div class="carousel-image" style="background-image: url('{{ asset('theme/front/images/carousel/banner-1.jpg') }}')"></div>
-                    <div class="container">
+                    {{--<div class="container">
                         <div class="carousel-caption">
                             <h1>Example headline.</h1>
                             <p>Example sub headline.</p>
                         </div>
-                    </div>
+                    </div>--}}
                 </div>
                 <div class="item">
                     <div class="carousel-image" style="background-image: url('{{ asset('theme/front/images/carousel/banner-2.jpg') }}')"></div>
