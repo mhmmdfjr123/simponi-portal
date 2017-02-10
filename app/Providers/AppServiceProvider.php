@@ -4,8 +4,6 @@ namespace App\Providers;
 
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Support\ServiceProvider;
-use Way\Generators\GeneratorsServiceProvider;
-use Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,8 +29,6 @@ class AppServiceProvider extends ServiceProvider
     {
         if ($this->app->environment() !== 'production') {
             $this->app->register(IdeHelperServiceProvider::class);
-            $this->app->register(GeneratorsServiceProvider::class);
-            $this->app->register(MigrationsGeneratorServiceProvider::class);
         }
     }
 }
