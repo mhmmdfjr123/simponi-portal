@@ -1,5 +1,8 @@
 {
-  "/theme/front/js/global/simponi.js": "/theme/front/js/global/simponi.js",
+  "/mix.js": "/mix.js",
   "/theme/front/css/simponi.css": "/theme/front/css/simponi.css",
-  "/theme/front/css/tinymce.css": "/theme/front/css/tinymce.css"
+  "/theme/front/css/tinymce.css": "/theme/front/css/tinymce.css",
+  "/theme/front/js/global/simponi.js": "/theme/front/js/global/simponi.js",
+  "/theme/front/js/pages/customer.js": "/theme/front/js/pages/customer.js",
+  "/theme/front/js/pages/simulation.js": "/theme/front/js/pages/simulation.js"
 }

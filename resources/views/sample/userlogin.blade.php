@@ -25,6 +25,6 @@
 @endsection
 
 @section('footScript')
-    <script src="{{ asset('theme/front/js/validator/validator.js') }}"></script>
+    <script src="{{ asset('theme/front/js/validator/simulation-validator.js') }}"></script>
     <script src="{{ asset('theme/front/js/pages/userlogin.js') }}"></script>
 @endsection

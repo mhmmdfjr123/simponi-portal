@@ -2,10 +2,10 @@ const { mix } = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
- | Mix Asset Management
+ | MixConfig Asset Management
  |--------------------------------------------------------------------------
  |
- | Mix provides a clean, fluent API for defining some Webpack build steps
+ | MixConfig provides a clean, fluent API for defining some Webpack build steps
  | for your Laravel application. By default, we are compiling the Sass
  | file for the application as well as bundling up all the JS files.
  |
@@ -21,9 +21,12 @@ mix.less(resourcesPath + 'less/simponi.less', frontThemePath + 'css')
     .less(resourcesPath + 'less/tinymce.less', frontThemePath + 'css/tinymce.css');
 
 // Copy and merge js files from resources
-mix.js(resourcesPath + 'js/global/simponi.js', frontThemePath + 'js/global/simponi.js')
-    .copy(resourcesPath + 'js/pages', frontThemePath + 'js/pages')
-    .copy(resourcesPath + 'js/validator', frontThemePath + 'js/validator');
+mix.combine([resourcesPath + 'js/global/simponi.js'], frontThemePath + 'js/global/simponi.js');
+mix.combine([resourcesPath + 'js/pages/customer.js'], frontThemePath + 'js/pages/customer.js');
+mix.combine([
+    resourcesPath + 'js/pages/simulation.js',
+    resourcesPath + 'js/pages/simulation-validator.js',
+], frontThemePath + 'js/pages/simulation.js');
 
 // Copy vendor files
 mix.copy('node_modules/bootstrap/dist/css/*.min.css', frontThemePath + 'vendor/bootstrap/css')
