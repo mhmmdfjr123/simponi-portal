@@ -91,6 +91,10 @@ Install Vagrant Proxy Conf
 9. Install node modules
 
         npm install
+        
+   If you are developing on a Windows system or you are running your VM on a Windows host system, you may need to run the `npm install` command with the `--no-bin-links` switch enabled:
+    
+        npm install --no-bin-links
 
 10. Cihuyy.. you can access your project from browser `http://simponi.app`
 

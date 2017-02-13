@@ -62,6 +62,10 @@ Since simponi portal uses oracle as database, you need to add PHP OCI8 driver Ex
 5. Install node modules
 
         npm install
+        
+   If you are developing on a Windows system or you are running your VM on a Windows host system, you may need to run the `npm install` command with the `--no-bin-links` switch enabled:
+    
+        npm install --no-bin-links
 
 6. Cihuyy.. you can run your project
 
