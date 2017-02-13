@@ -16,9 +16,11 @@ const { mix } = require('laravel-mix');
 const resourcesPath = 'resources/assets/';
 const frontThemePath = 'public/theme/front/';
 
-// Compile less file to css
-mix.less(resourcesPath + 'less/simponi.less', frontThemePath + 'css')
-    .less(resourcesPath + 'less/tinymce.less', frontThemePath + 'css/tinymce.css');
+let addFilesToVersioning = [];
+
+// Compile less file (from resources) to css
+mix.less(resourcesPath + 'less/simponi.less', frontThemePath + 'css', {relativeUrls:false})
+    .less(resourcesPath + 'less/tinymce.less', frontThemePath + 'css/tinymce.css', {relativeUrls:false});
 
 // Copy and merge js files from resources
 mix.combine([resourcesPath + 'js/global/simponi.js'], frontThemePath + 'js/global/simponi.js');
@@ -28,6 +30,13 @@ mix.combine([
     resourcesPath + 'js/pages/simulation-validator.js',
 ], frontThemePath + 'js/pages/simulation.js');
 
+// Copy and Combine Global Vendor
+mix.combine([
+    'node_modules/jquery/dist/jquery.min.js',
+    'node_modules/jquery.easing/jquery.easing.min.js',
+    'node_modules/scrollreveal/dist/scrollreveal.min.js'
+], frontThemePath + 'js/global/vendor.js');
+
 // Copy vendor files
 mix.copy('node_modules/bootstrap/dist/css/*.min.css', frontThemePath + 'vendor/bootstrap/css')
     .copy('node_modules/bootstrap/dist/js/*.min.js', frontThemePath + 'vendor/bootstrap/js')
@@ -35,16 +44,19 @@ mix.copy('node_modules/bootstrap/dist/css/*.min.css', frontThemePath + 'vendor/b
     .copy('node_modules/chart.js/dist/*.js', frontThemePath + 'vendor/chartjs')
     .copy('node_modules/font-awesome/css/*.min.css', frontThemePath + 'vendor/font-awesome/css')
     .copy('node_modules/font-awesome/fonts/**', frontThemePath + 'vendor/font-awesome/fonts')
-    .copy('node_modules/jquery/dist/jquery.min.js', frontThemePath + 'vendor/jquery')
-    .copy('node_modules/jquery.easing/**.js', frontThemePath + 'vendor/jquery-easing')
-    .copy('node_modules/jquery-touch-events/src/**.js', frontThemePath + 'vendor/jquery-touch-events')
+    .copy('node_modules/jquery.animate-number/jquery.animateNumber.min.js', frontThemePath + 'vendor/jquery-animate-number')
     .copy('node_modules/jquery-numeric/*.js', frontThemePath + 'vendor/jquery-numeric')
-    .copy('node_modules/scrollreveal/dist/*.js', frontThemePath + 'vendor/scrollreveal')
+    .copy('node_modules/jquery-touch-events/src/**.js', frontThemePath + 'vendor/jquery-touch-events')
     .copy('node_modules/scrolltofixed/*.js', frontThemePath + 'vendor/scrolltofixed');
 
+addFilesToVersioning = addFilesToVersioning.concat([
+    frontThemePath + 'vendor/bootstrap/css/bootstrap.min.css',
+    frontThemePath + 'vendor/bootstrap/js/bootstrap.min.js',
+    frontThemePath + 'vendor/font-awesome/css/font-awesome.min.css'
+]);
 
 if (mix.config.inProduction) {
-    mix.version();
+    mix.version(addFilesToVersioning);
 } else {
     mix.sourceMaps();
 }

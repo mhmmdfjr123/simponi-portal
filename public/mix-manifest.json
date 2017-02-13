@@ -1,8 +1,12 @@
 {
-  "/mix.js": "/mix.js",
-  "/theme/front/css/simponi.css": "/theme/front/css/simponi.css",
-  "/theme/front/css/tinymce.css": "/theme/front/css/tinymce.css",
-  "/theme/front/js/global/simponi.js": "/theme/front/js/global/simponi.js",
-  "/theme/front/js/pages/customer.js": "/theme/front/js/pages/customer.js",
-  "/theme/front/js/pages/simulation.js": "/theme/front/js/pages/simulation.js"
+  "/theme/front/vendor/bootstrap/css/bootstrap.min.css": "/theme/front/vendor/bootstrap/css/bootstrap.min.ec3bb52a00e176a7181d454dffaea219.css",
+  "/theme/front/vendor/bootstrap/js/bootstrap.min.js": "/theme/front/vendor/bootstrap/js/bootstrap.min.5869c96cc8f19086aee625d670d741f9.js",
+  "/theme/front/vendor/font-awesome/css/font-awesome.min.css": "/theme/front/vendor/font-awesome/css/font-awesome.min.269550530cc127b6aa5a35925a7de6ce.css",
+  "/mix.js": "/mix.58e065928ed8ebd0b582.js",
+  "/theme/front/css/simponi.css": "/theme/front/css/simponi.a7f913d817b2e0edc4cf.css",
+  "/theme/front/css/tinymce.css": "/theme/front/css/tinymce.a7f913d817b2e0edc4cf.css",
+  "/theme/front/js/global/simponi.js": "/theme/front/js/global/simponi.81ca74be5887971cf8ed02934939ac16.js",
+  "/theme/front/js/pages/customer.js": "/theme/front/js/pages/customer.a4091135cc875a6c5a60bbbe50390782.js",
+  "/theme/front/js/pages/simulation.js": "/theme/front/js/pages/simulation.0a4f82b025b67921229500ac34dc0441.js",
+  "/theme/front/js/global/vendor.js": "/theme/front/js/global/vendor.955691be4f44e4693a977e79d6cbb9dc.js"
 }

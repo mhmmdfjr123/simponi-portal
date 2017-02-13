@@ -189,7 +189,6 @@
 @section('footScript')
     <script src="{{ asset('theme/front/vendor/chartjs/chart.min.js') }}"></script>
     <script src="{{ asset('theme/front/vendor/jquery-numeric/jquery.numeric.js') }}"></script>
-    <script src="{{ asset('theme/front/vendor/jquery-animateNumber/jquery.animateNumber.min.js') }}"></script>
-    <script src="{{ asset('theme/front/js/validator/simulation-validator.js') }}"></script>
-    <script src="{{ asset('theme/front/js/pages/simulation.js') }}"></script>
+    <script src="{{ asset('theme/front/vendor/jquery-animate-number/jquery.animateNumber.min.js') }}"></script>
+    <script src="{{ mix('theme/front/js/pages/simulation.js') }}"></script>
 @endsection

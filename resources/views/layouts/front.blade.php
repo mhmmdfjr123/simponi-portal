@@ -12,15 +12,15 @@
     <link href="{{ asset('theme/front/images/favicon.png') }}" rel="shortcut icon" type="image/x-icon">
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('theme/front/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ mix('theme/front/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
 
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:400,700|Open+Sans|Roboto:700,400,300" rel="stylesheet">
-    <link href="{{ asset('theme/front/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ mix('theme/front/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
     <!-- Theme CSS -->
-    <link href="{{ asset('theme/front/css/simponi.css') }}" rel="stylesheet">
+    <link href="{{ mix('theme/front/css/simponi.css') }}" rel="stylesheet">
 
     @yield('headScript')
 
@@ -135,17 +135,13 @@
     </footer>
 
     <!-- jQuery -->
-    <script src="{{ asset('theme/front/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ mix('theme/front/js/global/vendor.js') }}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="{{ asset('theme/front/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="{{ asset('theme/front/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset('theme/front/vendor/scrollreveal/scrollreveal.min.js') }}"></script>
+    <script src="{{ mix('theme/front/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 
     <!-- Theme JavaScript -->
-    <script src="{{ asset('theme/front/js/global/simponi.js') }}"></script>
+    <script src="{{ mix('theme/front/js/global/simponi.js') }}"></script>
 
     @yield('footScript')
 </body>
