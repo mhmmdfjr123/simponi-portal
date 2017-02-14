@@ -187,7 +187,7 @@
 @endsection
 
 @section('footScript')
-    <script src="{{ asset('theme/front/vendor/chartjs/chart.min.js') }}"></script>
+    <script src="{{ asset('theme/front/vendor/chartjs/Chart.min.js') }}"></script>
     <script src="{{ asset('theme/front/vendor/jquery-numeric/jquery.numeric.js') }}"></script>
     <script src="{{ asset('theme/front/vendor/jquery-animate-number/jquery.animateNumber.min.js') }}"></script>
     <script src="{{ mix('theme/front/js/pages/simulation.js') }}"></script>

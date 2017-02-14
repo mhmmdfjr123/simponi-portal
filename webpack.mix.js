@@ -37,7 +37,7 @@ mix.combine([
     'node_modules/scrollreveal/dist/scrollreveal.min.js'
 ], frontThemePath + 'js/global/vendor.js');
 
-// Copy vendor files
+// Copy vendor files for specific page
 mix.copy('node_modules/bootstrap/dist/css/*.min.css', frontThemePath + 'vendor/bootstrap/css')
     .copy('node_modules/bootstrap/dist/js/*.min.js', frontThemePath + 'vendor/bootstrap/js')
     .copy('node_modules/bootstrap/dist/fonts/**', frontThemePath + 'vendor/bootstrap/fonts')
