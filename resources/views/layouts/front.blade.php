@@ -7,19 +7,14 @@
     <meta name='keywords' content='{{ (isset($metaKey) ? $metaKey : settings('meta_key')  ) }}' />
     <meta name='description' content='{{ (isset($metaDesc) ? e($metaDesc) : e(settings('meta_desc') ) ) }}' />
 
-    <title>{{ (isset($pageTitle) ? $pageTitle : Config::get('app.name') ) }}</title>
+    <title>{{ $pageTitle or Config::get('app.name') }}</title>
 
     <link href="{{ asset('theme/front/images/favicon.png') }}" rel="shortcut icon" type="image/x-icon">
 
-    <!-- Bootstrap Core CSS -->
-    <link href="{{ mix('theme/front/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
-
-    <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:400,700|Open+Sans|Roboto:700,400,300" rel="stylesheet">
-    <link href="{{ mix('theme/front/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
-    <!-- Theme CSS -->
+    <link href="{{ mix('theme/front/css/vendor.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ mix('theme/front/css/simponi.css') }}" rel="stylesheet">
 
     @yield('headScript')
@@ -134,14 +129,8 @@
         </div>
     </footer>
 
-    <!-- jQuery -->
-    <script src="{{ mix('theme/front/js/global/vendor.js') }}"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{{ mix('theme/front/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-
-    <!-- Theme JavaScript -->
-    <script src="{{ mix('theme/front/js/global/simponi.js') }}"></script>
+    <script src="{{ mix('theme/front/js/vendor.js') }}"></script>
+    <script src="{{ mix('theme/front/js/simponi.js') }}"></script>
 
     @yield('footScript')
 </body>

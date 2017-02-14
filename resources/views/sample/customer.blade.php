@@ -167,5 +167,5 @@
 @endsection
 
 @section('footScript')
-    <script src="{{ asset('theme/front/js/pages/customer.js') }}"></script>
+    <script src="{{ mix('theme/front/js/pages/customer.js') }}"></script>
 @endsection
