@@ -19,10 +19,12 @@
     "jquery": "^3.1.1",
     "jquery-numeric": "github:samwm/jquery-numeric",
     "jquery-touch-events": "github:benmajor/jQuery-Touch-Events",
+    "jquery-validation": "^1.16.0",
     "jquery.animate-number": "0.0.14",
     "jquery.easing": "^1.4.1",
     "laravel-mix": "^0.7.5",
     "scrollreveal": "^3.1.4",
-    "scrolltofixed": "^1.0.6"
+    "scrolltofixed": "^1.0.6",
+    "toastr": "^2.1.2"
   }
 }

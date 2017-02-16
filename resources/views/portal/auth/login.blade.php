@@ -5,28 +5,30 @@
         <div class="auth-content">
             <h3>Login Portal</h3>
 
-            <form role="form" method="post" action="">
+            <form role="form" method="post" action="{{ route('portal-login') }}" class="form-validate">
+                {{ csrf_field() }}
+
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="text" name="username" class="form-control input-lg" placeholder="Username" aria-describedby="input-icon-username">
+                        <input type="text" name="username" class="form-control input-lg" placeholder="Username" required>
                         <i class="ion-ios-person-outline"></i>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="password" name="password" class="form-control  input-lg" placeholder="Password" aria-describedby="input-icon-password">
+                        <input type="password" name="password" class="form-control  input-lg" placeholder="Password" required>
                         <i class="ion-ios-locked-outline"></i>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="checkbox-inline">
+                    {{--<label class="checkbox-inline">
                         <input type="checkbox" name="remember">
                         Ingat Saya
-                    </label>
+                    </label>--}}
                     <a href="#" class="pull-right">Lupa password?</a>
                     <div class="clearfix"></div>
                 </div>
-                <button type="submit" class="btn btn-lg btn-primary btn-block">
+                <button type="submit" class="btn btn-lg btn-primary btn-block" id="btn-login">
                     Login
                 </button>
 
@@ -45,6 +47,14 @@
 
 @section('footScript')
     <script type="text/javascript">
+        const $formLogin = $(".form-validate");
 
+        $formLogin.submit(function(e){
+            if($(this).valid()){
+                $('input.form-control').attr('readonly', true);
+                $('input[type=checkbox]').attr('readonly', true);
+                $('#btn-login').button('loading');
+            }
+        });
     </script>
 @endsection

@@ -33,12 +33,15 @@ mix.combine([
     'node_modules/jquery/dist/jquery.min.js',
     'node_modules/bootstrap/dist/js/bootstrap.min.js',
     'node_modules/jquery.easing/jquery.easing.min.js',
-    'node_modules/scrollreveal/dist/scrollreveal.min.js'
+    'node_modules/jquery-validation/dist/jquery.validate.min.js',
+    'node_modules/scrollreveal/dist/scrollreveal.min.js',
+    'node_modules/toastr/build/toastr.min.js'
 ], frontThemePath + 'js/vendor.js');
 mix.combine([
     'node_modules/bootstrap/dist/css/bootstrap.min.css',
     'node_modules/font-awesome/css/font-awesome.min.css',
-    'node_modules/ionicons/css/ionicons.min.css'
+    'node_modules/ionicons/css/ionicons.min.css',
+    'node_modules/toastr/build/toastr.min.css'
 ], frontThemePath + 'css/vendor.css');
 
 // Copy vendor files for specific page
@@ -49,6 +52,7 @@ mix.copy('node_modules/bootstrap/dist/fonts/**', frontThemePath + 'fonts')
     .copy('node_modules/jquery.animate-number/jquery.animateNumber.min.js', frontThemePath + 'vendor/jquery-animate-number')
     .copy('node_modules/jquery-numeric/*.js', frontThemePath + 'vendor/jquery-numeric')
     .copy('node_modules/jquery-touch-events/src/**.js', frontThemePath + 'vendor/jquery-touch-events')
+    .copy('node_modules/jquery-validation/dist/localization/**.js', frontThemePath + 'vendor/jquery-validation/localization')
     .copy('node_modules/scrolltofixed/*.js', frontThemePath + 'vendor/scrolltofixed');
 
 if (mix.config.inProduction) {

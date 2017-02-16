@@ -2756,6 +2756,12 @@ jodid25519@^1.0.0:
   version "1.0.8"
   resolved "https://codeload.github.com/benmajor/jQuery-Touch-Events/tar.gz/a0b021e8f1a9a79ed32325bd45fc6071479f6b91"
 
+jquery-validation@^1.16.0:
+  version "1.16.0"
+  resolved "https://registry.yarnpkg.com/jquery-validation/-/jquery-validation-1.16.0.tgz#b6e5277ebbd67c1fabab213eb4454eea8a3095ca"
+  dependencies:
+    jquery "^1.7 || ^2.0 || ^3.1"
+
 jquery.animate-number@0.0.14:
   version "0.0.14"
   resolved "https://registry.yarnpkg.com/jquery.animate-number/-/jquery.animate-number-0.0.14.tgz#9263bb87e3c9ac2e2fc173d16ebd607589ad3198"
@@ -2766,7 +2772,7 @@ jquery.easing@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/jquery.easing/-/jquery.easing-1.4.1.tgz#47982c5836bd758fd48494923c4a101ef6e93e3b"
 
-"jquery@>= 1.7.0", jquery@^3.1.1:
+"jquery@>= 1.7.0", "jquery@^1.7 || ^2.0 || ^3.1", jquery@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.1.1.tgz#347c1c21c7e004115e0a4da32cece041fad3c8a3"
 
@@ -5109,6 +5115,10 @@ to-arraybuffer@^1.0.0:
 to-fast-properties@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/to-fast-properties/-/to-fast-properties-1.0.2.tgz#f3f5c0c3ba7299a7ef99427e44633257ade43320"
+
+toastr@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/toastr/-/toastr-2.1.2.tgz#fd69066ae7578a5b3357725fc9c7c335e9b681df"
 
 tough-cookie@~2.3.0:
   version "2.3.2"

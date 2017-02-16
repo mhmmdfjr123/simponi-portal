@@ -1,17 +1,10 @@
-@form-border-radius: 2px;
-
 .form-control {
     border-radius: @form-border-radius;
 }
 
 .form-control:focus{
     border-color: @gray-light;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-}
-.has-error .form-control:focus{
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    .form-box-shadow;
 }
 
 .input-group > .form-control,
@@ -50,4 +43,37 @@
 .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle) {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
+}
+
+// jQuery Validation Style
+.has-error {
+    .form-control {
+        border-color: @form-has-error-color;
+
+        &:focus{
+            border-color: darken(@form-has-error-color, 3%);
+            .form-box-shadow;
+        }
+    }
+
+    span.error {
+        color: @form-has-error-color;
+    }
+}
+
+.has-success {
+    .form-control {
+        border-color: @form-has-success-color;
+        .form-box-shadow;
+
+        &:focus {
+            border-color: darken(@form-has-success-color, 3%);;
+            .form-box-shadow;
+        }
+    }
+}
+
+.form-box-shadow() {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
 }
