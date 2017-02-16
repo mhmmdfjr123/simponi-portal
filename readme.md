@@ -22,7 +22,7 @@ This project use [Git Flow Pattern](http://danielkummer.github.io/git-flow-cheat
 
 ## Official Laravel Documentation
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs) and [here is](https://yarnpkg.com/lang/en/docs/migrating-from-npm/) YARN docs
 
 ### Additional Plugins Documentation
 1. [Laravel IDE Generator](https://github.com/barryvdh/laravel-ide-helper)

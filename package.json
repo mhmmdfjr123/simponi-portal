@@ -15,6 +15,7 @@
     "chart.js": "^2.5.0",
     "font-awesome": "^4.6.3",
     "gulp": "^3.9.1",
+    "ionicons": "2.0.1",
     "jquery": "^3.1.1",
     "jquery-numeric": "github:samwm/jquery-numeric",
     "jquery-touch-events": "github:benmajor/jQuery-Touch-Events",

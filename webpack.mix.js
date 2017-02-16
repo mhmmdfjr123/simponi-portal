@@ -37,13 +37,15 @@ mix.combine([
 ], frontThemePath + 'js/vendor.js');
 mix.combine([
     'node_modules/bootstrap/dist/css/bootstrap.min.css',
-    'node_modules/font-awesome/css/font-awesome.min.css'
+    'node_modules/font-awesome/css/font-awesome.min.css',
+    'node_modules/ionicons/css/ionicons.min.css'
 ], frontThemePath + 'css/vendor.css');
 
 // Copy vendor files for specific page
 mix.copy('node_modules/bootstrap/dist/fonts/**', frontThemePath + 'fonts')
     .copy('node_modules/chart.js/dist/*.js', frontThemePath + 'vendor/chartjs')
     .copy('node_modules/font-awesome/fonts/**', frontThemePath + 'fonts')
+    .copy('node_modules/ionicons/fonts/**', frontThemePath + 'fonts')
     .copy('node_modules/jquery.animate-number/jquery.animateNumber.min.js', frontThemePath + 'vendor/jquery-animate-number')
     .copy('node_modules/jquery-numeric/*.js', frontThemePath + 'vendor/jquery-numeric')
     .copy('node_modules/jquery-touch-events/src/**.js', frontThemePath + 'vendor/jquery-touch-events')

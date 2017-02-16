@@ -1,79 +1,50 @@
-@extends('layouts.login')
+@extends('layouts.front')
 
 @section('content')
-    <h2 class="m-t-0 m-b-3 text-xs-center font-weight-semibold font-size-20">
-        Login Portal
-    </h2>
+    <div class="container auth-container">
+        <div class="auth-content">
+            <h3>Login Portal</h3>
 
-    <form action="{{ route('portal-login') }}" class="panel p-a-4" method="POST" id="form-login">
-        {{ csrf_field() }}
+            <form role="form" method="post" action="">
+                <div class="form-group">
+                    <div class="input-group-login">
+                        <input type="text" name="username" class="form-control input-lg" placeholder="Username" aria-describedby="input-icon-username">
+                        <i class="ion-ios-person-outline"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group-login">
+                        <input type="password" name="password" class="form-control  input-lg" placeholder="Password" aria-describedby="input-icon-password">
+                        <i class="ion-ios-locked-outline"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="remember">
+                        Ingat Saya
+                    </label>
+                    <a href="#" class="pull-right">Lupa password?</a>
+                    <div class="clearfix"></div>
+                </div>
+                <button type="submit" class="btn btn-lg btn-primary btn-block">
+                    Login
+                </button>
 
-        <fieldset class="form-group form-group-lg{{ $errors->has('username') ? ' has-error' : '' }} form-message-light">
-            <input type="text" class="form-control" placeholder="Username" name="username" value="{{ old('username') }}" required autofocus>
+                <div class="login-or">
+                    <hr class="hr-or">
+                    <span class="span-or">atau</span>
+                </div>
 
-            @if ($errors->has('username'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('username') }}</strong>
-                </span>
-            @endif
-        </fieldset>
-
-        <fieldset class="form-group form-group-lg{{ $errors->has('password') ? ' has-error' : '' }} form-message-light">
-            <input type="password" class="form-control" placeholder="Password" name="password" required>
-
-            @if ($errors->has('password'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('password') }}</strong>
-                </span>
-            @endif
-        </fieldset>
-
-        <div class="clearfix">
-            <!--
-            <label class="custom-control custom-checkbox pull-xs-left">
-                <input type="checkbox" class="custom-control-input" name="remember">
-                <span class="custom-control-indicator"></span>
-                Ingat Saya
-            </label>
-            -->
-            <a href="{{ url('/password/reset') }}" class="font-size-12 text-muted pull-xs-right" id="page-signin-forgot-link">Lupa password?</a>
+                <div class="btn-register-group">
+                    Belum mempunyai akun? <a href="#" class="btn btn-primary btn-outline">Daftar</a>
+                </div>
+            </form>
         </div>
-
-        <button type="submit" class="btn btn-block btn-lg btn-primary m-t-3" id="btn-login" data-loading-text="Please wait...">Login</button>
-    </form>
+    </div>
 @endsection
 
 @section('footScript')
     <script type="text/javascript">
-        require(['jquery', 'px-bootstrap/button', 'px-bootstrap/alert', 'px/plugins/px-validate'], function($) {
-            var $formLogin = $("#form-login");
 
-            $formLogin.pxValidate();
-            $formLogin.submit(function(e){
-                if($(this).valid()){
-                    $('input.form-control').attr('readonly', true);
-                    $('input[type=checkbox]').attr('readonly', true);
-                    $('#btn-login').button('loading');
-                }
-            });
-        });
-
-        @if(count($errors) > 0 || Session::has('success') || Session::has('warning'))
-        require(['jquery', 'px-libs/toastr'], function($, toastr) {
-            toastr.options.closeButton = true;
-
-            @if (count($errors) > 0)
-                @foreach ($errors->all() as $error)
-                    toastr.error('{{ $error }}', 'Terjadi suatu kesalahan.');
-            @endforeach
-        @endif
-        @if (Session::has('success'))
-            toastr.success('{{ Session::get('success') }}', 'Sukses.');
-            @endif
-            @if (Session::has('warning'))
-                toastr.warning('{{ Session::get('warning') }}', 'Peringatan.');
-            @endif
-        });
-        @endif
     </script>
 @endsection
