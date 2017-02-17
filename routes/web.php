@@ -111,6 +111,7 @@ Route::get('/', function () {
 Route::group(['middleware' => 'web'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 	Route::get('/simulation', 'SimulationController@showSimulationForm')->name('simulation');
+    Route::get('/simulationrev', 'SimulationController@showSimulationRevForm')->name('simulationrev');
 	Route::get('/faq', 'FaqController@index')->name('faq');
 });
 

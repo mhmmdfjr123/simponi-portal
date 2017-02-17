@@ -4,9 +4,9 @@
     <section id="content" class="section-box">
         <div class="container">
             <img class="contentimage" src="{{ asset('theme/front/images/header/simulation.jpg') }}" alt="Content" />
-            <h2>Simulasi DPLK BNI.</h2>
+            <h2>Simulasi BNI Simponi Berdasarkan Iuran.</h2>
             <form id="simulation-form" class="row col-xs-12">
-                <div class="identity col-sm-6 col-xs-12">
+                <div class="left-side col-sm-6 col-xs-12">
                     {{-- <!-- <div class="form-group">
                         <label>Nama Lengkap</label>
                         <input class="form-control" type="text" placeholder="Masukkan Nama Lengkap" />
@@ -78,7 +78,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="starting-balance col-sm-6 col-xs-12">
+                <div class="right-side col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label>Pembayaran Dana Awal</label>
                         <div class="radio">

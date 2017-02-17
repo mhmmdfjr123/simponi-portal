@@ -26,4 +26,8 @@ class SimulationController extends Controller
     {
         return view('simulation.simulation');
     }
+    public function showSimulationRevForm()
+    {
+        return view('simulation.simulationrev');
+    }
 }
