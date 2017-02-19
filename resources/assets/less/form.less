@@ -1,3 +1,8 @@
+.form-box-shadow() {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
 .form-control {
     border-radius: @form-border-radius;
 }
@@ -51,7 +56,7 @@
         border-color: @form-has-error-color;
 
         &:focus{
-            border-color: darken(@form-has-error-color, 3%);
+            border-color: darken(@form-has-error-color, 10%);
             .form-box-shadow;
         }
     }
@@ -67,13 +72,42 @@
         .form-box-shadow;
 
         &:focus {
-            border-color: darken(@form-has-success-color, 3%);;
+            border-color: darken(@form-has-success-color, 10%);;
             .form-box-shadow;
         }
     }
 }
 
-.form-box-shadow() {
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+.alert-password-meter {
+    margin-top: 10px;
+
+    ul {
+        list-style: none;
+        margin-left: 15px;
+
+        li {
+            padding-left: 24px;
+            position: relative;
+
+            i {
+                position: absolute;
+                left: 0;
+            }
+
+            .ok {
+                display: none;
+                color: @brand-success;
+            }
+
+            .not-ok {
+                display: inherit;
+                color: @brand-danger;
+            }
+        }
+
+        li.has-password-ok {
+            .ok {display: inherit;}
+            .not-ok {display: none;}
+        }
+    }
 }

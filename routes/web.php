@@ -131,10 +131,10 @@ Route::group(['prefix' => 'portal', 'middleware' => 'web'], function () {
     Route::get('/login/register', 'Portal\Auth\LoginController@showRegistrationForm')->name('portal-register');
     Route::post('/login/register', 'Portal\Auth\LoginController@register');
     Route::get('/logout', 'Portal\Auth\LoginController@logout')->name('portal-logout');
-    Route::get('/password/reset', 'Portal\Auth\LoginController@logout')->name('portal-forgot-password');
-    Route::post('/password/reset', 'Portal\Auth\LoginController@register');
-    Route::get('/password/login-token', 'Portal\Auth\LoginController@logout')->name('portal-login-token');
-    Route::post('/password/login-token', 'Portal\Auth\LoginController@register');
+    Route::get('/password/forgot', 'Portal\Auth\ForgotPasswordController@showForgotPasswordForm')->name('portal-forgot-password');
+    Route::post('/password/forgot', 'Portal\Auth\ForgotPasswordController@requestToken');
+    Route::get('/password/reset', 'Portal\Auth\ForgotPasswordController@showResetPasswordForm')->name('portal-reset-password');
+    Route::post('/password/reset', 'Portal\Auth\ForgotPasswordController@resetPassword');
 });
 
 Route::get('/post/{alias?}', 'PostController@index');

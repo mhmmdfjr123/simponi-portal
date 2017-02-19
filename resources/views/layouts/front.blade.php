@@ -135,7 +135,7 @@
     @yield('footScript')
 
     <script type="text/javascript">
-        @if(count($errors) > 0 || Session::has('success') || Session::has('warning'))
+        @if((isset($errors) && count($errors) > 0) || Session::has('success') || Session::has('warning'))
             toastr.options.closeButton      = true;
             toastr.options.closeDuration    = 400;
 

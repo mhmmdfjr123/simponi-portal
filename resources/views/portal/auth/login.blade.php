@@ -25,10 +25,10 @@
                         <input type="checkbox" name="remember">
                         Ingat Saya
                     </label>--}}
-                    <a href="#" class="pull-right">Lupa password?</a>
+                    <a href="{{ route('portal-forgot-password') }}" class="pull-right">Lupa password?</a>
                     <div class="clearfix"></div>
                 </div>
-                <button type="submit" class="btn btn-lg btn-primary btn-block" id="btn-login">
+                <button type="submit" class="btn btn-lg btn-primary btn-block" data-loading-text="Loading..." id="btn-login">
                     Login
                 </button>
 
@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="btn-register-group">
-                    Belum mempunyai akun? <a href="#" class="btn btn-primary btn-outline">Daftar</a>
+                    Belum mempunyai akun? <a href="{{ route('portal-register') }}" class="btn btn-primary btn-outline">Daftar</a>
                 </div>
             </form>
         </div>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use Illuminate\Http\Request;
 
 /**
  * Base controller class for portal only in order to handle API request to the server.
@@ -13,14 +14,17 @@ use GuzzleHttp\Exception\RequestException;
 class PortalBaseController extends Controller
 {
     protected $apiClient;
-    protected $clientType = 'web';
+    protected $clientType = 'HEAD_SIMPONIWEB';
 
-    public function __construct()
+    public function __construct(Request $request)
     {
         $options = [
             'base_uri'  => config('app.portal_api_base_uri'),
             'headers'   => [
-                'Content-Type' => 'application/json'
+                'Content-Type'  => 'application/json',
+	            'ClientId'      => $request->ip(),
+                'ClientType'    => $this->clientType,
+                'ClientVersion' => '1'
             ]
         ];
 

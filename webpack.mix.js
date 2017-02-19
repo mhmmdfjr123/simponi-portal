@@ -32,13 +32,17 @@ mix.combine([
 mix.combine([
     'node_modules/jquery/dist/jquery.min.js',
     'node_modules/bootstrap/dist/js/bootstrap.min.js',
+    'node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
+    'node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.id.min.js',
     'node_modules/jquery.easing/jquery.easing.min.js',
     'node_modules/jquery-validation/dist/jquery.validate.min.js',
+    resourcesPath + 'js/custom-validator/bni-password-validator.js',
     'node_modules/scrollreveal/dist/scrollreveal.min.js',
     'node_modules/toastr/build/toastr.min.js'
 ], frontThemePath + 'js/vendor.js');
 mix.combine([
     'node_modules/bootstrap/dist/css/bootstrap.min.css',
+    'node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css',
     'node_modules/font-awesome/css/font-awesome.min.css',
     'node_modules/ionicons/css/ionicons.min.css',
     'node_modules/toastr/build/toastr.min.css'
@@ -52,7 +56,6 @@ mix.copy('node_modules/bootstrap/dist/fonts/**', frontThemePath + 'fonts')
     .copy('node_modules/jquery.animate-number/jquery.animateNumber.min.js', frontThemePath + 'vendor/jquery-animate-number')
     .copy('node_modules/jquery-numeric/*.js', frontThemePath + 'vendor/jquery-numeric')
     .copy('node_modules/jquery-touch-events/src/**.js', frontThemePath + 'vendor/jquery-touch-events')
-    .copy('node_modules/jquery-validation/dist/localization/**.js', frontThemePath + 'vendor/jquery-validation/localization')
     .copy('node_modules/scrolltofixed/*.js', frontThemePath + 'vendor/scrolltofixed');
 
 if (mix.config.inProduction) {

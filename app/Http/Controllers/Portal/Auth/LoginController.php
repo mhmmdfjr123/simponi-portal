@@ -12,30 +12,34 @@ use Illuminate\Http\Request;
  */
 class LoginController extends PortalBaseController {
 
-    /**
-     * Create a new controller instance.
-     */
-    public function __construct() {
-        parent::__construct();
+	/**
+	 * Create a new controller instance.
+	 *
+	 * @param Request $request
+	 */
+    public function __construct(Request $request) {
+        parent::__construct($request);
         $this->middleware('guest.portal', ['except' => 'logout']);
     }
 
     public function showLoginForm() {
-        return view('portal.auth.login');
+    	$data = [
+    	    'pageTitle' => 'Login'
+	    ];
+
+        return view('portal.auth.login', $data);
     }
 
     public function login(Request $request) {
         $this->validateLogin($request);
 
         $data = [
-            'user'          => $request->get('username'),
-            'password'      => $request->get('password'),
-            'clientType'    => $this->clientType,
-            'clientId'      => '-',
+            'username'      => $request->get('username'),
+            'password'      => $request->get('password')
         ];
 
         try {
-            $response = $this->apiRequest('POST', 'admin/login', ['json' => $data]);
+            $response = $this->apiRequest('POST', 'admin/perorangan/login', ['json' => $data]);
             $body = json_decode($response->getBody());
 
             $this->setToken($body->tokenJWT);
@@ -64,11 +68,11 @@ class LoginController extends PortalBaseController {
     }
 
     public function showRegistrationForm() {
-        if(!$this->getSession()['fresh']) {
-            return redirect()->route('portal-login');
-        }
+        $data = [
+		    'pageTitle' => 'Pendaftaran'
+	    ];
 
-        return view('portal.auth.register');
+        return view('portal.auth.register', $data);
     }
 
     public function register(Request $request) {
