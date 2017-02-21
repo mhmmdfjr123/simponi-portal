@@ -27,7 +27,7 @@
 
                 <button type="submit" class="btn btn-lg btn-primary btn-block btn-submit">
                     Kirim
-                </button>[
+                </button>
             </form>
         </div>
     </div>
