@@ -7,7 +7,7 @@
  * Copyright (c) 2017
  */
 const $bniPasswordElements = $('.bniPasswordValidator');
-let rules = [
+var rules = [
     {
         html: {
             id: 'bni-password-min-8',
@@ -48,7 +48,7 @@ let rules = [
 ];
 
 // Create validator message indicator
-let messageContainer = '<div class="alert alert-warning alert-password-meter">' +
+var messageContainer = '<div class="alert alert-warning alert-password-meter">' +
     'Kriteria password:' +
     '<ul class="fa-ul">';
 
@@ -67,8 +67,8 @@ $bniPasswordElements.each(function() {
 
 // Validator
 $.validator.addMethod("bniPasswordValidator", function(value, element) {
-    let result = true;
-    let listOfFalse = [];
+    var result = true;
+    var listOfFalse = [];
 
     $.each(rules, function(key, rule) {
         if(rule.validator(value, element)) {

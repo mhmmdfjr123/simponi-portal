@@ -2,6 +2,8 @@
 
 use App\Contracts\PortalGuard;
 use App\Http\Controllers\Portal\PortalBaseController;
+use App\Services\ApiClient\PortalApiClientService;
+use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
 
 /**
@@ -53,17 +55,45 @@ class LoginController extends PortalBaseController {
         return view('portal.auth.register', $data);
     }
 
-    public function register(Request $request) {
+    public function register(Request $request, PortalApiClientService $apiClient) {
         $this->validate($request, [
-            'accountNumber' => 'required', 'username' => 'required', 'password' => 'required', 'email' => 'required'
+            'account' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+            'email' => 'required|email',
+            'noId' => 'required',
+            'birthdate' => 'required',
+            'mobilePhoneNo' => 'required'
         ]);
 
         $data = [
-            'accountNumber' => $request->get('accountNumber'),
+            'account'       => $request->get('account'),
             'username'      => $request->get('username'),
             'password'      => $request->get('password'),
             'email'         => $request->get('email'),
+            'noId'          => $request->get('noId'),
+            'birthdate'     => date('Y-m-d', strtotime($request->get('birthdate'))),
+            'mobilePhoneNo' => $request->get('mobilePhoneNo'),
         ];
+
+        try {
+        	$apiClient->post('admin/perorangan/register', ['json' => $data], false);
+
+	        return view('portal.auth.registerConfirmation', [
+		        'pageTitle' => 'Pendaftaran Berhasil'
+	        ]);
+        } catch (RequestException $e) {
+	        if($e->hasResponse()) {
+		        $response = json_decode($e->getResponse()->getBody());
+		        $message = (isset($response->message)) ? $response->message : 'An error occurred, please call the administrator.';
+	        } else {
+		        $message = $e->getMessage();
+	        }
+
+	        return redirect()->route('portal-register')
+		        ->withInput($request->except('password'))
+		        ->withErrors($message);
+        }
     }
 
     public function logout(PortalGuard $auth) {

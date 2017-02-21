@@ -137,11 +137,12 @@
     <script type="text/javascript">
         @if((isset($errors) && count($errors) > 0) || Session::has('success') || Session::has('warning'))
             toastr.options.closeButton      = true;
-            toastr.options.closeDuration    = 400;
+            toastr.options.closeDuration    = 300;
+            toastr.options.timeOut          = 15000;
 
             @if (count($errors) > 0)
                 @foreach ($errors->all() as $error)
-                    toastr.error('{{ $error }}', 'Terjadi suatu kesalahan.');
+                    toastr.error('{{ $error }}');
                 @endforeach
             @endif
             @if (Session::has('success'))
@@ -152,6 +153,10 @@
             @endif
         @endif
     </script>
-</body>
 
+    <!--
+    " I hate piracy... Don't steal my works to be yours.. "
+    Author: Efriandika Pratama <efriandika.pratama[at]bni.co.id>
+    -->
+</body>
 </html>

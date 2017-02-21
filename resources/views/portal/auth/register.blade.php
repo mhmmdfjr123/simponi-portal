@@ -5,18 +5,18 @@
         <div class="auth-content">
             <h3>Pendaftaran Akun Baru</h3>
 
-            <form role="form" method="post" action="{{ route('portal-login') }}" class="form-register">
+            <form role="form" method="post" action="{{ route('portal-register') }}" class="form-register">
                 {{ csrf_field() }}
 
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="text" name="account" class="form-control input-lg" placeholder="Nomor Akun BNI Simponi" required>
+                        <input type="text" name="account" value="{{ old('account') }}" class="form-control input-lg" placeholder="Nomor Akun BNI Simponi" required>
                         <i class="ion-ios-personadd-outline"></i>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="text" name="username" id="username" class="form-control input-lg" placeholder="Username" required>
+                        <input type="text" name="username" value="{{ old('username') }}" id="username" class="form-control input-lg" placeholder="Username" required>
                         <i class="ion-ios-person-outline"></i>
                     </div>
                 </div>
@@ -28,30 +28,30 @@
                 </div>
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="text" name="noId" class="form-control input-lg" placeholder="Nomor Identitas (KTP)" required>
+                        <input type="text" name="noId" value="{{ old('noId') }}" class="form-control input-lg" placeholder="Nomor Identitas (KTP)" required>
                         <i class="ion-ios-body-outline"></i>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="text" name="birthdate" id="dob" class="form-control input-lg" placeholder="Tanggal Lahir" required>
+                        <input type="text" name="birthdate" value="{{ old('birthdate') }}" id="dob" class="form-control input-lg" placeholder="Tanggal Lahir" required>
                         <i class="ion-ios-calendar-outline"></i>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="email" name="email" class="form-control input-lg" placeholder="Alamat Email" required>
+                        <input type="email" name="email" value="{{ old('email') }}" class="form-control input-lg" placeholder="Alamat Email" required>
                         <i class="ion-ios-email-outline"></i>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="text" name="mobilePhoneNo" class="form-control input-lg" placeholder="Nomor Handphone" required>
+                        <input type="text" name="mobilePhoneNo" value="{{ old('mobilePhoneNo') }}" class="form-control input-lg" placeholder="Nomor Handphone" required>
                         <i class="ion-iphone"></i>
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-lg btn-primary btn-block" data-loading-text="Mohon Tunggu..." id="btn-login">
+                <button type="submit" class="btn btn-lg btn-primary btn-block" data-loading-text="Mohon Tunggu..." id="btn-register">
                     Daftar
                 </button>
 
@@ -81,6 +81,7 @@
         $formRegister.submit(function(e){
             if($(this).valid()){
                 $('input.form-control').attr('readonly', true);
+                $('#btn-register').button('loading');
             }
         });
 

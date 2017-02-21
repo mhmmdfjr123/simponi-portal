@@ -14,20 +14,20 @@
 
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="text" name="account" class="form-control  input-lg" placeholder="Nomor Akun BNI Simponi" required>
+                        <input type="text" name="account" autocomplete="off" class="form-control  input-lg" placeholder="Nomor Akun BNI Simponi" required>
                         <i class="ion-ios-personadd-outline"></i>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="text" name="username" class="form-control input-lg" placeholder="Username" required>
+                        <input type="text" name="username" autocomplete="off" class="form-control input-lg" placeholder="Username" required>
                         <i class="ion-ios-person-outline"></i>
                     </div>
                 </div>
 
                 <button type="submit" class="btn btn-lg btn-primary btn-block btn-submit">
                     Kirim
-                </button>
+                </button>[
             </form>
         </div>
     </div>

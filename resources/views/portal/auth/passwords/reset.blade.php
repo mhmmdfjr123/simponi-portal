@@ -10,7 +10,7 @@
 
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="text" name="temppas" class="form-control input-lg" placeholder="Token (Dikirim via email)" required>
+                        <input type="text" name="temppas" autocomplete="off" class="form-control input-lg" placeholder="Token (Dikirim via email)" required>
                         <i class="ion-ios-grid-view-outline"></i>
                     </div>
                 </div>

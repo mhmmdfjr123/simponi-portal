@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.4.11 on 2017-02-13.
+ * Generated for Laravel 5.4.11 on 2017-02-21.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -2917,6 +2917,845 @@ namespace {
          */
         public static function getConnections(){
             return \Illuminate\Database\DatabaseManager::getConnections();
+        }
+        
+        /**
+         * Get current schema.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getSchema(){
+            return \Yajra\Oci8\Oci8Connection::getSchema();
+        }
+        
+        /**
+         * Set current schema.
+         *
+         * @param string $schema
+         * @return $this 
+         * @static 
+         */
+        public static function setSchema($schema){
+            return \Yajra\Oci8\Oci8Connection::setSchema($schema);
+        }
+        
+        /**
+         * Update oracle session variables.
+         *
+         * @param array $sessionVars
+         * @return $this 
+         * @static 
+         */
+        public static function setSessionVars($sessionVars){
+            return \Yajra\Oci8\Oci8Connection::setSessionVars($sessionVars);
+        }
+        
+        /**
+         * Get sequence class.
+         *
+         * @return \Yajra\Oci8\Schema\Sequence 
+         * @static 
+         */
+        public static function getSequence(){
+            return \Yajra\Oci8\Oci8Connection::getSequence();
+        }
+        
+        /**
+         * Set sequence class.
+         *
+         * @param \Yajra\Oci8\Schema\Sequence $sequence
+         * @return \Yajra\Oci8\Schema\Sequence 
+         * @static 
+         */
+        public static function setSequence($sequence){
+            return \Yajra\Oci8\Oci8Connection::setSequence($sequence);
+        }
+        
+        /**
+         * Get oracle trigger class.
+         *
+         * @return \Yajra\Oci8\Schema\Trigger 
+         * @static 
+         */
+        public static function getTrigger(){
+            return \Yajra\Oci8\Oci8Connection::getTrigger();
+        }
+        
+        /**
+         * Set oracle trigger class.
+         *
+         * @param \Yajra\Oci8\Schema\Trigger $trigger
+         * @return \Yajra\Oci8\Schema\Trigger 
+         * @static 
+         */
+        public static function setTrigger($trigger){
+            return \Yajra\Oci8\Oci8Connection::setTrigger($trigger);
+        }
+        
+        /**
+         * Get a schema builder instance for the connection.
+         *
+         * @return \Yajra\Oci8\Schema\OracleBuilder 
+         * @static 
+         */
+        public static function getSchemaBuilder(){
+            return \Yajra\Oci8\Oci8Connection::getSchemaBuilder();
+        }
+        
+        /**
+         * Begin a fluent query against a database table.
+         *
+         * @param string $table
+         * @return \Yajra\Oci8\Query\OracleBuilder 
+         * @static 
+         */
+        public static function table($table){
+            return \Yajra\Oci8\Oci8Connection::table($table);
+        }
+        
+        /**
+         * Set oracle session date format.
+         *
+         * @param string $format
+         * @return $this 
+         * @static 
+         */
+        public static function setDateFormat($format = 'YYYY-MM-DD HH24:MI:SS'){
+            return \Yajra\Oci8\Oci8Connection::setDateFormat($format);
+        }
+        
+        /**
+         * Get doctrine connection.
+         *
+         * @return \Doctrine\DBAL\Connection 
+         * @static 
+         */
+        public static function getDoctrineConnection(){
+            return \Yajra\Oci8\Oci8Connection::getDoctrineConnection();
+        }
+        
+        /**
+         * Execute a PL/SQL Function and return its value.
+         * 
+         * Usage: DB::executeFunction('function_name(:binding_1,:binding_n)', [':binding_1' => 'hi', ':binding_n' =>
+         * 'bye'], PDO::PARAM_LOB).
+         *
+         * @author Tylerian - jairo.eog@outlook.com
+         * @param string $sql (mixed)
+         * @param array $bindings (kvp array)
+         * @param int $returnType (PDO::PARAM_*)
+         * @return mixed $returnType
+         * @static 
+         */
+        public static function executeFunction($sql, $bindings = array(), $returnType = 2){
+            return \Yajra\Oci8\Oci8Connection::executeFunction($sql, $bindings, $returnType);
+        }
+        
+        /**
+         * Execute a PL/SQL Procedure and return its result.
+         * 
+         * Usage: DB::executeProcedure($procedureName, $bindings).
+         * $bindings looks like:
+         *         $bindings = [
+         *                  'p_userid'  => $id
+         *         ];
+         *
+         * @param string $procedureName
+         * @param array $bindings
+         * @param mixed $returnType
+         * @return array 
+         * @static 
+         */
+        public static function executeProcedure($procedureName, $bindings, $returnType = 4){
+            return \Yajra\Oci8\Oci8Connection::executeProcedure($procedureName, $bindings, $returnType);
+        }
+        
+        /**
+         * Bind values to their parameters in the given statement.
+         *
+         * @param \PDOStatement $statement
+         * @param array $bindings
+         * @static 
+         */
+        public static function bindValues($statement, $bindings){
+            return \Yajra\Oci8\Oci8Connection::bindValues($statement, $bindings);
+        }
+        
+        /**
+         * Set the table prefix and return the grammar.
+         *
+         * @param \Illuminate\Database\Grammar|\Yajra\Oci8\Query\Grammars\OracleGrammar|\Yajra\Oci8\Schema\Grammars\OracleGrammar $grammar
+         * @return \Illuminate\Database\Grammar 
+         * @static 
+         */
+        public static function withTablePrefix($grammar){
+            return \Yajra\Oci8\Oci8Connection::withTablePrefix($grammar);
+        }
+        
+        /**
+         * Set the schema prefix and return the grammar.
+         *
+         * @param \Illuminate\Database\Grammar|\Yajra\Oci8\Query\Grammars\OracleGrammar|\Yajra\Oci8\Schema\Grammars\OracleGrammar $grammar
+         * @return \Illuminate\Database\Grammar 
+         * @static 
+         */
+        public static function withSchemaPrefix($grammar){
+            return \Yajra\Oci8\Oci8Connection::withSchemaPrefix($grammar);
+        }
+        
+        /**
+         * Set the query grammar to the default implementation.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function useDefaultQueryGrammar(){
+            //Method inherited from \Illuminate\Database\Connection            
+            \Yajra\Oci8\Oci8Connection::useDefaultQueryGrammar();
+        }
+        
+        /**
+         * Set the schema grammar to the default implementation.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function useDefaultSchemaGrammar(){
+            //Method inherited from \Illuminate\Database\Connection            
+            \Yajra\Oci8\Oci8Connection::useDefaultSchemaGrammar();
+        }
+        
+        /**
+         * Set the query post processor to the default implementation.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function useDefaultPostProcessor(){
+            //Method inherited from \Illuminate\Database\Connection            
+            \Yajra\Oci8\Oci8Connection::useDefaultPostProcessor();
+        }
+        
+        /**
+         * Get a new query builder instance.
+         *
+         * @return \Illuminate\Database\Query\Builder 
+         * @static 
+         */
+        public static function query(){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::query();
+        }
+        
+        /**
+         * Run a select statement and return a single result.
+         *
+         * @param string $query
+         * @param array $bindings
+         * @param bool $useReadPdo
+         * @return mixed 
+         * @static 
+         */
+        public static function selectOne($query, $bindings = array(), $useReadPdo = true){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::selectOne($query, $bindings, $useReadPdo);
+        }
+        
+        /**
+         * Run a select statement against the database.
+         *
+         * @param string $query
+         * @param array $bindings
+         * @return array 
+         * @static 
+         */
+        public static function selectFromWriteConnection($query, $bindings = array()){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::selectFromWriteConnection($query, $bindings);
+        }
+        
+        /**
+         * Run a select statement against the database.
+         *
+         * @param string $query
+         * @param array $bindings
+         * @param bool $useReadPdo
+         * @return array 
+         * @static 
+         */
+        public static function select($query, $bindings = array(), $useReadPdo = true){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::select($query, $bindings, $useReadPdo);
+        }
+        
+        /**
+         * Run a select statement against the database and returns a generator.
+         *
+         * @param string $query
+         * @param array $bindings
+         * @param bool $useReadPdo
+         * @return \Generator 
+         * @static 
+         */
+        public static function cursor($query, $bindings = array(), $useReadPdo = true){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::cursor($query, $bindings, $useReadPdo);
+        }
+        
+        /**
+         * Run an insert statement against the database.
+         *
+         * @param string $query
+         * @param array $bindings
+         * @return bool 
+         * @static 
+         */
+        public static function insert($query, $bindings = array()){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::insert($query, $bindings);
+        }
+        
+        /**
+         * Run an update statement against the database.
+         *
+         * @param string $query
+         * @param array $bindings
+         * @return int 
+         * @static 
+         */
+        public static function update($query, $bindings = array()){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::update($query, $bindings);
+        }
+        
+        /**
+         * Run a delete statement against the database.
+         *
+         * @param string $query
+         * @param array $bindings
+         * @return int 
+         * @static 
+         */
+        public static function delete($query, $bindings = array()){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::delete($query, $bindings);
+        }
+        
+        /**
+         * Execute an SQL statement and return the boolean result.
+         *
+         * @param string $query
+         * @param array $bindings
+         * @return bool 
+         * @static 
+         */
+        public static function statement($query, $bindings = array()){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::statement($query, $bindings);
+        }
+        
+        /**
+         * Run an SQL statement and get the number of rows affected.
+         *
+         * @param string $query
+         * @param array $bindings
+         * @return int 
+         * @static 
+         */
+        public static function affectingStatement($query, $bindings = array()){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::affectingStatement($query, $bindings);
+        }
+        
+        /**
+         * Run a raw, unprepared query against the PDO connection.
+         *
+         * @param string $query
+         * @return bool 
+         * @static 
+         */
+        public static function unprepared($query){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::unprepared($query);
+        }
+        
+        /**
+         * Execute the given callback in "dry run" mode.
+         *
+         * @param \Closure $callback
+         * @return array 
+         * @static 
+         */
+        public static function pretend($callback){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::pretend($callback);
+        }
+        
+        /**
+         * Prepare the query bindings for execution.
+         *
+         * @param array $bindings
+         * @return array 
+         * @static 
+         */
+        public static function prepareBindings($bindings){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::prepareBindings($bindings);
+        }
+        
+        /**
+         * Log a query in the connection's query log.
+         *
+         * @param string $query
+         * @param array $bindings
+         * @param float|null $time
+         * @return void 
+         * @static 
+         */
+        public static function logQuery($query, $bindings, $time = null){
+            //Method inherited from \Illuminate\Database\Connection            
+            \Yajra\Oci8\Oci8Connection::logQuery($query, $bindings, $time);
+        }
+        
+        /**
+         * Register a database query listener with the connection.
+         *
+         * @param \Closure $callback
+         * @return void 
+         * @static 
+         */
+        public static function listen($callback){
+            //Method inherited from \Illuminate\Database\Connection            
+            \Yajra\Oci8\Oci8Connection::listen($callback);
+        }
+        
+        /**
+         * Get a new raw query expression.
+         *
+         * @param mixed $value
+         * @return \Illuminate\Database\Query\Expression 
+         * @static 
+         */
+        public static function raw($value){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::raw($value);
+        }
+        
+        /**
+         * Is Doctrine available?
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isDoctrineAvailable(){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::isDoctrineAvailable();
+        }
+        
+        /**
+         * Get a Doctrine Schema Column instance.
+         *
+         * @param string $table
+         * @param string $column
+         * @return \Doctrine\DBAL\Schema\Column 
+         * @static 
+         */
+        public static function getDoctrineColumn($table, $column){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::getDoctrineColumn($table, $column);
+        }
+        
+        /**
+         * Get the Doctrine DBAL schema manager for the connection.
+         *
+         * @return \Doctrine\DBAL\Schema\AbstractSchemaManager 
+         * @static 
+         */
+        public static function getDoctrineSchemaManager(){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::getDoctrineSchemaManager();
+        }
+        
+        /**
+         * Get the current PDO connection.
+         *
+         * @return \PDO 
+         * @static 
+         */
+        public static function getPdo(){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::getPdo();
+        }
+        
+        /**
+         * Get the current PDO connection used for reading.
+         *
+         * @return \PDO 
+         * @static 
+         */
+        public static function getReadPdo(){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::getReadPdo();
+        }
+        
+        /**
+         * Set the PDO connection.
+         *
+         * @param \PDO|null $pdo
+         * @return $this 
+         * @static 
+         */
+        public static function setPdo($pdo){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::setPdo($pdo);
+        }
+        
+        /**
+         * Set the PDO connection used for reading.
+         *
+         * @param \PDO|null $pdo
+         * @return $this 
+         * @static 
+         */
+        public static function setReadPdo($pdo){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::setReadPdo($pdo);
+        }
+        
+        /**
+         * Set the reconnect instance on the connection.
+         *
+         * @param callable $reconnector
+         * @return $this 
+         * @static 
+         */
+        public static function setReconnector($reconnector){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::setReconnector($reconnector);
+        }
+        
+        /**
+         * Get the database connection name.
+         *
+         * @return string|null 
+         * @static 
+         */
+        public static function getName(){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::getName();
+        }
+        
+        /**
+         * Get an option from the configuration options.
+         *
+         * @param string $option
+         * @return mixed 
+         * @static 
+         */
+        public static function getConfig($option){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::getConfig($option);
+        }
+        
+        /**
+         * Get the PDO driver name.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getDriverName(){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::getDriverName();
+        }
+        
+        /**
+         * Get the query grammar used by the connection.
+         *
+         * @return \Illuminate\Database\Query\Grammars\Grammar 
+         * @static 
+         */
+        public static function getQueryGrammar(){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::getQueryGrammar();
+        }
+        
+        /**
+         * Set the query grammar used by the connection.
+         *
+         * @param \Illuminate\Database\Query\Grammars\Grammar $grammar
+         * @return void 
+         * @static 
+         */
+        public static function setQueryGrammar($grammar){
+            //Method inherited from \Illuminate\Database\Connection            
+            \Yajra\Oci8\Oci8Connection::setQueryGrammar($grammar);
+        }
+        
+        /**
+         * Get the schema grammar used by the connection.
+         *
+         * @return \Illuminate\Database\Schema\Grammars\Grammar 
+         * @static 
+         */
+        public static function getSchemaGrammar(){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::getSchemaGrammar();
+        }
+        
+        /**
+         * Set the schema grammar used by the connection.
+         *
+         * @param \Illuminate\Database\Schema\Grammars\Grammar $grammar
+         * @return void 
+         * @static 
+         */
+        public static function setSchemaGrammar($grammar){
+            //Method inherited from \Illuminate\Database\Connection            
+            \Yajra\Oci8\Oci8Connection::setSchemaGrammar($grammar);
+        }
+        
+        /**
+         * Get the query post processor used by the connection.
+         *
+         * @return \Illuminate\Database\Query\Processors\Processor 
+         * @static 
+         */
+        public static function getPostProcessor(){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::getPostProcessor();
+        }
+        
+        /**
+         * Set the query post processor used by the connection.
+         *
+         * @param \Illuminate\Database\Query\Processors\Processor $processor
+         * @return void 
+         * @static 
+         */
+        public static function setPostProcessor($processor){
+            //Method inherited from \Illuminate\Database\Connection            
+            \Yajra\Oci8\Oci8Connection::setPostProcessor($processor);
+        }
+        
+        /**
+         * Get the event dispatcher used by the connection.
+         *
+         * @return \Illuminate\Contracts\Events\Dispatcher 
+         * @static 
+         */
+        public static function getEventDispatcher(){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::getEventDispatcher();
+        }
+        
+        /**
+         * Set the event dispatcher instance on the connection.
+         *
+         * @param \Illuminate\Contracts\Events\Dispatcher $events
+         * @return void 
+         * @static 
+         */
+        public static function setEventDispatcher($events){
+            //Method inherited from \Illuminate\Database\Connection            
+            \Yajra\Oci8\Oci8Connection::setEventDispatcher($events);
+        }
+        
+        /**
+         * Determine if the connection in a "dry run".
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function pretending(){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::pretending();
+        }
+        
+        /**
+         * Get the connection query log.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getQueryLog(){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::getQueryLog();
+        }
+        
+        /**
+         * Clear the query log.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function flushQueryLog(){
+            //Method inherited from \Illuminate\Database\Connection            
+            \Yajra\Oci8\Oci8Connection::flushQueryLog();
+        }
+        
+        /**
+         * Enable the query log on the connection.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function enableQueryLog(){
+            //Method inherited from \Illuminate\Database\Connection            
+            \Yajra\Oci8\Oci8Connection::enableQueryLog();
+        }
+        
+        /**
+         * Disable the query log on the connection.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function disableQueryLog(){
+            //Method inherited from \Illuminate\Database\Connection            
+            \Yajra\Oci8\Oci8Connection::disableQueryLog();
+        }
+        
+        /**
+         * Determine whether we're logging queries.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function logging(){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::logging();
+        }
+        
+        /**
+         * Get the name of the connected database.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getDatabaseName(){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::getDatabaseName();
+        }
+        
+        /**
+         * Set the name of the connected database.
+         *
+         * @param string $database
+         * @return string 
+         * @static 
+         */
+        public static function setDatabaseName($database){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::setDatabaseName($database);
+        }
+        
+        /**
+         * Get the table prefix for the connection.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getTablePrefix(){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::getTablePrefix();
+        }
+        
+        /**
+         * Set the table prefix in use by the connection.
+         *
+         * @param string $prefix
+         * @return void 
+         * @static 
+         */
+        public static function setTablePrefix($prefix){
+            //Method inherited from \Illuminate\Database\Connection            
+            \Yajra\Oci8\Oci8Connection::setTablePrefix($prefix);
+        }
+        
+        /**
+         * Register a connection resolver.
+         *
+         * @param string $driver
+         * @param \Closure $callback
+         * @return void 
+         * @static 
+         */
+        public static function resolverFor($driver, $callback){
+            //Method inherited from \Illuminate\Database\Connection            
+            \Yajra\Oci8\Oci8Connection::resolverFor($driver, $callback);
+        }
+        
+        /**
+         * Get the connection resolver for the given driver.
+         *
+         * @param string $driver
+         * @return mixed 
+         * @static 
+         */
+        public static function getResolver($driver){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::getResolver($driver);
+        }
+        
+        /**
+         * Execute a Closure within a transaction.
+         *
+         * @param \Closure $callback
+         * @param int $attempts
+         * @return mixed 
+         * @throws \Exception|\Throwable
+         * @static 
+         */
+        public static function transaction($callback, $attempts = 1){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::transaction($callback, $attempts);
+        }
+        
+        /**
+         * Start a new database transaction.
+         *
+         * @return void 
+         * @throws \Exception
+         * @static 
+         */
+        public static function beginTransaction(){
+            //Method inherited from \Illuminate\Database\Connection            
+            \Yajra\Oci8\Oci8Connection::beginTransaction();
+        }
+        
+        /**
+         * Commit the active database transaction.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function commit(){
+            //Method inherited from \Illuminate\Database\Connection            
+            \Yajra\Oci8\Oci8Connection::commit();
+        }
+        
+        /**
+         * Rollback the active database transaction.
+         *
+         * @param int|null $toLevel
+         * @return void 
+         * @static 
+         */
+        public static function rollBack($toLevel = null){
+            //Method inherited from \Illuminate\Database\Connection            
+            \Yajra\Oci8\Oci8Connection::rollBack($toLevel);
+        }
+        
+        /**
+         * Get the number of active transactions.
+         *
+         * @return int 
+         * @static 
+         */
+        public static function transactionLevel(){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Yajra\Oci8\Oci8Connection::transactionLevel();
         }
         
     }
@@ -9333,6 +10172,200 @@ namespace {
          */
         public static function macroCall($method, $parameters){
             return \Illuminate\Routing\Router::macroCall($method, $parameters);
+        }
+        
+    }
+
+
+    class Schema extends \Illuminate\Support\Facades\Schema{
+        
+        /**
+         * Create a new table on the schema.
+         *
+         * @param string $table
+         * @param \Closure $callback
+         * @return \Illuminate\Database\Schema\Blueprint 
+         * @static 
+         */
+        public static function create($table, $callback){
+            return \Yajra\Oci8\Schema\OracleBuilder::create($table, $callback);
+        }
+        
+        /**
+         * Changes an existing table on the schema.
+         *
+         * @param string $table
+         * @param \Closure $callback
+         * @return \Illuminate\Database\Schema\Blueprint 
+         * @static 
+         */
+        public static function table($table, $callback){
+            return \Yajra\Oci8\Schema\OracleBuilder::table($table, $callback);
+        }
+        
+        /**
+         * Drop a table from the schema.
+         *
+         * @param string $table
+         * @return \Illuminate\Database\Schema\Blueprint 
+         * @static 
+         */
+        public static function drop($table){
+            return \Yajra\Oci8\Schema\OracleBuilder::drop($table);
+        }
+        
+        /**
+         * Indicate that the table should be dropped if it exists.
+         *
+         * @param string $table
+         * @return \Illuminate\Support\Fluent 
+         * @static 
+         */
+        public static function dropIfExists($table){
+            return \Yajra\Oci8\Schema\OracleBuilder::dropIfExists($table);
+        }
+        
+        /**
+         * Determine if the given table exists.
+         *
+         * @param string $table
+         * @return bool 
+         * @static 
+         */
+        public static function hasTable($table){
+            return \Yajra\Oci8\Schema\OracleBuilder::hasTable($table);
+        }
+        
+        /**
+         * Get the column listing for a given table.
+         *
+         * @param string $table
+         * @return array 
+         * @static 
+         */
+        public static function getColumnListing($table){
+            return \Yajra\Oci8\Schema\OracleBuilder::getColumnListing($table);
+        }
+        
+        /**
+         * Set the default string length for migrations.
+         *
+         * @param int $length
+         * @return void 
+         * @static 
+         */
+        public static function defaultStringLength($length){
+            //Method inherited from \Illuminate\Database\Schema\Builder            
+            \Yajra\Oci8\Schema\OracleBuilder::defaultStringLength($length);
+        }
+        
+        /**
+         * Determine if the given table has a given column.
+         *
+         * @param string $table
+         * @param string $column
+         * @return bool 
+         * @static 
+         */
+        public static function hasColumn($table, $column){
+            //Method inherited from \Illuminate\Database\Schema\Builder            
+            return \Yajra\Oci8\Schema\OracleBuilder::hasColumn($table, $column);
+        }
+        
+        /**
+         * Determine if the given table has given columns.
+         *
+         * @param string $table
+         * @param array $columns
+         * @return bool 
+         * @static 
+         */
+        public static function hasColumns($table, $columns){
+            //Method inherited from \Illuminate\Database\Schema\Builder            
+            return \Yajra\Oci8\Schema\OracleBuilder::hasColumns($table, $columns);
+        }
+        
+        /**
+         * Get the data type for the given column name.
+         *
+         * @param string $table
+         * @param string $column
+         * @return string 
+         * @static 
+         */
+        public static function getColumnType($table, $column){
+            //Method inherited from \Illuminate\Database\Schema\Builder            
+            return \Yajra\Oci8\Schema\OracleBuilder::getColumnType($table, $column);
+        }
+        
+        /**
+         * Rename a table on the schema.
+         *
+         * @param string $from
+         * @param string $to
+         * @return void 
+         * @static 
+         */
+        public static function rename($from, $to){
+            //Method inherited from \Illuminate\Database\Schema\Builder            
+            \Yajra\Oci8\Schema\OracleBuilder::rename($from, $to);
+        }
+        
+        /**
+         * Enable foreign key constraints.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function enableForeignKeyConstraints(){
+            //Method inherited from \Illuminate\Database\Schema\Builder            
+            return \Yajra\Oci8\Schema\OracleBuilder::enableForeignKeyConstraints();
+        }
+        
+        /**
+         * Disable foreign key constraints.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function disableForeignKeyConstraints(){
+            //Method inherited from \Illuminate\Database\Schema\Builder            
+            return \Yajra\Oci8\Schema\OracleBuilder::disableForeignKeyConstraints();
+        }
+        
+        /**
+         * Get the database connection instance.
+         *
+         * @return \Illuminate\Database\Connection 
+         * @static 
+         */
+        public static function getConnection(){
+            //Method inherited from \Illuminate\Database\Schema\Builder            
+            return \Yajra\Oci8\Schema\OracleBuilder::getConnection();
+        }
+        
+        /**
+         * Set the database connection instance.
+         *
+         * @param \Illuminate\Database\Connection $connection
+         * @return $this 
+         * @static 
+         */
+        public static function setConnection($connection){
+            //Method inherited from \Illuminate\Database\Schema\Builder            
+            return \Yajra\Oci8\Schema\OracleBuilder::setConnection($connection);
+        }
+        
+        /**
+         * Set the Schema Blueprint resolver callback.
+         *
+         * @param \Closure $resolver
+         * @return void 
+         * @static 
+         */
+        public static function blueprintResolver($resolver){
+            //Method inherited from \Illuminate\Database\Schema\Builder            
+            \Yajra\Oci8\Schema\OracleBuilder::blueprintResolver($resolver);
         }
         
     }
