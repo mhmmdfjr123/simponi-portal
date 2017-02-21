@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers\Portal\Auth;
 
+use App\Contracts\PortalGuard;
 use App\Http\Controllers\Portal\PortalBaseController;
-use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
 
 /**
@@ -18,7 +18,6 @@ class LoginController extends PortalBaseController {
 	 * @param Request $request
 	 */
     public function __construct(Request $request) {
-        parent::__construct($request);
         $this->middleware('guest.portal', ['except' => 'logout']);
     }
 
@@ -30,41 +29,20 @@ class LoginController extends PortalBaseController {
         return view('portal.auth.login', $data);
     }
 
-    public function login(Request $request) {
+    public function login(Request $request, PortalGuard $auth) {
         $this->validateLogin($request);
 
-        $data = [
+	    $credentials = [
             'username'      => $request->get('username'),
             'password'      => $request->get('password')
         ];
 
-        try {
-            $response = $this->apiRequest('POST', 'admin/perorangan/login', ['json' => $data]);
-            $body = json_decode($response->getBody());
+        $response = $auth->login($credentials);
 
-            $this->setToken($body->tokenJWT);
-            $this->setSession($body->fresh, $body->userType, $body->personal);
-
-            return $this->authenticated($request, $body);
-        } catch (RequestException $e) {
-            if($e->hasResponse() && $e->getResponse()->getStatusCode() == 401) {
-                $response = json_decode($e->getResponse()->getBody());
-
-                return redirect()->route('portal-login')->withErrors([
-                    'username' => (isset($response->message)) ? $response->message : 'Unauthorized, please login..'
-                ]);
-            } else if($e->hasResponse()) {
-                $response = json_decode($e->getResponse()->getBody());
-
-                return redirect()->back()->withErrors([
-                    (isset($response->message)) ? $response->message : 'An error occurred, please call your administrator.'
-                ]);
-            } else {
-                return redirect()->back()->withErrors([
-                    $e->getMessage()
-                ]);
-            }
-        }
+        if($response['status'])
+        	return redirect()->route('portal-dashboard');
+        else
+        	return redirect()->back()->withInput(['username'])->withErrors($response['message']);
     }
 
     public function showRegistrationForm() {
@@ -86,36 +64,11 @@ class LoginController extends PortalBaseController {
             'password'      => $request->get('password'),
             'email'         => $request->get('email'),
         ];
-
-        try {
-            $response = $this->apiRequest('POST', 'api/person/register', ['json' => $data]);
-            $body = json_decode($response->getBody());
-
-            $this->clearSession();
-
-            return redirect()->route('portal-login')->with('success', $body->message);
-        } catch (RequestException $e) {
-            if($e->hasResponse()) {
-                $response = json_decode($e->getResponse()->getBody());
-
-                return redirect()->back()
-                    ->withInput($request->only('accountNumber', 'username', 'email'))
-                    ->withErrors([
-                        (isset($response->message)) ? $response->message : 'An error occurred, please call your administrator.'
-                ]);
-            } else {
-                return redirect()->back()
-                    ->withInput($request->only('accountNumber', 'username', 'email'))
-                    ->withErrors([
-                        $e->getMessage()
-                ]);
-            }
-        }
     }
 
-    public function logout() {
-        $this->clearSession();
-        return redirect()->route('portal-login');
+    public function logout(PortalGuard $auth) {
+    	$auth->logout();
+        return redirect()->route('portal-login')->with('success', 'Logout berhasil.');
     }
 
     /**
@@ -128,22 +81,5 @@ class LoginController extends PortalBaseController {
         $this->validate($request, [
             'username' => 'required', 'password' => 'required',
         ]);
-    }
-
-    /**
-     * The user has been authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
-     * @return mixed
-     */
-    private function authenticated(Request $request, $user) {
-        if($user->fresh){
-            $this->setLoggedIn(false);
-            return redirect()->route('portal-register');
-        } else {
-            $this->setLoggedIn();
-            return redirect()->route('portal-dashboard');
-        }
     }
 }

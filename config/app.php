@@ -3,14 +3,19 @@
 return [
     /*
 	|--------------------------------------------------------------------------
-	| Global Config Variable (common)
+	| Portal Config Variable
 	|--------------------------------------------------------------------------
 	|
-	| Common variable. place your common variable here
-    | Author: Efriandika Pratama
+	| These value below is used for SIMPONI PORTAL configuration, in order to
+    | communicate to backend API server.
 	|
 	*/
-    'portal_api_base_uri' => env('PORTAL_API_BASE_URI', 'http://localhost'),
+    'portal' => [
+		'api' => [
+			'client_type'   => 'HEAD_SIMPONIWEB',
+			'base_uri'      => env('PORTAL_API_BASE_URI', 'http://localhost')
+		]
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -142,7 +147,7 @@ return [
 
     'log' => env('APP_LOG', 'daily'),
 
-    'log_level' => env('APP_LOG_LEVEL', 'debug'),
+    'log_level' => env('APP_LOG_LEVEL', 'error'),
 
     /*
     |--------------------------------------------------------------------------
@@ -198,6 +203,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+	    App\Providers\PortalServiceProvider::class,
 
         /*
          * Additional Service Provider
