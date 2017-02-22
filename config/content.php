@@ -47,8 +47,12 @@ return [
                 'action'    => 'fund-fact-sheet'
             ],
             'simulation' => [
-                'title'     => 'Simulasi',
+                'title'     => 'Simulasi Berdasarkan Iuran',
                 'action'    => 'simulation'
+            ],
+            'simulationNeeds' => [
+	            'title'     => 'Simulasi Berdasarkan Kebutuhan',
+	            'action'    => 'simulation/based-on-needs'
             ],
         ]
     ],

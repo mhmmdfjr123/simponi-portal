@@ -92,11 +92,11 @@ Route::group(['middleware' => 'web'], function () {
     // Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
     // Route::post('register', 'Auth\RegisterController@register');
 
-    // Password Reset Routes...
-    Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password-reset');
-    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
-    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
-    Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+	// Password Reset Routes...
+	$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+	$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+	$this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+	$this->post('password/reset', 'Auth\ResetPasswordController@reset');
 });
 
 /*
@@ -110,8 +110,8 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'web'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
-	Route::get('/simulation', 'SimulationController@showSimulationForm')->name('simulation');
-    Route::get('/simulationrev', 'SimulationController@showSimulationRevForm')->name('simulationrev');
+	Route::get('/simulation', 'SimulationController@showSimulationBasedOnContrib')->name('simulation');
+    Route::get('/simulation/based-on-needs', 'SimulationController@showSimulationBasedOnNeeds');
 	Route::get('/faq', 'FaqController@index')->name('faq');
 });
 
@@ -132,10 +132,10 @@ Route::group(['prefix' => 'portal', 'middleware' => 'web'], function () {
     Route::get('/login/register', 'Portal\Auth\LoginController@showRegistrationForm')->name('portal-register');
     Route::post('/login/register', 'Portal\Auth\LoginController@register');
     Route::get('/logout', 'Portal\Auth\LoginController@logout')->name('portal-logout');
-    Route::get('/password/reset', 'Portal\Auth\LoginController@logout')->name('portal-forgot-password');
-    Route::post('/password/reset', 'Portal\Auth\LoginController@register');
-    Route::get('/password/login-token', 'Portal\Auth\LoginController@logout')->name('portal-login-token');
-    Route::post('/password/login-token', 'Portal\Auth\LoginController@register');
+    Route::get('/password/forgot', 'Portal\Auth\ForgotPasswordController@showForgotPasswordForm')->name('portal-forgot-password');
+    Route::post('/password/forgot', 'Portal\Auth\ForgotPasswordController@requestToken');
+    Route::get('/password/reset', 'Portal\Auth\ForgotPasswordController@showResetPasswordForm')->name('portal-reset-password');
+    Route::post('/password/reset', 'Portal\Auth\ForgotPasswordController@resetPassword');
 });
 
 Route::get('/post/{alias?}', 'PostController@index');

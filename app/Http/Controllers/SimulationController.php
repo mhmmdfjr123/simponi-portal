@@ -12,8 +12,7 @@ class SimulationController extends Controller
     /**
      * Create a new controller instance.
      */
-    public function __construct()
-    {
+    public function __construct() {
 
     }
 
@@ -22,12 +21,15 @@ class SimulationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showSimulationForm()
-    {
-        return view('simulation.simulation');
+    public function showSimulationBasedOnContrib() {
+        return view('simulation.simulation', [
+        	'pageTitle' => 'Simulasi BNI Simponi Berdasarkan Iuran.'
+        ]);
     }
-    public function showSimulationRevForm()
+    public function showSimulationBasedOnNeeds()
     {
-        return view('simulation.simulationrev');
+        return view('simulation.simulationrev', [
+        	'pageTitle' => 'Simulasi BNI Simponi Berdasarkan Kebutuhan.'
+        ]);
     }
 }
