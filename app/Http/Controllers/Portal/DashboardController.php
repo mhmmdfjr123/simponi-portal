@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\Portal;
 
+use App\Contracts\PortalGuard;
 use App\Http\Controllers\Controller;
 
 /**
@@ -11,13 +12,19 @@ use App\Http\Controllers\Controller;
 class DashboardController extends Controller
 {
 
-    /**
-     * Show the dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+	/**
+	 * Show the dashboard.
+	 *
+	 * @param PortalGuard $auth
+	 *
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+    public function index(PortalGuard $auth)
     {
-        return view('portal.dashboard.index');
+    	$data = [
+    		'user' => $auth->user()
+	    ];
+
+        return view('portal.dashboard.index', $data);
     }
 }

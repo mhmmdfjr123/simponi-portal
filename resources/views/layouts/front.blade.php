@@ -133,6 +133,30 @@
     <script src="{{ mix('theme/front/js/simponi.js') }}"></script>
 
     @yield('footScript')
-</body>
 
+    <script type="text/javascript">
+        @if((isset($errors) && count($errors) > 0) || Session::has('success') || Session::has('warning'))
+            toastr.options.closeButton      = true;
+            toastr.options.closeDuration    = 300;
+            toastr.options.timeOut          = 15000;
+
+            @if (count($errors) > 0)
+                @foreach ($errors->all() as $error)
+                    toastr.error('{{ $error }}');
+                @endforeach
+            @endif
+            @if (Session::has('success'))
+                toastr.success('{{ Session::get('success') }}', 'Sukses.');
+            @endif
+            @if (Session::has('warning'))
+                toastr.warning('{{ Session::get('warning') }}', 'Peringatan.');
+            @endif
+        @endif
+    </script>
+
+    <!--
+    " I hate piracy... Don't steal my works to be yours.. "
+    Author: Efriandika Pratama <efriandika.pratama[at]bni.co.id>
+    -->
+</body>
 </html>

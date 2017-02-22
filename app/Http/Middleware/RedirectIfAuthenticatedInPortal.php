@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Support\Facades\PortalAuth;
 use Closure;
 
 class RedirectIfAuthenticatedInPortal
@@ -15,8 +16,7 @@ class RedirectIfAuthenticatedInPortal
      */
     public function handle($request, Closure $next)
     {
-        if (\Session::get('portal_session')['jwt_token'] != '' && \Session::get('portal_session')['personal'] != '' &&
-            \Session::get('portal_session')['logged_in']) {
+        if (PortalAuth::check()) {
             return redirect()->route('portal-dashboard');
         }
 

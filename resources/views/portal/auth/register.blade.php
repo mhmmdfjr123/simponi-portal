@@ -1,88 +1,102 @@
-@extends('layouts.login')
+@extends('layouts.front')
 
 @section('content')
-    <h2 class="m-t-0 m-b-3 text-xs-center font-weight-semibold font-size-20">
-        Register Akun Baru
-    </h2>
+    <div class="container auth-container">
+        <div class="auth-content">
+            <h3>Pendaftaran Akun Baru</h3>
 
-    <form action="{{ route('portal-register') }}" class="panel p-a-4" method="POST" id="form-login">
-        {{ csrf_field() }}
+            <form role="form" method="post" action="{{ route('portal-register') }}" class="form-register">
+                {{ csrf_field() }}
 
-        <fieldset class="form-group form-group-lg{{ $errors->has('accountNumber') ? ' has-error' : '' }} form-message-light">
-            <input type="text" class="form-control" placeholder="Masukan Nomor DPLK" name="accountNumber" value="{{ old('accountNumber') }}" required>
+                <div class="form-group">
+                    <div class="input-group-login">
+                        <input type="text" name="account" value="{{ old('account') }}" class="form-control input-lg" placeholder="Nomor Akun BNI Simponi" required>
+                        <i class="ion-ios-personadd-outline"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group-login">
+                        <input type="text" name="username" value="{{ old('username') }}" id="username" class="form-control input-lg" placeholder="Username" required>
+                        <i class="ion-ios-person-outline"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group-login">
+                        <input type="password" name="password" id="password" class="form-control  input-lg bniPasswordValidator" data-username-id="username" placeholder="Password">
+                        <i class="ion-ios-locked-outline"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group-login">
+                        <input type="text" name="noId" value="{{ old('noId') }}" class="form-control input-lg" placeholder="Nomor Identitas (KTP)" required>
+                        <i class="ion-ios-body-outline"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group-login">
+                        <input type="text" name="birthdate" value="{{ old('birthdate') }}" id="dob" class="form-control input-lg" placeholder="Tanggal Lahir" required>
+                        <i class="ion-ios-calendar-outline"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group-login">
+                        <input type="email" name="email" value="{{ old('email') }}" class="form-control input-lg" placeholder="Alamat Email" required>
+                        <i class="ion-ios-email-outline"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group-login">
+                        <input type="text" name="mobilePhoneNo" value="{{ old('mobilePhoneNo') }}" class="form-control input-lg" placeholder="Nomor Handphone" required>
+                        <i class="ion-iphone"></i>
+                    </div>
+                </div>
 
-            @if ($errors->has('accountNumber'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('accountNumber') }}</strong>
-                </span>
-            @endif
-        </fieldset>
+                <button type="submit" class="btn btn-lg btn-primary btn-block" data-loading-text="Mohon Tunggu..." id="btn-register">
+                    Daftar
+                </button>
 
-        <fieldset class="form-group form-group-lg{{ $errors->has('username') ? ' has-error' : '' }} form-message-light">
-            <input type="text" class="form-control" placeholder="Masukan Username Baru" name="username" value="{{ old('username') }}" required autofocus>
+                <div class="login-or">
+                    <hr class="hr-or">
+                    <span class="span-or">atau</span>
+                </div>
 
-            @if ($errors->has('username'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('username') }}</strong>
-                </span>
-            @endif
-        </fieldset>
-
-        <fieldset class="form-group form-group-lg{{ $errors->has('password') ? ' has-error' : '' }} form-message-light">
-            <input type="password" class="form-control" placeholder="Masukan Password Baru" name="password" required>
-
-            @if ($errors->has('password'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('password') }}</strong>
-                </span>
-            @endif
-        </fieldset>
-
-        <fieldset class="form-group form-group-lg{{ $errors->has('email') ? ' has-error' : '' }} form-message-light">
-            <input type="email" class="form-control" placeholder="Masukan Email Baru" name="email" value="{{ old('email') }}" required>
-
-            @if ($errors->has('email'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('email') }}</strong>
-                </span>
-            @endif
-        </fieldset>
-
-        <button type="submit" class="btn btn-block btn-lg btn-primary m-t-3" id="btn-login" data-loading-text="Please wait...">Submit</button>
-    </form>
+                <div class="btn-register-group">
+                    Sudah mempunyai akun? <a href="{{ route('portal-login') }}" class="btn btn-success btn-outline">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
 @endsection
 
 @section('footScript')
     <script type="text/javascript">
-        require(['jquery', 'px-bootstrap/button', 'px-bootstrap/alert', 'px/plugins/px-validate'], function($) {
-            var $formLogin = $("#form-login");
+        const $formRegister = $(".form-register");
 
-            $formLogin.pxValidate();
-            $formLogin.submit(function(e){
-                if($(this).valid()){
-                    $('input.form-control').attr('readonly', true);
-                    $('input[type=checkbox]').attr('readonly', true);
-                    $('#btn-login').button('loading');
-                }
-            });
+        $formRegister.validate({
+            onkeyup: function(element) {
+                this.element(element);
+            }
         });
 
-        @if(count($errors) > 0 || Session::has('success') || Session::has('warning'))
-        require(['jquery', 'px-libs/toastr'], function($, toastr) {
-            toastr.options.closeButton = true;
-
-            @if (count($errors) > 0)
-                @foreach ($errors->all() as $error)
-                    toastr.error('{{ $error }}', 'Terjadi suatu kesalahan.');
-            @endforeach
-        @endif
-        @if (Session::has('success'))
-            toastr.success('{{ Session::get('success') }}', 'Sukses.');
-            @endif
-            @if (Session::has('warning'))
-                toastr.warning('{{ Session::get('warning') }}', 'Peringatan.');
-            @endif
+        $formRegister.submit(function(e){
+            if($(this).valid()){
+                $('input.form-control').attr('readonly', true);
+                $('#btn-register').button('loading');
+            }
         });
-        @endif
+
+        $('#dob').datepicker({
+            format: "dd-mm-yyyy",
+            language: 'id',
+            startView: 2,
+            maxViewMode: 2,
+            autoclose: true,
+            todayHighlight: true
+        });
+
+        // Trigger validator to password re-checking, if username is changed
+        $('#username').blur(function () {
+            $('#password').keyup();
+        });
     </script>
 @endsection
