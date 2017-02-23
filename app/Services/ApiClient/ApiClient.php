@@ -36,11 +36,12 @@ abstract class ApiClient {
 	 * @param $uri
 	 * @param array $options
 	 * @param boolean
+	 * @param boolean
 	 *
 	 * @return mixed|\Psr\Http\Message\ResponseInterface
 	 * @throws \Exception
 	 */
-	public function request( $method, $uri, array $options = [], $withAuthentication = true) {
+	public function request( $method, $uri, array $options = [], $withAuthentication = true, $useGlobalException = true) {
 		try {
 			if($withAuthentication)
 				$options = $this->addAuthorizationHeader($options);
@@ -49,7 +50,7 @@ abstract class ApiClient {
 
 			return $this->client->request($method, $uri, $options);
 		} catch (RequestException $e) {
-			if($e->hasResponse() && $e->getResponse()->getStatusCode() == 401) {
+			if($useGlobalException && $e->hasResponse() && $e->getResponse()->getStatusCode() == 401) {
 				$this->clearAuthSessionData();
 				throw $this->unAuthorizedExceptionHandler($e);
 			}
@@ -58,32 +59,32 @@ abstract class ApiClient {
 		}
 	}
 
-	public function delete( $uri, array $options = [], $withAuthentication = true) {
-		return $this->request('DELETE', $uri, $options, $withAuthentication);
+	public function delete( $uri, array $options = [], $withAuthentication = true, $useGlobalException = true) {
+		return $this->request('DELETE', $uri, $options, $withAuthentication, $useGlobalException);
 	}
 
-	public function get( $uri, array $options = [], $withAuthentication = true) {
-		return $this->request('GET', $uri, $options, $withAuthentication);
+	public function get( $uri, array $options = [], $withAuthentication = true, $useGlobalException = true) {
+		return $this->request('GET', $uri, $options, $withAuthentication, $useGlobalException);
 	}
 
-	public function head( $uri, array $options = [], $withAuthentication = true) {
-		return $this->request('HEAD', $uri, $options, $withAuthentication);
+	public function head( $uri, array $options = [], $withAuthentication = true, $useGlobalException = true) {
+		return $this->request('HEAD', $uri, $options, $withAuthentication, $useGlobalException);
 	}
 
-	public function options( $uri, array $options = [], $withAuthentication = true) {
-		return $this->request('OPTIONS', $uri, $options, $withAuthentication);
+	public function options( $uri, array $options = [], $withAuthentication = true, $useGlobalException = true) {
+		return $this->request('OPTIONS', $uri, $options, $withAuthentication, $useGlobalException);
 	}
 
-	public function patch( $uri, array $options = [], $withAuthentication = true) {
-		return $this->request('PATCH', $uri, $options, $withAuthentication);
+	public function patch( $uri, array $options = [], $withAuthentication = true, $useGlobalException = true) {
+		return $this->request('PATCH', $uri, $options, $withAuthentication, $useGlobalException);
 	}
 
-	public function post( $uri, array $options = [], $withAuthentication = true) {
-		return $this->request('POST', $uri, $options, $withAuthentication);
+	public function post( $uri, array $options = [], $withAuthentication = true, $useGlobalException = true) {
+		return $this->request('POST', $uri, $options, $withAuthentication, $useGlobalException);
 	}
 
-	public function put( $uri, array $options = [], $withAuthentication = true) {
-		return $this->request('PUT', $uri, $options, $withAuthentication);
+	public function put( $uri, array $options = [], $withAuthentication = true, $useGlobalException = true) {
+		return $this->request('PUT', $uri, $options, $withAuthentication, $useGlobalException);
 	}
 
 	/**

@@ -44,7 +44,7 @@ class ForgotPasswordController extends PortalBaseController {
 		];
 
 		try {
-			$rawResponse = $apiClient->post('admin/perorangan/forgotpassword', ['json' => $data], false);
+			$rawResponse = $apiClient->post('admin/perorangan/forgotpassword', ['json' => $data], false, false);
 
 			// Save jwt token for forgot password in session
 			$response = json_decode($rawResponse->getBody());
@@ -98,7 +98,7 @@ class ForgotPasswordController extends PortalBaseController {
 	    ];
 
 	    try {
-		    $rawResponse = $apiClient->post('api/perorangan/forgotpassword/logintoken', $data, false);
+		    $rawResponse = $apiClient->post('api/perorangan/forgotpassword/logintoken', $data, false, false);
 		    $response = json_decode($rawResponse->getBody());
 
 		    // Remove jwt token for forgot password from session

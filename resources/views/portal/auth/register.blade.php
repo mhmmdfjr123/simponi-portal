@@ -91,7 +91,8 @@
             startView: 2,
             maxViewMode: 2,
             autoclose: true,
-            todayHighlight: true
+            todayHighlight: true,
+            defaultViewDate: { year: 1991 }
         });
 
         // Trigger validator to password re-checking, if username is changed

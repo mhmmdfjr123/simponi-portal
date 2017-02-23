@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name='keywords' content='{{ (isset($metaKey) ? $metaKey : settings('meta_key')  ) }}' />
-    <meta name='description' content='{{ (isset($metaDesc) ? e($metaDesc) : e(settings('meta_desc') ) ) }}' />
+    <meta name='keywords' content='{{ $metaKey or settings('meta_key') }}' />
+    <meta name='description' content='{{ $metaDesc or e(settings('meta_desc')) }}' />
 
     <title>{{ $pageTitle or Config::get('app.name') }}</title>
 
