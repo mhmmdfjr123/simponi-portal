@@ -15,7 +15,7 @@
                 <div style="margin-top: 50px">
                     <h3>Maaf...</h3>
                     <h4>Kami tidak dapat menemukan halaman yang anda cari.</h4>
-                    <div class="alert alert-info" role="alert" style="margin-top: 30px; margin-bottom: 50px">
+                    <div class="alert alert-warning" role="alert" style="margin-top: 30px; margin-bottom: 50px">
                         Ini dapat disebabkan oleh:
                         <ul style="margin-bottom: 10px">
                             <li>Link yang anda akses salah</li>
