@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @section('content')
-    <section id="content" class="section-box">
+    <section id="simulation-content" class="section-box">
         <div class="container">
             <img class="contentimage" src="{{ asset('theme/front/images/header/simulation.jpg') }}" alt="Content" />
             <h2>Simulasi BNI Simponi Berdasarkan Iuran.</h2>

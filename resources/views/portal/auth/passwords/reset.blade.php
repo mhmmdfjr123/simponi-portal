@@ -20,7 +20,7 @@
                         <i class="ion-ios-locked-outline"></i>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-lg btn-primary btn-block btn-submit">
+                <button type="submit" class="btn btn-lg btn-primary btn-block" id="btn-reset-password">
                     Reset Password
                 </button>
             </form>
@@ -41,6 +41,7 @@
         $formPassword.submit(function(e){
             if($(this).valid()){
                 $('input.form-control').attr('readonly', true);
+                $('#btn-reset-password').button('loading');
             }
         });
     </script>

@@ -138,7 +138,7 @@
         @if((isset($errors) && count($errors) > 0) || Session::has('success') || Session::has('warning'))
             toastr.options.closeButton      = true;
             toastr.options.closeDuration    = 300;
-            toastr.options.timeOut          = 15000;
+            toastr.options.timeOut          = 30000;
 
             @if (count($errors) > 0)
                 @foreach ($errors->all() as $error)

@@ -1,9 +1,22 @@
 /**
  * Customized Based on https://github.com/CodeSeven/toastr
  */
+#toast-container {
+    > div {
+        width: 350px;
+    }
+
+    /*overrides*/
+    &.toast-top-center > div,
+    &.toast-bottom-center > div {
+        width: 350px;
+    }
+}
+
 .toast-title {
     .heading-font;
 }
+
 .toast-top-center {
     top: @toast-position-top;
     right: 0;

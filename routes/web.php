@@ -116,9 +116,6 @@ Route::group(['middleware' => 'web'], function () {
 });
 
 // Sample Controller
-Route::get('/register', 'SampleController@register')->name('register');
-Route::get('/userlogin', 'SampleController@userlogin')->name('userlogin');
-Route::get('/applynew', 'SampleController@applynew')->name('applynew');
 Route::get('/customer', 'SampleController@customer')->name('customer');
 // End of Sample Controller
 
