@@ -18,6 +18,7 @@
     "gulp": "^3.9.1",
     "ionicons": "2.0.1",
     "jquery": "^3.1.1",
+    "jquery-facebox": "https://github.com/efriandika/jquery-facebox",
     "jquery-numeric": "github:samwm/jquery-numeric",
     "jquery-touch-events": "github:benmajor/jQuery-Touch-Events",
     "jquery-validation": "^1.16.0",

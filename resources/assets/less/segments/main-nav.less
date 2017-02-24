@@ -24,6 +24,12 @@
     }
     .nav {
         > li {
+            .dropdown-menu {
+                .divider {
+                    background-color: darken(@theme-secondary, 8%);;
+                }
+            }
+
             .dropdown-menu > li > a {
                 color: @gray-lighter !important;
             }
@@ -72,7 +78,7 @@
         }
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: @screen-sm) {
         .navbar-header .navbar-brand {
             img {
                 margin-top: -3px;
@@ -90,10 +96,6 @@
                 &:hover {
                     background-color: @theme-primary;
                 }
-            }
-
-            .divider {
-                background-color: darken(@theme-secondary, 8%);;
             }
 
             &.dropdown-menu-right {
@@ -124,7 +126,7 @@
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: @screen-sm) {
     body.with-affix-menu {
         .navbar-default {
             &.affix-top {

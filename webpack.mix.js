@@ -21,7 +21,12 @@ mix.less(resourcesPath + 'less/simponi.less', frontThemePath + 'css', {relativeU
     .less(resourcesPath + 'less/tinymce.less', frontThemePath + 'css/tinymce.css', {relativeUrls:false});
 
 // Copy and merge js files from resources
-mix.combine([resourcesPath + 'js/simponi.js'], frontThemePath + 'js/simponi.js');
+mix.combine([
+    resourcesPath + 'js/plugins/initial.js',
+    resourcesPath + 'js/custom-validator-method/bni-password-validator.js',
+    resourcesPath + 'js/simponi.js',
+    resourcesPath + 'js/common.js',
+], frontThemePath + 'js/simponi.js');
 mix.combine([resourcesPath + 'js/pages/customer.js'], frontThemePath + 'js/pages/customer.js');
 mix.combine([
     resourcesPath + 'js/pages/simulation.js',
@@ -35,8 +40,8 @@ mix.combine([
     'node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
     'node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.id.min.js',
     'node_modules/jquery.easing/jquery.easing.min.js',
+    'node_modules/jquery-facebox/dist/jquery.facebox.min.js',
     'node_modules/jquery-validation/dist/jquery.validate.min.js',
-    resourcesPath + 'js/custom-validator/bni-password-validator.js',
     'node_modules/scrollreveal/dist/scrollreveal.min.js',
     'node_modules/toastr/build/toastr.min.js'
 ], frontThemePath + 'js/vendor.js');
@@ -45,6 +50,7 @@ mix.combine([
     'node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css',
     'node_modules/font-awesome/css/font-awesome.min.css',
     'node_modules/ionicons/css/ionicons.min.css',
+    'node_modules/jquery-facebox/dist/jquery.facebox.min.css',
     'node_modules/toastr/build/toastr.min.css'
 ], frontThemePath + 'css/vendor.css');
 
