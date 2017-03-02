@@ -121,6 +121,8 @@ Route::get('/customer', 'SampleController@customer')->name('customer');
 
 Route::group(['prefix' => 'portal', 'middleware' => ['web', 'auth.portal']], function () {
     Route::get('/dashboard', 'Portal\DashboardController@index')->name('portal-dashboard');
+	Route::get('/mutation', 'Portal\MutationController@showMutationPage')->name('portal-mutation');
+	Route::post('/mutation', 'Portal\MutationController@getMutations')->name('portal-mutation');
 });
 
 Route::group(['prefix' => 'portal', 'middleware' => 'web'], function () {

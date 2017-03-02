@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Be right back.</title>
+        <title>Oooppps...</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -33,13 +33,13 @@
             }
 
             .title {
-                font-size: 72px;
+                font-size: 62px;
                 margin-bottom: 30px;
                 line-height: 1;
             }
 
             .subtitle {
-                font-size: 40px;
+                font-size: 30px;
                 margin-bottom: 40px;
                 line-height: 1;
             }
@@ -49,13 +49,11 @@
         <div class="container">
             <div class="content">
                 <div class="title">
-                    Be right back.
+                    Terjadi kesalahan (Kode: 500)
                 </div>
 
                 <div class="subtitle">
-                    System is Under maintenance
-
-                    <div style="font-size: 10pt; margin-top: 100px">- EP -</div>
+                    Silahkan hubungi administrator atau silahkan coba lagi nanti
                 </div>
             </div>
         </div>

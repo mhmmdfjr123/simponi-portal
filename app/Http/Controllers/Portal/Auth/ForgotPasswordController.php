@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Portal\Auth;
 
-use App\Http\Controllers\Portal\PortalBaseController;
+use App\Http\Controllers\Controller;
 use App\Services\ApiClient\PortalApiClientService;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Contracts\Session\Session;
@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
  * @package App\Http\Controllers\Portal\Auth
  * @author efriandika
  */
-class ForgotPasswordController extends PortalBaseController {
+class ForgotPasswordController extends Controller {
 
 	protected $session;
 

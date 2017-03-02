@@ -1,70 +1,15 @@
-@extends('layouts.front')
+@extends('layouts.portal', ['activeMenu' => 'dashboard'])
 
-@section('content')
-    @inject('portalGuard', 'App\Contracts\PortalGuard')
+@section('portalContent')
+    <h3>Inquiry Saldo</h3>
 
-    <div class="container portal-container">
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="portal-sidebar">
-                    <!-- SIDEBAR user-PIC -->
-                    <div class="portal-user-pic">
-                        <img data-name="{{ $portalGuard->user()->accountPerson->accountName }}"
-                             data-font-size="30" data-height="80" data-width="80"
-                             class="img-responsive name-initializer" alt="">
-                    </div>
-                    <!-- END SIDEBAR user-PIC -->
-
-                    <!-- SIDEBAR user- TITLE -->
-                    <div class="portal-user-title">
-                        <div class="portal-user-name">
-                            {{ $portalGuard->user()->accountPerson->accountName }}
-                        </div>
-                        <div class="portal-user-account">
-                            {{ $portalGuard->user()->accountPerson->accountNumber }}
-                        </div>
-                    </div>
-                    <!-- END SIDEBAR user- TITLE -->
-
-                    <!-- SIDEBAR BUTTONS -->
-                    <div class="portal-user-buttons">
-                        <a href="javascript:maintenance();" class="btn btn-success btn-outline btn-sm"><i class="ion-locked"></i> Ubah Password</a>
-                    </div>
-                    <!-- END SIDEBAR BUTTONS -->
-
-                    <!-- SIDEBAR MENU -->
-                    <div class="portal-user-menu">
-                        <ul class="nav">
-                            <li class="active">
-                                <a href="{{ route('portal-dashboard') }}"><i class="fa fa-bar-chart-o"></i> Summary </a>
-                            </li>
-                            <li>
-                                <a href="javascript:maintenance();"><i class="fa fa-user-circle-o"></i> Profile </a>
-                            </li>
-                            <li>
-                                <a href="javascript:maintenance();"><i class="fa fa-exchange"></i> Mutasi </a>
-                            </li>
-                            <li>
-                                <a href="javascript:maintenance();"><i class="fa fa-download"></i> Download </a>
-                            </li>
-                            <li>
-                                <a href="javascript:maintenance();"><i class="fa fa-question-circle-o"></i> Bantuan </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('portal-logout') }}"><i class="fa fa-sign-out"></i> Keluar</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- END MENU -->
-                </div>
-            </div>
-            <div class="col-sm-9">
-                This page is under construction
-            </div>
-        </div>
-    </div>
+    asdas
 @endsection
 
-@section('footScript')
-
-@endsection
+@push('portalFootScript')
+    <script type="text/javascript">
+        $(function () {
+            // Idn
+        });
+    </script>
+@endpush

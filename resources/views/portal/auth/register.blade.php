@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="text" name="noId" value="{{ old('noId') }}" class="form-control input-lg" placeholder="Nomor Identitas (KTP)" required>
+                        <input type="text" name="noId" value="{{ old('noId') }}" class="form-control input-lg" placeholder="Nomor Identitas" required>
                         <i class="ion-ios-body-outline"></i>
                     </div>
                 </div>

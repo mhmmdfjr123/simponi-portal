@@ -7,7 +7,6 @@
             <ol class="carousel-indicators">
                 <li data-target="#sim-carousel" data-slide-to="0" class="active"></li>
                 <li data-target="#sim-carousel" data-slide-to="1"></li>
-                <li data-target="#sim-carousel" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
@@ -26,16 +25,6 @@
                             <h1>Another example headline.</h1>
                             <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
                             <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-                        </div>
-                    </div>--}}
-                </div>
-                <div class="item">
-                    <div class="carousel-image" style="background-image: url('{{ asset('theme/front/images/carousel/banner-1.jpg') }}')"></div>
-                    {{--<div class="container">
-                        <div class="carousel-caption">
-                            <h1>One more for good measure.</h1>
-                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
                         </div>
                     </div>--}}
                 </div>

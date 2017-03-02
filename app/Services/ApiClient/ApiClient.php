@@ -2,7 +2,12 @@
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\MessageFormatter;
+use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
+use Monolog\Handler\RotatingFileHandler;
+use Monolog\Logger;
 
 /**
  * @author efriandika
@@ -21,6 +26,13 @@ abstract class ApiClient {
 				'ClientVersion' => '1'
 			]
 		];
+
+		/*
+		$options['handler'] = $this->createLoggingHandlerStack([
+			'REQUEST: {method} {uri} HTTP/{version} {request}',
+			'RESPONSE: {code} - {res_body}',
+		]);
+		*/
 
 		$this->client = new Client($options);
 	}
@@ -113,4 +125,29 @@ abstract class ApiClient {
 	 * @return void
 	 */
 	abstract protected function clearAuthSessionData();
+
+	/**
+	 * Guzzle request logging
+	 *
+	 * @param array $messageFormats
+	 *
+	 * @return HandlerStack
+	 */
+	private function createLoggingHandlerStack(array $messageFormats)
+	{
+		$stack = HandlerStack::create();
+
+		collect($messageFormats)->each(function ($messageFormat) use ($stack) {
+			$stack->unshift(
+				Middleware::log(
+					with(new Logger('api-consumer'))->pushHandler(
+						new RotatingFileHandler(storage_path('logs/api-consumer.log'))
+					),
+					new MessageFormatter($messageFormat)
+				)
+			);
+		});
+
+		return $stack;
+	}
 }

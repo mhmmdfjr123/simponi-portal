@@ -1,9 +1,28 @@
 .portal-container {
     margin-top: 20px;
     margin-bottom: 40px;
+
+    .portal-content {
+        h3 {
+            padding-top: 0;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+    }
+
+    .help-block {
+        font-size: 11pt;
+    }
 }
 
 @media (min-width: @screen-sm) {
+    .portal-sidebar {
+        padding-right: 20px;
+        border-right: 1px dashed #cccccc;
+    }
+}
+
+@media (min-width: @screen-lg) {
     .portal-sidebar {
         padding-right: 30px;
         border-right: 1px dashed #cccccc;
@@ -12,7 +31,8 @@
 
 @media (max-width: @screen-sm) {
     .portal-sidebar {
-        margin-bottom: 30px;
+        margin-bottom: 50px;
+        border-bottom: 1px dashed #cccccc;
     }
 }
 
@@ -24,11 +44,12 @@
         -moz-border-radius: 50% !important;
         border-radius: 50% !important;
     }
+
+    margin-bottom: 20px;
 }
 
 .portal-user-title {
     text-align: center;
-    margin-top: 20px;
 
     .portal-user-name {
         color: @theme-secondary;
@@ -103,4 +124,8 @@
             }
         }
     }
+}
+
+#form-mutation {
+    margin-bottom: 20px;
 }

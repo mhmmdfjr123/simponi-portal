@@ -15,8 +15,8 @@
         var pieces = fullName.split(" ");
         var initials = "";
 
-        for(var x = 0; x < pieces.length; x++) {
-            initials += pieces [x].substring(0, maxCharCount);
+        for(var x = 0; x < pieces.length && x < maxCharCount; x++) {
+            initials += pieces [x].substring(0, 1);
         }
 
         return initials;

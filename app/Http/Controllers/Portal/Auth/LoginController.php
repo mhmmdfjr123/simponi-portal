@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers\Portal\Auth;
 
 use App\Contracts\PortalGuard;
-use App\Http\Controllers\Portal\PortalBaseController;
+use App\Http\Controllers\Controller;
 use App\Services\ApiClient\PortalApiClientService;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
  * @package App\Http\Controllers\Portal\Auth
  * @author efriandika
  */
-class LoginController extends PortalBaseController {
+class LoginController extends Controller {
 
 	/**
 	 * Create a new controller instance.
