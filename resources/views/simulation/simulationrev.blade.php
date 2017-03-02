@@ -140,21 +140,21 @@
                 <div id="simulation" class="col-xs-12">
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div id="monthly-investation" class="simulationresult section-box-item">
-                            <label>Investasi Bulanan<a class="material-icons info" data-toggle="tooltip" title="Investasi Bulanan adalah iuran atau dana yang harus Anda investasikan setiap bulan sebelum pensiun untuk mencapai target investasi yang Anda inginkan">info</a></label>
+                            <label>Investasi Bulanan<a class="material-icons info" data-toggle="tooltip" title="Investasi Bulanan adalah iuran atau dana yang harus Anda investasikan setiap bulan sebelum pensiun untuk mencapai target investasi yang Anda inginkan"><i class="fa fa-info-circle"></i></a></label>
                             <span>N/A</span>
                             <b></b>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div id="annual-investation" class="simulationresult section-box-item">
-                            <label>Investasi Tahunan<a class="material-icons info" data-toggle="tooltip" title="Investasi Tahunan adalah iuran atau dana yang harus Anda investasikan setiap satu tahun sekali sebelum pensiun untuk mencapai target investasi yang Anda inginkan">info</a></label>
+                            <label>Investasi Tahunan<a class="material-icons info" data-toggle="tooltip" title="Investasi Tahunan adalah iuran atau dana yang harus Anda investasikan setiap satu tahun sekali sebelum pensiun untuk mencapai target investasi yang Anda inginkan"><i class="fa fa-info-circle"></i></a></label>
                             <span>N/A</span>
                             <b></b>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div id="lumpsum" class="simulationresult section-box-item">
-                            <label>Investasi Saat Ini / Lumpsum<a class="material-icons info" data-toggle="tooltip" title="Investasi Saat Ini / Lumpsum adalah iuran atau dana yang harus Anda investasikan satu kali sebelum pensiun untuk mencapai target investasi yang Anda inginkan">info</a></label>
+                            <label>Investasi Saat Ini / Lumpsum<a class="material-icons info" data-toggle="tooltip" title="Investasi Saat Ini / Lumpsum adalah iuran atau dana yang harus Anda investasikan satu kali sebelum pensiun untuk mencapai target investasi yang Anda inginkan"><i class="fa fa-info-circle"></i></a></label>
                             <span>N/A</span>
                             <b></b>
                         </div>

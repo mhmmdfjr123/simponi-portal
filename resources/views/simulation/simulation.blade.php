@@ -162,21 +162,21 @@
                 <canvas id="simulation" class="col-xs-12" height="250"></canvas>
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div id="total-funding" class="simulationresult section-box-item">
-                        <label>Total Iuran<a class="material-icons info" data-toggle="tooltip" title="Total iuran adalah dana awal ditambah iuran Anda (per bulan / tahun sesuai pilihan Anda) mulai dari pembukaan rekening hingga berakhirnya masa rekening Anda (sesuai usia pensiun Anda).">info</a></label>
+                        <label>Total Iuran<a class="material-icons info" data-toggle="tooltip" title="Total iuran adalah dana awal ditambah iuran Anda (per bulan / tahun sesuai pilihan Anda) mulai dari pembukaan rekening hingga berakhirnya masa rekening Anda (sesuai usia pensiun Anda)."><i class="fa fa-info-circle"></i></a></label>
                         <span>N/A</span>
                         <b></b>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div id="total-development" class="simulationresult section-box-item">
-                        <label>Hasil Pengembangan<a class="material-icons info" data-toggle="tooltip" title="Hasil pengembangan adalah jumlah perkembangan total iuran mulai dari pembukaan rekening DPLK hingga berakhirnya masa rekening DPLK Anda (sesuai usia pensiun Anda).">info</a></label>
+                        <label>Hasil Pengembangan<a class="material-icons info" data-toggle="tooltip" title="Hasil pengembangan adalah jumlah perkembangan total iuran mulai dari pembukaan rekening DPLK hingga berakhirnya masa rekening DPLK Anda (sesuai usia pensiun Anda)."><i class="fa fa-info-circle"></i></a></label>
                         <span>N/A</span>
                         <b></b>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div id="total-fund" class="simulationresult section-box-item">
-                        <label>Total Dana Manfaat<a class="material-icons info" data-toggle="tooltip" title="Total dana manfaat adalah dana yang bisa Anda klaim di akhir masa rekening DPLK Anda (sesuai usia pensiun Anda)">info</a></label>
+                        <label>Total Dana Manfaat<a class="material-icons info" data-toggle="tooltip" title="Total dana manfaat adalah dana yang bisa Anda klaim di akhir masa rekening DPLK Anda (sesuai usia pensiun Anda)"><i class="fa fa-info-circle"></i></a></label>
                         <span>N/A</span>
                         <b></b>
                     </div>

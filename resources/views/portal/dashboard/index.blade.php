@@ -3,7 +3,7 @@
 @section('portalContent')
     <h3>Inquiry Saldo</h3>
 
-    asdas
+    Under Construction
 @endsection
 
 @push('portalFootScript')

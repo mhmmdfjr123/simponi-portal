@@ -10,23 +10,10 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <div class="carousel-image" style="background-image: url('{{ asset('theme/front/images/carousel/banner-1.jpg') }}')"></div>
-                    {{--<div class="container">
-                        <div class="carousel-caption">
-                            <h1>Example headline.</h1>
-                            <p>Example sub headline.</p>
-                        </div>
-                    </div>--}}
+                    <div class="carousel-image" style="background-image: url('{{ asset('theme/front/images/carousel/banner-2.jpg') }}')"></div>
                 </div>
                 <div class="item">
-                    <div class="carousel-image" style="background-image: url('{{ asset('theme/front/images/carousel/banner-2.jpg') }}')"></div>
-                    {{--<div class="container">
-                        <div class="carousel-caption">
-                            <h1>Another example headline.</h1>
-                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-                        </div>
-                    </div>--}}
+                    <div class="carousel-image" style="background-image: url('{{ asset('theme/front/images/carousel/banner-1.jpg') }}')"></div>
                 </div>
             </div>
             <!--
