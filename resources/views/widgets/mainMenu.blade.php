@@ -27,7 +27,7 @@
         <li class="dropdown">
             <a class="dropdown-toggle dropdown-menu-dashboard" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="{{ route('portal-dashboard') }}">Akun Saya  <span class="caret"></span></a>
             <ul class="dropdown-menu dropdown-menu-right">
-                <li><a href="#">{{ $user->accountPerson->accountName }}</a></li>
+                <li><a href="{{ route('portal-profile') }}">{{ $user->accountPerson->accountName }}</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="{{ route('portal-dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ route('portal-logout') }}"><i class="ion-log-out" style="margin-right: 3px"></i> Keluar</a></li>
