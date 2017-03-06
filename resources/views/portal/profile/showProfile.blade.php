@@ -72,7 +72,7 @@
                     <label for="inputPassword" class="col-sm-3 control-label">Password</label>
                     <div class="col-sm-9">
                         <p class="form-control-static">
-                            <a href="javascript:maintenance();" class="btn btn-sm btn-primary btn-outline"><i class="fa fa-fw fa-lock"></i> Ubah Password</a>
+                            <a href="javascript:void(0)" onclick="loadIntoBox('{{ route('portal-change-password') }}')" class="btn btn-sm btn-primary btn-outline"><i class="fa fa-fw fa-lock"></i> Ubah Password</a>
                         </p>
                     </div>
                 </div>

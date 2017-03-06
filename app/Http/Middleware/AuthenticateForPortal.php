@@ -22,6 +22,9 @@ class AuthenticateForPortal
             return $next($request);
         }
 
+        if ($request->ajax())
+        	return abort(401, 'Unauthorized');
+
         return redirect()->route('portal-login')->withErrors(Session::get(PortalSessionGuardService::class));
     }
 }

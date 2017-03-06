@@ -29,7 +29,7 @@
             <ul class="dropdown-menu dropdown-menu-right">
                 <li><a href="{{ route('portal-profile') }}">{{ $user->accountPerson->accountName }}</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="{{ route('portal-dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ route('portal-dashboard') }}">Inquiry Saldo</a></li>
                 <li><a href="{{ route('portal-logout') }}"><i class="ion-log-out" style="margin-right: 3px"></i> Keluar</a></li>
             </ul>
         </li>

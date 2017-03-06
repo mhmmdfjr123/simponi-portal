@@ -125,6 +125,8 @@ Route::group(['prefix' => 'portal', 'middleware' => ['web', 'auth.portal']], fun
 	Route::post('/mutation', 'Portal\MutationController@getMutations');
 	Route::get('/profile', 'Portal\ProfileController@showProfile')->name('portal-profile');
 	Route::post('/profile', 'Portal\ProfileController@saveNewProfile');
+	Route::get('profile/change-password', 'Portal\ProfileController@showChangePasswordForm')->name('portal-change-password');
+	Route::post('profile/change-password', 'Portal\ProfileController@changePassword');
 });
 
 Route::group(['prefix' => 'portal', 'middleware' => 'web'], function () {

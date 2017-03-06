@@ -48,10 +48,7 @@ class ProfileController extends Controller
 
     	$isUsernameChanged = $request->get('username') != $auth->user()->username;
 
-    	if ($isUsernameChanged)
-    		\Log::info('Change username from '.$auth->user()->username.' to '.$request->get('username'));
-
-	    try {
+    	try {
 		    $rawResponse = $apiClient->post('api/perorangan/change', ['json' => [
 			    'account'       => $auth->user()->accountPerson->accountNumber,
 			    'changeUser'    => $isUsernameChanged,
@@ -63,6 +60,12 @@ class ProfileController extends Controller
 			    'emailNew'      => $request->get('email'),
 			    'mobilePhone'   => $request->get('mobilePhone'),
 		    ]]);
+
+		    if ($isUsernameChanged){
+			    \Log::info('Change username from '.$auth->user()->username.' to '.$request->get('username'));
+			    $auth->logout();
+			    return redirect()->route('portal-login')->with('success', 'Username berhasil diganti. Silahkan login dengan menggunakan username anda yang baru');
+		    }
 
 		    // $response = json_decode($rawResponse->getBody());
 
@@ -78,4 +81,48 @@ class ProfileController extends Controller
 		    return redirect()->route('portal-profile')->withErrors($message);
 	    }
     }
+
+	public function showChangePasswordForm(Request $request){
+		if(!$request->ajax())
+			return redirect()->route('portal-dashboard');
+
+		return view('portal.profile.changePassword');
+	}
+
+	public function changePassword(Request $request, PortalApiClientService $apiClient, PortalGuard $auth){
+		\Log::info($auth->user()->username.': try to change password');
+
+		try {
+			$rawResponse = $apiClient->post('api/perorangan/change', ['json' => [
+				'account'       => $auth->user()->accountPerson->accountNumber,
+				'changeUser'    => false,
+				'usernameOld'   => $auth->user()->username,
+				'usernameNew'   => $auth->user()->username,
+				'changePassword'=> true,
+				'passwordOld'   => $request->get('old-password'),
+				'passwordNew'   => $request->get('password'),
+				'emailNew'      => $auth->user()->email,
+				'mobilePhone'   => $auth->user()->mobilePhone,
+			]], true, false);
+
+			// $response = json_decode($rawResponse->getBody());
+
+			return response()->json([
+				'status'    => 'ok',
+				'message'   => 'Selamat..!! Password anda berhasil diganti.'
+			]);
+		} catch (RequestException $e) {
+			if($e->hasResponse()) {
+				$response = json_decode($e->getResponse()->getBody());
+				$message = (isset($response->message)) ? $response->message : 'An error occurred, please call your administrator.';
+			} else {
+				$message = $e->getMessage();
+			}
+
+			return response()->json([
+				'status'        => 'error',
+				'message'       => $message
+			]);
+		}
+	}
 }

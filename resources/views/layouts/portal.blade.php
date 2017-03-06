@@ -32,7 +32,7 @@
 
                     <!-- SIDEBAR BUTTONS -->
                     <div class="portal-user-buttons">
-                        <a href="javascript:maintenance();" class="btn btn-primary btn-outline btn-sm"><i class="ion-locked"></i> Ubah Password</a>
+                        <a href="javascript:void(0)" onclick="loadIntoBox('{{ route('portal-change-password') }}')" class="btn btn-primary btn-outline btn-sm"><i class="ion-locked"></i> Ubah Password</a>
                     </div>
                     <!-- END SIDEBAR BUTTONS -->
 

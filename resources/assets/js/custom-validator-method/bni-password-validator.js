@@ -6,7 +6,6 @@
  *
  * Copyright (c) 2017
  */
-const $bniPasswordElements = $('.bniPasswordValidator');
 var rules = [
     {
         html: {
@@ -61,9 +60,8 @@ $.each(rules, function(key, rule) {
 });
 
 messageContainer += '</ul></div>';
-$bniPasswordElements.each(function() {
-    $(messageContainer).insertAfter(this)
-});
+
+createPasswordValidatorMessage();
 
 // Validator
 $.validator.addMethod("bniPasswordValidator", function(value, element) {
@@ -85,3 +83,11 @@ $.validator.addMethod("bniPasswordValidator", function(value, element) {
 
     return result;
 }, 'Password anda belum memenuhi kriteria.');
+
+function createPasswordValidatorMessage(){
+    const $bniPasswordElements = $('.bniPasswordValidator');
+
+    $bniPasswordElements.each(function() {
+        $(messageContainer).insertAfter(this)
+    });
+}
