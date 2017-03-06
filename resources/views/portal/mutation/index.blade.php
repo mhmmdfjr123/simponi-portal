@@ -28,21 +28,21 @@
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
-                    <th>Tanggal</th>
-                    <th>Uraian</th>
-                    <th>Tipe</th>
-                    <th>Jumlah Pembayaran</th>
-                    <th>Saldo</th>
+                    <th class="text-center">Tanggal</th>
+                    <th class="text-center">Uraian</th>
+                    <th class="text-center">Tipe</th>
+                    <th class="text-right">Jumlah Pembayaran</th>
+                    <th class="text-right">Saldo</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($accountTrxList['trxList'] as $trx)
                 <tr>
-                    <td>{{ date('d-m-Y', strtotime($trx->trxDate)) }}</td>
+                    <td class="text-center">{{ date('d-m-Y', strtotime($trx->trxDate)) }}</td>
                     <td>{{ $trx->description }}</td>
-                    <td>{{ $trx->debetKredit }}</td>
-                    <td>{{ idr($trx->amount) }}</td>
-                    <td>{{ idr($trx->balance) }}</td>
+                    <td class="text-center">{{ $trx->debetKredit }}</td>
+                    <td class="text-right">{{ idr($trx->amount) }}</td>
+                    <td class="text-right">{{ idr($trx->balance) }}</td>
                 </tr>
                 @endforeach
                 </tbody>

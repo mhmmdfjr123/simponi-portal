@@ -3,7 +3,7 @@
 @section('portalContent')
     <h3>Inquiry Saldo</h3>
 
-    <strong>Kategori Akun:</strong> {{ $user->accountPerson->accountCategory }}
+    Kategori Akun: {{ $user->accountPerson->accountCategory }}
 
     <section class="section-box inquiry-box">
         <div class="row">
@@ -41,7 +41,7 @@
     </section>
 
     <p class="help-block">
-        Saldo per tanggal: {{ date('d-m-Y H:i') }}
+        Saldo per tanggal: {{ date('d-m-Y H:i') }} WIB
     </p>
 @endsection
 
