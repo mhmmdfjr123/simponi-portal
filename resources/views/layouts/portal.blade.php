@@ -52,7 +52,7 @@
                                 <a href="javascript:maintenance();"><i class="fa fa-download"></i> Download </a>
                             </li>--}}
                             <li>
-                                <a href="{{ route('portal-logout') }}"><i class="fa fa-sign-out"></i> Keluar</a>
+                                <a href="{{ route('portal-logout') }}" onclick="popUpLoader();"><i class="fa fa-sign-out"></i> Keluar</a>
                             </li>
                         </ul>
                     </div>

@@ -175,6 +175,18 @@ class PortalSessionGuardService extends ApiClient implements PortalGuard {
 	 * @return void
 	 */
 	public function logout() {
+		$userCredentials = [
+			'account'   => $this->session->get($this->getSessionNameOfAccount()),
+			'username'  => $this->session->get($this->getSessionNameOfUsername())
+		];
+
+		try {
+			$rawResponse = $this->post('api/perorangan/logout', ['json' => $userCredentials]);
+			$response = json_decode($rawResponse->getBody());
+		} catch (RequestException $e) {
+			\Log::error('An error occurred in logout request. Error: '.$e->getMessage());
+		}
+
 		// If we have an event dispatcher instance, we can fire off the logout event
 		// so any further processing can be done. This allows the developer to be
 		// listening for anytime a user signs out of this application manually.
