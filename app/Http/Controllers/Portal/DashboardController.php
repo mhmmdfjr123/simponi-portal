@@ -19,12 +19,12 @@ class DashboardController extends Controller
 	 *
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
-    public function index(PortalGuard $auth)
+    public function showDashboard(PortalGuard $auth)
     {
     	$data = [
     		'user' => $auth->user()
 	    ];
 
-        return view('portal.dashboard.index', $data);
+        return view('portal.dashboard.showDashboard', $data);
     }
 }

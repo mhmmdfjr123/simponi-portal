@@ -1,4 +1,4 @@
-@extends('layouts.portal', ['activeMenu' => 'mutation'])
+@extends('layouts.portal')
 
 @section('portalContent')
     <h3>{{ $pageTitle }}</h3>

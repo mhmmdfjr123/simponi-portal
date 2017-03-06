@@ -1,4 +1,4 @@
-@extends('layouts.portal', ['activeMenu' => 'dashboard'])
+@extends('layouts.portal')
 
 @section('portalContent')
     <h3>Inquiry Saldo</h3>

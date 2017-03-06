@@ -120,9 +120,11 @@ Route::get('/customer', 'SampleController@customer')->name('customer');
 // End of Sample Controller
 
 Route::group(['prefix' => 'portal', 'middleware' => ['web', 'auth.portal']], function () {
-    Route::get('/dashboard', 'Portal\DashboardController@index')->name('portal-dashboard');
-	Route::get('/mutation', 'Portal\MutationController@showMutationPage')->name('portal-mutation');
-	Route::post('/mutation', 'Portal\MutationController@getMutations')->name('portal-mutation');
+    Route::get('/dashboard', 'Portal\DashboardController@showDashboard')->name('portal-dashboard');
+	Route::get('/mutation', 'Portal\MutationController@showMutations')->name('portal-mutation');
+	Route::post('/mutation', 'Portal\MutationController@getMutations');
+	Route::get('/profile', 'Portal\ProfileController@showProfile')->name('portal-profile');
+	Route::post('/profile', 'Portal\ProfileController@saveNewProfile');
 });
 
 Route::group(['prefix' => 'portal', 'middleware' => 'web'], function () {

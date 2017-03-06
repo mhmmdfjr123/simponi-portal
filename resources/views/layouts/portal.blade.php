@@ -39,13 +39,13 @@
                     <!-- SIDEBAR MENU -->
                     <div class="portal-user-menu">
                         <ul class="nav">
-                            <li class="{{ $activeMenu == 'dashboard' ? 'active' : '' }}">
+                            <li>
                                 <a href="{{ route('portal-dashboard') }}"><i class="fa fa-bar-chart-o"></i> Inquiry Saldo </a>
                             </li>
                             <li>
-                                <a href="javascript:maintenance();"><i class="fa fa-user-circle-o"></i> Profile </a>
+                                <a href="{{ route('portal-profile') }}"><i class="fa fa-user-circle-o"></i> Profile </a>
                             </li>
-                            <li class="{{ $activeMenu == 'mutation' ? 'active' : '' }}">
+                            <li>
                                 <a href="{{ route('portal-mutation') }}"><i class="fa fa-exchange"></i> Mutasi </a>
                             </li>
                             <li>
@@ -69,7 +69,12 @@
 @section('footScript')
     <script type="text/javascript">
         $(function () {
-            // Portal
+            // Activate current nav item
+            var url = String(document.location + '').replace(/\#.*?$/, '');
+            $('.portal-user-menu')
+                .find('a[href="' + url + '"]')
+                .parent()
+                .addClass('active');
         });
     </script>
 

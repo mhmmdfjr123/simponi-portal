@@ -2,8 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\PortalSessionGuardService;
 use App\Support\Facades\PortalAuth;
 use Closure;
+use Illuminate\Support\Facades\Session;
 
 class AuthenticateForPortal
 {
@@ -20,6 +22,6 @@ class AuthenticateForPortal
             return $next($request);
         }
 
-        return redirect()->route('portal-login');
+        return redirect()->route('portal-login')->withErrors(Session::get(PortalSessionGuardService::class));
     }
 }

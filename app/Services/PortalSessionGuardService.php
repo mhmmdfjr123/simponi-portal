@@ -70,11 +70,13 @@ class PortalSessionGuardService extends ApiClient implements PortalGuard {
 			return $this->user;
 		}
 
+		$userCredentials = [
+			'account'   => $this->session->get($this->getSessionNameOfAccount()),
+			'username'  => $this->session->get($this->getSessionNameOfUsername())
+		];
+
 		try {
-			$response = $this->post('api/perorangan/detail', ['json' => [
-				'account'   => $this->session->get($this->getSessionNameOfAccount()),
-				'username'  => $this->session->get($this->getSessionNameOfUsername())
-			]]);
+			$response = $this->post('api/perorangan/detail', ['json' => $userCredentials]);
 
 			$user = json_decode($response->getBody());
 
@@ -83,6 +85,13 @@ class PortalSessionGuardService extends ApiClient implements PortalGuard {
 			return $this->user = $user;
 		} catch (RequestException $e) {
 			if($e->hasResponse() && $e->getResponse()->getStatusCode() == 401) {
+				$response = json_decode($e->getResponse()->getBody());
+				$message = (isset($response->message)) ? $response->message : 'Unauthorized, please login..';
+
+				\Session::flash(static::class, $message);
+
+				\Log::info('Access unauthorized. It caused by: '.$message, $userCredentials);
+
 				return null;
 			} else if($e->hasResponse()) {
 				$response = json_decode($e->getResponse()->getBody());
@@ -91,7 +100,7 @@ class PortalSessionGuardService extends ApiClient implements PortalGuard {
 				$message = $e->getMessage();
 			}
 
-			\Log::error('An error occurred while requesting user detail in '.static::class.' The error message is: '.$message);
+			\Log::error('An error occurred while requesting user detail in '.static::class.' with message: '.$message);
 
 			abort(500, $message);
 		}

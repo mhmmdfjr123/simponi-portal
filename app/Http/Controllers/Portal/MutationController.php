@@ -19,14 +19,14 @@ class MutationController extends Controller
 	 *
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
-    public function showMutationPage($accountTrxList = null)
+    public function showMutations($accountTrxList = null)
     {
     	$data = [
     		'pageTitle'         => 'Mutasi Transaksi',
 		    'accountTrxList'    => $accountTrxList
 	    ];
 
-        return view('portal.mutation.index', $data);
+        return view('portal.mutation.showMutations', $data);
     }
 
     public function getMutations(PortalGuard $auth, PortalApiClientService $apiClient, Request $request){
@@ -48,7 +48,7 @@ class MutationController extends Controller
 
 		    $response = json_decode($rawResponse->getBody());
 
-		    return $this->showMutationPage([
+		    return $this->showMutations([
 		    	'trxList'   => is_null($response->accountTrxList) ? [] : $response->accountTrxList->trxList,
 			    'dateStart' => $request->get('dateStart'),
 			    'dateEnd'   => $request->get('dateEnd'),
