@@ -1,7 +1,6 @@
 <?php namespace App\Services;
 
 use App\Contracts\PortalGuard;
-use App\Exceptions\PortalUnauthorizedException;
 use App\Services\ApiClient\ApiClient;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Contracts\Session\Session;
@@ -84,9 +83,7 @@ class PortalSessionGuardService extends ApiClient implements PortalGuard {
 			return $this->user = $user;
 		} catch (RequestException $e) {
 			if($e->hasResponse() && $e->getResponse()->getStatusCode() == 401) {
-				$response = json_decode($e->getResponse()->getBody());
-				$message = (isset($response->message)) ? $response->message : 'Unauthorized Access, please login..';
-				throw new PortalUnauthorizedException($message);
+				return null;
 			} else if($e->hasResponse()) {
 				$response = json_decode($e->getResponse()->getBody());
 				$message = (isset($response->message)) ? $response->message : 'An error occurred, please call your administrator.';
@@ -94,10 +91,8 @@ class PortalSessionGuardService extends ApiClient implements PortalGuard {
 				$message = $e->getMessage();
 			}
 
-			\Log::error('An error occurred while requesting user detail in '.static::class,
-				$this->session->get($this->getSessionBaseName()));
+			\Log::error('An error occurred while requesting user detail in '.static::class.' The error message is: '.$message);
 
-			// TODO Create custom 500 error page
 			abort(500, $message);
 		}
 	}
