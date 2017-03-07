@@ -1,7 +1,10 @@
 <?php namespace App\Providers;
 
+use App\Contracts\BranchGuard;
 use App\Contracts\PortalGuard;
+use App\Services\ApiClient\BranchApiClientService;
 use App\Services\ApiClient\PortalApiClientService;
+use App\Services\BranchSessionGuardService;
 use App\Services\PortalSessionGuardService;
 use Illuminate\Support\ServiceProvider;
 
@@ -11,7 +14,7 @@ use Illuminate\Support\ServiceProvider;
  * @package App\Providers
  * @author efriandika
  */
-class PortalServiceProvider extends ServiceProvider
+class SimponiServiceProvider extends ServiceProvider
 {
 
 	/**
@@ -49,6 +52,7 @@ class PortalServiceProvider extends ServiceProvider
 	 */
 	protected function registerApiClient()
 	{
+		$this->app->singleton(BranchApiClientService::class, BranchApiClientService::class);
 		$this->app->singleton(PortalApiClientService::class, PortalApiClientService::class);
 	}
 
@@ -59,6 +63,7 @@ class PortalServiceProvider extends ServiceProvider
 	 */
 	protected function registerAuthenticator()
 	{
+		$this->app->singleton(BranchGuard::class, BranchSessionGuardService::class);
 		$this->app->singleton(PortalGuard::class, PortalSessionGuardService::class);
 	}
 
@@ -69,6 +74,6 @@ class PortalServiceProvider extends ServiceProvider
 	 */
 	public function provides()
 	{
-		return [PortalApiClientService::class, PortalGuard::class];
+		return [PortalApiClientService::class, PortalGuard::class, BranchApiClientService::class, BranchGuard::class];
 	}
 }

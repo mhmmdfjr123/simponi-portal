@@ -101,7 +101,7 @@
                     <div class="text-faded">
                         <p>BNI Simponi adalah <strong>layanan program pensiun</strong> yang diselenggarakan oleh Dana Pensiun Lembaga Keuangan PT. Bank Negara Indonesia (Persero) Tbk  (DPLK BNI) sejak tahun 1994 berdasarkan Undang-Undang Nomor 11 Tahun 1992 tentang Dana Pensiun. Selama 15 tahun terakhir sejak tahun 2001, DPLK BNI berhasil menjadi <strong>market leader</strong> dalam industri pengelolaan dana pensiun di Indonesia.</p>
                     </div>
-                    <a href="#services" class="page-scroll btn btn-default btn-outline btn-xl sr-button">MULAI PENELUSURAN</a>
+                    <a href="#services" class="page-scroll btn btn-white btn-outline btn-xl sr-button">MULAI PENELUSURAN</a>
                 </div>
             </div>
         </div>
@@ -155,7 +155,7 @@
             <div class="call-to-action">
                 <h2>SIMULASI</h2>
                 <p class="text-faded">Anda dapat melakukan simulasi penghitungan biaya investasi Anda dengan hasil yang akan Anda dapatkan. Silakan tekan tombol di bawah.</p>
-                <a href="/simulation" class="btn btn-default btn-outline btn-xl sr-button">LAKUKAN SIMULASI</a>
+                <a href="/simulation" class="btn btn-white btn-outline btn-xl sr-button">LAKUKAN SIMULASI</a>
             </div>
         </div>
     </aside>

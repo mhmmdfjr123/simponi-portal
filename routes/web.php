@@ -115,10 +115,10 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('/faq', 'FaqController@index')->name('faq');
 });
 
-// Sample Controller
-Route::get('/customer', 'SampleController@customer')->name('customer');
-// End of Sample Controller
-
+// Portal
+Route::get('/portal', function () {
+	return Redirect::route('portal-dashboard');
+});
 Route::group(['prefix' => 'portal', 'middleware' => ['web', 'auth.portal']], function () {
     Route::get('/dashboard', 'Portal\DashboardController@showDashboard')->name('portal-dashboard');
 	Route::get('/mutation', 'Portal\MutationController@showMutations')->name('portal-mutation');
@@ -141,5 +141,30 @@ Route::group(['prefix' => 'portal', 'middleware' => 'web'], function () {
     Route::post('/password/reset', 'Portal\Auth\ForgotPasswordController@resetPassword');
 });
 
+// Branch
+Route::get('/branch', function () {
+	return Redirect::route('branch-dashboard');
+});
+Route::group(['prefix' => 'branch', 'middleware' => ['web', 'auth.branch']], function () {
+	Route::get('/dashboard', 'Branch\DashboardController@showDashboard')->name('branch-dashboard');
+	Route::post('/account/search', 'Branch\AccountController@searchAccount')->name('branch-search-account');
+	Route::get('/account/{encryptedId}', 'Branch\AccountController@showAccount')->name('branch-account');
+	Route::get('/account/{encryptedId}/activate', 'Branch\AccountController@activateAccount')->name('branch-account-activate');
+	Route::get('/account/{encryptedId}/change-email', 'Branch\AccountController@showChangeEmailForm')->name('branch-account-change-email');
+	Route::post('/account/{encryptedId}/change-email', 'Branch\AccountController@changeEmail');
+	Route::get('/account/{encryptedId}/block', 'Branch\AccountController@blockAccount')->name('branch-account-block');
+	Route::get('/account/{encryptedId}/unblock', 'Branch\AccountController@unblockAccount')->name('branch-account-unblock');
+	Route::get('/account/{encryptedId}/delete', 'Branch\AccountController@deleteAccount')->name('branch-account-delete');
+});
+
+Route::group(['prefix' => 'branch', 'middleware' => 'web'], function () {
+	Route::get('/login', 'Branch\Auth\LoginController@showLoginForm')->name('branch-login');
+	Route::post('/login', 'Branch\Auth\LoginController@login');
+	Route::get('/login/register', 'Branch\Auth\LoginController@showRegistrationForm')->name('branch-register');
+	Route::post('/login/register', 'Branch\Auth\LoginController@register');
+	Route::get('/logout', 'Branch\Auth\LoginController@logout')->name('branch-logout');
+});
+
+// Front Site
 Route::get('/post/{alias?}', 'PostController@index');
 Route::get('/{alias}', 'PageController@index');

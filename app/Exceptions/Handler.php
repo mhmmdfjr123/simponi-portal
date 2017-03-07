@@ -21,7 +21,8 @@ class Handler extends ExceptionHandler
         \Illuminate\Session\TokenMismatchException::class,
         \Illuminate\Validation\ValidationException::class,
 
-	    \App\Exceptions\PortalUnauthorizedException::class,
+	    \App\Exceptions\BranchUnauthorizedException::class,
+	    \App\Exceptions\PortalUnauthorizedException::class
     ];
 
     /**
@@ -49,6 +50,8 @@ class Handler extends ExceptionHandler
     {
 	    if ( $exception instanceof PortalUnauthorizedException) {
 		    return redirect()->route('portal-login')->withErrors($exception->getMessage());
+	    }else if ( $exception instanceof BranchUnauthorizedException) {
+		    return redirect()->route('branch-login')->withErrors($exception->getMessage());
 	    }
 
         return parent::render($request, $exception);

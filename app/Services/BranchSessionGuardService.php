@@ -1,7 +1,8 @@
 <?php namespace App\Services;
 
-use App\Contracts\PortalGuard;
+use App\Contracts\BranchGuard;
 use App\Services\ApiClient\ApiClient;
+use Carbon\Carbon;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
@@ -9,7 +10,7 @@ use Illuminate\Http\Request;
 /**
  * @author efriandika
  */
-class PortalSessionGuardService extends ApiClient implements PortalGuard {
+class BranchSessionGuardService extends ApiClient implements BranchGuard {
 
 	/**
 	 * The currently authenticated user.
@@ -57,6 +58,8 @@ class PortalSessionGuardService extends ApiClient implements PortalGuard {
 
 	/**
 	 * Get the currently authenticated user.
+	 *
+	 * @return Object
 	 */
 	public function user() {
 		if ($this->loggedOut || !$this->session->has($this->getSessionBaseName())) {
@@ -70,41 +73,19 @@ class PortalSessionGuardService extends ApiClient implements PortalGuard {
 			return $this->user;
 		}
 
-		$userCredentials = [
-			'account'   => $this->session->get($this->getSessionNameOfAccount()),
-			'username'  => $this->session->get($this->getSessionNameOfUsername())
-		];
+		// Check token expiration
+		$expirationTimestamp = strtotime($this->getTokenExpiration());
+		if(Carbon::createFromTimestamp($expirationTimestamp)->gt(Carbon::now())){
+			$userCredentials = [
+				'account'   => $this->session->get($this->getSessionNameOfAccount()),
+				'username'  => $this->session->get($this->getSessionNameOfUsername())
+			];
 
-		try {
-			$response = $this->post('api/perorangan/detail', ['json' => $userCredentials]);
-
-			$user = json_decode($response->getBody());
-
-			$this->session->put($this->getSessionNameOfUserDetail(), $user);
-
-			return $this->user = $user;
-		} catch (RequestException $e) {
-			$unAuthorizedResponseCode = [401, 403, 404];
-
-			if($e->hasResponse() && in_array($e->getResponse()->getStatusCode(), $unAuthorizedResponseCode)) {
-				$response = json_decode($e->getResponse()->getBody());
-				$message = (isset($response->message)) ? $response->message : 'Unauthorized, please login..';
-
-				\Session::flash(static::class, $message);
-
-				\Log::info('Access unauthorized. It caused by: '.$message, $userCredentials);
-
-				return null;
-			} else if($e->hasResponse()) {
-				$response = json_decode($e->getResponse()->getBody());
-				$message = (isset($response->message)) ? $response->message : 'An error occurred, please call your administrator.';
-			} else {
-				$message = $e->getMessage();
-			}
-
-			\Log::error('An error occurred while requesting user detail in '.static::class.' with message: '.$message);
-
-			abort(500, $message);
+			return (object) $userCredentials;
+		} else {
+			\Session::flash(static::class, 'Sesi anda telah habis. Silahkan login kembali');
+			$this->clearAuthSessionData();
+			return null;
 		}
 	}
 
@@ -140,10 +121,10 @@ class PortalSessionGuardService extends ApiClient implements PortalGuard {
 
 		$username = $credentials['username'];
 
-		\Log::info('Login to Portal with username: '.$username);
+		\Log::info('Login to Branch Portal by using username: '.$username);
 
 		try {
-			$response = $this->post('admin/perorangan/login', ['json' => $credentials], false);
+			$response = $this->post('admin/branch/login', ['json' => $credentials], false);
 			$responseBody = json_decode($response->getBody());
 
 			$this->updateSession($responseBody->account, $username, $responseBody->tokenJWT, $responseBody->sessionExpires);
@@ -183,7 +164,7 @@ class PortalSessionGuardService extends ApiClient implements PortalGuard {
 		];
 
 		try {
-			$rawResponse = $this->post('api/perorangan/logout', ['json' => $userCredentials]);
+			$rawResponse = $this->post('api/branch/logout', ['json' => $userCredentials]);
 			$response = json_decode($rawResponse->getBody());
 		} catch (RequestException $e) {
 			\Log::error('An error occurred in logout request. Error: '.$e->getMessage());
@@ -229,7 +210,7 @@ class PortalSessionGuardService extends ApiClient implements PortalGuard {
 	 */
 	protected function getSessionBaseName()
 	{
-		return 'login_portal_'.sha1(static::class);
+		return 'login_branch_'.sha1(static::class);
 	}
 
 	/**

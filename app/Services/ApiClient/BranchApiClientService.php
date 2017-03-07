@@ -1,27 +1,27 @@
 <?php namespace App\Services\ApiClient;
 
-use App\Contracts\PortalGuard;
-use App\Exceptions\PortalUnauthorizedException;
+use App\Contracts\BranchGuard;
+use App\Exceptions\BranchUnauthorizedException;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
 
 /**
- * Api client service for portal only
+ * Api client service for portal branch only
  *
  * @package App\Services
  * @author efriandika
  */
-class PortalApiClientService extends ApiClient {
+class BranchApiClientService extends ApiClient {
 
 	protected $auth;
 
 	/**
-	 * PortalApiClientService constructor.
+	 * BranchApiClientService constructor.
 	 *
 	 * @param Request $request
-	 * @param PortalGuard $auth
+	 * @param BranchGuard $auth
 	 */
-	public function __construct(Request $request, PortalGuard $auth) {
+	public function __construct(Request $request, BranchGuard $auth) {
 		parent::__construct($request);
 		$this->auth = $auth;
 	}
@@ -31,7 +31,7 @@ class PortalApiClientService extends ApiClient {
 	 *
 	 * @param RequestException $e
 	 *
-	 * @return PortalUnauthorizedException
+	 * @return BranchUnauthorizedException
 	 */
 	protected function unAuthorizedExceptionHandler(RequestException $e) {
 		if($e->hasResponse()) {
@@ -40,7 +40,7 @@ class PortalApiClientService extends ApiClient {
 		} else
 			$message = 'Unauthorized Access';
 
-		return new PortalUnauthorizedException($message);
+		return new BranchUnauthorizedException($message);
 	}
 
 	/**

@@ -52,11 +52,13 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'auth.branch'=> \App\Http\Middleware\AuthenticateForBranch::class,
         'auth.portal'=> \App\Http\Middleware\AuthenticateForPortal::class,
         'acl' => \Kodeine\Acl\Middleware\HasPermission::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'guest.branch' => \App\Http\Middleware\RedirectIfAuthenticatedInBranch::class,
         'guest.portal' => \App\Http\Middleware\RedirectIfAuthenticatedInPortal::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     ];

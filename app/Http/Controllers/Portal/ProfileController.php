@@ -23,8 +23,7 @@ class ProfileController extends Controller
     public function showProfile(PortalGuard $auth)
     {
     	if($auth->user()->accountPerson->tglLahir) {
-    		$stringBirthDate = strtotime($auth->user()->accountPerson->tglLahir);
-    		$age = Carbon::createFromDate(date('Y', $stringBirthDate), date('m', $stringBirthDate), date('d', $stringBirthDate))
+    		$age = Carbon::createFromTimestamp(strtotime($auth->user()->accountPerson->tglLahir))
 			    ->diff(Carbon::now())->format('%y tahun, %m bulan and %d hari');
 	    } else
 		    $age = null;

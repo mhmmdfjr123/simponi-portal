@@ -62,7 +62,7 @@ abstract class ApiClient {
 
 			return $this->client->request($method, $uri, $options);
 		} catch (RequestException $e) {
-			if($useGlobalException && $e->hasResponse() && $e->getResponse()->getStatusCode() == 401) {
+			if($useGlobalException && $e->hasResponse() && ($e->getResponse()->getStatusCode() == 401 || $e->getResponse()->getStatusCode() == 403)) {
 				$this->clearAuthSessionData();
 				throw $this->unAuthorizedExceptionHandler($e);
 			}

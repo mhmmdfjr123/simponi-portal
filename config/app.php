@@ -203,7 +203,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-	    App\Providers\PortalServiceProvider::class,
+	    App\Providers\SimponiServiceProvider::class,
 
         /*
          * Additional Service Provider

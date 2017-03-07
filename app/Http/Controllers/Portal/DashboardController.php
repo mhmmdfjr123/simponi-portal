@@ -22,6 +22,7 @@ class DashboardController extends Controller
     public function showDashboard(PortalGuard $auth)
     {
     	$data = [
+    		'pagetTitle'    => 'Portal Dashboard',
     		'user' => $auth->user()
 	    ];
 
