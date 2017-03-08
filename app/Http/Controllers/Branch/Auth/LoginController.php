@@ -2,7 +2,7 @@
 
 use App\Contracts\BranchGuard;
 use App\Http\Controllers\Controller;
-use App\Services\ApiClient\PortalApiClientService;
+use App\Services\ApiClient\BranchApiClientService;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
 
@@ -55,9 +55,8 @@ class LoginController extends Controller {
         return view('branch.auth.register', $data);
     }
 
-    public function register(Request $request, PortalApiClientService $apiClient) {
+    public function register(Request $request, BranchApiClientService $apiClient) {
         $this->validate($request, [
-            'account' => 'required',
             'username' => 'required',
             'password' => 'required',
             'email' => 'required|email',
@@ -67,7 +66,6 @@ class LoginController extends Controller {
         ]);
 
         $data = [
-            'account'       => $request->get('account'),
             'username'      => $request->get('username'),
             'password'      => $request->get('password'),
             'email'         => $request->get('email'),
@@ -77,11 +75,9 @@ class LoginController extends Controller {
         ];
 
         try {
-        	$apiClient->post('admin/perorangan/register', ['json' => $data], false);
+        	$apiClient->post('admin/branch/register', ['json' => $data], false);
 
-	        return view('branch.auth.registerConfirmation', [
-		        'pageTitle' => 'Pendaftaran Berhasil'
-	        ]);
+	        return redirect()->route('branch-login')->with('success', 'Akun anda telah berhasil didaftarkan. Silahkan login.');
         } catch (RequestException $e) {
 	        if($e->hasResponse()) {
 		        $response = json_decode($e->getResponse()->getBody());
@@ -96,6 +92,13 @@ class LoginController extends Controller {
         }
     }
 
+	/**
+	 * Log out
+	 *
+	 * @param BranchGuard $auth
+	 *
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
     public function logout(BranchGuard $auth) {
     	$auth->logout();
         return redirect()->route('branch-login')->with('success', 'Logout berhasil.');

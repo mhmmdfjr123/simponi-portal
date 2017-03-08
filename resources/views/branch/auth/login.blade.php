@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="btn-register-group">
-                    Belum mempunyai akun branch? <a href="javascript:maintenance();" class="btn btn-primary btn-outline">Daftar</a>
+                    Belum mempunyai akun branch? <a href="{{ route('branch-register') }}" class="btn btn-primary btn-outline">Daftar</a>
                 </div>
             </form>
         </div>

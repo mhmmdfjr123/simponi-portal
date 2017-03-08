@@ -1,19 +1,13 @@
-@extends('layouts.front')
+@extends('layouts.branch')
 
 @section('content')
     <div class="container auth-container">
         <div class="auth-content">
-            <h3>Pendaftaran Akun Baru</h3>
+            <h3>Pendaftaran Akun Branch</h3>
 
-            <form role="form" method="post" action="{{ route('portal-register') }}" class="form-register">
+            <form role="form" method="post" action="{{ route('branch-register') }}" class="form-register">
                 {{ csrf_field() }}
 
-                <div class="form-group">
-                    <div class="input-group-login">
-                        <input type="text" name="account" value="{{ old('account') }}" class="form-control input-lg" placeholder="Nomor Akun BNI Simponi" required>
-                        <i class="ion-ios-personadd-outline"></i>
-                    </div>
-                </div>
                 <div class="form-group">
                     <div class="input-group-login">
                         <input type="text" name="username" value="{{ old('username') }}" id="username" class="form-control input-lg" placeholder="Username" required>
@@ -22,7 +16,7 @@
                 </div>
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="password" name="password" id="password" class="form-control  input-lg bniPasswordValidator" maxlength="30" data-username-id="username" placeholder="Password">
+                        <input type="password" name="password" id="password" class="form-control input-lg" maxlength="30" placeholder="Password" required>
                         <i class="ion-ios-locked-outline"></i>
                     </div>
                 </div>
@@ -61,7 +55,7 @@
                 </div>
 
                 <div class="btn-register-group">
-                    Sudah mempunyai akun? <a href="{{ route('portal-login') }}" class="btn btn-success btn-outline">Login</a>
+                    Sudah mempunyai akun? <a href="{{ route('branch-login') }}" class="btn btn-success btn-outline">Login</a>
                 </div>
             </form>
         </div>
@@ -93,11 +87,6 @@
             autoclose: true,
             todayHighlight: true,
             defaultViewDate: { year: 1991 }
-        });
-
-        // Trigger validator to password re-checking, if username is changed
-        $('#username').blur(function () {
-            $('#password').keyup();
         });
     </script>
 @endsection
