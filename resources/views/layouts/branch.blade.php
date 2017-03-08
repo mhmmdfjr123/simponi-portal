@@ -46,7 +46,7 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="{{ route('home') }}">Quick Links  <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('home') }}" target="_blank">Website</a></li>
-                            <li><a href="{{ route('portal-login') }}">Login Portal</a></li>
+                            <li><a href="{{ route('portal-login') }}" target="_blank">Login Portal</a></li>
                         </ul>
                     </li>
 
