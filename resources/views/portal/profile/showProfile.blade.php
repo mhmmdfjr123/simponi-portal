@@ -65,7 +65,7 @@
                 <div class="form-group">
                     <label for="input-username" class="col-sm-3 control-label">Username</label>
                     <div class="col-sm-9">
-                        <input type="text" name="username" class="form-control" id="input-username" placeholder="Silahkan masukan username" value="{{ $user->username }}" required>
+                        <input type="text" name="username" class="form-control notNumericOnly" id="input-username" placeholder="Silahkan masukan username" value="{{ $user->username }}" required minlength="6" maxlength="12">
                     </div>
                 </div>
                 <div class="form-group">

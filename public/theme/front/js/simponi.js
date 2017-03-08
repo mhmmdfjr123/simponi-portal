@@ -236,6 +236,10 @@ function createPasswordValidatorMessage(){
 
 (function ($) {
     // jQuery Validation
+    $.validator.addMethod("notNumericOnly", function(value, element) {
+        return /^\d*[A-z][A-z\d]*$/.test(value);
+    }, "Please don't input numeric only");
+
     $.validator.setDefaults({
         errorPlacement: function(error, element) {
             // if the input has a prepend or append element, put the validation msg after the parent div
@@ -270,7 +274,10 @@ function createPasswordValidatorMessage(){
         rangelength: $.validator.format( "Panjang karakter yg diizinkan antara {0} dan {1} karakter." ),
         range: $.validator.format( "Harap masukkan nilai antara {0} dan {1}." ),
         max: $.validator.format( "Harap masukkan nilai lebih kecil atau sama dengan {0}." ),
-        min: $.validator.format( "Harap masukkan nilai lebih besar atau sama dengan {0}." )
+        min: $.validator.format( "Harap masukkan nilai lebih besar atau sama dengan {0}." ),
+
+        // Custom Validator
+        notNumericOnly: "Tidak boleh hanya memuat angka"
     } );
 
     var $formValidate = $(".form-validate");

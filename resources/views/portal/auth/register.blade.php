@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="text" name="username" value="{{ old('username') }}" id="username" class="form-control input-lg" placeholder="Username" required>
+                        <input type="text" name="username" value="{{ old('username') }}" id="username" class="form-control input-lg notNumericOnly" placeholder="Username" required minlength="6" maxlength="12">
                         <i class="ion-ios-person-outline"></i>
                     </div>
                 </div>
