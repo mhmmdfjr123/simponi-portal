@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers\Branch;
+<?php namespace App\Http\Controllers\Branch\AccountManagement;
 
 use App\Contracts\BranchGuard;
 use App\Http\Controllers\Controller;
@@ -8,47 +8,63 @@ use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
 
 /**
- * @package App\Http\Controllers\Branch
+ * @package App\Http\Controllers\Branch\AccountManagement
  * @author efriandika
  */
-class AccountController extends Controller
+class IndividualAccountController extends Controller
 {
+	protected $apiClient;
 	protected $auth;
 
-	public function __construct(BranchGuard $auth) {
+	public function __construct(BranchGuard $auth, BranchApiClientService $apiClient) {
 		$this->auth = $auth;
+		$this->apiClient = $apiClient;
 	}
 
+	/**
+	 * Search individual account by using account number
+	 *
+	 * @param Request $request
+	 *
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
 	public function searchAccount(Request $request)
     {
     	$this->validate($request, [
-    		'accountCustomer'   => 'required'
+    		'accountPerorangan'   => 'required'
 	    ]);
 
-		return redirect()->route('branch-account', [encrypt($request->get('accountCustomer'))]);
+		return redirect()->route('branch-individual-account', [encrypt($request->get('accountPerorangan'))]);
     }
 
-    public function showAccount($encryptedId, BranchApiClientService $apiClient) {
+	/**
+	 * Show account detail by using given account number
+	 *
+	 * @param $encryptedId
+	 *
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+    public function showAccount($encryptedId) {
 	    try {
 		    $id = $this->decryptId($encryptedId);
 
-		    $rawResponse = $apiClient->post('api/branch/perorangan/detail', ['json' => [
+		    $rawResponse = $this->apiClient->post('api/branch/perorangan/detail', ['json' => [
 			    'account'   => $this->auth->user()->account,
 			    'username'  => $this->auth->user()->username,
-			    'accountCustomer'  => $id
+			    'accountPerorangan' => $id
 		    ]]);
 
 		    $response = json_decode($rawResponse->getBody());
 
 		    if(isset($response->account) && $response->account != null){
 			    $data = [
-				    'pageTitle' => 'Branch Portal: Pengelolaan Akun',
+				    'pageTitle' => 'Branch Portal: Pengelolaan Akun Perorangan',
 				    'user'      => $this->auth->user(),
 				    'customer'  => $response,
 				    'encryptedId'   => $encryptedId
 			    ];
 
-			    return view('branch.account.accountDetail', $data);
+			    return view('branch.accountManagement.individualAccount.accountDetail', $data);
 		    } else {
 		    	return redirect()->back()->withErrors('Akun '.$id.' tidak ditemukan. Pastikan nomor akun yang anda masukan benar');
 		    }
@@ -60,21 +76,28 @@ class AccountController extends Controller
 			    $message = $e->getMessage();
 		    }
 
-		    return redirect()->route('branch-dashboard')->withErrors($message);
+		    return redirect()->back()->withErrors($message);
 	    }
     }
 
-    public function activateAccount($encryptedId, BranchApiClientService $apiClient) {
+	/**
+	 * Activate account based on account number
+	 *
+	 * @param $encryptedId
+	 *
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+    public function activateAccount($encryptedId) {
 	    try {
 		    $id = $this->decryptId($encryptedId);
 
-		    $apiClient->post('api/branch/perorangan/aktivasi', ['json' => [
+		    $this->apiClient->post('api/branch/perorangan/aktivasi', ['json' => [
 			    'account'   => $this->auth->user()->account,
 			    'username'  => $this->auth->user()->username,
-			    'accountCustomer'  => $id
+			    'accountPerorangan' => $id
 		    ]]);
 
-		    return redirect()->route('branch-account', [$encryptedId])->with('success', 'Akun '.$id.' berhasil diaktivasi');
+		    return redirect()->route('branch-individual-account', [$encryptedId])->with('success', 'Akun '.$id.' berhasil diaktivasi');
 	    } catch (RequestException $e) {
 		    if($e->hasResponse()) {
 			    $response = json_decode($e->getResponse()->getBody());
@@ -83,31 +106,47 @@ class AccountController extends Controller
 			    $message = $e->getMessage();
 		    }
 
-		    return redirect()->route('branch-account', [$encryptedId])->withErrors($message);
+		    return redirect()->route('branch-individual-account', [$encryptedId])->withErrors($message);
 	    }
     }
 
+	/**
+	 * Show email change form
+	 *
+	 * @param $encryptedId
+	 * @param Request $request
+	 *
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+	 */
     public function showChangeEmailForm($encryptedId, Request $request) {
 		if (!$request->ajax())
-			return redirect()->route('branch-account', [$encryptedId]);
+			return redirect()->route('branch-individual-account', [$encryptedId]);
 
-		return view('branch.account.changeEmail', [
+		return view('branch.accountManagement.individualAccount.changeEmail', [
 			'encryptedId'   => $encryptedId
 		]);
     }
 
-	public function changeEmail($encryptedId, BranchApiClientService $apiClient, Request $request) {
+	/**
+	 * Process an email change request
+	 *
+	 * @param $encryptedId
+	 * @param Request $request
+	 *
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function changeEmail($encryptedId, Request $request) {
 		try {
 			$id = $this->decryptId($encryptedId);
 
-			$apiClient->post('api/branch/perorangan/changeemail', ['json' => [
+			$this->apiClient->post('api/branch/perorangan/changeemail', ['json' => [
 				'account'   => $this->auth->user()->account,
 				'username'  => $this->auth->user()->username,
-				'accountCustomer'  => $id,
-				'email'     => $request->get('email')
+				'accountPerorangan' => $id,
+				'emailPerorangan'     => $request->get('emailPerorangan')
 			]]);
 
-			return redirect()->route('branch-account', [$encryptedId])->with('success', 'Email akun '.$id.' berhasil diganti');
+			return redirect()->route('branch-individual-account', [$encryptedId])->with('success', 'Email akun '.$id.' berhasil diganti');
 		} catch (RequestException $e) {
 			if($e->hasResponse()) {
 				$response = json_decode($e->getResponse()->getBody());
@@ -116,21 +155,28 @@ class AccountController extends Controller
 				$message = $e->getMessage();
 			}
 
-			return redirect()->route('branch-account', [$encryptedId])->withErrors($message);
+			return redirect()->route('branch-individual-account', [$encryptedId])->withErrors($message);
 		}
 	}
 
-	public function blockAccount($encryptedId, BranchApiClientService $apiClient) {
+	/**
+	 * Block Account based on given account number
+	 *
+	 * @param $encryptedId
+	 *
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function blockAccount($encryptedId) {
 		try {
 			$id = $this->decryptId($encryptedId);
 
-			$apiClient->post('api/branch/perorangan/blokir', ['json' => [
+			$this->apiClient->post('api/branch/perorangan/blokir', ['json' => [
 				'account'   => $this->auth->user()->account,
 				'username'  => $this->auth->user()->username,
-				'accountCustomer'  => $id
+				'accountPerorangan' => $id
 			]]);
 
-			return redirect()->route('branch-account', [$encryptedId])->with('success', 'Akun '.$id.' berhasil diblokir');
+			return redirect()->route('branch-individual-account', [$encryptedId])->with('success', 'Akun '.$id.' berhasil diblokir');
 		} catch (RequestException $e) {
 			if($e->hasResponse()) {
 				$response = json_decode($e->getResponse()->getBody());
@@ -139,21 +185,28 @@ class AccountController extends Controller
 				$message = $e->getMessage();
 			}
 
-			return redirect()->route('branch-account', [$encryptedId])->withErrors($message);
+			return redirect()->route('branch-individual-account', [$encryptedId])->withErrors($message);
 		}
 	}
 
-	public function unblockAccount($encryptedId, BranchApiClientService $apiClient) {
+	/**
+	 * Un-Block Account based on given account number
+	 *
+	 * @param $encryptedId
+	 *
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function unblockAccount($encryptedId) {
 		try {
 			$id = $this->decryptId($encryptedId);
 
-			$apiClient->post('api/branch/perorangan/unblokir', ['json' => [
+			$this->apiClient->post('api/branch/perorangan/unblokir', ['json' => [
 				'account'   => $this->auth->user()->account,
 				'username'  => $this->auth->user()->username,
-				'accountCustomer'  => $id
+				'accountPerorangan' => $id
 			]]);
 
-			return redirect()->route('branch-account', [$encryptedId])->with('success', 'Berhasil buka blokir akun '.$id);
+			return redirect()->route('branch-individual-account', [$encryptedId])->with('success', 'Berhasil buka blokir akun '.$id);
 		} catch (RequestException $e) {
 			if($e->hasResponse()) {
 				$response = json_decode($e->getResponse()->getBody());
@@ -162,18 +215,25 @@ class AccountController extends Controller
 				$message = $e->getMessage();
 			}
 
-			return redirect()->route('branch-account', [$encryptedId])->withErrors($message);
+			return redirect()->route('branch-individual-account', [$encryptedId])->withErrors($message);
 		}
 	}
 
-	public function deleteAccount($encryptedId, BranchApiClientService $apiClient) {
+	/**
+	 * Delete Account based on given account number
+	 *
+	 * @param $encryptedId
+	 *
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function deleteAccount($encryptedId) {
 		try {
 			$id = $this->decryptId($encryptedId);
 
-			$apiClient->post('api/branch/perorangan/delete', ['json' => [
+			$this->apiClient->post('api/branch/perorangan/delete', ['json' => [
 				'account'   => $this->auth->user()->account,
 				'username'  => $this->auth->user()->username,
-				'accountCustomer'  => $id
+				'accountPerorangan' => $id
 			]]);
 
 			return redirect()->route('branch-dashboard')->with('success', 'Akun '.$id.' berhasil dihapus');
@@ -185,10 +245,17 @@ class AccountController extends Controller
 				$message = $e->getMessage();
 			}
 
-			return redirect()->route('branch-account', [$encryptedId])->withErrors($message);
+			return redirect()->route('branch-individual-account', [$encryptedId])->withErrors($message);
 		}
 	}
 
+	/**
+	 * Decrypt ID
+	 *
+	 * @param $encryptedId
+	 *
+	 * @return string
+	 */
 	private function decryptId($encryptedId){
 		try {
 			return decrypt($encryptedId);

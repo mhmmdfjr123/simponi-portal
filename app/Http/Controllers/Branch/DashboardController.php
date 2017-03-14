@@ -12,20 +12,31 @@ use App\Http\Controllers\Controller;
 class DashboardController extends Controller
 {
 
+	protected $auth;
+
+	/**
+	 * DashboardController constructor.
+	 *
+	 * @param BranchGuard $auth
+	 */
+	public function __construct(BranchGuard $auth) {
+		$this->auth = $auth;
+	}
+
+
 	/**
 	 * Show the dashboard.
 	 *
-	 * @param BranchGuard $auth
-	 *
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
-    public function showDashboard(BranchGuard $auth)
+    public function showDashboard()
     {
-    	$data = [
-		    'pageTitle' => 'Branch Portal',
-		    'user'      => $auth->user()
-	    ];
+		// Check the account's role
+	    if($this->auth->isSuperAdmin()) {
+			return redirect()->route('branch-search-branch-account');
+	    } else {
+		    return redirect()->route('branch-search-portal-account');
+	    }
 
-        return view('branch.dashboard.showDashboard', $data);
     }
 }

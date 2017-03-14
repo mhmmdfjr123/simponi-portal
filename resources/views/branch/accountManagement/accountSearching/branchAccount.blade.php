@@ -12,17 +12,13 @@
                 {{ csrf_field() }}
 
                 <div class="form-group">
-                    <input type="text" class="form-control input-lg text-center" name="accountCustomer" placeholder="Nomor Akun DPLK" autocomplete="off" required />
+                    <input type="text" class="form-control input-lg text-center" name="accountPerorangan" placeholder="Username" autocomplete="off" required />
                 </div>
 
-                <button type="submit" class="btn btn-primary">
-                    <small><i class="ion-ios-search-strong" style="margin-right: 5px"></i> <strong>CARI AKUN</strong></small>
+                <button type="submit" class="btn btn-primary text-uppercase">
+                    <small><i class="ion-ios-search-strong" style="margin-right: 5px"></i> <strong>Cari Akun Branch</strong></small>
                 </button>
             </form>
-        </div>
-
-        <div class="alert alert-warning alert-branch-info">
-            Pastikan anda menerapkan prinsip KYC (Know Your Customer). Semua aktifitas akan dicatat oleh sistem.
         </div>
     </div>
 @endsection

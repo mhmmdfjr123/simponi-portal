@@ -16,7 +16,7 @@
     <h4>Ganti Email</h4>
 </div>
 <div class='fbox-container'>
-    <form id="ajax-form-change-email" name="ajax-form-change-email" class="form" action="{{ route('branch-account-change-email', [$encryptedId]) }}" method="post" role="form">
+    <form id="ajax-form-change-email" name="ajax-form-change-email" class="form" action="{{ route('branch-individual-account-change-email', [$encryptedId]) }}" method="post" role="form">
         {{ csrf_field() }}
 
         <fieldset>
@@ -26,7 +26,7 @@
                 <!-- Content -->
                 <div class="form-group form-message-light">
                     <label>Email</label>
-                    <input type="email" name="email" class="form-control" autocomplete="off" required />
+                    <input type="email" name="emailPerorangan" class="form-control" autocomplete="off" required />
                 </div>
                 <!-- End of Content -->
             </div>

@@ -147,14 +147,32 @@ Route::get('/branch', function () {
 });
 Route::group(['prefix' => 'branch', 'middleware' => ['web', 'auth.branch']], function () {
 	Route::get('/dashboard', 'Branch\DashboardController@showDashboard')->name('branch-dashboard');
-	Route::post('/account/search', 'Branch\AccountController@searchAccount')->name('branch-search-account');
-	Route::get('/account/{encryptedId}', 'Branch\AccountController@showAccount')->name('branch-account');
-	Route::get('/account/{encryptedId}/activate', 'Branch\AccountController@activateAccount')->name('branch-account-activate');
-	Route::get('/account/{encryptedId}/change-email', 'Branch\AccountController@showChangeEmailForm')->name('branch-account-change-email');
-	Route::post('/account/{encryptedId}/change-email', 'Branch\AccountController@changeEmail');
-	Route::get('/account/{encryptedId}/block', 'Branch\AccountController@blockAccount')->name('branch-account-block');
-	Route::get('/account/{encryptedId}/unblock', 'Branch\AccountController@unblockAccount')->name('branch-account-unblock');
-	Route::get('/account/{encryptedId}/delete', 'Branch\AccountController@deleteAccount')->name('branch-account-delete');
+
+	Route::get('/account/branch/search', 'Branch\AccountManagement\AccountSearchingController@showBranchAccountForm')->name('branch-search-branch-account');
+	Route::get('/account/portal/search', 'Branch\AccountManagement\AccountSearchingController@showPortalAccountForm')->name('branch-search-portal-account');
+
+	Route::post('/account/individual/search', 'Branch\AccountManagement\IndividualAccountController@searchAccount')->name('branch-search-individual-account');
+	Route::get('/account/individual/{encryptedId}', 'Branch\AccountManagement\IndividualAccountController@showAccount')->name('branch-individual-account');
+	Route::get('/account/individual/{encryptedId}/activate', 'Branch\AccountManagement\IndividualAccountController@activateAccount')->name('branch-individual-account-activate');
+	Route::get('/account/individual/{encryptedId}/change-email', 'Branch\AccountManagement\IndividualAccountController@showChangeEmailForm')->name('branch-individual-account-change-email');
+	Route::post('/account/individual/{encryptedId}/change-email', 'Branch\AccountManagement\IndividualAccountController@changeEmail');
+	Route::get('/account/individual/{encryptedId}/block', 'Branch\AccountManagement\IndividualAccountController@blockAccount')->name('branch-individual-account-block');
+	Route::get('/account/individual/{encryptedId}/unblock', 'Branch\AccountManagement\IndividualAccountController@unblockAccount')->name('branch-individual-account-unblock');
+	Route::get('/account/individual/{encryptedId}/delete', 'Branch\AccountManagement\IndividualAccountController@deleteAccount')->name('branch-individual-account-delete');
+
+	Route::post('/account/company/search', 'Branch\AccountManagement\CompanyAccountController@searchAccount')->name('branch-search-company-account');
+	Route::get('/account/company/{encryptedId}', 'Branch\AccountManagement\CompanyAccountController@showAccount')->name('branch-company-account');
+	Route::get('/account/company/{encryptedId}/register', 'Branch\AccountManagement\CompanyAccountController@showRegistrationForm')->name('branch-company-registration');
+	Route::post('/account/company/{encryptedId}/register', 'Branch\AccountManagement\CompanyAccountController@register');
+	Route::get('/account/company/{encryptedId}/block', 'Branch\AccountManagement\CompanyAccountController@blockAccount')->name('branch-company-account-block');
+	Route::get('/account/company/{encryptedId}/unblock', 'Branch\AccountManagement\CompanyAccountController@unblockAccount')->name('branch-company-account-unblock');
+	Route::get('/account/company/{encryptedId}/delete', 'Branch\AccountManagement\CompanyAccountController@deleteAccount')->name('branch-company-account-delete');
+
+	Route::post('/account/branch/search', 'Branch\AccountManagement\BranchAccountController@searchAccount')->name('branch-search-account');
+	Route::get('/account/branch/{encryptedId}', 'Branch\AccountManagement\BranchAccountController@showAccount')->name('branch-account');
+	Route::get('/account/branch/{encryptedId}/block', 'Branch\AccountManagement\BranchAccountController@blockAccount')->name('branch-account-block');
+	Route::get('/account/branch/{encryptedId}/unblock', 'Branch\AccountManagement\BranchAccountController@unblockAccount')->name('branch-account-unblock');
+	Route::get('/account/branch/{encryptedId}/delete', 'Branch\AccountManagement\BranchAccountController@deleteAccount')->name('branch-account-delete');
 });
 
 Route::group(['prefix' => 'branch', 'middleware' => 'web'], function () {
