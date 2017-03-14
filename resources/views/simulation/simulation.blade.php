@@ -3,10 +3,10 @@
 @section('content')
     <section id="simulation-content" class="section-box">
         <div class="container">
-            <img class="contentimage" src="{{ asset('theme/front/images/header/simulation.jpg') }}" alt="Content" />
+            {{-- <!-- <img class="contentimage" src="{{ asset('theme/front/images/header/simulation.jpg') }}" alt="Content" /> --> --}}
             <h2>Simulasi BNI Simponi Berdasarkan Iuran.</h2>
-            <form id="simulation-form" class="row col-xs-12">
-                <div class="left-side col-sm-6 col-xs-12">
+            <form id="simulation-form" class="col-xs-12">
+                <div class="left-side col-sm-4 col-xs-12">
                     {{-- <!-- <div class="form-group">
                         <label>Nama Lengkap</label>
                         <input class="form-control" type="text" placeholder="Masukkan Nama Lengkap" />
@@ -78,7 +78,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="right-side col-sm-6 col-xs-12">
+                <div class="middle-side col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Pembayaran Dana Awal</label>
                         <div class="radio">
@@ -131,8 +131,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="variables col-xs-12">
-                    <div class="form-group col-sm-4 col-xs-12">
+                <div class="right-side col-sm-4 col-xs-12">
+                    <div class="form-group">
                         <label>Tingkat Bunga DPLK</label>
                         <select id="interest-rate" class="form-control">
                             <option data-value="0.080">8.0%</option>
@@ -142,24 +142,24 @@
                             <option data-value="0.120">12.0%</option>
                         </select>
                     </div>
-                    <div class="form-group col-sm-4 col-xs-12">
+                    <div class="form-group">
                         <label>Biaya Administrasi (Per Tahun)</label>
                         <div class="input-group">
                             <div class="input-group-addon">Rp</div>
                             <input id="administration-fee" class="form-control" type="text" value="18.000" data-value="18000" disabled />
                         </div>
                     </div>
-                    <div class="form-group col-sm-4 col-xs-12">
+                    <div class="form-group">
                         <label>Biaya Pengelolaan Dana</label>
                         <input id="management-fee" class="form-control" type="text" value="0.85% dari akumulasi dana per tahun" data-value="0.0085" disabled />
                     </div>
-                    <div class="form-group col-sm-offset-4 col-sm-4 col-xs-12">
+                    <div class="form-group">
                         <a class="calculate col-xs-12 btn btn-lg btn-primary">Hitung</a>
                         <a class="hidden-xs hidden-sm hidden-md hidden-lg page-scroll" href="#simulation"></a>
                         <a class="hidden-xs hidden-sm hidden-md hidden-lg page-scroll" href="#simulation-form"></a>
                     </div>
                 </div>
-                <canvas id="simulation" class="col-xs-12" height="250"></canvas>
+                <canvas id="simulation" class="col-xs-12"></canvas>
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div id="total-funding" class="simulationresult section-box-item">
                         <label>Total Iuran<a class="material-icons info" data-toggle="tooltip" title="Total iuran adalah dana awal ditambah iuran Anda (per bulan / tahun sesuai pilihan Anda) mulai dari pembukaan rekening hingga berakhirnya masa rekening Anda (sesuai usia pensiun Anda)."><i class="fa fa-info-circle"></i></a></label>

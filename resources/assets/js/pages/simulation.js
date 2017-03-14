@@ -21,11 +21,11 @@ var formatCurrency = function (a) {
         return 0;
     };
 
-$('input.currency').numeric().keydown(function () {
+$('input.currency').numeric()/*.keydown(function () {
     $(this).val($(this).val().replace(/\./g, ''));
-}).keyup(function() {
+})*/.keyup(function() {
     if ($(this).val().length > 0) {
-        $(this).attr('data-value', $(this).val()).val(formatCurrency($(this).val()));
+        $(this).attr('data-value', $(this).val())/*.val(formatCurrency($(this).val()))*/;
     } else {
         $(this).attr('data-value', 0);
     }
@@ -159,12 +159,18 @@ $('.calculate').click(function () {
         
         if (simulationform.hasClass('rev')) {
             //PMT(ir, np, pv, fv) = (ir * (pv * Math.pow((ir + 1), np) + fv)) / ((ir + 1) * (Math.pow((ir + 1), np) - 1))
-            var investationrate = parseFloat($('#investation-rate option:selected').data('value'));
+            var investationrate = parseFloat($('#investation-rate option:selected').data('value')),
                 duration = parseInt($('#duration').attr('data-value')),
                 livingcosttotal = parseInt($('#living-cost-total').attr('data-value')),
                 monthlyinvestation = periodicPayment((investationrate / 12), (duration * 12), 0, -livingcosttotal, 0),
                 annualinvestation = periodicPayment(investationrate, duration, 0, -livingcosttotal, 0),
                 lumpsum = presentValue(investationrate, duration, 0, -livingcosttotal);
+                $('.narration').addClass('active').find('[data-info]').each(function () {
+                    var infoelement = $('#' + $(this).data('info')),
+                        text = infoelement.is('select') ? infoelement.find('option:selected').data('value') : infoelement.attr('data-value'),
+                        text = ($(this).data('info') == 'inflation-rate') ? parseInt(parseFloat(text) * 100) : (($(this).data('info').indexOf('cost') >= 0) ? formatCurrency(parseInt(text).toString()) : text);
+                    $(this).text(text);
+                });
                 var chartAnimateNumber = function (a) { return { number: a, numberStep: $.animateNumber.numberStepFactories.separator('.') } };
                 $('#monthly-investation span').text('Rp').siblings('b').animateNumber(chartAnimateNumber(monthlyinvestation), 1800);
                 $('#annual-investation span').text('Rp').siblings('b').animateNumber(chartAnimateNumber(annualinvestation), 1800);
