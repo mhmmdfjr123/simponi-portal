@@ -139,6 +139,9 @@ Route::group(['prefix' => 'portal', 'middleware' => 'web'], function () {
     Route::post('/password/forgot', 'Portal\Auth\ForgotPasswordController@requestToken');
     Route::get('/password/reset', 'Portal\Auth\ForgotPasswordController@showResetPasswordForm')->name('portal-reset-password');
     Route::post('/password/reset', 'Portal\Auth\ForgotPasswordController@resetPassword');
+
+	Route::get('/activation/company/{activationCode?}', 'Portal\Auth\ActivationController@showCompanyActivationForm')->name('portal-activation-company');
+	Route::post('/activation/company', 'Portal\Auth\ActivationController@activateCompany')->name('portal-activation-company-activate');
 });
 
 // Branch
