@@ -83,6 +83,9 @@
                 <li class="px-nav-item"><a href="{{ url('backoffice/pages/add') }}"><span class="px-nav-label">Tambah Halaman Baru</span></a></li>
             </ul>
         </li>
+        <li class="px-nav-item">
+            <a href="{{ route('backoffice-dashboard') }}"><i class="px-nav-icon fa fa-question-circle-o"></i><span class="px-nav-label">FAQ</span></a>
+        </li>
         <li class="px-nav-item px-nav-dropdown">
             <a href="#"><i class="px-nav-icon fa fa-desktop"></i><span class="px-nav-label">Tampilan</span></a>
 
