@@ -66,18 +66,16 @@ class LoginController extends Controller {
             'mobilePhoneNo' => 'required'
         ]);
 
-        $data = [
-            'account'       => $request->get('account'),
-            'username'      => $request->get('username'),
-            'password'      => $request->get('password'),
-            'email'         => $request->get('email'),
-            'noId'          => $request->get('noId'),
-            'birthdate'     => date('Y-m-d', strtotime($request->get('birthdate'))),
-            'mobilePhoneNo' => $request->get('mobilePhoneNo'),
-        ];
-
-        try {
-        	$apiClient->post('admin/perorangan/register', ['json' => $data], false);
+	    try {
+        	$apiClient->post('admin/perorangan/register', ['json' => [
+		        'account'       => $request->get('account'),
+		        'username'      => $request->get('username'),
+		        'password'      => $request->get('password'),
+		        'email'         => $request->get('email'),
+		        'noId'          => $request->get('noId'),
+		        'birthdate'     => date('Y-m-d', strtotime($request->get('birthdate'))),
+		        'mobilePhoneNo' => $request->get('mobilePhoneNo'),
+	        ]], false);
 
 	        return view('portal.auth.registerConfirmation', [
 		        'pageTitle' => 'Pendaftaran Berhasil'

@@ -15,6 +15,7 @@ class IndividualAccountController extends Controller
 {
 	protected $apiClient;
 	protected $auth;
+	private $accountType = 'PERORANGAN';
 
 	public function __construct(BranchGuard $auth, BranchApiClientService $apiClient) {
 		$this->auth = $auth;
@@ -34,7 +35,7 @@ class IndividualAccountController extends Controller
     		'accountPerorangan'   => 'required'
 	    ]);
 
-		return redirect()->route('branch-individual-account', [encrypt($request->get('accountPerorangan'))]);
+		return redirect()->route('branch-individual-account', [encrypt(trim($request->get('accountPerorangan')))]);
     }
 
 	/**
@@ -48,10 +49,11 @@ class IndividualAccountController extends Controller
 	    try {
 		    $id = $this->decryptId($encryptedId);
 
-		    $rawResponse = $this->apiClient->post('api/branch/perorangan/detail', ['json' => [
+		    $rawResponse = $this->apiClient->post('api/branch/customer/detail', ['json' => [
 			    'account'   => $this->auth->user()->account,
 			    'username'  => $this->auth->user()->username,
-			    'accountPerorangan' => $id
+			    'accountCustomer' => $id,
+			    'typeCustomer'    => $this->accountType
 		    ]]);
 
 		    $response = json_decode($rawResponse->getBody());
@@ -66,7 +68,7 @@ class IndividualAccountController extends Controller
 
 			    return view('branch.accountManagement.individualAccount.accountDetail', $data);
 		    } else {
-		    	return redirect()->back()->withErrors('Akun '.$id.' tidak ditemukan. Pastikan nomor akun yang anda masukan benar');
+		    	return redirect()->back()->withErrors('Akun '.$id.' tidak ditemukan atau belum terdaftar di portal');
 		    }
 	    } catch (RequestException $e) {
 		    if($e->hasResponse()) {
@@ -170,10 +172,11 @@ class IndividualAccountController extends Controller
 		try {
 			$id = $this->decryptId($encryptedId);
 
-			$this->apiClient->post('api/branch/perorangan/blokir', ['json' => [
+			$this->apiClient->post('api/branch/customer/blokir', ['json' => [
 				'account'   => $this->auth->user()->account,
 				'username'  => $this->auth->user()->username,
-				'accountPerorangan' => $id
+				'accountCustomer' => $id,
+				'typeCustomer'    => $this->accountType
 			]]);
 
 			return redirect()->route('branch-individual-account', [$encryptedId])->with('success', 'Akun '.$id.' berhasil diblokir');
@@ -200,10 +203,11 @@ class IndividualAccountController extends Controller
 		try {
 			$id = $this->decryptId($encryptedId);
 
-			$this->apiClient->post('api/branch/perorangan/unblokir', ['json' => [
+			$this->apiClient->post('api/branch/customer/unblokir', ['json' => [
 				'account'   => $this->auth->user()->account,
 				'username'  => $this->auth->user()->username,
-				'accountPerorangan' => $id
+				'accountCustomer' => $id,
+				'typeCustomer'    => $this->accountType
 			]]);
 
 			return redirect()->route('branch-individual-account', [$encryptedId])->with('success', 'Berhasil buka blokir akun '.$id);
@@ -230,10 +234,11 @@ class IndividualAccountController extends Controller
 		try {
 			$id = $this->decryptId($encryptedId);
 
-			$this->apiClient->post('api/branch/perorangan/delete', ['json' => [
+			$this->apiClient->post('api/branch/customer/delete', ['json' => [
 				'account'   => $this->auth->user()->account,
 				'username'  => $this->auth->user()->username,
-				'accountPerorangan' => $id
+				'accountCustomer' => $id,
+				'typeCustomer'    => $this->accountType
 			]]);
 
 			return redirect()->route('branch-dashboard')->with('success', 'Akun '.$id.' berhasil dihapus');

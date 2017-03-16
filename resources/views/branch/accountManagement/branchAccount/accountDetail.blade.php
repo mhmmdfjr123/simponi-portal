@@ -11,7 +11,7 @@
             <div class="col-md-6">
                 <table class="account-detail">
                     <tr>
-                        <th>Nomor Akun</th>
+                        <th width="230px">Nomor Akun</th>
                         <td>
                             {{ $customer->account }}
                             @if($customer->block == 'Y')
@@ -50,6 +50,10 @@
                     <tr>
                         <th>Gagal Login</th>
                         <td>{{ $customer->failcount }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tanggal Pendaftaran Akun</th>
+                        <td>{{ date('d-m-Y', strtotime($customer->datecreated)) }}</td>
                     </tr>
                 </table>
             </div>

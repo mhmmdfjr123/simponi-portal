@@ -26,7 +26,7 @@
                 <!-- Content -->
                 <div class="form-group form-message-light">
                     <label>Email</label>
-                    <input type="email" name="emailPerorangan" class="form-control" autocomplete="off" required />
+                    <input type="email" name="emailPerorangan" class="form-control" placeholder="SIlahkan masukan email baru" autocomplete="off" required />
                 </div>
                 <!-- End of Content -->
             </div>

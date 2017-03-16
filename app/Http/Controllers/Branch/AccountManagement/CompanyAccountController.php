@@ -34,7 +34,7 @@ class CompanyAccountController extends Controller
     		'accountPerusahaan'   => 'required'
 	    ]);
 
-		return redirect()->route('branch-company-account', [encrypt($request->get('accountCustomer'))]);
+		return redirect()->route('branch-company-account', [encrypt(trim($request->get('accountPerusahaan')))]);
     }
 
 	/**
@@ -79,7 +79,7 @@ class CompanyAccountController extends Controller
 			    $message = $e->getMessage();
 		    }
 
-		    return redirect()->back()->withErrors($message);
+		    return redirect()->back()->withErrors($message)->with('activeForm', 'company');
 	    }
     }
 

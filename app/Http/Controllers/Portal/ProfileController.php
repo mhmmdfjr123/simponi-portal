@@ -48,7 +48,7 @@ class ProfileController extends Controller
     	$isUsernameChanged = $request->get('username') != $auth->user()->username;
 
     	try {
-		    $rawResponse = $apiClient->post('api/perorangan/change', ['json' => [
+		    $apiClient->post('api/customer/change', ['json' => [
 			    'account'       => $auth->user()->accountPerson->accountNumber,
 			    'changeUser'    => $isUsernameChanged,
 			    'usernameOld'   => $auth->user()->username,
@@ -58,6 +58,7 @@ class ProfileController extends Controller
 			    'passwordNew'   => '',
 			    'emailNew'      => $request->get('email'),
 			    'mobilePhone'   => $request->get('mobilePhone'),
+			    'type'          => $auth->getAccountType()
 		    ]]);
 
 		    if ($isUsernameChanged){
@@ -65,8 +66,6 @@ class ProfileController extends Controller
 			    $auth->logout();
 			    return redirect()->route('portal-login')->with('success', 'Username berhasil diganti. Silahkan login dengan menggunakan username anda yang baru');
 		    }
-
-		    // $response = json_decode($rawResponse->getBody());
 
 		    return redirect()->route('portal-profile')->with('success', 'Profil berhasil diperbarui');
 	    } catch (RequestException $e) {
@@ -92,7 +91,7 @@ class ProfileController extends Controller
 		\Log::info($auth->user()->username.': try to change password');
 
 		try {
-			$rawResponse = $apiClient->post('api/perorangan/change', ['json' => [
+			$apiClient->post('api/customer/change', ['json' => [
 				'account'       => $auth->user()->accountPerson->accountNumber,
 				'changeUser'    => false,
 				'usernameOld'   => $auth->user()->username,
@@ -102,9 +101,8 @@ class ProfileController extends Controller
 				'passwordNew'   => $request->get('password'),
 				'emailNew'      => $auth->user()->email,
 				'mobilePhone'   => $auth->user()->mobilePhone,
+				'type'          => $auth->getAccountType()
 			]], true, false);
-
-			// $response = json_decode($rawResponse->getBody());
 
 			return response()->json([
 				'status'    => 'ok',

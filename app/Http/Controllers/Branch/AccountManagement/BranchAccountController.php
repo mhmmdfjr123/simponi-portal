@@ -15,6 +15,7 @@ class BranchAccountController extends Controller
 {
 	protected $apiClient;
 	protected $auth;
+	private $customerType = 'BRANCH';
 
 	public function __construct(BranchGuard $auth, BranchApiClientService $apiClient) {
 		$this->auth = $auth;
@@ -34,7 +35,7 @@ class BranchAccountController extends Controller
     		'accountPerorangan'   => 'required'
 	    ]);
 
-		return redirect()->route('branch-account', [encrypt($request->get('accountPerorangan'))]);
+		return redirect()->route('branch-account', [encrypt(trim($request->get('accountPerorangan')))]);
     }
 
 	/**
@@ -48,10 +49,11 @@ class BranchAccountController extends Controller
 	    try {
 		    $id = $this->decryptId($encryptedId);
 
-		    $rawResponse = $this->apiClient->post('api/branch/perorangan/detail', ['json' => [
+		    $rawResponse = $this->apiClient->post('api/branch/superadmin/detail', ['json' => [
 			    'account'   => $this->auth->user()->account,
 			    'username'  => $this->auth->user()->username,
-			    'accountPerorangan' => $id
+			    'accountCustomer' => $id,
+			    'typeCustomer'    => $this->customerType
 		    ]]);
 
 		    $response = json_decode($rawResponse->getBody());
@@ -64,7 +66,7 @@ class BranchAccountController extends Controller
 				    'encryptedId'   => $encryptedId
 			    ];
 
-			    return view('branch.accountManagement.account.accountDetail', $data);
+			    return view('branch.accountManagement.branchAccount.accountDetail', $data);
 		    } else {
 		    	return redirect()->back()->withErrors('Akun '.$id.' tidak ditemukan. Pastikan nomor akun yang anda masukan benar');
 		    }
@@ -94,7 +96,8 @@ class BranchAccountController extends Controller
 			$this->apiClient->post('api/branch/superadmin/blokir', ['json' => [
 				'account'   => $this->auth->user()->account,
 				'username'  => $this->auth->user()->username,
-				'accountCustomer' => $id
+				'accountCustomer' => $id,
+				'typeCustomer'    => $this->customerType
 			]]);
 
 			return redirect()->route('branch-account', [$encryptedId])->with('success', 'Akun '.$id.' berhasil diblokir');
@@ -124,7 +127,8 @@ class BranchAccountController extends Controller
 			$this->apiClient->post('api/branch/superadmin/unblokir', ['json' => [
 				'account'   => $this->auth->user()->account,
 				'username'  => $this->auth->user()->username,
-				'accountCustomer' => $id
+				'accountCustomer' => $id,
+				'typeCustomer'    => $this->customerType
 			]]);
 
 			return redirect()->route('branch-account', [$encryptedId])->with('success', 'Berhasil buka blokir akun '.$id);
@@ -154,10 +158,11 @@ class BranchAccountController extends Controller
 			$this->apiClient->post('api/branch/superadmin/delete', ['json' => [
 				'account'   => $this->auth->user()->account,
 				'username'  => $this->auth->user()->username,
-				'accountCustomer' => $id
+				'accountCustomer' => $id,
+				'typeCustomer'    => $this->customerType
 			]]);
 
-			return redirect()->route('branch-dashboard')->with('success', 'Akun '.$id.' berhasil dihapus');
+			return redirect()->route('branch-search-account')->with('success', 'Akun '.$id.' berhasil dihapus');
 		} catch (RequestException $e) {
 			if($e->hasResponse()) {
 				$response = json_decode($e->getResponse()->getBody());
@@ -166,7 +171,7 @@ class BranchAccountController extends Controller
 				$message = $e->getMessage();
 			}
 
-			return redirect()->route('branch-account', [$encryptedId])->withErrors($message);
+			return redirect()->route('branch-search-account')->withErrors($message);
 		}
 	}
 

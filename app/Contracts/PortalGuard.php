@@ -55,4 +55,25 @@ interface PortalGuard {
 	 * @return string
 	 */
 	public function getTokenExpiration();
+
+	/**
+	 * Get type of account
+	 *
+	 * @return string
+	 */
+	public function getAccountType();
+
+	/**
+	 * Determine the account type, whether currently account type is an individual
+	 *
+	 * @return bool
+	 */
+	public function isIndividual();
+
+	/**
+	 * Determine the account type, whether currently account type is a company
+	 *
+	 * @return bool
+	 */
+	public function isCompany();
 }

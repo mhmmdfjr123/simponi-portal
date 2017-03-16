@@ -54,7 +54,7 @@
                 </table>
             </div>
             <div class="col-md-6">
-                <div class="branch-announcement full-width">
+                <div class="branch-announcement full-width no-margin-top">
                     @widget('branchAnnouncement', [])
                 </div>
 

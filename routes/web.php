@@ -119,6 +119,8 @@ Route::group(['middleware' => 'web'], function () {
 Route::get('/portal', function () {
 	return Redirect::route('portal-dashboard');
 });
+
+// TODO Add middleware to check account type
 Route::group(['prefix' => 'portal', 'middleware' => ['web', 'auth.portal']], function () {
     Route::get('/dashboard', 'Portal\DashboardController@showDashboard')->name('portal-dashboard');
 	Route::get('/mutation', 'Portal\MutationController@showMutations')->name('portal-mutation');

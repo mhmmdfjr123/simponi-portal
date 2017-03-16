@@ -76,7 +76,7 @@ class PortalSessionGuardService extends ApiClient implements PortalGuard {
 		];
 
 		try {
-			$response = $this->post('api/perorangan/detail', ['json' => $userCredentials]);
+			$response = $this->post($this->isCompany() ? 'api/perusahaan/detail' : 'api/perorangan/detail', ['json' => $userCredentials]);
 
 			$user = json_decode($response->getBody());
 
@@ -106,6 +106,33 @@ class PortalSessionGuardService extends ApiClient implements PortalGuard {
 
 			abort(500, $message);
 		}
+	}
+
+	/**
+	 * Get type of account
+	 *
+	 * @return string
+	 */
+	public function getAccountType() {
+		return $this->session->get($this->getSessionNameOfAccountType());
+	}
+
+	/**
+	 * Determine the account type, whether currently account type is an individual
+	 *
+	 * @return bool
+	 */
+	public function isIndividual() {
+		return $this->getAccountType() == 'PERORANGAN';
+	}
+
+	/**
+	 * Determine the account type, whether currently account type is a company
+	 *
+	 * @return bool
+	 */
+	public function isCompany() {
+		return $this->getAccountType() == 'PERUSAHAAN';
 	}
 
 	/**
@@ -143,10 +170,10 @@ class PortalSessionGuardService extends ApiClient implements PortalGuard {
 		\Log::info('Login to Portal with username: '.$username);
 
 		try {
-			$response = $this->post('admin/perorangan/login', ['json' => $credentials], false);
+			$response = $this->post('admin/customer/login', ['json' => $credentials], false);
 			$responseBody = json_decode($response->getBody());
 
-			$this->updateSession($responseBody->account, $username, $responseBody->tokenJWT, $responseBody->sessionExpires);
+			$this->updateSession($responseBody->account, $username, $responseBody->tokenJWT, $responseBody->sessionExpires, $responseBody->type);
 
 			\Log::info('Login successful by using username: '.$username);
 
@@ -183,8 +210,7 @@ class PortalSessionGuardService extends ApiClient implements PortalGuard {
 		];
 
 		try {
-			$rawResponse = $this->post('api/perorangan/logout', ['json' => $userCredentials]);
-			$response = json_decode($rawResponse->getBody());
+			$this->post('api/customer/logout', ['json' => $userCredentials]);
 		} catch (RequestException $e) {
 			\Log::error('An error occurred in logout request. Error: '.$e->getMessage());
 		}
@@ -209,15 +235,17 @@ class PortalSessionGuardService extends ApiClient implements PortalGuard {
 	 * @param $username
 	 * @param $token
 	 * @param $tokenExpiration
+	 * @param $accountType
 	 *
 	 * @return void
 	 */
-	protected function updateSession($account, $username, $token, $tokenExpiration)
+	protected function updateSession($account, $username, $token, $tokenExpiration, $accountType)
 	{
 		$this->session->put($this->getSessionNameOfAccount(), $account);
 		$this->session->put($this->getSessionNameOfUsername(), $username);
 		$this->session->put($this->getSessionNameOfToken(), $token);
 		$this->session->put($this->getSessionNameOfTokenExpiration(), $tokenExpiration);
+		$this->session->put($this->getSessionNameOfAccountType(), $accountType);
 
 		$this->session->migrate(true);
 	}
@@ -250,6 +278,16 @@ class PortalSessionGuardService extends ApiClient implements PortalGuard {
 	protected function getSessionNameOfAccount()
 	{
 		return $this->getSessionBaseName().'.account';
+	}
+
+	/**
+	 * Get auth session identifier for 'type of account' to retrieve data from auth session storage.
+	 *
+	 * @return string
+	 */
+	protected function getSessionNameOfAccountType()
+	{
+		return $this->getSessionBaseName().'.accountType';
 	}
 
 	/**
