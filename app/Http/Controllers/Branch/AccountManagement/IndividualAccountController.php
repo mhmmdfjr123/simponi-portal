@@ -241,7 +241,7 @@ class IndividualAccountController extends Controller
 				'typeCustomer'    => $this->accountType
 			]]);
 
-			return redirect()->route('branch-dashboard')->with('success', 'Akun '.$id.' berhasil dihapus');
+			return redirect()->route('branch-search-portal-account')->with('success', 'Akun '.$id.' berhasil dihapus');
 		} catch (RequestException $e) {
 			if($e->hasResponse()) {
 				$response = json_decode($e->getResponse()->getBody());

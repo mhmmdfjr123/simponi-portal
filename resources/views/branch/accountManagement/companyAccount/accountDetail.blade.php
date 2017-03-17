@@ -11,7 +11,7 @@
             <div class="col-md-6">
                 <table class="account-detail">
                     <tr>
-                        <th>Nomor Kolektif Perusahaan</th>
+                        <th width="240px">Nomor Kolektif Perusahaan</th>
                         <td>
                             {{ $customer->account }}
                             @if($customer->block == 'Y')
@@ -37,7 +37,7 @@
                     </tr>
                     <tr>
                         <th>Tanggal Lahir</th>
-                        <td>{{ date('d-m-Y', strtotime($customer->birthdate)) }}</td>
+                        <td>{{ ($customer->birthdate) ? date('d-m-Y', strtotime($customer->birthdate)) : '-' }}</td>
                     </tr>
                     <tr>
                         <th>Email</th>
@@ -54,7 +54,7 @@
                 </table>
             </div>
             <div class="col-md-6">
-                <div class="branch-announcement full-width">
+                <div class="branch-announcement full-width no-margin-top">
                     @widget('branchAnnouncement', [])
                 </div>
 
@@ -68,14 +68,10 @@
 
                         <a href="javascript:void(0)" onclick="confirmDirectPopUp('{{ route('branch-company-account-delete', [$encryptedId]) }}', 'Konfirmasi Hapus Akun', 'Apakah anda yakin?', 'Hapus', 'Batal')" class="btn btn-danger btn-md-uppercase">Hapus Akun</a>
 
-                        <div class="line-text">
+                        {{--<div class="line-text">
                             <hr />
                             <span class="w-60">atau</span>
-                        </div>
-
-                        <a href="javascript:void(0)" onclick="loadIntoBox('{{ route('branch-company-registration', [$encryptedId]) }}')" class="btn btn-success text-uppercase">
-                            <small><i class="ion-android-add" style="margin-right: 5px"></i> <strong>Register</strong></small>
-                        </a>
+                        </div>--}}
                     </div>
                 </div>
 

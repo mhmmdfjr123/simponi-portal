@@ -15,6 +15,7 @@ class CompanyAccountController extends Controller
 {
 	protected $apiClient;
 	protected $auth;
+	private $accountType = 'PERUSAHAAN';
 
 	public function __construct(BranchGuard $auth, BranchApiClientService $apiClient) {
 		$this->auth = $auth;
@@ -31,10 +32,19 @@ class CompanyAccountController extends Controller
 	public function searchAccount(Request $request)
     {
     	$this->validate($request, [
-    		'accountPerusahaan'   => 'required'
+    		'accountPerusahaan'   => 'required',
+		    'actionType'          => 'required'
 	    ]);
 
-		return redirect()->route('branch-company-account', [encrypt(trim($request->get('accountPerusahaan')))]);
+    	$actionType = $request->get('actionType');
+
+    	if($actionType == 'search') {
+		    return redirect()->route('branch-company-account', [encrypt(trim($request->get('accountPerusahaan')))]);
+	    } else if($actionType == 'register') {
+		    return redirect()->route('branch-company-registration', [encrypt(trim($request->get('accountPerusahaan')))]);
+	    } else {
+    		abort(404);
+	    }
     }
 
 	/**
@@ -48,10 +58,11 @@ class CompanyAccountController extends Controller
 	    try {
 		    $id = $this->decryptId($encryptedId);
 
-		    $rawResponse = $this->apiClient->post('api/branch/perusahaan/detail/dplk', ['json' => [
+		    $rawResponse = $this->apiClient->post('api/branch/customer/detail', ['json' => [
 			    'account'     => $this->auth->user()->account,
 			    'username'    => $this->auth->user()->username,
-			    'accountPerusahaan' => $id
+			    'accountCustomer' => $id,
+			    'typeCustomer'    => $this->accountType
 		    ]]);
 
 		    $response = json_decode($rawResponse->getBody());
@@ -64,11 +75,10 @@ class CompanyAccountController extends Controller
 				    'encryptedId'   => $encryptedId
 			    ];
 
-			    // TODO Change $variable in view if the backend for company account is ready.
 			    return view('branch.accountManagement.companyAccount.accountDetail', $data);
 		    } else {
-		    	return redirect()->back()
-				    ->withErrors('Akun '.$id.' tidak ditemukan. Pastikan nomor akun yang anda masukan benar')
+			    return redirect()->back()
+				    ->withErrors('Akun perusahaan '.$id.' tidak ditemukan atau belum terdaftar di portal')
 				    ->with('activeForm', 'company');
 		    }
 	    } catch (RequestException $e) {
@@ -84,17 +94,42 @@ class CompanyAccountController extends Controller
     }
 
 	/**
-	 * Show company registration form
+	 * Show account detail by using given collective number for registration purpose
 	 *
-	 * @param Request $request
+	 * @param $encryptedId
 	 *
-	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+	 * @return \Illuminate\Http\RedirectResponse
 	 */
-	public function showRegistrationForm(Request $request) {
-		if (!$request->ajax())
-			return redirect()->route('branch-dashboard');
+	public function showAccountForRegistration($encryptedId) {
+		try {
+			$id = $this->decryptId($encryptedId);
 
-		return view('branch.accountManagement.companyAccount.registration');
+			$rawResponse = $this->apiClient->post('api/branch/perusahaan/detail/dplk', ['json' => [
+				'account'     => $this->auth->user()->account,
+				'username'    => $this->auth->user()->username,
+				'accountPerusahaan' => $id
+			]]);
+
+			$response = json_decode($rawResponse->getBody());
+
+			$data = [
+				'pageTitle' => 'Branch Portal: Pengelolaan Akun Perusahaan',
+				'user'      => $this->auth->user(),
+				'customer'  => $response,
+				'encryptedId'   => $encryptedId
+			];
+
+			return view('branch.accountManagement.companyAccount.accountDetailForRegistration', $data);
+		} catch (RequestException $e) {
+			if($e->hasResponse()) {
+				$response = json_decode($e->getResponse()->getBody());
+				$message = (isset($response->message)) ? $response->message : 'An error occurred, please call your administrator.';
+			} else {
+				$message = $e->getMessage();
+			}
+
+			return redirect()->back()->withErrors($message)->with('activeForm', 'company');
+		}
 	}
 
 	/**
@@ -107,33 +142,22 @@ class CompanyAccountController extends Controller
 	 */
 	public function register(Request $request, $encryptedId) {
 		try {
-			$id = $this->decryptId($encryptedId);
-
-			$rawResponse = $this->apiClient->post('api/branch/perusahaan/detail/dplk', ['json' => [
-				'account'     => $this->auth->user()->account,
-				'username'    => $this->auth->user()->username,
-				'accountPerusahaan' => $id
-			]]);
-
-			$response = json_decode($rawResponse->getBody());
-
-			// TODO Check this registration field name based on server response (If the backend server is up already)
 			$this->apiClient->post('api/branch/perusahaan/register', ['json' => [
 				'account'         => $this->auth->user()->account,
 				'username'        => $this->auth->user()->username,
-				'accountPerusahaan'     => $response->accountPerusahaan,
-				'namaPerusahaan'        => $response->namaPerusahaan,
-				'identityPerusahaan'    => $response->identityPerusahaan,
+				'accountPerusahaan'     => $request->get('accountPerusahaan'),
+				'namaPerusahaan'        => $request->get('namaPerusahaan'),
+				'identityPerusahaan'    => $request->get('identityPerusahaan'),
 				'personInChargeEmail'   => $request->get('personInChargeEmail'),
 				'personInChargePhone'   => $request->get('personInChargePhone'),
 				'tellerInput'           => $this->auth->user()->account,
 			]]);
 
-			return redirect()->route('branch-search-company-account')
-			                 ->with([
-				                 'success'       => 'Perusahaan dengan nomor kolektif '.$request->get('accountPerusahaan').' berhasil didaftarkan.',
-				                 'activeForm'    => 'company'
-			                 ]);
+			return redirect()->route('branch-search-portal-account')
+				->with([
+					'success'       => 'Perusahaan dengan nomor kolektif '.$request->get('accountPerusahaan').' berhasil didaftarkan.',
+					'activeForm'    => 'company'
+				]);
 		} catch (RequestException $e) {
 			if($e->hasResponse()) {
 				$response = json_decode($e->getResponse()->getBody());
@@ -142,7 +166,7 @@ class CompanyAccountController extends Controller
 				$message = $e->getMessage();
 			}
 
-			return redirect()->route('branch-search-company-account')
+			return redirect()->route('branch-company-registration', [$encryptedId])
 			                 ->withErrors($message)
 			                 ->with('activeForm', 'company');
 		}
@@ -159,10 +183,11 @@ class CompanyAccountController extends Controller
 		try {
 			$id = $this->decryptId($encryptedId);
 
-			$this->apiClient->post('api/branch/perusahaan/blokir', ['json' => [
+			$this->apiClient->post('api/branch/customer/blokir', ['json' => [
 				'account'     => $this->auth->user()->account,
 				'username'    => $this->auth->user()->username,
-				'accountPerusahaan' => $id
+				'accountCustomer' => $id,
+				'typeCustomer'    => $this->accountType
 			]]);
 
 			return redirect()->route('branch-company-account', [$encryptedId])->with('success', 'Akun '.$id.' berhasil diblokir');
@@ -189,10 +214,11 @@ class CompanyAccountController extends Controller
 		try {
 			$id = $this->decryptId($encryptedId);
 
-			$this->apiClient->post('api/branch/perusahaan/unblokir', ['json' => [
+			$this->apiClient->post('api/branch/customer/unblokir', ['json' => [
 				'account'     => $this->auth->user()->account,
 				'username'    => $this->auth->user()->username,
-				'accountPerusahaan' => $id
+				'accountCustomer' => $id,
+				'typeCustomer'    => $this->accountType
 			]]);
 
 			return redirect()->route('branch-company-account', [$encryptedId])->with('success', 'Berhasil buka blokir akun '.$id);
@@ -219,13 +245,17 @@ class CompanyAccountController extends Controller
 		try {
 			$id = $this->decryptId($encryptedId);
 
-			$this->apiClient->post('api/branch/perusahaan/delete', ['json' => [
+			$this->apiClient->post('api/branch/customer/delete', ['json' => [
 				'account'     => $this->auth->user()->account,
 				'username'    => $this->auth->user()->username,
-				'accountPerusahaan' => $id
+				'accountCustomer' => $id,
+				'typeCustomer'    => $this->accountType
 			]]);
 
-			return redirect()->route('branch-dashboard')->with('success', 'Akun '.$id.' berhasil dihapus');
+			return redirect()->route('branch-search-portal-account')->with([
+				'success' => 'Akun perusahan '.$id.' berhasil dihapus',
+				'activeForm'    => 'company'
+			]);
 		} catch (RequestException $e) {
 			if($e->hasResponse()) {
 				$response = json_decode($e->getResponse()->getBody());

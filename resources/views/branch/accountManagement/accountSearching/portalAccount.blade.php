@@ -40,8 +40,11 @@
                                 <input type="text" class="form-control input-lg text-center" name="accountPerusahaan" placeholder="Nomor Kolektif Perusahaan" autocomplete="off" required />
                             </div>
 
-                            <button type="submit" class="btn btn-primary text-uppercase">
+                            <button type="submit" class="btn btn-primary text-uppercase" name="actionType" value="search">
                                 <small><i class="ion-ios-search-strong" style="margin-right: 5px"></i> <strong>Cari Akun Perusahaan</strong></small>
+                            </button>
+                            <button type="submit" class="btn btn-success text-uppercase" name="actionType" value="register" data-toggle="tooltip" data-placement="bottom" title="Pendaftaran perusahaan (Jika belum terdaftar pada portal)">
+                                <small><i class="ion-android-add" style="margin-right: 5px"></i> <strong>Register</strong></small>
                             </button>
                         </form>
                     </div>
@@ -80,6 +83,8 @@
             activeForm = '#' + (activeForm != '' ? activeForm : 'individual');
 
             $('#account-type-tab').find('a[href="' + activeForm + '"]').tab('show');
+
+            $('[data-toggle="tooltip"]').tooltip()
         });
     </script>
 @endsection
