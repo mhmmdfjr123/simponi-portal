@@ -15,7 +15,7 @@
                         Akumulasi Iuran Anda
                     </div>
                     <div class="box-body">
-                        {{ idr($user->accountDetail->totAmount) }}
+                        {{ idr($user->accountDetail->totAmountPersonal) }}
                     </div>
                 </div>
             </div>
@@ -23,10 +23,10 @@
                 <div class="col-md-4">
                     <div class="section-box-item">
                         <div class="box-header">
-                            Iuran Kolektif
+                            Akumulasi Iuran Kolektif
                         </div>
                         <div class="box-body">
-                            {{ idr($user->accountDetail->totAmountPersonal) }}
+                            {{ idr($user->accountDetail->totAmountCompany) }}
                             <p class="help-block" style="font-size: 10pt">
                                 {{ $user->accountDetail->companyName }}
                             </p>
