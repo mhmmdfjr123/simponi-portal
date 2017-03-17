@@ -9,38 +9,38 @@
 
     <section class="section-box inquiry-box">
         <div class="row">
-            <div class="{{ $user->accountPerson->accountCategory == 'KOLEKTIF' ? 'col-md-4' : 'col-md-6' }}">
+            <div class="{{ $user->accountDetail->accountCategory == 'KOLEKTIF' ? 'col-md-4' : 'col-md-6' }}">
                 <div class="section-box-item">
                     <div class="box-header">
                         Akumulasi Iuran Anda
                     </div>
                     <div class="box-body">
-                        {{ idr($user->accountPerson->totAmount) }}
+                        {{ idr($user->accountDetail->totAmount) }}
                     </div>
                 </div>
             </div>
-            @if($user->accountPerson->accountCategory == 'KOLEKTIF')
+            @if($user->accountDetail->accountCategory == 'KOLEKTIF')
                 <div class="col-md-4">
                     <div class="section-box-item">
                         <div class="box-header">
                             Iuran Kolektif
                         </div>
                         <div class="box-body">
-                            {{ idr($user->accountPerson->totAmountPersonal) }}
+                            {{ idr($user->accountDetail->totAmountPersonal) }}
                             <p class="help-block" style="font-size: 10pt">
-                                {{ $user->accountPerson->companyName }}
+                                {{ $user->accountDetail->companyName }}
                             </p>
                         </div>
                     </div>
                 </div>
             @endif
-            <div class="{{ $user->accountPerson->accountCategory == 'KOLEKTIF' ? 'col-md-4' : 'col-md-6' }}">
+            <div class="{{ $user->accountDetail->accountCategory == 'KOLEKTIF' ? 'col-md-4' : 'col-md-6' }}">
                 <div class="section-box-item">
                     <div class="box-header">
                         Akumulasi Pengembangan
                     </div>
                     <div class="box-body">
-                        {{ idr($user->accountPerson->totBunga) }}
+                        {{ idr($user->accountDetail->totBunga) }}
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                         Saldo Akhir BNI Simponi
                     </div>
                     <div class="box-body">
-                        {{ idr($user->accountPerson->balance) }}
+                        {{ idr($user->accountDetail->balance) }}
                     </div>
                 </div>
             </div>

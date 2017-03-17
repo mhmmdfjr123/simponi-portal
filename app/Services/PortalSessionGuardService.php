@@ -76,7 +76,10 @@ class PortalSessionGuardService extends ApiClient implements PortalGuard {
 		];
 
 		try {
-			$response = $this->post($this->isCompany() ? 'api/perusahaan/detail' : 'api/perorangan/detail', ['json' => $userCredentials]);
+			if($this->isCompany())
+				$response = $this->post('api/perusahaan/detail', ['json' => array_merge($userCredentials, ['date' => date('Y-m-d')])]);
+			else
+				$response = $this->post('api/perorangan/detail', ['json' => $userCredentials]);
 
 			$user = json_decode($response->getBody());
 

@@ -27,9 +27,9 @@
         <li class="dropdown">
             <a class="dropdown-toggle dropdown-menu-dashboard" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="{{ route('portal-dashboard') }}">Akun Saya  <span class="caret"></span></a>
             <ul class="dropdown-menu dropdown-menu-right">
-                <li><a href="{{ route('portal-profile') }}">{{ $user->accountPerson->accountName }}</a></li>
+                <li><a href="{{ route('portal-profile') }}">{{ $user->name }}</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="{{ route('portal-dashboard') }}">Inquiry Saldo</a></li>
+                <li><a href="{{ route('portal-dashboard') }}">{{ $auth->isIndividual() ? 'Inquiry Saldo' : 'Download Laporan' }}</a></li>
                 <li><a href="{{ route('portal-logout') }}" onclick="popUpLoader();"><i class="ion-log-out" style="margin-right: 3px"></i> Keluar</a></li>
             </ul>
         </li>

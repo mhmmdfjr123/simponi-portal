@@ -13,29 +13,29 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
 
+	protected $auth;
+
+	/**
+	 * ProfileController constructor.
+	 *
+	 * @param $auth
+	 */
+	public function __construct(PortalGuard $auth) {
+		$this->auth = $auth;
+	}
+
+
 	/**
 	 * Show profile page.
 	 *
-	 * @param PortalGuard $auth
-	 *
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
-    public function showProfile(PortalGuard $auth)
+    public function showProfile()
     {
-    	if($auth->user()->accountPerson->tglLahir) {
-    		$age = Carbon::createFromTimestamp(strtotime($auth->user()->accountPerson->tglLahir))
-			    ->diff(Carbon::now())->format('%y tahun, %m bulan and %d hari');
-	    } else
-		    $age = null;
-
-    	$data = [
-    		'pageTitle'  => 'Profile',
-		    'user'       => $auth->user(),
-		    'account'    => $auth->user()->accountPerson,
-		    'age'        => $age
-	    ];
-
-        return view('portal.profile.showProfile', $data);
+    	if($this->auth->isIndividual())
+    		return $this->getIndividualProfile();
+    	else
+    		return $this->getCompanyProfile();
     }
 
     public function saveNewProfile(Request $request, PortalApiClientService $apiClient, PortalGuard $auth){
@@ -49,7 +49,7 @@ class ProfileController extends Controller
 
     	try {
 		    $apiClient->post('api/customer/change', ['json' => [
-			    'account'       => $auth->user()->accountPerson->accountNumber,
+			    'account'       => $auth->user()->account,
 			    'changeUser'    => $isUsernameChanged,
 			    'usernameOld'   => $auth->user()->username,
 			    'usernameNew'   => $isUsernameChanged ? $request->get('username') : $auth->user()->username,
@@ -92,7 +92,7 @@ class ProfileController extends Controller
 
 		try {
 			$apiClient->post('api/customer/change', ['json' => [
-				'account'       => $auth->user()->accountPerson->accountNumber,
+				'account'       => $auth->user()->account,
 				'changeUser'    => false,
 				'usernameOld'   => $auth->user()->username,
 				'usernameNew'   => $auth->user()->username,
@@ -100,7 +100,7 @@ class ProfileController extends Controller
 				'passwordOld'   => $request->get('old-password'),
 				'passwordNew'   => $request->get('password'),
 				'emailNew'      => $auth->user()->email,
-				'mobilePhone'   => $auth->user()->mobilePhone,
+				'mobilePhone'   => $auth->user()->phone,
 				'type'          => $auth->getAccountType()
 			]], true, false);
 
@@ -121,5 +121,31 @@ class ProfileController extends Controller
 				'message'       => $message
 			]);
 		}
+	}
+
+	private function getIndividualProfile() {
+		if($this->auth->user()->accountDetail->tglLahir) {
+			$age = Carbon::createFromTimestamp(strtotime($this->auth->user()->accountDetail->tglLahir))
+			             ->diff(Carbon::now())->format('%y tahun, %m bulan and %d hari');
+		} else
+			$age = null;
+
+		$data = [
+			'pageTitle'  => 'Profile',
+			'user'       => $this->auth->user(),
+			'account'    => $this->auth->user()->accountDetail,
+			'age'        => $age
+		];
+
+		return view('portal.profile.individualProfile', $data);
+	}
+
+	private function getCompanyProfile() {
+		$data = [
+			'pageTitle'  => 'Profile',
+			'user'       => $this->auth->user()
+		];
+
+		return view('portal.profile.companyProfile', $data);
 	}
 }

@@ -42,7 +42,7 @@ class MutationController extends Controller
 		    $rawResponse = $apiClient->post('api/perorangan/mutasi', ['json' => [
 			    'dateStart' => $dateStart,
 			    'dateEnd'   => $dateEnd,
-			    'account'   => $auth->user()->accountPerson->accountNumber,
+			    'account'   => $auth->user()->account,
 			    'username'  => $auth->user()->username
 		    ]]);
 

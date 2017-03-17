@@ -25,8 +25,8 @@
                                 <input type="text" class="form-control input-lg text-center" name="accountPerorangan" placeholder="Nomor Akun DPLK" autocomplete="off" required />
                             </div>
 
-                            <button type="submit" class="btn btn-primary">
-                                <small><i class="ion-ios-search-strong" style="margin-right: 5px"></i> <strong>CARI AKUN PERORANGAN</strong></small>
+                            <button type="submit" class="btn btn-primary btn-md-uppercase">
+                                <i class="ion-ios-search-strong" style="margin-right: 5px"></i> Cari Akun Perorangan
                             </button>
                         </form>
                     </div>
@@ -40,11 +40,11 @@
                                 <input type="text" class="form-control input-lg text-center" name="accountPerusahaan" placeholder="Nomor Kolektif Perusahaan" autocomplete="off" required />
                             </div>
 
-                            <button type="submit" class="btn btn-primary text-uppercase" name="actionType" value="search">
-                                <small><i class="ion-ios-search-strong" style="margin-right: 5px"></i> <strong>Cari Akun Perusahaan</strong></small>
+                            <button type="submit" class="btn btn-primary btn-md-uppercase" name="actionType" value="search">
+                                <i class="ion-ios-search-strong" style="margin-right: 5px"></i> Cari Akun Perusahaan
                             </button>
-                            <button type="submit" class="btn btn-success text-uppercase" name="actionType" value="register" data-toggle="tooltip" data-placement="bottom" title="Pendaftaran perusahaan (Jika belum terdaftar pada portal)">
-                                <small><i class="ion-android-add" style="margin-right: 5px"></i> <strong>Register</strong></small>
+                            <button type="submit" class="btn btn-success btn-md-uppercase" name="actionType" value="register" data-toggle="tooltip" data-placement="bottom" title="Pendaftaran perusahaan (Jika belum terdaftar pada portal)">
+                                <i class="ion-android-add" style="margin-right: 5px"></i> Register
                             </button>
                         </form>
                     </div>

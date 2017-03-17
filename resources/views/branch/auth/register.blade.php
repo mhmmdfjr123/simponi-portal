@@ -41,7 +41,7 @@
                 <div class="form-group">
                     <div class="input-group-login">
                         <input type="text" name="mobilePhoneNo" value="{{ old('mobilePhoneNo') }}" class="form-control input-lg" placeholder="Nomor Handphone" required>
-                        <i class="ion-iphone"></i>
+                        <i class="ion-iphone" style="margin-right: 5px"></i>
                     </div>
                 </div>
 
