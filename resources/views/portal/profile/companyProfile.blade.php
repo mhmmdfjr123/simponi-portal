@@ -12,48 +12,13 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Nomor Akun</label>
                     <div class="col-sm-9">
-                        <p class="form-control-static">{{ $account->accountNumber }}</p>
+                        <p class="form-control-static">{{ $user->account }}</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Nomor Kartu Identitas</label>
+                    <label class="col-sm-3 control-label">Name Perusahaan</label>
                     <div class="col-sm-9">
-                        <p class="form-control-static">{{ $account->idNumber }}</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Name Lengkap</label>
-                    <div class="col-sm-9">
-                        <p class="form-control-static">{{ $account->accountName }}</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Jenis Kelamin</label>
-                    <div class="col-sm-9">
-                        <p class="form-control-static">{{ $account->jenisKelamin }}</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Tanggal Lahir</label>
-                    <div class="col-sm-9">
-                        <p class="form-control-static">{{ $account->kotaLahir }} / {{ $account->tglLahir ? date('d-m-Y', strtotime($account->tglLahir)) : '-' }}</p>
-                        @if($age)
-                            <p class="help-block">
-                                Umur anda saat ini adalah: {{ $age }}
-                            </p>
-                        @endif
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Usia Pensiun</label>
-                    <div class="col-sm-9">
-                        <p class="form-control-static">{{ $account->usiaPensiun }} Tahun</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Tanggal Pembukaan</label>
-                    <div class="col-sm-9">
-                        <p class="form-control-static">{{ $account->openDate ? date('d-m-Y', strtotime($account->openDate)) : '-' }}</p>
+                        <p class="form-control-static">{{ $user->name }}</p>
                     </div>
                 </div>
             </div>
@@ -85,7 +50,7 @@
                 <div class="form-group">
                     <label for="input-phone" class="col-sm-3 control-label">Nomor Handphone</label>
                     <div class="col-sm-3">
-                        <input type="text" name="mobilePhone" class="form-control" id="input-phone" placeholder="Nomor handphone anda" value="{{ $user->mobilePhone }}" required>
+                        <input type="text" name="mobilePhone" class="form-control" id="input-phone" placeholder="Nomor handphone anda" value="{{ $user->phone }}" required>
                     </div>
                 </div>
             </div>

@@ -12,20 +12,55 @@ use App\Http\Controllers\Controller;
 class DashboardController extends Controller
 {
 
+	protected $auth;
+
+	/**
+	 * DashboardController constructor.
+	 *
+	 * @param $auth
+	 */
+	public function __construct(PortalGuard $auth) {
+		$this->auth = $auth;
+	}
+
 	/**
 	 * Show the dashboard.
 	 *
-	 * @param PortalGuard $auth
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+    public function showDashboard()
+    {
+		if($this->auth->isCompany())
+			return $this->getCompanyDashboard();
+		else
+			return $this->getIndividualDashboard();
+    }
+
+	/**
+	 * Get dashboard page for individual account type
 	 *
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
-    public function showDashboard(PortalGuard $auth)
-    {
-    	$data = [
-    		'pagetTitle'    => 'Portal Dashboard',
-    		'user' => $auth->user()
+    private function getIndividualDashboard() {
+	    $data = [
+		    'pagetTitle'    => 'Portal Dashboard',
+		    'user'          => $this->auth->user()
 	    ];
 
-        return view('portal.dashboard.showDashboard', $data);
+	    return view('portal.dashboard.individual', $data);
+    }
+
+	/**
+	 * Get dashboard page for company account type
+	 *
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+    private function getCompanyDashboard() {
+	    $data = [
+		    'pagetTitle'    => 'Portal Dashboard',
+		    'user'          => $this->auth->user()
+	    ];
+
+	    return view('portal.dashboard.company', $data);
     }
 }
