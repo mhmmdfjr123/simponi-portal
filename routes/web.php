@@ -120,13 +120,15 @@ Route::get('/portal', function () {
 	return Redirect::route('portal-dashboard');
 });
 
-// TODO Add middleware to determine account type access
 Route::group(['prefix' => 'portal', 'middleware' => ['web', 'auth.portal']], function () {
-    Route::get('/dashboard', 'Portal\DashboardController@showDashboard')->name('portal-dashboard');
-	Route::get('/report', 'Portal\ReportController@showDownloadList')->name('portal-report');
-	Route::get('/report/download/{filename}', 'Portal\ReportController@download')->name('portal-report-download');
-	Route::get('/mutation', 'Portal\MutationController@showMutations')->name('portal-mutation');
-	Route::post('/mutation', 'Portal\MutationController@getMutations');
+	Route::get('/dashboard', 'Portal\DashboardController@showDashboard')->name('portal-dashboard');
+
+	Route::get('/mutation', 'Portal\MutationController@showMutations')->middleware('portal.account.individual')->name('portal-mutation');
+	Route::post('/mutation', 'Portal\MutationController@getMutations')->middleware('portal.account.individual');
+
+	Route::get('/report', 'Portal\ReportController@showDownloadList')->middleware('portal.account.company')->name('portal-report');
+	Route::get('/report/download/{filename}', 'Portal\ReportController@download')->middleware('portal.account.company')->name('portal-report-download');
+
 	Route::get('/profile', 'Portal\ProfileController@showProfile')->name('portal-profile');
 	Route::post('/profile', 'Portal\ProfileController@saveNewProfile');
 	Route::get('profile/change-password', 'Portal\ProfileController@showChangePasswordForm')->name('portal-change-password');
