@@ -120,9 +120,11 @@ Route::get('/portal', function () {
 	return Redirect::route('portal-dashboard');
 });
 
-// TODO Add middleware to check account type
+// TODO Add middleware to determine account type access
 Route::group(['prefix' => 'portal', 'middleware' => ['web', 'auth.portal']], function () {
     Route::get('/dashboard', 'Portal\DashboardController@showDashboard')->name('portal-dashboard');
+	Route::get('/report', 'Portal\ReportController@showDownloadList')->name('portal-report');
+	Route::get('/report/download/{filename}', 'Portal\ReportController@download')->name('portal-report-download');
 	Route::get('/mutation', 'Portal\MutationController@showMutations')->name('portal-mutation');
 	Route::post('/mutation', 'Portal\MutationController@getMutations');
 	Route::get('/profile', 'Portal\ProfileController@showProfile')->name('portal-profile');

@@ -12,6 +12,13 @@ use Illuminate\Http\Request;
 class MutationController extends Controller
 {
 
+	protected $auth;
+
+	public function __construct(PortalGuard $auth) {
+		$this->auth = $auth;
+	}
+
+
 	/**
 	 * Show mutation page.
 	 *
@@ -29,7 +36,7 @@ class MutationController extends Controller
         return view('portal.mutation.showMutations', $data);
     }
 
-    public function getMutations(PortalGuard $auth, PortalApiClientService $apiClient, Request $request){
+    public function getMutations(PortalApiClientService $apiClient, Request $request){
     	$this->validate($request, [
     		'dateStart' => 'required|date_format:"d-m-Y"',
 		    'dateEnd'   => 'required|date_format:"d-m-Y"',
@@ -42,8 +49,8 @@ class MutationController extends Controller
 		    $rawResponse = $apiClient->post('api/perorangan/mutasi', ['json' => [
 			    'dateStart' => $dateStart,
 			    'dateEnd'   => $dateEnd,
-			    'account'   => $auth->user()->account,
-			    'username'  => $auth->user()->username
+			    'account'   => $this->auth->user()->account,
+			    'username'  => $this->auth->user()->username
 		    ]]);
 
 		    $response = json_decode($rawResponse->getBody());

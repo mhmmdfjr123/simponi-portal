@@ -116,11 +116,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 copyright">
-                    <small>DPLK BNI terdaftar dan diawasi oleh Otoritas Jasa Keuangan (OJK) serta dijamin oleh Lembaga Penjamin Simpanan (LPS).</small>
+                    <small>DPLK BNI terdaftar dan diawasi oleh Otoritas Jasa Keuangan (OJK)</small>
                     <div>Copyright &copy; 2017 - PT. Bank Negara Indonesia (Persero) Tbk.</div>
                 </div>
                 <div class="col-md-4 footer-logo">
-                    <img src="{{ asset('theme/front/images/logo/LPS-logo.png') }}" alt="BNI Simponi Lembaga Penjamin Simpanan (LPS)">
                     <img src="{{ asset('theme/front/images/logo/OJK-logo.png') }}" alt="BNI Simponi Otoritas Jasa Keuangan (OJK)">
                 </div>
             </div>
