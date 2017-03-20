@@ -53,7 +53,9 @@ class ReportController extends Controller
 				    'date'      => $request->get('date')
 			    ]);
 		    } else {
-			    return redirect()->route('portal-dashboard')->withErrors('Laporan untuk tanggal '.$request->get('date').' belum tersedia, silahkan masukan tanggal lain.');
+			    return redirect()->route('portal-dashboard')
+				    ->withInput($request->all())
+				    ->withErrors('Laporan untuk tanggal '.$request->get('date').' belum tersedia, silahkan masukan tanggal lain.');
 		    }
 	    } catch (RequestException $e) {
 		    if($e->hasResponse()) {
@@ -63,7 +65,9 @@ class ReportController extends Controller
 			    $message = $e->getMessage();
 		    }
 
-		    return redirect()->route('portal-dashboard')->withErrors($message);
+		    return redirect()->route('portal-dashboard')
+			    ->withInput($request->all())
+			    ->withErrors($message);
 	    }
     }
 

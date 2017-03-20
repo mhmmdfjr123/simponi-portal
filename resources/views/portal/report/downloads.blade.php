@@ -22,9 +22,26 @@
             @endforeach
             </tbody>
         </table>
+
+        <a href="{{ route('portal-dashboard') }}" class="btn btn-md btn-md-uppercase btn-outline btn-success">
+            <i class="fa fa-angle-left"></i> Kembali
+        </a>
     @else
         <div class="alert alert-warning">
             Laporan untuk tanggal {{ $date }} belum tersedia, silahkan masukan tanggal lain.
         </div>
     @endif
 @endsection
+
+@push('portalFootScript')
+<script type="text/javascript">
+    $(function () {
+        var url = '{{ route('portal-dashboard') }}';
+
+        $('.portal-user-menu')
+            .find('a[href="' + url + '"]')
+            .parent()
+            .addClass('active');
+    });
+</script>
+@endpush

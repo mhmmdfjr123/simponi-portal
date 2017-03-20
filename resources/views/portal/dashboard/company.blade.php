@@ -8,7 +8,7 @@
         <form class="form-validate" method="get" action="{{ route('portal-report') }}">
             <div class="form-group">
                 <label>Laporan per tanggal:</label>
-                <input type="text" class="form-control input-lg text-center" name="date" id="date" value="{{ date('d-m-Y') }}" placeholder="dd-mm-yyyy" autocomplete="off" required />
+                <input type="text" class="form-control input-lg text-center" name="date" id="date" value="{{ old('date') != '' ? old('date') : date('d-m-Y') }}" placeholder="dd-mm-yyyy" autocomplete="off" required />
             </div>
 
             <button type="submit" class="btn btn-primary btn-md-uppercase">
