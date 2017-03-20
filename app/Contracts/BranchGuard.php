@@ -43,6 +43,13 @@ interface BranchGuard {
 	public function user();
 
 	/**
+	 * Get the currently authenticated user's role.
+	 *
+	 * @return Object
+	 */
+	public function isSuperAdmin();
+
+	/**
 	 * Get the token for the currently authenticated user.
 	 *
 	 * @return string

@@ -3,14 +3,14 @@
 @section('content')
     <div class="container auth-container">
         <div class="auth-content">
-            <h3>Pendaftaran Akun Baru</h3>
+            <h3>{{ $pageTitle }}</h3>
 
-            <form role="form" method="post" action="{{ route('portal-register') }}" class="form-register">
+            <form role="form" method="post" action="{{ route('portal-activation-company-activate') }}" class="form-register">
                 {{ csrf_field() }}
 
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="text" name="account" value="{{ old('account') }}" class="form-control input-lg" placeholder="Nomor Akun BNI Simponi" required>
+                        <input type="text" name="account" value="{{ old('account') }}" class="form-control input-lg" placeholder="Nomor Kolektif Perusahaan" required>
                         <i class="ion-ios-personadd-outline"></i>
                     </div>
                 </div>
@@ -28,41 +28,26 @@
                 </div>
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="text" name="noId" value="{{ old('noId') }}" class="form-control input-lg" placeholder="Nomor Identitas" required>
-                        <i class="ion-ios-body-outline"></i>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group-login">
-                        <input type="text" name="birthdate" value="{{ old('birthdate') }}" id="dob" class="form-control input-lg" placeholder="Tanggal Lahir" required>
-                        <i class="ion-ios-calendar-outline"></i>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group-login">
-                        <input type="email" name="email" value="{{ old('email') }}" class="form-control input-lg" placeholder="Alamat Email" required>
+                        <input type="email" name="email" value="{{ old('email') }}" class="form-control input-lg" placeholder="Alamat Email PIC" required>
                         <i class="ion-ios-email-outline"></i>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="text" name="mobilePhoneNo" value="{{ old('mobilePhoneNo') }}" class="form-control input-lg" placeholder="Nomor Handphone" required>
+                        <input type="text" name="phone" value="{{ old('phone') }}" class="form-control input-lg" placeholder="Nomor Telepon PIC" required>
                         <i class="ion-iphone" style="margin-right: 5px"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group-login">
+                        <input type="text" name="code" value="{{ $activationCode }}" class="form-control input-lg" placeholder="Kode Aktivasi" required>
+                        <i class="ion-code"></i>
                     </div>
                 </div>
 
                 <button type="submit" class="btn btn-lg btn-primary btn-block" data-loading-text="Mohon Tunggu..." id="btn-register">
-                    Daftar
+                    Aktivasi
                 </button>
-
-                <div class="login-or">
-                    <hr class="hr-or">
-                    <span class="span-or">atau</span>
-                </div>
-
-                <div class="btn-register-group">
-                    Sudah mempunyai akun? <a href="{{ route('portal-login') }}" class="btn btn-success btn-outline">Login</a>
-                </div>
             </form>
         </div>
     </div>
@@ -83,16 +68,6 @@
                 $('input.form-control').attr('readonly', true);
                 $('#btn-register').button('loading');
             }
-        });
-
-        $('#dob').datepicker({
-            format: "dd-mm-yyyy",
-            language: 'id',
-            startView: 2,
-            maxViewMode: 2,
-            autoclose: true,
-            todayHighlight: true,
-            defaultViewDate: { year: 1991 }
         });
 
         // Trigger validator to password re-checking, if username is changed

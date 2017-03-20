@@ -35,7 +35,7 @@
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="{{ route('home') }}">
-                    <img src="{{ asset('theme/front/images/logo/BNI-logo-dark.png') }}" alt="BNI Simponi" />
+                    <img src="{{ asset('theme/front/images/logo/BNI-logo-white.png') }}" alt="BNI Simponi" />
                     <!-- <img src="{{ asset('theme/front/images/logo/BNI-logo.png') }}" alt="BNI Simponi" /> -->
                 </a>
             </div>
@@ -45,7 +45,7 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="{{ route('home') }}">Quick Links  <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ route('home') }}" target="_blank">Website</a></li>
+                            <li><a href="{{ route('home') }}" target="_blank">Beranda</a></li>
                             <li><a href="{{ route('portal-login') }}" target="_blank">Login Portal</a></li>
                         </ul>
                     </li>
@@ -116,11 +116,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 copyright">
-                    <small>BNI Simponi terdaftar dan diawasi oleh Otoritas Jasa Keuangan (OJK) serta dijamin oleh Lembaga Penjamin Simpanan (LPS).</small>
+                    <small>DPLK BNI terdaftar dan diawasi oleh Otoritas Jasa Keuangan (OJK)</small>
                     <div>Copyright &copy; 2017 - PT. Bank Negara Indonesia (Persero) Tbk.</div>
                 </div>
                 <div class="col-md-4 footer-logo">
-                    <img src="{{ asset('theme/front/images/logo/LPS-logo.png') }}" alt="BNI Simponi Lembaga Penjamin Simpanan (LPS)">
                     <img src="{{ asset('theme/front/images/logo/OJK-logo.png') }}" alt="BNI Simponi Otoritas Jasa Keuangan (OJK)">
                 </div>
             </div>

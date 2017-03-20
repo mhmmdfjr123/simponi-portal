@@ -10,6 +10,16 @@
         }
     }
 
+    .search-box {
+        max-width: 400px;
+        padding: 40px 30px;
+        border-radius: 2px;
+        background-color: #ffffff;
+        box-shadow: 0 1px 4px 0 rgba(0,0,0,0.12),0 7px 17px 0 rgba(0,0,0,0.1);
+        margin: 35px auto 0 auto;
+        text-align: center;
+    }
+
     .help-block {
         font-size: 11pt;
     }
@@ -136,6 +146,19 @@
 
     .box-body {
         font-size: 28px;
+    }
+
+    .ending-balance-box-item {
+        .box-body {
+            font-size: 33px;
+            color: @theme-secondary;
+            margin-top: -6px;
+        }
+
+        border: 1px dashed @theme-secondary;
+        border-radius: 2px;
+        margin-top: 25px;
+        padding: 19px 15px 16px 15px;
     }
 
     @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {

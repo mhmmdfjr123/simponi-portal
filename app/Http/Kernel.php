@@ -60,6 +60,8 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'guest.branch' => \App\Http\Middleware\RedirectIfAuthenticatedInBranch::class,
         'guest.portal' => \App\Http\Middleware\RedirectIfAuthenticatedInPortal::class,
+	    'portal.account.company' => \App\Http\Middleware\PortalAccountIsCompany::class,
+        'portal.account.individual' => \App\Http\Middleware\PortalAccountIsIndividual::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     ];
 }

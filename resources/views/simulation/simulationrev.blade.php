@@ -3,10 +3,10 @@
 @section('content')
     <section id="simulation-content" class="section-box">
         <div class="container">
-            <img class="contentimage" src="{{ asset('theme/front/images/header/simulation.jpg') }}" alt="Content" />
+            {{-- <!-- <img class="contentimage" src="{{ asset('theme/front/images/header/simulation.jpg') }}" alt="Content" /> --> --}}
             <h2>Simulasi BNI Simponi Berdasarkan Kebutuhan.</h2>
-            <form id="simulation-form" class="rev row col-xs-12">
-                <div class="left-side col-sm-6 col-xs-12">
+            <form id="simulation-form" class="rev col-xs-12">
+                <div class="left-side col-sm-4 col-xs-12">
                     {{-- <!-- <div class="form-group">
                         <label>Nama Lengkap</label>
                         <input class="form-control" type="text" placeholder="Masukkan Nama Lengkap" />
@@ -77,24 +77,24 @@
                         @endfor
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="display:none;">
                         <label>Jangka Waktu Sebelum Pensiun</label>
                         <input id="duration" class="form-control" type="text" value="N/A" data-value="0" disabled />
                     </div>
                     <div class="form-group">
-                        <label>Harapan Masa Hidup</label>
+                        <label>Usia Harapan Hidup</label>
                         <select id="life-expectancy" class="form-control" data-target="#duration-after,#living-cost-total">
                         @for ($i = 60; $i <= 100; $i += 5)
                             <option data-value="{{ $i }}">{{ $i }} tahun</option>
                         @endfor
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="display:none;">
                         <label>Jangka Waktu Masa Pensiun</label>
                         <input id="duration-after" class="form-control" type="text" value="N/A" data-value="0" disabled />
                     </div>
                 </div>
-                <div class="right-side col-sm-6 col-xs-12">
+                <div class="middle-side col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Biaya Hidup Saat Ini</label>
                         <div class="input-group">
@@ -109,14 +109,14 @@
                             <div class="input-group-addon">%</div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="display:none;">
                         <label>Biaya Hidup Saat Pensiun</label>
                         <div class="input-group">
                             <div class="input-group-addon">Rp</div>
                             <input id="living-cost-after" class="form-control" type="text" value="N/A" data-value="0" disabled />
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="display:none;">
                         <label>Total Biaya Hidup Masa Pensiun</label>
                         <div class="input-group">
                             <div class="input-group-addon">Rp</div>
@@ -132,12 +132,15 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group col-sm-offset-4 col-sm-4 col-xs-12">
+                <div class="right-side col-sm-4 col-xs-12">
                     <a class="calculate col-xs-12 btn btn-lg btn-primary">Hitung</a>
                     <a class="hidden-xs hidden-sm hidden-md hidden-lg page-scroll" href="#simulation"></a>
                     <a class="hidden-xs hidden-sm hidden-md hidden-lg page-scroll" href="#simulation-form"></a>
                 </div>
                 <div id="simulation" class="col-xs-12">
+                    <div class="narration col-xs-12">
+                        Anda memiliki waktu <span data-info="duration">0</span> tahun hingga waktu pensiun Anda tiba. Dengan usia harapan hidup <span data-info="life-expectancy">0</span> tahun, Anda memiliki jangka waktu masa pensiun selama <span data-info="duration-after">0</span> tahun. Dengan biaya hidup sebesar Rp<span data-info="living-cost">0</span> dan asumsi inflasi sebesar <span data-info="inflation-rate">0</span>% per tahun, biaya hidup Anda setelah pensiun akan menjadi sebesar Rp<span data-info="living-cost-after">0</span> dengan total biaya hidup masa pensiun akan menjadi sebesar Rp<span data-info="living-cost-total">0</span>. Untuk mengakomodasi biaya hidup Anda setelah pensiun sesuai dengan data di atas, Anda bisa melakukan investasi dengan salah satu dari tiga skema investasi berikut:</div>
+                    </div>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div id="monthly-investation" class="simulationresult section-box-item">
                             <label>Investasi Bulanan<a class="material-icons info" data-toggle="tooltip" title="Investasi Bulanan adalah iuran atau dana yang harus Anda investasikan setiap bulan sebelum pensiun untuk mencapai target investasi yang Anda inginkan"><i class="fa fa-info-circle"></i></a></label>

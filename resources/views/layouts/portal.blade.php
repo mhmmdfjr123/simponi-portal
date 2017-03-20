@@ -13,7 +13,7 @@
                 <div class="portal-sidebar">
                     <!-- SIDEBAR user-PIC -->
                     <div class="portal-user-pic hidden-xs">
-                        <img data-name="{{ $portalGuard->user()->accountPerson->accountName }}"
+                        <img data-name="{{ $portalGuard->user()->name }}"
                              data-font-size="30" data-height="80" data-width="80" data-char-count="2"
                              class="img-responsive name-initializer" alt="">
                     </div>
@@ -22,10 +22,10 @@
                     <!-- SIDEBAR user- TITLE -->
                     <div class="portal-user-title">
                         <div class="portal-user-name">
-                            {{ $portalGuard->user()->accountPerson->accountName }}
+                            {{ $portalGuard->user()->name }}
                         </div>
                         <div class="portal-user-account">
-                            {{ $portalGuard->user()->accountPerson->accountNumber }}
+                            {{ $portalGuard->user()->account }}
                         </div>
                     </div>
                     <!-- END SIDEBAR user- TITLE -->
@@ -40,14 +40,20 @@
                     <div class="portal-user-menu">
                         <ul class="nav">
                             <li>
-                                <a href="{{ route('portal-dashboard') }}"><i class="fa fa-bar-chart-o"></i> Inquiry Saldo </a>
+                                @if($portalGuard->isIndividual())
+                                <a href="{{ route('portal-dashboard') }}"><i class="fa fa-bar-chart-o"></i> Inquiry Saldo</a>
+                                @else
+                                    <a href="{{ route('portal-dashboard') }}"><i class="fa fa-download"></i> Download Laporan</a>
+                                @endif
                             </li>
                             <li>
                                 <a href="{{ route('portal-profile') }}"><i class="fa fa-user-circle-o"></i> Profile </a>
                             </li>
+                            @if($portalGuard->isIndividual())
                             <li>
                                 <a href="{{ route('portal-mutation') }}"><i class="fa fa-exchange"></i> Mutasi </a>
                             </li>
+                            @endif
                             {{--<li>
                                 <a href="javascript:maintenance();"><i class="fa fa-download"></i> Download </a>
                             </li>--}}

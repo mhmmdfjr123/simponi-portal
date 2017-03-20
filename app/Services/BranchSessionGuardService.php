@@ -78,7 +78,8 @@ class BranchSessionGuardService extends ApiClient implements BranchGuard {
 		if(Carbon::createFromTimestamp($expirationTimestamp)->gt(Carbon::now())){
 			$userCredentials = [
 				'account'   => $this->session->get($this->getSessionNameOfAccount()),
-				'username'  => $this->session->get($this->getSessionNameOfUsername())
+				'username'  => $this->session->get($this->getSessionNameOfUsername()),
+				'isSuperAdmin' => $this->session->get($this->getSessionNameOfRole())
 			];
 
 			return (object) $userCredentials;
@@ -87,6 +88,15 @@ class BranchSessionGuardService extends ApiClient implements BranchGuard {
 			$this->clearAuthSessionData();
 			return null;
 		}
+	}
+
+	/**
+	 * Get the currently authenticated user's role.
+	 *
+	 * @return Object
+	 */
+	public function isSuperAdmin() {
+		return $this->session->get($this->getSessionNameOfRole());
 	}
 
 	/**
@@ -127,7 +137,7 @@ class BranchSessionGuardService extends ApiClient implements BranchGuard {
 			$response = $this->post('admin/branch/login', ['json' => $credentials], false);
 			$responseBody = json_decode($response->getBody());
 
-			$this->updateSession($responseBody->account, $username, $responseBody->tokenJWT, $responseBody->sessionExpires);
+			$this->updateSession($responseBody->account, $username, $responseBody->tokenJWT, $responseBody->sessionExpires, $responseBody->isSuperAdmin);
 
 			\Log::info('Login successful by using username: '.$username);
 
@@ -164,8 +174,7 @@ class BranchSessionGuardService extends ApiClient implements BranchGuard {
 		];
 
 		try {
-			$rawResponse = $this->post('api/branch/logout', ['json' => $userCredentials]);
-			$response = json_decode($rawResponse->getBody());
+			$this->post('api/branch/logout', ['json' => $userCredentials]);
 		} catch (RequestException $e) {
 			\Log::error('An error occurred in logout request. Error: '.$e->getMessage());
 		}
@@ -190,13 +199,15 @@ class BranchSessionGuardService extends ApiClient implements BranchGuard {
 	 * @param $username
 	 * @param $token
 	 * @param $tokenExpiration
+	 * @param $isSuperAdmin
 	 *
 	 * @return void
 	 */
-	protected function updateSession($account, $username, $token, $tokenExpiration)
+	protected function updateSession($account, $username, $token, $tokenExpiration, $isSuperAdmin = false)
 	{
 		$this->session->put($this->getSessionNameOfAccount(), $account);
 		$this->session->put($this->getSessionNameOfUsername(), $username);
+		$this->session->put($this->getSessionNameOfRole(), $isSuperAdmin);
 		$this->session->put($this->getSessionNameOfToken(), $token);
 		$this->session->put($this->getSessionNameOfTokenExpiration(), $tokenExpiration);
 
@@ -241,6 +252,16 @@ class BranchSessionGuardService extends ApiClient implements BranchGuard {
 	protected function getSessionNameOfUsername()
 	{
 		return $this->getSessionBaseName().'.username';
+	}
+
+	/**
+	 * Get auth session identifier for 'role' of account to retrieve data from auth session storage.
+	 *
+	 * @return string
+	 */
+	protected function getSessionNameOfRole()
+	{
+		return $this->getSessionBaseName().'.isSuperAdmin';
 	}
 
 	/**

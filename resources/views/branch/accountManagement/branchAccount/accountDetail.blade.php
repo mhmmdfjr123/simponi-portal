@@ -11,7 +11,7 @@
             <div class="col-md-6">
                 <table class="account-detail">
                     <tr>
-                        <th>Nomor Akun</th>
+                        <th width="230px">Nomor Akun</th>
                         <td>
                             {{ $customer->account }}
                             @if($customer->block == 'Y')
@@ -51,30 +51,24 @@
                         <th>Gagal Login</th>
                         <td>{{ $customer->failcount }}</td>
                     </tr>
+                    <tr>
+                        <th>Tanggal Pendaftaran Akun</th>
+                        <td>{{ date('d-m-Y', strtotime($customer->datecreated)) }}</td>
+                    </tr>
                 </table>
             </div>
             <div class="col-md-6">
-                <div class="alert alert-warning">
-                    Pastikan anda menerapkan prinsip KYC (Know Your Customer). Semua aktifitas akan dicatat oleh sistem.
-                </div>
+                @widget('branchAnnouncement', [])
 
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <form method="post">
-                            @if($customer->activation != 'ACTIVATED')
-                            <a href="javascript:void(0)" onclick="confirmDirectPopUp('{{ route('branch-account-activate', [$encryptedId]) }}', 'Konfirmasi Aktivasi Akun', 'Apakah anda yakin?', 'Aktivasi', 'Batal')" class="btn btn-success btn-md-uppercase">Aktivasi</a>
-                            @endif
+                        @if($customer->block == 'Y')
+                            <a href="javascript:void(0)" onclick="confirmDirectPopUp('{{ route('branch-account-unblock', [$encryptedId]) }}', 'Konfirmasi Buka Blokir Akun', 'Apakah anda yakin?', 'Buka Blokir', 'Batal')" class="btn btn-default btn-md-uppercase">Buka Blokir</a>
+                        @else
+                            <a href="javascript:void(0)" onclick="confirmDirectPopUp('{{ route('branch-account-block', [$encryptedId]) }}', 'Konfirmasi Pemblokiran Akun', 'Apakah anda yakin?', 'Blokir', 'Batal')" class="btn btn-default btn-md-uppercase">Blokir</a>
+                        @endif
 
-                            <a href="javascript:void(0)" onclick="loadIntoBox('{{ route('branch-account-change-email', [$encryptedId]) }}')" class="btn btn-default btn-md-uppercase">Ganti Email</a>
-
-                            @if($customer->block == 'Y')
-                                <a href="javascript:void(0)" onclick="confirmDirectPopUp('{{ route('branch-account-unblock', [$encryptedId]) }}', 'Konfirmasi Buka Blokir Akun', 'Apakah anda yakin?', 'Buka Blokir', 'Batal')" class="btn btn-default btn-md-uppercase">Buka Blokir</a>
-                            @else
-                                <a href="javascript:void(0)" onclick="confirmDirectPopUp('{{ route('branch-account-block', [$encryptedId]) }}', 'Konfirmasi Pemblokiran Akun', 'Apakah anda yakin?', 'Blokir', 'Batal')" class="btn btn-default btn-md-uppercase">Blokir</a>
-                            @endif
-
-                                <a href="javascript:void(0)" onclick="confirmDirectPopUp('{{ route('branch-account-delete', [$encryptedId]) }}', 'Konfirmasi Hapus Akun', 'Apakah anda yakin?', 'Hapus', 'Batal')" class="btn btn-danger btn-md-uppercase">Hapus Akun</a>
-                        </form>
+                        <a href="javascript:void(0)" onclick="confirmDirectPopUp('{{ route('branch-account-delete', [$encryptedId]) }}', 'Konfirmasi Hapus Akun', 'Apakah anda yakin?', 'Hapus', 'Batal')" class="btn btn-danger btn-md-uppercase">Hapus Akun</a>
                     </div>
                 </div>
 
