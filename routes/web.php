@@ -69,6 +69,19 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']],
     Route::get('pages/{id}/delete/restore', 'Backoffice\Page\PageController@restoreDeletedData');
     Route::get('pages/{id}/delete/force', 'Backoffice\Page\PageController@forceDelete');
 
+	Route::get('support/faq', 'Backoffice\Support\FaqController@index');
+	Route::get('support/faq/show', 'Backoffice\Support\FaqController@showFaq');
+	Route::post('support/faq/re-order', 'Backoffice\Support\FaqController@reOrderFaqItems');
+	Route::get('support/faq/add/with-category/{faqCategoryId}', 'Backoffice\Support\FaqController@addItem');
+	Route::get('support/faq/{id}/edit', 'Backoffice\Support\FaqController@editItem');
+	Route::post('support/faq/submit', 'Backoffice\Support\FaqController@submitItem');
+	Route::get('support/faq/{id}/delete', 'Backoffice\Support\FaqController@deleteItem');
+	Route::get('support/faq/category/add', 'Backoffice\Support\FaqController@addCategory');
+	Route::get('support/faq/category/{id}/edit', 'Backoffice\Support\FaqController@editCategory');
+	Route::post('support/faq/category/submit', 'Backoffice\Support\FaqController@submitCategory');
+	Route::get('support/faq/category/{id}/delete', 'Backoffice\Support\FaqController@deleteCategory');
+	Route::post('support/faq/category/re-order', 'Backoffice\Support\FaqController@reOrderFaqCategories');
+
     Route::get('layout/menu', 'Backoffice\Layout\MenuController@index');
     Route::get('layout/menu/list-menu', 'Backoffice\Layout\MenuController@listMenu');
     Route::post('layout/menu/menu-index', 'Backoffice\Layout\MenuController@menuIndex');

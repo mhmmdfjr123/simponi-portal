@@ -5,6 +5,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Class Post
+ * @package App\Models
+ * @author efriandika
+ */
 class Post extends Model {
     use SoftDeletes;
 

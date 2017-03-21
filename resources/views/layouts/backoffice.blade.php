@@ -84,7 +84,7 @@
             </ul>
         </li>
         <li class="px-nav-item">
-            <a href="{{ route('backoffice-dashboard') }}"><i class="px-nav-icon fa fa-question-circle-o"></i><span class="px-nav-label">FAQ</span></a>
+            <a href="{{ url('backoffice/support/faq') }}"><i class="px-nav-icon fa fa-question-circle-o"></i><span class="px-nav-label">FAQ</span></a>
         </li>
         <li class="px-nav-item px-nav-dropdown">
             <a href="#"><i class="px-nav-icon fa fa-desktop"></i><span class="px-nav-label">Tampilan</span></a>
