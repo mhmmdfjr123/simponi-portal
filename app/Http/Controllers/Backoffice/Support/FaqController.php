@@ -241,10 +241,6 @@ class FaqController extends Controller {
 			$items = $request->input('items');
 			$faqCategoryId = $request->input('parentId');
 
-			\Log::info("=======================");
-			\Log::info($items);
-			\Log::info($faqCategoryId);
-
 			foreach($items as $item){
 				$faq = Faq::find($item);
 				$faq->faq_category_id = $faqCategoryId;

@@ -13,44 +13,38 @@
                     <div class="row">
                         <div class="col-sm-3" id="sidebar">
                             <ul class="nav nav-tabs nav-stacked hidden-xs" id="faq-navigation">
-                                @for($i = 1; $i <= 4; $i++)
-                                    <li><a href="#faq-category-{{ $i }}" class="page-scroll-faq">FAQ Category {{ $i }}</a></li>
-                                @endfor
+                                @foreach($faqCategories as $faqCategory)
+                                    <li><a href="#faq-category-{{ $faqCategory->id }}" class="page-scroll-faq">{{ $faqCategory->name }}</a></li>
+                                @endforeach
                             </ul>
-
-                            {{--<div class="list-group hidden-xs" id="faq-navigation">
-                                @for($i = 1; $i <= 4; $i++)
-                                <a href="#faq-category-{{ $i }}" class="list-group-item page-scroll-faq">FAQ Category {{ $i }}</a>
-                                @endfor
-                            </div>--}}
                         </div>
                         <div class="col-sm-9">
                             <!-- FAQ -->
                             <div class="panel-group">
-                                @for($i = 1; $i <= 4; $i++)
-                                    <div class="faq-category-container" id="faq-category-{{ $i }}">
-                                        <h3 class="faq-category-title">FAQ Category {{ $i }}</h3>
+                                @foreach($faqCategories as $faqCategory)
+                                    <div class="faq-category-container" id="faq-category-{{ $faqCategory->id }}">
+                                        <h3 class="faq-category-title">{{ $faqCategory->name }}</h3>
 
-                                        @for($j = 1; $j <= 3; $j++)
+                                        @foreach($faqCategory->faqs as $faq)
                                             <div class="panel panel-default panel-faq">
                                                 <div class="panel-heading">
-                                                    <a data-toggle="collapse" data-parent=".faq-category-container" href="#faq-cat-{{ $i }}-item-{{ $j }}">
+                                                    <a data-toggle="collapse" data-parent=".faq-category-container" href="#faq-cat-{{ $faqCategory->id }}-item-{{ $faq->id }}">
                                                         <h4 class="panel-title">
-                                                            FAQ Category {{ $i }} Item #{{ $j }}
+                                                            {{ $faq->question }}
                                                             <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
                                                         </h4>
                                                     </a>
                                                 </div>
-                                                <div id="faq-cat-{{ $i }}-item-{{ $j }}" class="panel-collapse collapse">
+                                                <div id="faq-cat-{{ $faqCategory->id }}-item-{{ $faq->id }}" class="panel-collapse collapse">
                                                     <div class="panel-body">
-                                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                                        {!! $faq->answer !!}
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endfor
+                                        @endforeach
                                     </div>
 
-                                @endfor
+                                @endforeach
                             </div>
                             <!-- End of FAQ -->
                         </div>

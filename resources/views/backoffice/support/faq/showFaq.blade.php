@@ -21,8 +21,8 @@
                     @endif
 
                     <div class="pull-right">
-                        <a href="{{ url('backoffice/support/faq/'.$faq->id.'/edit') }}" class="btn btn-xs btn-default"><i class="fa fa-plus"></i> Ubah</a>
-                        <a href="javascript:void(0)" onclick="confirmDirectPopUp('{{ url('backoffice/support/faq/'.$faq->id.'/delete') }}', 'Hapus FAQ', 'Anda yakin akan menghapus item ini?', 'Hapus', 'Batal')" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> Hapus</a>
+                        <a href="{{ url('backoffice/support/faq/'.$faq->id.'/edit') }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> Ubah</a>
+                        <a href="javascript:void(0)" onclick="confirmDirectPopUp('{{ url('backoffice/support/faq/'.$faq->id.'/delete') }}', 'Hapus FAQ', 'Anda yakin akan menghapus item ini?', 'Hapus', 'Batal')" class="btn btn-xs btn-default"><i class="fa fa-close"></i> Hapus</a>
                     </div>
                 </div>
             @endforeach
