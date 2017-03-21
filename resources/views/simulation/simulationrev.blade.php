@@ -60,7 +60,7 @@
                                 Laki-laki
                             </label>
                         </div>
-                    </div> --> --}}
+                    </div>
                     <div class="form-group">
                         <label>Usia Anda</label>
                         <select id="age" class="form-control" data-target="#duration,#living-cost-after,#living-cost-total">
@@ -77,10 +77,6 @@
                         @endfor
                         </select>
                     </div>
-                    <div class="form-group" style="display:none;">
-                        <label>Jangka Waktu Sebelum Pensiun</label>
-                        <input id="duration" class="form-control" type="text" value="N/A" data-value="0" disabled />
-                    </div>
                     <div class="form-group">
                         <label>Usia Harapan Hidup</label>
                         <select id="life-expectancy" class="form-control" data-target="#duration-after,#living-cost-total">
@@ -88,6 +84,25 @@
                             <option data-value="{{ $i }}">{{ $i }} tahun</option>
                         @endfor
                         </select>
+                    </div> --> --}}
+                    <div class="form-group">
+                        <label>Usia Anda</label>
+                        <input id="age" class="form-control numeric validatenow numstart" type="text" placeholder="Masukkan Usia Anda" data-target="#duration,#living-cost-after,#living-cost-total" data-value="0" data-min-value="17" data-max-value="55" data-message="Usia tidak boleh kurang dari 17 dan lebih dari 55 tahun" data-numstart-target="#retirement-age" data-numstart-message="Usia tidak boleh sama atau lebih dari Rencana Usia Pensiun" required />
+                        <small style="display:block"><i>Usia minimum untuk mengikuti DPLK BNI adalah 17 tahun dan maksimal 55 tahun</i></small>
+                    </div>
+                    <div class="form-group">
+                        <label>Rencana Usia Pensiun</label>
+                        <input id="retirement-age" class="form-control numeric validatenow numstart" type="text" placeholder="Masukkan Usia Pensiun" data-target="#duration,#duration-after,#living-cost-after,#living-cost-total" data-value="0" data-min-value="45" data-max-value="80" data-message="Rencana Usia Pensiun tidak boleh kurang dari 45 dan lebih dari 80 tahun" data-numstart-target="#life-expectancy" data-numstart-message="Rencana Usia Pensiun tidak boleh sama atau lebih dari Usia Harapan Hidup" required />
+                        <small style="display:block"><i>Usia pensiun rata-rata di Indonesia adalah 55 tahun</i></small>
+                    </div>
+                    <div class="form-group" style="display:none;">
+                        <label>Jangka Waktu Sebelum Pensiun</label>
+                        <input id="duration" class="form-control" type="text" value="N/A" data-value="0" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label>Usia Harapan Hidup</label>
+                        <input id="life-expectancy" class="form-control numeric validatenow" type="text" placeholder="Masukkan Usia Harapan Hidup" data-target="#duration-after,#living-cost-total" data-value="0" data-min-value="60" data-max-value="90" data-message="Rencana Usia Harapan Hidup tidak boleh kurang dari 60 dan lebih dari 90 tahun" required />
+                        <small style="display:block"><i>Usia Harapan Hidup rata-rata di Indonesia adalah 80 tahun</i></small>
                     </div>
                     <div class="form-group" style="display:none;">
                         <label>Jangka Waktu Masa Pensiun</label>
@@ -99,15 +114,16 @@
                         <label>Biaya Hidup Saat Ini</label>
                         <div class="input-group">
                             <div class="input-group-addon">Rp</div>
-                            <input id="living-cost" class="form-control currency" type="text" placeholder="Masukkan Biaya Hidup Saat Ini" data-value="0" data-target="#living-cost-after,#living-cost-total" required />
+                            <input id="living-cost" class="form-control currency numeric" type="text" placeholder="Masukkan Biaya Hidup Saat Ini" data-value="0" data-target="#living-cost-after,#living-cost-total" required />
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Asumsi Inflasi Per Tahun</label>
                         <div class="input-group">
-                            <input id="inflation-rate" class="form-control percentage" type="text" placeholder="Masukkan Asumsi Inflasi Per Tahun" data-value="0" data-target="#living-cost-after,#living-cost-total" required />
+                            <input id="inflation-rate" class="form-control percentage numeric" type="text" placeholder="Masukkan Asumsi Inflasi Per Tahun" data-value="0" data-target="#living-cost-after,#living-cost-total" required />
                             <div class="input-group-addon">%</div>
                         </div>
+                        <small style="display:block"><i>Rata-rata tingkat inflasi di Indonesia adalah 3-6% per tahun</i></small>
                     </div>
                     <div class="form-group" style="display:none;">
                         <label>Biaya Hidup Saat Pensiun</label>
@@ -126,7 +142,7 @@
                     <div class="form-group">
                         <label>Target Investasi</label>
                         <select id="investation-rate" class="form-control">
-                        @for ($i = 8; $i <= 15; $i++)
+                        @for ($i = 1; $i <= 25; $i++)
                             <option data-value="{{ $i / 100 }}">{{ $i }}.0%</option>
                         @endfor
                         </select>
@@ -139,25 +155,25 @@
                 </div>
                 <div id="simulation" class="col-xs-12">
                     <div class="narration col-xs-12">
-                        Anda memiliki waktu <span data-info="duration">0</span> tahun hingga waktu pensiun Anda tiba. Dengan usia harapan hidup <span data-info="life-expectancy">0</span> tahun, Anda memiliki jangka waktu masa pensiun selama <span data-info="duration-after">0</span> tahun. Dengan biaya hidup sebesar Rp<span data-info="living-cost">0</span> dan asumsi inflasi sebesar <span data-info="inflation-rate">0</span>% per tahun, biaya hidup Anda setelah pensiun akan menjadi sebesar Rp<span data-info="living-cost-after">0</span> dengan total biaya hidup masa pensiun akan menjadi sebesar Rp<span data-info="living-cost-total">0</span>. Untuk mengakomodasi biaya hidup Anda setelah pensiun sesuai dengan data di atas, Anda bisa melakukan investasi dengan salah satu dari tiga skema investasi berikut:</div>
+                        Anda memiliki waktu <span data-info="#duration">0</span> tahun hingga waktu pensiun Anda tiba. Dengan usia harapan hidup <span data-info="#life-expectancy">0</span> tahun, Anda memiliki jangka waktu masa pensiun selama <span data-info="#duration-after">0</span> tahun. Dengan biaya hidup sebesar Rp<span data-info="#living-cost">0</span> per bulan dan asumsi inflasi sebesar <span data-info="#inflation-rate">0</span>% per tahun, biaya hidup Anda setelah pensiun akan menjadi sebesar Rp<span data-info="#living-cost-after">0</span> dengan total biaya hidup masa pensiun akan menjadi sebesar Rp<span data-info="#living-cost-total">0</span>. Untuk mengakomodasi biaya hidup Anda setelah pensiun sesuai dengan data di atas, Anda bisa melakukan investasi dengan salah satu dari tiga skema setoran berikut:</div>
                     </div>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div id="monthly-investation" class="simulationresult section-box-item">
-                            <label>Investasi Bulanan<a class="material-icons info" data-toggle="tooltip" title="Investasi Bulanan adalah iuran atau dana yang harus Anda investasikan setiap bulan sebelum pensiun untuk mencapai target investasi yang Anda inginkan"><i class="fa fa-info-circle"></i></a></label>
+                            <label>Setoran Bulanan<a class="material-icons info" data-toggle="tooltip" title="Investasi Bulanan adalah iuran atau dana yang harus Anda investasikan setiap bulan sebelum pensiun untuk mencapai target investasi yang Anda inginkan"><i class="fa fa-info-circle"></i></a></label>
                             <span>N/A</span>
                             <b></b>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div id="annual-investation" class="simulationresult section-box-item">
-                            <label>Investasi Tahunan<a class="material-icons info" data-toggle="tooltip" title="Investasi Tahunan adalah iuran atau dana yang harus Anda investasikan setiap satu tahun sekali sebelum pensiun untuk mencapai target investasi yang Anda inginkan"><i class="fa fa-info-circle"></i></a></label>
+                            <label>Setoran Tahunan<a class="material-icons info" data-toggle="tooltip" title="Investasi Tahunan adalah iuran atau dana yang harus Anda investasikan setiap satu tahun sekali sebelum pensiun untuk mencapai target investasi yang Anda inginkan"><i class="fa fa-info-circle"></i></a></label>
                             <span>N/A</span>
                             <b></b>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div id="lumpsum" class="simulationresult section-box-item">
-                            <label>Investasi Saat Ini / Lumpsum<a class="material-icons info" data-toggle="tooltip" title="Investasi Saat Ini / Lumpsum adalah iuran atau dana yang harus Anda investasikan satu kali sebelum pensiun untuk mencapai target investasi yang Anda inginkan"><i class="fa fa-info-circle"></i></a></label>
+                            <label>Setoran Satu Kali / Lumpsum<a class="material-icons info" data-toggle="tooltip" title="Investasi Saat Ini / Lumpsum adalah iuran atau dana yang harus Anda investasikan satu kali sebelum pensiun untuk mencapai target investasi yang Anda inginkan"><i class="fa fa-info-circle"></i></a></label>
                             <span>N/A</span>
                             <b></b>
                         </div>

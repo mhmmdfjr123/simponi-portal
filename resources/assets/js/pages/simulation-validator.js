@@ -40,9 +40,61 @@ $.fn.validate = function () {
                     checked = checked && tmpemailchecked;
                     tmpemailchecked ? (existingwarning && warning.remove()) : (!existingwarning && formgroup.append('<small class="validation-warning">Email tidak valid</small>'));
                 }
+                if (tmpchecked && $(this).is('.numstart')) {
+                    var targetvalue = $($(this).data('numstart-target')).val(),
+                        numstartchecked = ($(this).val() < targetvalue),
+                        message = $(this).data('numstart-message');
+                    checked = checked && numstartchecked;
+                    numstartchecked ? (existingwarning && warning.remove()) : (!existingwarning && formgroup.append('<small class="validation-warning">' + message + '</small>'));
+                }
                 tmpchecked ? (existingwarning && warning.remove()) : (!existingwarning && formgroup.append('<small class="validation-warning">Kolom tidak boleh kosong</small>'));
             }
         }
     });
     return checked;
 };
+$.fn.validateNow = function () {
+    this.each(function () {
+        var tmpvalue = null;
+        $(this).keydown(function () {
+            $(this).closest('.form-group').children('.validation-warning').remove();
+            tmpvalue = $(this).val();
+        }).keyup(function () {
+            var value = $(this).val(),
+                minvalue = $(this).data('min-value'),
+                minvalue = (typeof minvalue == "undefined") ? 0 : parseInt(minvalue),
+                maxvalue = $(this).data('max-value'),
+                maxvalue = (typeof maxvalue == "undefined") ? 0 : parseInt(maxvalue),
+                checked = (value >= minvalue) && ((maxvalue > 0) ? (value <= maxvalue) : true);
+            if (!checked && (value.length > 0)) {
+                var message = $(this).data('message'),
+                    formgroup = $(this).closest('.form-group'),
+                    warning = formgroup.children('.validation-warning'),
+                    existingwarning = (warning.length > 0);
+                existingwarning ? warning.text(message) : formgroup.append('<small class="validation-warning">' + message + '</small>');
+                if (value > 99) {
+                    $(this).val(tmpvalue);
+                }
+            }
+        }).blur(function () {
+            var value = $(this).val(),
+                minvalue = $(this).data('min-value'),
+                minvalue = (typeof minvalue == "undefined") ? 0 : parseInt(minvalue),
+                maxvalue = $(this).data('max-value'),
+                maxvalue = (typeof maxvalue == "undefined") ? 0 : parseInt(maxvalue),
+                checked = (value >= minvalue) && ((maxvalue > 0) ? (value <= maxvalue) : true),
+                formgroup = $(this).closest('.form-group'),
+                warning = formgroup.children('.validation-warning'),
+                existingwarning = (warning.length > 0);
+            if (!checked && (value.length > 0)) {
+                var message = $(this).data('message');
+                existingwarning ? warning.text(message) : formgroup.append('<small class="validation-warning">' + message + '</small>');
+                if (value > 99) {
+                    $(this).val(tmpvalue);
+                }
+            } else {
+                warning.remove();
+            }
+        });
+    });    
+}
