@@ -48,6 +48,22 @@ return [
             'prefix_schema' => env('DB_SCHEMA_PREFIX', ''),
         ],
 
+        'oracle-analytics' => [
+	        'driver'        => 'oracle',
+
+	        'tns'           => env('DB_TNS', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=devtass)(PORT=1569)))(CONNECT_DATA=(SID=OTFDEV)))'),
+	        // You can use 3 lines bellow, if you are not using the tns configuration above
+	        'host'          => env('DB_HOST', ''),
+	        'port'          => env('DB_PORT', ''),
+	        'database'      => env('DB_DATABASE', ''),
+
+	        'username'      => env('DB_USERNAME', 'simponi'),
+	        'password'      => env('DB_PASSWORD', 'simponi'),
+	        'charset'       => env('DB_CHARSET', 'AL32UTF8'),
+	        'prefix'        => env('DB_PREFIX', 'S_'),
+	        'prefix_schema' => env('DB_SCHEMA_PREFIX', ''),
+        ],
+
         'sqlite' => [
             'driver' => 'sqlite',
             'database' => env('DB_DATABASE', database_path('database.sqlite')),

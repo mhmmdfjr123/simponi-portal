@@ -22,6 +22,8 @@ Route::get('backoffice', function() {
 
 Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']], function(){
     Route::get('dashboard', 'Backoffice\DashboardController@index')->name('backoffice-dashboard');
+	Route::get('dashboard/analytics/counter', 'Backoffice\DashboardController@getCounterAnalytics');
+	Route::get('dashboard/analytics/graph', 'Backoffice\DashboardController@getGraphAnalytics');
 
     // Profile
     Route::get('profile/edit', 'Backoffice\ProfileController@showEditForm');

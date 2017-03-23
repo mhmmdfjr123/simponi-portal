@@ -102,6 +102,7 @@
                 <li class="px-nav-item"><a href="{{ url('backoffice/layout/menu') }}"><span class="px-nav-label">Manajemen Menu</span></a></li>
             </ul>
         </li>
+        @role('super-administrator')
         <li class="px-nav-item px-nav-dropdown">
             <a href="#"><i class="px-nav-icon fa fa-users"></i><span class="px-nav-label">Administrasi</span></a>
 
@@ -109,6 +110,7 @@
                 <li class="px-nav-item" id="menu-user"><a href="{{ url('backoffice/administration/user') }}"><span class="px-nav-label">Pengguna</span></a></li>
             </ul>
         </li>
+        @endrole
 
         <li class="px-nav-box b-t-1 p-a-2">
             <a href="{{ route('home') }}" class="btn btn-primary btn-block btn-outline">Go to Homepage</a>
@@ -130,17 +132,16 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="px-demo-navbar-collapse">
         <ul class="nav navbar-nav">
-            <li><a href="{{ route('home') }}">Beranda</a></li>
+            <li><a href="{{ route('home') }}" target="_blank">Beranda</a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu Pintas</a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
+                    <li><a href="{{ url('backoffice/post/add') }}">Buat Artikel Baru</a></li>
+                    <li><a href="{{ url('backoffice/file/download/add') }}">Tambah File Download</a></li>
+                    <li><a href="{{ url('backoffice/layout/menu') }}">Kelola Menu</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">One more separated link</a></li>
+                    <li><a href="{{ route('portal-login') }}" target="_blank">Login Portal</a></li>
+                    <li><a href="{{ route('branch-login') }}" target="_blank">Login Branch</a></li>>
                 </ul>
             </li>
         </ul>
