@@ -60,7 +60,7 @@
                                 Laki-laki
                             </label>
                         </div>
-                    </div> --> --}}
+                    </div>
                     <div class="form-group">
                         <label>Usia Anda</label>
                         <select id="age" class="form-control">
@@ -76,6 +76,16 @@
                             <option data-value="{{ $i }}">{{ $i }} tahun</option>
                         @endfor
                         </select>
+                    </div> --> --}}
+                    <div class="form-group">
+                        <label>Usia Anda</label>
+                        <input id="age" class="form-control numeric validatenow numstart" type="text" placeholder="Masukkan Usia Anda" data-value="0" data-min-value="17" data-max-value="55" data-message="Usia tidak boleh kurang dari 17 dan lebih dari 55 tahun" data-numstart-target="#retirement-age" data-numstart-message="Usia tidak boleh sama atau lebih dari Rencana Usia Pensiun" data-check="true" required />
+                        <small style="display:block"><i>Usia minimum untuk mengikuti DPLK BNI adalah 17 tahun dan maksimum 55 tahun</i></small>
+                    </div>
+                    <div class="form-group">
+                        <label>Rencana Usia Pensiun</label>
+                        <input id="retirement-age" class="form-control numeric validatenow" type="text" placeholder="Masukkan Usia Pensiun" data-value="0" data-min-value="45" data-max-value="80" data-message="Rencana Usia Pensiun tidak boleh kurang dari 45 dan lebih dari 80 tahun" data-check="true" required />
+                        <small style="display:block"><i>Usia pensiun rata-rata di Indonesia adalah 55 tahun</i></small>
                     </div>
                 </div>
                 <div class="middle-side col-sm-4 col-xs-12">
@@ -100,7 +110,7 @@
                         <label>Dana Awal</label>
                         <div class="input-group">
                             <div class="input-group-addon">Rp</div>
-                            <input id="starting-balance" class="form-control currency" type="text" placeholder="Masukkan Dana Awal" data-value="0" disabled />
+                            <input id="starting-balance" class="form-control currency numeric" type="text" placeholder="Masukkan Dana Awal" data-value="0" disabled />
                         </div>
                     </div>
                     <div class="form-group">
@@ -120,27 +130,34 @@
                         <label>Iuran</label>
                         <div class="input-group">
                             <div class="input-group-addon">Rp</div>
-                            <input class="form-control currency" type="text" placeholder="Masukkan Iuran" data-value="0" disabled required />
+                            <input class="form-control currency numeric" type="text" placeholder="Masukkan Iuran" data-value="0" disabled required />
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Kenaikan Iuran Per Tahun</label>
                         <div class="input-group">
-                            <input id="billing-increment" class="form-control percentage" type="text" placeholder="Masukkan Kenaikan Iuran Per Tahun" data-value="0" disabled />
+                            <input id="billing-increment" class="form-control percentage numeric" type="text" placeholder="Masukkan Kenaikan Iuran Per Tahun" data-value="0" disabled />
                             <div class="input-group-addon">%</div>
                         </div>
+                        <small style="display:block"><i>Rata-rata tingkat inflasi di Indonesia adalah 3-6% per tahun</i></small>
                     </div>
                 </div>
                 <div class="right-side col-sm-4 col-xs-12">
-                    <div class="form-group">
+                    {{-- <!-- <div class="form-group">
                         <label>Tingkat Bunga DPLK</label>
                         <select id="interest-rate" class="form-control">
-                            <option data-value="0.080">8.0%</option>
-                            <option data-value="0.090">9.0%</option>
-                            <option data-value="0.100">10.0%</option>
-                            <option data-value="0.110">11.0%</option>
-                            <option data-value="0.120">12.0%</option>
+                        @for ($i = 1; $i <= 25; $i++)
+                            <option data-value="{{ $i / 100 }}">{{ $i }}.0%</option>
+                        @endfor
                         </select>
+                    </div> --> --}}
+                    <div class="form-group">
+                        <label>Tingkat Bunga DPLK</label>
+                        <div class="input-group">
+                            <input id="interest-rate" class="form-control percentage numeric validatenow" type="text" placeholder="Masukkan Tingkat Bunga DPLK" data-value="0" data-min-value="1" data-max-value="25" data-message="Target Investasi tidak boleh lebih rendah dari 1% dan lebih tinggi dari 25%" required />
+                            <div class="input-group-addon">%</div>
+                        </div>
+                        <small style="display:block"><i>Tingkat Bunga DPLK minimum 1% dan maksimum 25%</i></small>
                     </div>
                     <div class="form-group">
                         <label>Biaya Administrasi (Per Tahun)</label>

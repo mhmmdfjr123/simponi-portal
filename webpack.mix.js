@@ -29,8 +29,8 @@ mix.combine([
 ], frontThemePath + 'js/simponi.js');
 mix.combine([resourcesPath + 'js/pages/customer.js'], frontThemePath + 'js/pages/customer.js');
 mix.combine([
-    resourcesPath + 'js/pages/simulation.js',
     resourcesPath + 'js/pages/simulation-validator.js',
+    resourcesPath + 'js/pages/simulation.js',
 ], frontThemePath + 'js/pages/simulation.js');
 
 // Copy and Combine Global Vendor
