@@ -88,7 +88,7 @@
                     <div class="form-group">
                         <label>Usia Anda</label>
                         <input id="age" class="form-control numeric validatenow numstart" type="text" placeholder="Masukkan Usia Anda" data-target="#duration,#living-cost-after,#living-cost-total" data-value="0" data-min-value="17" data-max-value="55" data-message="Usia tidak boleh kurang dari 17 dan lebih dari 55 tahun" data-numstart-target="#retirement-age" data-numstart-message="Usia tidak boleh sama atau lebih dari Rencana Usia Pensiun" required />
-                        <small style="display:block"><i>Usia minimum untuk mengikuti DPLK BNI adalah 17 tahun dan maksimal 55 tahun</i></small>
+                        <small style="display:block"><i>Usia minimum untuk mengikuti DPLK BNI adalah 17 tahun dan maksimum 55 tahun</i></small>
                     </div>
                     <div class="form-group">
                         <label>Rencana Usia Pensiun</label>
@@ -116,11 +116,12 @@
                             <div class="input-group-addon">Rp</div>
                             <input id="living-cost" class="form-control currency numeric" type="text" placeholder="Masukkan Biaya Hidup Saat Ini" data-value="0" data-target="#living-cost-after,#living-cost-total" required />
                         </div>
+                        <small style="display:block"><i>Biaya Hidup Anda per bulan</i></small>
                     </div>
                     <div class="form-group">
                         <label>Asumsi Inflasi Per Tahun</label>
                         <div class="input-group">
-                            <input id="inflation-rate" class="form-control percentage numeric" type="text" placeholder="Masukkan Asumsi Inflasi Per Tahun" data-value="0" data-target="#living-cost-after,#living-cost-total" required />
+                            <input id="inflation-rate" class="form-control percentage numeric validatenow" type="text" placeholder="Masukkan Asumsi Inflasi Per Tahun" data-value="0" data-min-value="1" data-max-value="20" data-message="Asumsi Inflasi Per Tahun tidak boleh lebih rendah dari 1% dan lebih tinggi dari 20%" data-target="#living-cost-after,#living-cost-total" required />
                             <div class="input-group-addon">%</div>
                         </div>
                         <small style="display:block"><i>Rata-rata tingkat inflasi di Indonesia adalah 3-6% per tahun</i></small>
@@ -139,13 +140,21 @@
                             <input id="living-cost-total" class="form-control" type="text" value="N/A" data-value="0" disabled />
                         </div>
                     </div>
-                    <div class="form-group">
+                    {{-- <!-- <div class="form-group">
                         <label>Target Investasi</label>
                         <select id="investation-rate" class="form-control">
                         @for ($i = 1; $i <= 25; $i++)
                             <option data-value="{{ $i / 100 }}">{{ $i }}.0%</option>
                         @endfor
                         </select>
+                    </div> --> --}}
+                    <div class="form-group">
+                        <label>Target Investasi</label>
+                        <div class="input-group">
+                            <input id="investation-rate" class="form-control percentage numeric validatenow" type="text" placeholder="Masukkan Target Investasi" data-value="0" data-min-value="1" data-max-value="25" data-message="Target Investasi tidak boleh lebih rendah dari 1% dan lebih tinggi dari 25%" required />
+                            <div class="input-group-addon">%</div>
+                        </div>
+                        <small style="display:block"><i>Target Investasi minimum 1% dan maksimum 25%</i></small>
                     </div>
                 </div>
                 <div class="right-side col-sm-4 col-xs-12">

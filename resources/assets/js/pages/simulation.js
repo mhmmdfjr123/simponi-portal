@@ -162,12 +162,13 @@ $('.calculate').click(function () {
         
         if (simulationform.hasClass('rev')) {
             //PMT(ir, np, pv, fv) = (ir * (pv * Math.pow((ir + 1), np) + fv)) / ((ir + 1) * (Math.pow((ir + 1), np) - 1))
-            var investationrate = parseFloat($('#investation-rate option:selected').data('value')),
+            var investationrate = parseFloat($('#investation-rate').attr('data-value')),
                 duration = parseInt($('#duration').attr('data-value')),
                 livingcosttotal = parseInt($('#living-cost-total').attr('data-value')),
                 monthlyinvestation = periodicPayment((investationrate / 12), (duration * 12), 0, -livingcosttotal, 0),
                 annualinvestation = periodicPayment(investationrate, duration, 0, -livingcosttotal, 0),
                 lumpsum = presentValue(investationrate, duration, 0, -livingcosttotal);
+                console.log(investationrate / 12);
                 $('.narration').addClass('active').find('[data-info]').each(function () {
                     var infoelement = $($(this).data('info')),
                         text = infoelement.is('select') ? infoelement.find('option:selected').data('value') : infoelement.attr('data-value'),
@@ -199,7 +200,7 @@ $('.calculate').click(function () {
                 billing = parseFloat($('.billing input.currency').attr('data-value')),
                 accumulatedbilling = billing;
                 billingincrement = parseFloat($('#billing-increment').attr('data-value')),
-                interestrate = parseFloat($('#interest-rate option:selected').attr('data-value')),
+                interestrate = parseFloat($('#interest-rate').attr('data-value')),
                 monthlyinterestrate = interestrate / 12;
                 administrationfee = parseFloat($('#administration-fee').attr('data-value')),
                 managementfee = parseFloat($('#management-fee').attr('data-value')),

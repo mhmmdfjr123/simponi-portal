@@ -80,7 +80,7 @@
                     <div class="form-group">
                         <label>Usia Anda</label>
                         <input id="age" class="form-control numeric validatenow numstart" type="text" placeholder="Masukkan Usia Anda" data-value="0" data-min-value="17" data-max-value="55" data-message="Usia tidak boleh kurang dari 17 dan lebih dari 55 tahun" data-numstart-target="#retirement-age" data-numstart-message="Usia tidak boleh sama atau lebih dari Rencana Usia Pensiun" data-check="true" required />
-                        <small style="display:block"><i>Usia minimum untuk mengikuti DPLK BNI adalah 17 tahun dan maksimal 55 tahun</i></small>
+                        <small style="display:block"><i>Usia minimum untuk mengikuti DPLK BNI adalah 17 tahun dan maksimum 55 tahun</i></small>
                     </div>
                     <div class="form-group">
                         <label>Rencana Usia Pensiun</label>
@@ -143,13 +143,21 @@
                     </div>
                 </div>
                 <div class="right-side col-sm-4 col-xs-12">
-                    <div class="form-group">
+                    {{-- <!-- <div class="form-group">
                         <label>Tingkat Bunga DPLK</label>
                         <select id="interest-rate" class="form-control">
                         @for ($i = 1; $i <= 25; $i++)
                             <option data-value="{{ $i / 100 }}">{{ $i }}.0%</option>
                         @endfor
                         </select>
+                    </div> --> --}}
+                    <div class="form-group">
+                        <label>Tingkat Bunga DPLK</label>
+                        <div class="input-group">
+                            <input id="interest-rate" class="form-control percentage numeric validatenow" type="text" placeholder="Masukkan Tingkat Bunga DPLK" data-value="0" data-min-value="1" data-max-value="25" data-message="Target Investasi tidak boleh lebih rendah dari 1% dan lebih tinggi dari 25%" required />
+                            <div class="input-group-addon">%</div>
+                        </div>
+                        <small style="display:block"><i>Tingkat Bunga DPLK minimum 1% dan maksimum 25%</i></small>
                     </div>
                     <div class="form-group">
                         <label>Biaya Administrasi (Per Tahun)</label>

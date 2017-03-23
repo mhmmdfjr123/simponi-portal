@@ -34,6 +34,9 @@ $.fn.validate = function () {
             } else {
                 var tmpchecked = ($(this).val().length > 0);
                 checked = checked && tmpchecked;
+                tmpchecked ? (existingwarning && warning.remove()) : (!existingwarning && formgroup.append('<small class="validation-warning">Kolom tidak boleh kosong</small>'));
+                warning = formgroup.children('.validation-warning');
+                existingwarning = (warning.length > 0);
                 if (tmpchecked && $(this).is('[type="email"]')) {
                     var tmpemail = $(this).split('@'),
                         tmpemailchecked = ((tmpemail.length > 1) ? (tmpemail[1].indexOf('.') >= 0) : false);
@@ -47,7 +50,20 @@ $.fn.validate = function () {
                     checked = checked && numstartchecked;
                     numstartchecked ? (existingwarning && warning.remove()) : (!existingwarning && formgroup.append('<small class="validation-warning">' + message + '</small>'));
                 }
-                tmpchecked ? (existingwarning && warning.remove()) : (!existingwarning && formgroup.append('<small class="validation-warning">Kolom tidak boleh kosong</small>'));
+                if (tmpchecked && $(this).is('[data-min-value]')) {
+                    var targetvalue = parseInt($(this).data('min-value')),
+                        minvaluechecked = ($(this).val() >= targetvalue),
+                        message = $(this).data('message');
+                    checked = checked && minvaluechecked;
+                    minvaluechecked ? (existingwarning && warning.remove()) : (!existingwarning && formgroup.append('<small class="validation-warning">' + message + '</small>'));
+                }
+                if (tmpchecked && $(this).is('[data-max-value]')) {
+                    var targetvalue = parseInt($(this).data('max-value')),
+                        maxvaluechecked = ($(this).val() <= targetvalue),
+                        message = $(this).data('message');
+                    checked = checked && maxvaluechecked;
+                    maxvaluechecked ? (existingwarning && warning.remove()) : (!existingwarning && formgroup.append('<small class="validation-warning">' + message + '</small>'));
+                }
             }
         }
     });

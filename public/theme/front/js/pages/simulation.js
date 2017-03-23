@@ -34,6 +34,9 @@ $.fn.validate = function () {
             } else {
                 var tmpchecked = ($(this).val().length > 0);
                 checked = checked && tmpchecked;
+                tmpchecked ? (existingwarning && warning.remove()) : (!existingwarning && formgroup.append('<small class="validation-warning">Kolom tidak boleh kosong</small>'));
+                warning = formgroup.children('.validation-warning');
+                existingwarning = (warning.length > 0);
                 if (tmpchecked && $(this).is('[type="email"]')) {
                     var tmpemail = $(this).split('@'),
                         tmpemailchecked = ((tmpemail.length > 1) ? (tmpemail[1].indexOf('.') >= 0) : false);
@@ -47,7 +50,20 @@ $.fn.validate = function () {
                     checked = checked && numstartchecked;
                     numstartchecked ? (existingwarning && warning.remove()) : (!existingwarning && formgroup.append('<small class="validation-warning">' + message + '</small>'));
                 }
-                tmpchecked ? (existingwarning && warning.remove()) : (!existingwarning && formgroup.append('<small class="validation-warning">Kolom tidak boleh kosong</small>'));
+                if (tmpchecked && $(this).is('[data-min-value]')) {
+                    var targetvalue = parseInt($(this).data('min-value')),
+                        minvaluechecked = ($(this).val() >= targetvalue),
+                        message = $(this).data('message');
+                    checked = checked && minvaluechecked;
+                    minvaluechecked ? (existingwarning && warning.remove()) : (!existingwarning && formgroup.append('<small class="validation-warning">' + message + '</small>'));
+                }
+                if (tmpchecked && $(this).is('[data-max-value]')) {
+                    var targetvalue = parseInt($(this).data('max-value')),
+                        maxvaluechecked = ($(this).val() <= targetvalue),
+                        message = $(this).data('message');
+                    checked = checked && maxvaluechecked;
+                    maxvaluechecked ? (existingwarning && warning.remove()) : (!existingwarning && formgroup.append('<small class="validation-warning">' + message + '</small>'));
+                }
             }
         }
     });
@@ -262,12 +278,13 @@ $('.calculate').click(function () {
         
         if (simulationform.hasClass('rev')) {
             //PMT(ir, np, pv, fv) = (ir * (pv * Math.pow((ir + 1), np) + fv)) / ((ir + 1) * (Math.pow((ir + 1), np) - 1))
-            var investationrate = parseFloat($('#investation-rate option:selected').data('value')),
+            var investationrate = parseFloat($('#investation-rate').attr('data-value')),
                 duration = parseInt($('#duration').attr('data-value')),
                 livingcosttotal = parseInt($('#living-cost-total').attr('data-value')),
                 monthlyinvestation = periodicPayment((investationrate / 12), (duration * 12), 0, -livingcosttotal, 0),
                 annualinvestation = periodicPayment(investationrate, duration, 0, -livingcosttotal, 0),
                 lumpsum = presentValue(investationrate, duration, 0, -livingcosttotal);
+                console.log(investationrate / 12);
                 $('.narration').addClass('active').find('[data-info]').each(function () {
                     var infoelement = $($(this).data('info')),
                         text = infoelement.is('select') ? infoelement.find('option:selected').data('value') : infoelement.attr('data-value'),
@@ -299,7 +316,7 @@ $('.calculate').click(function () {
                 billing = parseFloat($('.billing input.currency').attr('data-value')),
                 accumulatedbilling = billing;
                 billingincrement = parseFloat($('#billing-increment').attr('data-value')),
-                interestrate = parseFloat($('#interest-rate option:selected').attr('data-value')),
+                interestrate = parseFloat($('#interest-rate').attr('data-value')),
                 monthlyinterestrate = interestrate / 12;
                 administrationfee = parseFloat($('#administration-fee').attr('data-value')),
                 managementfee = parseFloat($('#management-fee').attr('data-value')),
