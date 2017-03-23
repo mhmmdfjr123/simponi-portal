@@ -77,11 +77,12 @@
                 "language": {
                     "processing": "Mohon Tunggu.. Sedang memproses data.."
                 },
+                "order": [[ 3, "desc" ]],
                 "columns": [
                     {data: 'rownum', name: 'rownum', "searchable": false, className: "text-center", orderable: false},
-                    {data: 'name', name: 'name', "searchable": true, className: "text-left", orderable: false},
+                    {data: 'name', name: 'name', "searchable": true, className: "text-left", orderable: true},
                     {data: 'category.name', name: 'category', "searchable": false, className: "text-left", orderable: false},
-                    {data: 'created_date', name: 'created_date', "searchable": false, className: "text-center", orderable: false},
+                    {data: 'created_date', name: 'created_at', "searchable": false, className: "text-center", orderable: true},
                     {data: 'status', name: 'status', "searchable": false, className: "text-center", orderable: false},
                     {data: 'action', name: 'action', "searchable": false, className: "text-center", orderable: false}
                 ]

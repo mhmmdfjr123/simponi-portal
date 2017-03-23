@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Download;
+use App\Models\DownloadCategory;
+use App\Models\Post;
 
 /**
  * Class HomeController
@@ -9,21 +12,25 @@ namespace App\Http\Controllers;
  */
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     */
-    public function __construct()
-    {
 
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+	/**
+	 * Show the application dashboard.
+	 *
+	 * @param Post $postModel
+	 * @param Download $downloadModel
+	 *
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+    public function index(Post $postModel, Download $downloadModel)
     {
-        return view('home.index');
+    	$data = [
+    		'latestNews' => $postModel->listAllPost(4, 0, 1),
+		    'promotions' => $postModel->listAllPost(4, 0, 2),
+		    'fundFactSheet' => $downloadModel->getFiles(4, 0, 1),
+		    'ffs'        => DownloadCategory::findOrFail(1),
+		    'featuredBoxStrLimit'   => 37
+	    ];
+
+        return view('home.index', $data);
     }
 }

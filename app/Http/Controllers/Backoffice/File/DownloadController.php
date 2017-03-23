@@ -28,7 +28,6 @@ class DownloadController extends Controller {
         $categoryId = $request->get('categoryId');
 
         $data = Download::with('category')->select('*');
-        $data->orderBy('name', 'desc');
 
         if($categoryId != '')
             $data->where("download_category_id", $categoryId);

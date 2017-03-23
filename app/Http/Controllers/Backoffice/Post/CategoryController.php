@@ -12,9 +12,10 @@ use Illuminate\Http\Request;
  */
 class CategoryController extends Controller {
 
-    public function __construct(){
-
-    }
+	// ID of row in $protectedID array cannot be deleted
+	private $protectedID = [
+		1, 2 // Reserved by Fun Fact Sheet Category
+	];
 
     public function index(){
         $data = [
@@ -72,6 +73,9 @@ class CategoryController extends Controller {
     public function delete($id){
         try {
             $obj = PostCategory::find($id);
+
+	        if(in_array($obj->id, $this->protectedID))
+		        return redirect('backoffice/post/category')->with('warning', 'Kategori ini tidak dapat dihapus.');
 
             if(count($obj) > 0){
                 $obj->delete();

@@ -30,9 +30,9 @@ class Post extends Model {
     }
 
     public function listAllPost($limit, $offset, $catId = ''){
-        $query = $this->select('account.organization as author', 'post.*')->orderBy('created_at', 'DESC');
+        $query = $this->select(['users.name', 'post.*'])->orderBy('post.created_at', 'DESC');
 
-        $query->join('account', 'account.id', '=', 'post.created_by');
+        $query->join('users', 'users.id', '=', 'post.created_by');
 
         if($catId != ''){
             $query->join('post_category_rel', function($join) use ($catId){
@@ -48,9 +48,9 @@ class Post extends Model {
     }
 
     public function listAllPostWithPagination($perPage, $catId = ''){
-        $query = $this->select('account.organization as author', 'post.*')->orderBy('created_at', 'DESC');
+        $query = $this->select('users.name as author', 'post.*')->orderBy('created_at', 'DESC');
 
-        $query->join('account', 'account.id', '=', 'post.created_by');
+        $query->join('users', 'users.id', '=', 'post.created_by');
 
         if($catId != ''){
             $query->join('post_category_rel', function($join) use ($catId){

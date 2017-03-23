@@ -51,9 +51,9 @@
                         </div>
                         <div class="box-body">
                             <ul class="fa-ul">
-                                <li><i class="fa-li fa fa-check"></i> <a href="#">Mengapa perlu investasi?</a></li>
-                                <li><i class="fa-li fa fa-check"></i> <a href="#">BNI Simponi saat ini dan nanti</a></li>
-                                <li><i class="fa-li fa fa-check"></i> <a href="#">Mengenal lebih jauh produk investasi non bank</a></li>
+                                @foreach($latestNews as $news)
+                                <li><i class="fa-li fa fa-check"></i> <a href="#" title="{{ $news->title }}">{{ str_limit($news->title, $featuredBoxStrLimit) }}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -66,9 +66,9 @@
                         </div>
                         <div class="box-body">
                             <ul class="fa-ul">
-                                <li><i class="fa-li fa fa-bullhorn"></i> <a href="#">Mengapa perlu investasi?</a></li>
-                                <li><i class="fa-li fa fa-bullhorn"></i> <a href="#">BNI Simponi saat ini dan nanti</a></li>
-                                <li><i class="fa-li fa fa-bullhorn"></i> <a href="#">Mengenal lebih jauh produk investasi non bank</a></li>
+                                @foreach($promotions as $promotion)
+                                    <li><i class="fa-li fa fa-bullhorn"></i> <a href="#" title="{{ $promotion->title }}">{{ str_limit($promotion->title, $featuredBoxStrLimit) }}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -77,13 +77,13 @@
                     <div class="section-box-item">
                         <div class="box-header">
                             <h4 class="box-title">Fund Fact Sheet</h4>
-                            <div class="box-title-action"><a href="#">Lihat Semua <i class="fa fa-angle-double-right"></i></a></div>
+                            <div class="box-title-action"><a href="{{ route('download-category', $ffs->alias) }}">Lihat Semua <i class="fa fa-angle-double-right"></i></a></div>
                         </div>
                         <div class="box-body">
                             <ul class="fa-ul">
-                                <li><i class="fa-li fa fa-download"></i> <a href="#">Mengapa perlu investasi?</a></li>
-                                <li><i class="fa-li fa fa-download"></i> <a href="#">BNI Simponi saat ini dan nanti</a></li>
-                                <li><i class="fa-li fa fa-download"></i> <a href="#">Mengenal lebih jauh produk investasi non bank</a></li>
+                                @foreach($fundFactSheet as $download)
+                                    <li><i class="fa-li fa fa-download"></i> <a href="{{ route('download-file', [$download->file_name]) }}">{{ $download->name }}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>

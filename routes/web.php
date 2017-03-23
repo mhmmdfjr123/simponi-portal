@@ -224,7 +224,13 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::get('/faq', 'FaqController@index')->name('faq');
 	Route::get('/post/{alias?}', 'PostController@index');
+
+	Route::get('/download', 'DownloadController@index')->name('download-list');
+	Route::get('/download/category/{categoryAlias}', 'DownloadController@index')->name('download-category');
+	Route::get('/download/get/{filename}', 'DownloadController@getFile')->name('download-file');
+
 	Route::get('/simulation', 'SimulationController@showSimulationBasedOnContrib')->name('simulation');
 	Route::get('/simulation/based-on-needs', 'SimulationController@showSimulationBasedOnNeeds');
+
 	Route::get('/{alias}', 'PageController@index');
 });

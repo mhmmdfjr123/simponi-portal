@@ -25,7 +25,7 @@ class CreateDownloadTable extends Migration
 	        $table->smallInteger('total_download')->default(0);
 	        $table->dateTime('publish_date_start')->nullable();
 	        $table->dateTime('publish_date_end')->nullable();
-	        $table->string('status', 3)->default('Y');
+	        $table->string('status', 3)->default('P');
 	        $table->timestamps();
 
 	        $table->foreign('download_category_id', 'download_id')->references('id')->on('download_category')->onUpdate('CASCADE')->onDelete('RESTRICT');
