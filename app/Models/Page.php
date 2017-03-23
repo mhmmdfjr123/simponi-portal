@@ -21,7 +21,7 @@ class Page extends Model {
     }
 
     public function child(){
-        return $this->hasMany(Page::class, 'id');
+        return $this->hasMany(Page::class, 'parent');
     }
 
     public function listParent($itsId = ''){

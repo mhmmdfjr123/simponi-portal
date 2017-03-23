@@ -5,7 +5,7 @@
 
         var $ajaxForm = $("#ajax-form");
 
-        $ajaxForm.validate({
+        $ajaxForm.pxValidate({
             meta : "validate"
         });
         $ajaxForm.ajaxForm({

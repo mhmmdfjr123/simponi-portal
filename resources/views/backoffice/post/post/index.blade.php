@@ -43,12 +43,25 @@
                     </ul>
                 </div>
                 <div class="panel-body">
+                    <div class="form-group" style="width: 50%; margin-bottom: 50px">
+                        <label class="control-label">Filter Kategori</label>
+                        <select name="download_category_id" class="form-control required" id="filter-category">
+                            <option value="">- Tampilkan Semua Kategori -</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category['data']->id }}" style="margin-left: {!! (($category['level']-1)*20).'px' !!}">
+                                    {{ $category['data']->name }} {!! $category['data']->status != 'Y' ? '(Tidak Aktif)' : '' !!}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     <div class="table-light table-responsive">
                         <table class="table table-striped table-hover table-bordered" id="jq-datatable">
                             <thead>
                             <tr>
                                 <th style="width: 30px">No.</th>
                                 <th>Judul</th>
+                                <th style="width: 250px">Kategory</th>
                                 <th style="width: 150px">Tgl Buat</th>
                                 <th style="width: 110px">Status</th>
                                 <th style="width: 80px;">Aksi</th>
@@ -66,6 +79,7 @@
     <script type="text/javascript">
         require(['jquery', 'px/extensions/datatables', 'px/custom/extensions/datatables', 'px-bootstrap/tab'], function($) {
             var status = "";
+            var categoryId = "";
 
             var oTable = $('#jq-datatable').DataTable( {
                 "processing": true,
@@ -75,6 +89,7 @@
                     "url": "{{ url('backoffice/post/list-data') }}",
                     "data": function (d) {
                         d.postStatus = status;
+                        d.categoryId = categoryId;
                     }
                 },
                 "language": {
@@ -83,6 +98,7 @@
                 "columns": [
                     {data: 'rownum', name: 'rownum', "searchable": false, className: "text-center", orderable: false},
                     {data: 'title', name: 'title', "searchable": true, className: "text-left", orderable: false},
+                    {data: 'categories', name: 'categories', "searchable": false, className: "text-left", orderable: false},
                     {data: 'created_date', name: 'created_date', "searchable": false, className: "text-center", orderable: false},
                     {data: 'status', name: 'status', "searchable": false, className: "text-center", orderable: false},
                     {data: 'action', name: 'action', "searchable": false, className: "text-center", orderable: false}
@@ -95,6 +111,11 @@
                 // e.target // newly activated tab
                 // e.relatedTarget // previous active tab
                 status = $(this).parent().data('status');
+                oTable.draw();
+            });
+
+            $('#filter-category').on('change', function (e) {
+                categoryId = $(this).val();
                 oTable.draw();
             });
         });

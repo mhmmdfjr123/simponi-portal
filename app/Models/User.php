@@ -8,6 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\DB;
 use Kodeine\Acl\Traits\HasRole;
 
+/**
+ * Class User
+ * @package App\Models
+ * @author efriandika
+ */
 class User extends Authenticatable
 {
     use Notifiable, HasRole, SoftDeletes;

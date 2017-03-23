@@ -2,6 +2,11 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Menu
+ * @package App\Models
+ * @author efriandika
+ */
 class Menu extends Model {
     protected $table = "menu";
     protected $primaryKey = 'id';

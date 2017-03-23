@@ -6,6 +6,34 @@ body{
     z-index: 9001;
 }
 
+/* ======================= Sortable (FAQ) ======================= */
+.panel-faq .panel-heading {
+    cursor: move;
+}
+
+.faq-list-item {
+    padding: 7px 10px;
+    margin-bottom: 10px;
+    cursor: move;
+    background: #fafafa;
+    background: -webkit-linear-gradient(top,#fafafa 0,#eee 100%);
+    background: -moz-linear-gradient(top,#fafafa 0,#eee 100%);
+    background: linear-gradient(top,#fafafa 0,#eee 100%);
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #cccccc;
+}
+
+.faq-list-item:last-child {
+    margin-bottom: 0;
+}
+
+.faq-zone-target {
+    border: 1px dashed #433D3C;
+    background: rgba(255, 130, 0, 0.2);
+    opacity: 0.5;
+}
+
 /* ======================= Nav Tabs ======================= */
 .nav-tabs li a:FOCUS{
     outline: 0;

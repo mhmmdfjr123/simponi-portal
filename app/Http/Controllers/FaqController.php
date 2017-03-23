@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\FaqCategory;
 
 /**
  * Class HomeController
@@ -17,13 +18,20 @@ class FaqController extends Controller
 
     }
 
-    /**
-     * Show the faq index.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+	/**
+	 * Show the faq index.
+	 *
+	 * @param FaqCategory $faqCategoryModel
+	 *
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+    public function index(FaqCategory $faqCategoryModel)
     {
-        return view('faq.index');
+        return view('faq.index', [
+        	'faqCategories' => $faqCategoryModel->with(['faqs' => function ($query) {
+		        $query->where('status', 'Y');
+		        $query->orderBy('order');
+	        }])->where('status', 'Y')->orderBy('order')->get()
+        ]);
     }
 }
