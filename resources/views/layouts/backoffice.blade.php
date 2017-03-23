@@ -83,6 +83,15 @@
                 <li class="px-nav-item"><a href="{{ url('backoffice/pages/add') }}"><span class="px-nav-label">Tambah Halaman Baru</span></a></li>
             </ul>
         </li>
+        <li class="px-nav-item px-nav-dropdown">
+            <a href="#"><i class="px-nav-icon fa fa-download"></i><span class="px-nav-label">Download</span></a>
+
+            <ul class="px-nav-dropdown-menu">
+                <li class="px-nav-item" id="menu-file-download"><a href="{{ url('backoffice/file/download') }}"><span class="px-nav-label">Daftar File Download</span></a></li>
+                <li class="px-nav-item"><a href="{{ url('backoffice/file/download/add') }}"><span class="px-nav-label">Tambah File Download</span></a></li>
+                <li class="px-nav-item"><a href="{{ url('backoffice/file/download/category') }}"><span class="px-nav-label">Kategori</span></a></li>
+            </ul>
+        </li>
         <li class="px-nav-item">
             <a href="{{ url('backoffice/support/faq') }}"><i class="px-nav-icon fa fa-question-circle-o"></i><span class="px-nav-label">FAQ</span></a>
         </li>

@@ -6,7 +6,7 @@ use App\Models\PostCategory;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\Datatables\Datatables;
 
 /**
  * Class PostController
@@ -19,21 +19,23 @@ class PostController extends Controller {
 
     }
 
-    public function index(Post $postModel){
+    public function index(Post $postModel, PostCategory $postCategoryModel){
     	$data = [
             'pageTitle' => 'Daftar Artikel',
             'countListAllPage' => $postModel::count(),
             'countListTrashPage' => $postModel::onlyTrashed()->count(),
-            'listStatus' => $postModel->getListStatus()
+            'listStatus' => $postModel->getListStatus(),
+            'categories' => $postCategoryModel->listHierarchy()
         ];
 
         return view('backoffice.post.post.index', $data);
     }
 
-    public function listData(Request $request, Post $post){
+    public function listData(Request $request, Post $post, PostCategory $postCategoryModel){
         $status = $request->get('postStatus');
+	    $categoryId = $request->get('categoryId');
 
-        $data = $post->select(['id', 'title', 'status', 'created_at', 'deleted_at', 'publish_date_start', 'publish_date_end']);
+        $data = $post->select(['post.*']);
 
         $data->orderBy('created_at', 'desc');
 
@@ -41,6 +43,11 @@ class PostController extends Controller {
             $data->onlyTrashed();
         }else if($status != '')
             $data->where("status", $status);
+
+	    if($categoryId != ''){
+		    $data->join('post_category_rel', 'post_category_rel.post_id', '=', 'post.id');
+		    $data->where('post_category_rel.post_category_id', $categoryId);
+	    }
 
         $rowNum = 1;
         $startPage = $request->get('start');
@@ -55,6 +62,18 @@ class PostController extends Controller {
                 else
                     return '-';
             })
+	        ->addColumn('categories', function ($model) use ($postCategoryModel) {
+	        	$categories = $postCategoryModel->select('name','id');
+		        $categories->join('post_category_rel', 'post_category_rel.post_category_id', '=', 'post_category.id');
+		        $categories->where('post_category_rel.post_id', $model->id)->orderBy('name');
+
+				$render = '<ul style="padding-left: 15px">';
+				foreach ($categories->get() as $c)
+					$render .= '<li>'.$c->name.'</li>';
+		        $render .= '</ul>';
+
+	        	return $render;
+	        })
             ->addColumn('created_date', function ($model) {
                 if($model->status == 'P' && $model->deleted_at == '')
                     return date('d-m-Y H:i:s', strtotime($model->created_at));
@@ -83,14 +102,14 @@ class PostController extends Controller {
 
                 return $button;
             })
-	        ->rawColumns(['rownum', 'status', 'created_date', 'action'])
+	        ->rawColumns(['rownum', 'status', 'created_date', 'action', 'categories'])
             ->make(true);
     }
 
-    public function add(PostCategory $postCategory){
+    public function add(PostCategory $postCategoryModel){
         $data = [
             'pageTitle' => 'Tambah Artikel',
-            'listCategory' => $postCategory->listHierarchy()
+            'listCategory' => $postCategoryModel->listHierarchy()
         ];
 
         return view('backoffice.post.post.add', $data);

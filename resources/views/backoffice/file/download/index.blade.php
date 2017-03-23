@@ -14,7 +14,7 @@
             <hr class="page-wide-block visible-xs visible-sm">
 
             <div class="col-xs-12 width-md-auto width-lg-auto width-xl-auto pull-md-right">
-                <a href="{{ url('backoffice/post/add') }}" class="btn btn-primary btn-block" style="width: 100%;"><span class="btn-label-icon left fa fa-plus"></span>Buat Artikel Baru</a>
+                <a href="{{ url('backoffice/file/download/add') }}" class="btn btn-primary btn-block" style="width: 100%;"><span class="btn-label-icon left fa fa-plus"></span>Tambah File</a>
             </div>
 
             <!-- Spacer -->
@@ -26,21 +26,7 @@
         <div class="col-sm-12">
             <div class="panel">
                 <div class="panel-heading">
-                    <span class="panel-title">Daftar Artikel</span>
-
-                    <ul class="nav nav-tabs nav-tabs-xs" id="navtab-status">
-                        <li class="active" data-status="">
-                            <a href="#" data-toggle="tab">Semua ({{ $countListAllPage }})</a>
-                        </li>
-                        @foreach($listStatus as $statusRow)
-                            <li data-status="{{ $statusRow->status }}">
-                                <a href="#" data-toggle="tab">{{ pageStatusText($statusRow->status) }} ({{ $statusRow->status_count }})</a>
-                            </li>
-                        @endforeach
-                        <li data-status="deleted">
-                            <a href="#" data-toggle="tab">Trash ({{ $countListTrashPage }})</a>
-                        </li>
-                    </ul>
+                    <span class="panel-title">Daftar File Download</span>
                 </div>
                 <div class="panel-body">
                     <div class="form-group" style="width: 50%; margin-bottom: 50px">
@@ -48,9 +34,7 @@
                         <select name="download_category_id" class="form-control required" id="filter-category">
                             <option value="">- Tampilkan Semua Kategori -</option>
                             @foreach($categories as $category)
-                                <option value="{{ $category['data']->id }}" style="margin-left: {!! (($category['level']-1)*20).'px' !!}">
-                                    {{ $category['data']->name }} {!! $category['data']->status != 'Y' ? '(Tidak Aktif)' : '' !!}
-                                </option>
+                                <option value="{{ $category->id }}">{{ $category->name }} {!! $category->status != 'Y' ? '(Tidak Aktif)' : '' !!}</option>
                             @endforeach
                         </select>
                     </div>
@@ -61,7 +45,7 @@
                             <tr>
                                 <th style="width: 30px">No.</th>
                                 <th>Judul</th>
-                                <th style="width: 250px">Kategory</th>
+                                <th style="width: 200px">Kategori</th>
                                 <th style="width: 150px">Tgl Buat</th>
                                 <th style="width: 110px">Status</th>
                                 <th style="width: 80px;">Aksi</th>
@@ -78,7 +62,6 @@
 @section('footScript')
     <script type="text/javascript">
         require(['jquery', 'px/extensions/datatables', 'px/custom/extensions/datatables', 'px-bootstrap/tab'], function($) {
-            var status = "";
             var categoryId = "";
 
             var oTable = $('#jq-datatable').DataTable( {
@@ -86,9 +69,8 @@
                 "serverSide": true,
                 "paginationType": "full_numbers",
                 "ajax": {
-                    "url": "{{ url('backoffice/post/list-data') }}",
+                    "url": "{{ url('backoffice/file/download/list-data') }}",
                     "data": function (d) {
-                        d.postStatus = status;
                         d.categoryId = categoryId;
                     }
                 },
@@ -97,8 +79,8 @@
                 },
                 "columns": [
                     {data: 'rownum', name: 'rownum', "searchable": false, className: "text-center", orderable: false},
-                    {data: 'title', name: 'title', "searchable": true, className: "text-left", orderable: false},
-                    {data: 'categories', name: 'categories', "searchable": false, className: "text-left", orderable: false},
+                    {data: 'name', name: 'name', "searchable": true, className: "text-left", orderable: false},
+                    {data: 'category.name', name: 'category', "searchable": false, className: "text-left", orderable: false},
                     {data: 'created_date', name: 'created_date', "searchable": false, className: "text-center", orderable: false},
                     {data: 'status', name: 'status', "searchable": false, className: "text-center", orderable: false},
                     {data: 'action', name: 'action', "searchable": false, className: "text-center", orderable: false}
@@ -106,13 +88,6 @@
             });
 
             $('#jq-datatable_wrapper .dataTables_filter input').attr('placeholder', 'Pencarian...');
-
-            $('#navtab-status li a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                // e.target // newly activated tab
-                // e.relatedTarget // previous active tab
-                status = $(this).parent().data('status');
-                oTable.draw();
-            });
 
             $('#filter-category').on('change', function (e) {
                 categoryId = $(this).val();

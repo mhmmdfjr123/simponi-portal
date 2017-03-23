@@ -44,6 +44,7 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']],
     Route::get('administration/user/check-email/{id?}', 'Backoffice\Administration\UserController@checkEmail');
     Route::get('administration/user/check-username/{id?}', 'Backoffice\Administration\UserController@checkUsername');
 
+    // Post
     Route::get('post', 'Backoffice\Post\PostController@index');
     Route::get('post/list-data', 'Backoffice\Post\PostController@listData');
     Route::get('post/add', 'Backoffice\Post\PostController@add');
@@ -60,6 +61,7 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']],
     Route::post('post/category/submit', 'Backoffice\Post\CategoryController@submit');
     Route::get('post/category/{id}/delete', 'Backoffice\Post\CategoryController@delete');
 
+    // Pages
     Route::get('pages', 'Backoffice\Page\PageController@index');
     Route::get('pages/list-data', 'Backoffice\Page\PageController@listData');
     Route::get('pages/add', 'Backoffice\Page\PageController@showNewForm');
@@ -69,6 +71,22 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']],
     Route::get('pages/{id}/delete/restore', 'Backoffice\Page\PageController@restoreDeletedData');
     Route::get('pages/{id}/delete/force', 'Backoffice\Page\PageController@forceDelete');
 
+    // File - Download
+	Route::get('file/download', 'Backoffice\File\DownloadController@index');
+	Route::get('file/download/list-data', 'Backoffice\File\DownloadController@listData');
+	Route::get('file/download/add', 'Backoffice\File\DownloadController@add');
+	Route::get('file/download/{id}/edit', 'Backoffice\File\DownloadController@edit');
+	Route::post('file/download/submit', 'Backoffice\File\DownloadController@submit');
+	Route::get('file/download/{id}/delete', 'Backoffice\File\DownloadController@delete');
+
+	Route::get('file/download/category', 'Backoffice\File\DownloadCategoryController@index');
+	Route::get('file/download/category/list-data', 'Backoffice\File\DownloadCategoryController@listData');
+	Route::get('file/download/category/add', 'Backoffice\File\DownloadCategoryController@add');
+	Route::get('file/download/category/{id}/edit', 'Backoffice\File\DownloadCategoryController@edit');
+	Route::post('file/download/category/submit', 'Backoffice\File\DownloadCategoryController@submit');
+	Route::get('file/download/category/{id}/delete', 'Backoffice\File\DownloadCategoryController@delete');
+
+    // Support - FAQ
 	Route::get('support/faq', 'Backoffice\Support\FaqController@index');
 	Route::get('support/faq/show', 'Backoffice\Support\FaqController@showFaq');
 	Route::post('support/faq/re-order', 'Backoffice\Support\FaqController@reOrderFaqItems');
@@ -82,6 +100,7 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']],
 	Route::get('support/faq/category/{id}/delete', 'Backoffice\Support\FaqController@deleteCategory');
 	Route::post('support/faq/category/re-order', 'Backoffice\Support\FaqController@reOrderFaqCategories');
 
+	// Layout - Menu
     Route::get('layout/menu', 'Backoffice\Layout\MenuController@index');
     Route::get('layout/menu/list-menu', 'Backoffice\Layout\MenuController@listMenu');
     Route::post('layout/menu/menu-index', 'Backoffice\Layout\MenuController@menuIndex');
@@ -121,13 +140,6 @@ Route::get('/', function () {
     return Redirect::route('home');
 });
 
-Route::group(['middleware' => 'web'], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
-	Route::get('/simulation', 'SimulationController@showSimulationBasedOnContrib')->name('simulation');
-    Route::get('/simulation/based-on-needs', 'SimulationController@showSimulationBasedOnNeeds');
-	Route::get('/faq', 'FaqController@index')->name('faq');
-});
-
 // Portal
 Route::get('/portal', function () {
 	return Redirect::route('portal-dashboard');
@@ -148,6 +160,7 @@ Route::group(['prefix' => 'portal', 'middleware' => ['web', 'auth.portal']], fun
 	Route::post('profile/change-password', 'Portal\ProfileController@changePassword');
 });
 
+// Portal - Auth
 Route::group(['prefix' => 'portal', 'middleware' => 'web'], function () {
     Route::get('/login', 'Portal\Auth\LoginController@showLoginForm')->name('portal-login');
     Route::post('/login', 'Portal\Auth\LoginController@login');
@@ -197,6 +210,7 @@ Route::group(['prefix' => 'branch', 'middleware' => ['web', 'auth.branch']], fun
 	Route::get('/account/branch/{encryptedId}/delete', 'Branch\AccountManagement\BranchAccountController@deleteAccount')->name('branch-account-delete');
 });
 
+// Branch - Auth
 Route::group(['prefix' => 'branch', 'middleware' => 'web'], function () {
 	Route::get('/login', 'Branch\Auth\LoginController@showLoginForm')->name('branch-login');
 	Route::post('/login', 'Branch\Auth\LoginController@login');
@@ -206,5 +220,11 @@ Route::group(['prefix' => 'branch', 'middleware' => 'web'], function () {
 });
 
 // Front Site
-Route::get('/post/{alias?}', 'PostController@index');
-Route::get('/{alias}', 'PageController@index');
+Route::group(['middleware' => 'web'], function () {
+	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/faq', 'FaqController@index')->name('faq');
+	Route::get('/post/{alias?}', 'PostController@index');
+	Route::get('/simulation', 'SimulationController@showSimulationBasedOnContrib')->name('simulation');
+	Route::get('/simulation/based-on-needs', 'SimulationController@showSimulationBasedOnNeeds');
+	Route::get('/{alias}', 'PageController@index');
+});

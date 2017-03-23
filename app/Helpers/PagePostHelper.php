@@ -29,8 +29,8 @@ if (!function_exists('pageStatusTextWithStyle')){
      * Change status code to text with bootstrap style
      *
      * @param string $status
-     * @param timestamp $start
-     * @param timestamp $end
+     * @param string $start
+     * @param string $end
      * @return string
      */
     function pageStatusTextWithStyle($status, $start = '', $end = ''){
@@ -71,29 +71,6 @@ if (!function_exists('postCategoryStatusTextWithStyle')){
                 break;
             default:
                 return '<span class="label label-danger">Tidak diketahui</span>';
-        }
-    }
-}
-
-if (!function_exists('eventStatusText')){
-    /**
-     * Change status code to text
-     *
-     * @param $status
-     * @return string
-     */
-    function eventStatusText($status){
-        $status = strtoupper($status);
-
-        switch ($status) {
-            case 'P':
-                return '<span class="label label-success">Publish</span>';
-                break;
-            case 'D':
-                return '<span class="label label-default">Draft</span>';
-                break;
-            default:
-                return '<span class="label label-warning">Tidak diketahui</span>';
         }
     }
 }
