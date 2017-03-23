@@ -136,7 +136,7 @@
                     <div class="form-group">
                         <label>Kenaikan Iuran Per Tahun</label>
                         <div class="input-group">
-                            <input id="billing-increment" class="form-control percentage numeric" type="text" placeholder="Masukkan Kenaikan Iuran Per Tahun" data-value="0" disabled />
+                            <input id="billing-increment" class="form-control percentage numeric validatenow" type="text" placeholder="Masukkan Kenaikan Iuran Per Tahun" data-value="0" data-min-value="1" data-max-value="20" data-message="Kenaikan Iuran Per Tahun tidak boleh lebih rendah dari 1% dan lebih tinggi dari 20%" disabled />
                             <div class="input-group-addon">%</div>
                         </div>
                         <small style="display:block"><i>Rata-rata tingkat inflasi di Indonesia adalah 3-6% per tahun</i></small>
