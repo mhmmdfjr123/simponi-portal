@@ -38,6 +38,10 @@ return [
                 'title'     => 'Hubungi Kami',
                 'action'    => 'contact'
             ],
+            'download'   => [
+	            'title'     => 'Download File',
+	            'action'    => 'download'
+            ],
             'faq' => [
                 'title'     => 'FAQ',
                 'action'    => 'faq'

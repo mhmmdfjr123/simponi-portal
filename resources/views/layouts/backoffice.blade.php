@@ -100,6 +100,7 @@
 
             <ul class="px-nav-dropdown-menu">
                 <li class="px-nav-item"><a href="{{ url('backoffice/layout/menu') }}"><span class="px-nav-label">Manajemen Menu</span></a></li>
+                <li class="px-nav-item"><a href="javascript:maintenance();"><span class="px-nav-label">Manajemen Homepage</span></a></li>
             </ul>
         </li>
         @role('super-administrator')

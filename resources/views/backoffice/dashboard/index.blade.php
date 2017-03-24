@@ -94,7 +94,7 @@
 
     <div class="panel">
         <div class="panel-title">
-            Overview
+            Overview Aktifitas Pengguna
         </div>
 
         <hr class="m-a-0">
@@ -134,9 +134,9 @@
 
         for (var i = 1; i <= 30; i++) {
             data.push({
-                period:   '2016-06-' + (i < 10 ? '0' + i : i),
-                register:  pxDemo.getRandomData(1000, 200),
-                login:     pxDemo.getRandomData(1000, 200),
+                period:   '2017-02-' + (i < 10 ? '0' + i : i),
+                register:  pxDemo.getRandomData(10, 2),
+                login:     pxDemo.getRandomData(10, 2),
             });
         }
 
