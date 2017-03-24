@@ -182,7 +182,7 @@
                     </div>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div id="lumpsum" class="simulationresult section-box-item">
-                            <label>Setoran Satu Kali / Lumpsum<a class="material-icons info" data-toggle="tooltip" title="Investasi Saat Ini / Lumpsum adalah iuran atau dana yang harus Anda investasikan satu kali sebelum pensiun untuk mencapai target investasi yang Anda inginkan"><i class="fa fa-info-circle"></i></a></label>
+                            <label>Setoran Satu Kali<a class="material-icons info" data-toggle="tooltip" title="Investasi Saat Ini / Lumpsum adalah iuran atau dana yang harus Anda investasikan satu kali sebelum pensiun untuk mencapai target investasi yang Anda inginkan"><i class="fa fa-info-circle"></i></a></label>
                             <span>N/A</span>
                             <b></b>
                         </div>
