@@ -107,44 +107,22 @@
         </div>
     </section>
 
-    <section id="services">
+    <section class="section-left">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">At Your Service</h2>
+                <div class="col-md-6 col-illustration">
+                    <img src="{{ asset('theme/front/images/elderly.png') }}" class="img-responsive">
+                </div>
+                <div class="col-md-6 col-content">
+                    <h2 class="section-heading">Masa depan anda ditentukan harini.</h2>
                     <hr class="title">
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
-                        <h3>Sturdy Templates</h3>
-                        <p>Our templates are updated regularly so they don't break.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
-                        <h3>Ready to Ship</h3>
-                        <p>You can use this theme as is, or you can make changes!</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
-                        <h3>Up to Date</h3>
-                        <p>We update dependencies to keep things fresh.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-heart text-primary sr-icons"></i>
-                        <h3>Made with Love</h3>
-                        <p>You have to make your websites with love these days!</p>
-                    </div>
+                    <ul class="fa-ul col-content-list">
+                        <li><i class="fa-li fa fa-check"></i>Lorem ipsum dolor sit amet 1</li>
+                        <li><i class="fa-li fa fa-check"></i>Lorem ipsum dolor sit amet 2</li>
+                        <li><i class="fa-li fa fa-check"></i>Lorem ipsum dolor sit amet 3</li>
+                        <li><i class="fa-li fa fa-check"></i>Lorem ipsum dolor sit amet 4</li>
+                    </ul>
+                    <a class="btn btn-md btn-primary btn-outline sr-button" href="#">Daftar Sekarang</a>
                 </div>
             </div>
         </div>
@@ -160,22 +138,44 @@
         </div>
     </aside>
 
-    <section class="section-left">
+    <section id="services">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-illustration">
-                    <img src="{{ asset('theme/front/images/elderly.png') }}" class="img-responsive">
-                </div>
-                <div class="col-md-6 col-content">
-                    <h2 class="section-heading">Nikmati masa muda di hari tua anda</h2>
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Produk & Layanan</h2>
                     <hr class="title">
-                    <ul class="fa-ul col-content-list">
-                        <li><i class="fa-li fa fa-check"></i>Lorem ipsum dolor sit amet 1</li>
-                        <li><i class="fa-li fa fa-check"></i>Lorem ipsum dolor sit amet 2</li>
-                        <li><i class="fa-li fa fa-check"></i>Lorem ipsum dolor sit amet 3</li>
-                        <li><i class="fa-li fa fa-check"></i>Lorem ipsum dolor sit amet 4</li>
-                    </ul>
-                    <a class="btn btn-md btn-primary btn-outline sr-button" href="#">Daftar Sekarang</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
+                        <h3>Sample 1</h3>
+                        <p>Our templates are updated regularly so they don't break.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
+                        <h3>Sample 2</h3>
+                        <p>You can use this theme as is, or you can make changes!</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
+                        <h3>Sample 3</h3>
+                        <p>We update dependencies to keep things fresh.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-heart text-primary sr-icons"></i>
+                        <h3>Sample 4</h3>
+                        <p>You have to make your websites with love these days!</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -185,7 +185,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-content">
-                    <h2 class="section-heading">Dapatkan voucher belanja hingga Rp1 Milyar</h2>
+                    <h2 class="section-heading">Ayo daftar sekarang!</h2>
                     <hr class="title">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elementum mauris ut congue luctus. In fringilla pellentesque nibh, ac hendrerit tortor euismod vitae. Phasellus rhoncus accumsan orci, eu efficitur ante fermentum et. Nunc interdum dapibus posuere. Proin a diam venenatis, consequat lacus maximus, laoreet risus. Pellentesque consectetur sem arcu, a placerat nunc faucibus ut. </p>
                 </div>
