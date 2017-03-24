@@ -47,7 +47,7 @@
                                             </div>
                                         </div>
                                         <div class="action">
-                                            <a class="btn btn-sm btn-primary" href=""><i class="fa fa-download"></i> Download</a>
+                                            <a class="btn btn-sm btn-primary" href="{{ route('download-file', [$file->file_name]) }}"><i class="fa fa-download"></i> Download</a>
                                             <div class="download-info">{{ $file->total_download }} download</div>
                                         </div>
                                     </li>
