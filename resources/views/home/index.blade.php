@@ -52,7 +52,7 @@
                         <div class="box-body">
                             <ul class="fa-ul">
                                 @foreach($latestNews as $news)
-                                <li><i class="fa-li fa fa-check"></i> <a href="#" title="{{ $news->title }}">{{ str_limit($news->title, $featuredBoxStrLimit) }}</a></li>
+                                <li><i class="fa-li fa fa-check"></i> <a href="{{ url('post/'.$news->alias) }}" title="{{ $news->title }}">{{ str_limit($news->title, $featuredBoxStrLimit) }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -67,7 +67,7 @@
                         <div class="box-body">
                             <ul class="fa-ul">
                                 @foreach($promotions as $promotion)
-                                    <li><i class="fa-li fa fa-bullhorn"></i> <a href="#" title="{{ $promotion->title }}">{{ str_limit($promotion->title, $featuredBoxStrLimit) }}</a></li>
+                                    <li><i class="fa-li fa fa-bullhorn"></i> <a href="{{ url('post/'.$promotion->alias) }}" title="{{ $promotion->title }}">{{ str_limit($promotion->title, $featuredBoxStrLimit) }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
