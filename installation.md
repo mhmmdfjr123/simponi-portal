@@ -75,3 +75,15 @@ Any question? send email to: efriandika.pratama@bni.co.id
 
 ## Author
 1. [Efriandika Pratama](efriandika.pratama@bni.co.id)
+
+
+## Server Upload Config
+Max Upload File Config
+
+    php.ini (PHP):
+        * post_max_size
+        * upload_max_filesize
+        
+    nginx:
+        * client_max_body_size
+    
