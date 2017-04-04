@@ -77,7 +77,7 @@
 
 @section('footScript')
     <script type="text/javascript">
-        require(['jquery', 'px/extensions/datatables', 'px/custom/extensions/datatables', 'px-bootstrap/tab'], function($) {
+        require(['jquery', 'px/extensions/datatables', 'px-bootstrap/tab'], function($) {
             var status = "";
             var categoryId = "";
 
@@ -93,7 +93,7 @@
                     }
                 },
                 "language": {
-                    "processing": "Mohon Tunggu.. Sedang memproses data.."
+                    "processing": "Mohon Tunggu.."
                 },
                 "columns": [
                     {data: 'rownum', name: 'rownum', "searchable": false, className: "text-center", orderable: false},

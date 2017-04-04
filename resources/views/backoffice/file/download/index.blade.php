@@ -61,7 +61,7 @@
 
 @section('footScript')
     <script type="text/javascript">
-        require(['jquery', 'px/extensions/datatables', 'px/custom/extensions/datatables', 'px-bootstrap/tab'], function($) {
+        require(['jquery', 'px/extensions/datatables', 'px-bootstrap/tab'], function($) {
             var categoryId = "";
 
             var oTable = $('#jq-datatable').DataTable( {
@@ -75,7 +75,7 @@
                     }
                 },
                 "language": {
-                    "processing": "Mohon Tunggu.. Sedang memproses data.."
+                    "processing": "Mohon Tunggu.."
                 },
                 "order": [[ 3, "desc" ]],
                 "columns": [
