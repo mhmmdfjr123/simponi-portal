@@ -20,10 +20,11 @@
     <link href="{{ asset('theme/backoffice/css/themes/bni.min.css') }}" rel="stylesheet" type="text/css">
 
     <!-- require.js -->
-    <script src="{{ asset('theme/backoffice/js/requirejs.min.js') }}"></script>
+    <script src="{{ asset('theme/backoffice/js/require.js') }}"></script>
+    <script src="{{ asset('theme/backoffice/js/requirejs-config.js') }}"></script>
     <script>
         requirejs.config({
-            baseUrl: '{{ asset('theme/backoffice/js/amd') }}',
+            baseUrl: '{{ asset('theme/backoffice/js') }}',
             map: {
                 '*': { 'jquery': 'app-default' },
                 'app-default': { 'jquery': 'jquery' }

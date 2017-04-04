@@ -44,12 +44,12 @@ hr,
       background-color: #5d5d5d !important; }
   .bg-primary, .bg-primary:hover, .bg-primary:focus, .bg-primary:active, .bg-primary[href],
   .bg-primary a {
-    color: #e6e6e6 !important; }
+    color: white !important; }
   .bg-primary[href]:hover, .bg-primary[href]:focus, .bg-primary[href]:active,
   .bg-primary a:hover,
   .bg-primary a:focus,
   .bg-primary a:active {
-    color: #cccccc !important; }
+    color: #e6e6e6 !important; }
   .bg-primary[href]:hover, .bg-primary[href]:focus, .bg-primary[href]:active,
   .bg-primary a:hover,
   .bg-primary a:focus,
@@ -267,12 +267,17 @@ fieldset[disabled] .btn-primary.active {
       border-color: #e7e7e7; } }
   @media (min-width: 768px) {
     .px-navbar .navbar-collapse {
-      border-color: transparent;
+      border-color: transparent; }
+    .px-navbar, .px-navbar .navbar-collapse {
       background: #fff; }
     .px-navbar .navbar-nav > li {
       border-color: transparent; }
-    .px-navbar .dropdown-menu {
+    .px-navbar .dropdown-menu,
+    .px-navbar .dropdown-multi-column {
       background: #fff; }
+    .px-navbar .dropdown-menu .dropdown-toggle:hover > a {
+      color: #444;
+      background: rgba(0, 0, 0, 0.04); }
     .px-navbar [class^="widget-"],
     .px-navbar [class*=" widget-"] {
       border-color: #f1f1f1; }
@@ -445,7 +450,8 @@ fieldset[disabled] .btn-primary.active {
 
 .panel-primary {
   border-color: #695f5f !important; }
-  .panel-primary .panel-heading {
+  .panel-primary .panel-heading,
+  .panel-primary .panel-heading .accordion-toggle {
     background: #796e6e;
     border-color: #695f5f;
     color: #fff; }
@@ -472,7 +478,8 @@ fieldset[disabled] .btn-primary.active {
     border-color: #695f5f !important; }
   .panel-primary.panel-dark {
     border-color: #796e6e !important; }
-    .panel-primary.panel-dark .panel-heading {
+    .panel-primary.panel-dark .panel-heading,
+    .panel-primary.panel-dark .panel-heading .accordion-toggle {
       background: #796e6e;
       border-color: #796e6e;
       color: #fff; }
@@ -620,7 +627,7 @@ fieldset[disabled] .custom-control-input:checked ~ .custom-control-indicator {
 .popover-primary.popover-dark.popover-colorful .popover-title {
   border-color: #8e8282; }
 
-.nav > li.active > a, .nav > li.active > a:hover, .nav > li.active > a:focus {
+.nav li.active > a, .nav li.active > a:hover, .nav li.active > a:focus {
   color: #fff;
   background: #796e6e; }
 
@@ -682,6 +689,24 @@ a.active .thumbnail {
 .select2-container--open .select2-selection,
 .select2-container--open .select2-dropdown {
   border-color: #796e6e; }
+
+.ui-select-primary.ui-select-multiple .ui-select-match-item {
+  background: #796e6e !important; }
+
+.ui-select-primary.ui-select-multiple .ui-select-match-item.btn-primary {
+  background: #5e5656 !important; }
+
+.btn-default-focus .ui-select-toggle,
+.ui-select-multiple.open,
+.ui-select-container.open .ui-select-toggle,
+.ui-select-container.open .ui-select-search,
+.ui-select-choices,
+.ui-select-no-choice {
+  border-color: #796e6e !important; }
+
+.ui-select-choices-row.active > span {
+  color: #fff;
+  background-color: #796e6e; }
 
 .datepicker thead th {
   color: #fff; }
@@ -767,6 +792,13 @@ a.active .thumbnail {
 .bootstrap-tagsinput.focus {
   border-color: #796e6e !important; }
 
+tags-input .suggestion-item.selected {
+  color: #fff;
+  background: #796e6e; }
+
+tags-input .tags.focused {
+  border-color: #796e6e !important; }
+
 .slider-primary .slider-selection,
 .slider-primary .slider-selection.tick-slider-selection,
 .slider-primary .slider-tick.in-selection,
@@ -783,6 +815,14 @@ a.active .thumbnail {
 
 .noUi-active:before,
 .noUi-active:after {
+  background: #796e6e; }
+
+.owl-nav [class*='owl-']:hover {
+  background: #796e6e;
+  color: #fff; }
+
+.owl-dots .owl-dot.active span,
+.owl-dots .owl-dot:hover span {
   background: #796e6e; }
 
 *:not(.panel) .widget-pricing .widget-pricing-item {
@@ -834,8 +874,14 @@ a.active .thumbnail {
 .px-navbar .navbar-form .form-control {
   border-radius: 999px; }
 
+.px-navbar .dropdown-multi-column .dropdown-menu {
+  border-color: #e5e5e5; }
+
 @media (min-width: 992px) {
   .px-nav-off-canvas.px-nav-collapse .px-nav-toggle {
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.04), 0 1px 0 rgba(0, 0, 0, 0.04); } }
+
+.pace-progress {
+  background: #796e6e; }
 
 /*# sourceMappingURL=dust.css.map */

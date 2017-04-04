@@ -24,10 +24,6 @@
     }
   }
 
-  var locationParts = String(document.location).replace(/\\/g, '/').split('/');
-  var locationDir = [locationParts.length - 2];
-  var DIST_PATH = locationDir === 'docs' || locationDir === 'color-generator' ? '..' : '../..';
-
   var pxDemo = (function() {
 
     // Constants
@@ -51,15 +47,15 @@
     ];
 
     var BACKGROUNDS = [
-      DIST_PATH + '/dist/demo/bgs/1.jpg',
-      DIST_PATH + '/dist/demo/bgs/2.jpg',
-      DIST_PATH + '/dist/demo/bgs/3.jpg',
-      DIST_PATH + '/dist/demo/bgs/4.jpg',
-      DIST_PATH + '/dist/demo/bgs/5.jpg',
-      DIST_PATH + '/dist/demo/bgs/6.jpg',
-      DIST_PATH + '/dist/demo/bgs/7.jpg',
-      DIST_PATH + '/dist/demo/bgs/8.jpg',
-      DIST_PATH + '/dist/demo/bgs/9.jpg',
+      'assets/demo/bgs/1.jpg',
+      'assets/demo/bgs/2.jpg',
+      'assets/demo/bgs/3.jpg',
+      'assets/demo/bgs/4.jpg',
+      'assets/demo/bgs/5.jpg',
+      'assets/demo/bgs/6.jpg',
+      'assets/demo/bgs/7.jpg',
+      'assets/demo/bgs/8.jpg',
+      'assets/demo/bgs/9.jpg',
     ];
 
     var THEMES = [
@@ -103,7 +99,7 @@
         offcanvas_nav: '0',
         rtl:           '0',
         footer:        'bottom',
-        theme:         THEMES[0],
+        theme:         THEMES[8],
       };
 
       var cookie = ';' + document.cookie + ';';
@@ -198,13 +194,13 @@
 
       var _isDark   = themeName.indexOf('dark') !== -1;
       var _isRtl    = document.getElementsByTagName('html')[0].getAttribute('dir') === 'rtl';
-      var themePath = DIST_PATH + '/dist/css/themes/' + themeName + (_isRtl ? '.rtl' : '') + '.min.css';
+      var themePath = 'assets/css/themes/' + themeName + (_isRtl ? '.rtl' : '') + '.min.css';
 
       var linksToLoad = [];
 
       // Switch between light and dark assets
 
-      var _assetCls = [ 'px-demo-stylesheet-core', 'px-demo-stylesheet-bs', 'px-demo-stylesheet-widgets' ];
+      var _assetCls = [ 'px-demo-stylesheet-bs', 'px-demo-stylesheet-core', 'px-demo-stylesheet-widgets' ];
       var _assetLink;
 
       function _assetReplacer(match, path, name, suffix) {
@@ -240,7 +236,7 @@
 
       document.getElementsByTagName('head')[0].insertBefore(
         linksContainer,
-        document.getElementsByClassName('px-demo-stylesheet-core')[0]
+        document.getElementsByClassName('px-demo-stylesheet-bs')[0]
       );
     }
 
@@ -255,7 +251,7 @@
     }
 
     function placeNav(side) {
-      var navEl  = document.getElementById('px-demo-nav');
+      var navEl  = document.querySelector('body > .px-nav') || document.querySelector('body > ui-view > .px-nav');
 
       navEl.className =
         navEl.className
@@ -266,7 +262,7 @@
     }
 
     function setFooterPosition(pos) {
-      var footer = document.getElementById('px-demo-footer');
+      var footer  = document.querySelector('body > .px-footer') || document.querySelector('body > ui-view > .px-footer');
 
       if (!footer) { return; }
 
@@ -331,7 +327,7 @@
           fixed_navbar: $(this).is(':checked') ? '1' : '0',
         });
 
-        $(document.body)[
+        $(document.querySelector('body > ui-view') || document.body)[
           $(this).is(':checked') ? 'addClass' : 'removeClass'
         ]('px-navbar-fixed');
 
@@ -347,7 +343,7 @@
           fixed_nav: $(this).is(':checked') ? '1' : '0',
         });
 
-        $('#px-demo-nav')[
+        $('body > .px-nav, body > ui-view > .px-nav')[
           $(this).is(':checked') ? 'addClass' : 'removeClass'
         ]('px-nav-fixed');
 
@@ -373,7 +369,7 @@
           offcanvas_nav: $(this).is(':checked') ? '1' : '0',
         });
 
-        $('#px-demo-nav')[
+        $('body > .px-nav, body > ui-view > .px-nav')[
           $(this).is(':checked') ? 'addClass' : 'removeClass'
         ]('px-nav-off-canvas');
 
@@ -413,25 +409,27 @@
       // Initialize "close" button
       //
 
-      $('#demo-px-nav-box .close').on('click', function(e) {
-        e.preventDefault();
+      $('.px-nav')
+        .off('click.demo-px-nav-box')
+        .on('click.demo-px-nav-box', '#demo-px-nav-box .close', function(e) {
+          e.preventDefault();
 
-        var $box     = $(this).parents('.px-nav-box').addClass('no-animation');
-        var $wrapper = $('<div></div>').css({ overflow: 'hidden' });
+          var $box     = $(this).parents('.px-nav-box').addClass('no-animation');
+          var $wrapper = $('<div></div>').css({ overflow: 'hidden' });
 
-        // Remove close button
-        $(this).remove();
+          // Remove close button
+          $(this).remove();
 
-        $wrapper
-          .insertBefore($box)
-          .append($box)
-          .animate({
-            opacity: 0,
-            height:  'toggle',
-          }, 400, function() {
-            $wrapper.remove();
-          });
-      });
+          $wrapper
+            .insertBefore($box)
+            .append($box)
+            .animate({
+              opacity: 0,
+              height:  'toggle',
+            }, 400, function() {
+              $wrapper.remove();
+            });
+        });
     }
 
     function initializeBgsDemo(selector, defaultBgIndex, overlay, afterCall) {
@@ -470,7 +468,7 @@
 
           if (afterCall) { afterCall(isBgSet); }
         } else {
-          if (isBgSet) { $(selector).pxResponsiveBg('destroy'); }
+          if (isBgSet || $(selector).data('px.responsiveBg')) { $(selector).pxResponsiveBg('destroy'); }
 
           $(selector).pxResponsiveBg({
             backgroundImage: $container.find('> img').attr('src'),
@@ -486,13 +484,19 @@
       $('body').append($block);
     }
 
-    function initializeDemoSidebar() {
+    function destroyBgsDemo(selector) {
+      if (!$.fn.pxResponsiveBg) { return; }
+      $(selector).pxResponsiveBg('destroy', true);
+      $('.px-demo-bgs').off().remove();
+    }
+
+    function initializeDemoSidebar(container, skipFooter) {
       var sidebarEl = document.createElement('DIV');
 
       sidebarEl.id          = 'px-demo-sidebar';
       sidebarEl.className   = 'px-sidebar-right bg-primary';
       sidebarEl.style.width = '242px';
-      sidebarEl.innerHTML   = '<a href="#" id="px-demo-sidebar-toggle" class="bg-primary b-y-1 b-l-1 text-default" data-toggle="sidebar" data-target="#px-demo-sidebar"><i class="ion-ios-gear"></i><i class="ion-android-close"></i></a><div id="px-demo-sidebar-loader" class="form-loading form-loading-inverted"></div>';
+      sidebarEl.innerHTML   = '<a href="javascript:void(0)" id="px-demo-sidebar-toggle" class="bg-primary b-y-1 b-l-1 text-default" data-toggle="sidebar" data-target="#px-demo-sidebar"><i class="ion-ios-gear"></i><i class="ion-android-close"></i></a><div id="px-demo-sidebar-loader" class="form-loading form-loading-inverted"></div>';
 
       var contentEl = document.createElement('DIV');
 
@@ -500,7 +504,7 @@
       sidebarEl.appendChild(contentEl);
 
       var content  = '';
-      var navEl    = document.getElementById('px-demo-nav');
+      var navEl  = document.querySelector('body > .px-nav') || document.querySelector('body > ui-view > .px-nav');
 
       content += '<div id="px-demo-togglers">';
 
@@ -510,66 +514,66 @@
 
       content += '<div><div class="box m-a-0 border-radius-0 bg-transparent">';
 
+      // Fixed navbar
+
+      content +=
+        '<div class="box-row"' + (navEl ? '' : 'style="display: none;"') + '>' +
+          '<div class="box-cell p-l-3 bg-primary"><label for="px-demo-fixed-navbar-toggler">Fixed navbar</label></div>' +
+          '<div class="box-cell p-r-3 bg-primary" style="width: 70px;">' +
+            '<label for="px-demo-fixed-navbar-toggler" class="switcher switcher-blank switcher-sm"><input type="checkbox" id="px-demo-fixed-navbar-toggler"' + (demoSettings.fixed_navbar === '1' ? ' checked' : '') + '><div class="switcher-indicator"><div class="switcher-yes bg-primary darker"><i class="fa fa-check"></i></div><div class="switcher-no"><i class="fa fa-close"></i></div></div></label>' +
+          '</div>' +
+        '</div>';
+
+      if (navEl && demoSettings.fixed_navbar === '1') {
+        (document.querySelector('body > ui-view') || document.body).className += ' px-navbar-fixed';
+      }
+
+      // Fixed nav
+
+      content +=
+        '<div class="box-row"' + (navEl ? '' : 'style="display: none;"') + '>' +
+          '<div class="box-cell bg-primary p-l-3"><label for="px-demo-fixed-nav-toggler">Fixed nav</label></div>' +
+          '<div class="box-cell bg-primary p-r-3" style="width: 70px;">' +
+            '<label for="px-demo-fixed-nav-toggler" class="switcher switcher-blank switcher-sm"><input type="checkbox" id="px-demo-fixed-nav-toggler"' + (demoSettings.fixed_nav === '1' ? ' checked' : '') + '><div class="switcher-indicator"><div class="switcher-yes bg-primary darker"><i class="fa fa-check"></i></div><div class="switcher-no"><i class="fa fa-close"></i></div></div></label>' +
+          '</div>' +
+        '</div>';
+
+      if (navEl && demoSettings.fixed_nav === '1') {
+        navEl.className += ' px-nav-fixed';
+      }
+
+      // Right nav
+
+      content +=
+        '<div class="box-row"' + (navEl ? '' : 'style="display: none;"') + '>' +
+          '<div class="box-cell bg-primary p-l-3"><label for="px-demo-nav-right-toggler">Right nav</label></div>' +
+          '<div class="box-cell bg-primary p-r-3" style="width: 70px;">' +
+            '<label for="px-demo-nav-right-toggler" class="switcher switcher-blank switcher-sm"><input type="checkbox" id="px-demo-nav-right-toggler"' + (demoSettings.right_nav === '1' ? ' checked' : '') + '><div class="switcher-indicator"><div class="switcher-yes bg-primary darker"><i class="fa fa-check"></i></div><div class="switcher-no"><i class="fa fa-close"></i></div></div></label>' +
+          '</div>' +
+        '</div>';
+
       if (navEl) {
-        // Fixed navbar
-
-        content +=
-          '<div class="box-row">' +
-            '<div class="box-cell p-l-3 bg-primary"><label for="px-demo-fixed-navbar-toggler">Fixed navbar</label></div>' +
-            '<div class="box-cell p-r-3 bg-primary" style="width: 70px;">' +
-              '<label for="px-demo-fixed-navbar-toggler" class="switcher switcher-blank switcher-sm"><input type="checkbox" id="px-demo-fixed-navbar-toggler"' + (demoSettings.fixed_navbar === '1' ? ' checked' : '') + '><div class="switcher-indicator"><div class="switcher-yes bg-primary darker"><i class="fa fa-check"></i></div><div class="switcher-no"><i class="fa fa-close"></i></div></div></label>' +
-            '</div>' +
-          '</div>';
-
-        if (demoSettings.fixed_navbar === '1') {
-          document.body.className += ' px-navbar-fixed';
-        }
-
-        // Fixed nav
-
-        content +=
-          '<div class="box-row">' +
-            '<div class="box-cell bg-primary p-l-3"><label for="px-demo-fixed-nav-toggler">Fixed nav</label></div>' +
-            '<div class="box-cell bg-primary p-r-3" style="width: 70px;">' +
-              '<label for="px-demo-fixed-nav-toggler" class="switcher switcher-blank switcher-sm"><input type="checkbox" id="px-demo-fixed-nav-toggler"' + (demoSettings.fixed_nav === '1' ? ' checked' : '') + '><div class="switcher-indicator"><div class="switcher-yes bg-primary darker"><i class="fa fa-check"></i></div><div class="switcher-no"><i class="fa fa-close"></i></div></div></label>' +
-            '</div>' +
-          '</div>';
-
-        if (demoSettings.fixed_nav === '1') {
-          navEl.className += ' px-nav-fixed';
-        }
-
-        // Right nav
-
-        content +=
-          '<div class="box-row">' +
-            '<div class="box-cell bg-primary p-l-3"><label for="px-demo-nav-right-toggler">Right nav</label></div>' +
-            '<div class="box-cell bg-primary p-r-3" style="width: 70px;">' +
-              '<label for="px-demo-nav-right-toggler" class="switcher switcher-blank switcher-sm"><input type="checkbox" id="px-demo-nav-right-toggler"' + (demoSettings.right_nav === '1' ? ' checked' : '') + '><div class="switcher-indicator"><div class="switcher-yes bg-primary darker"><i class="fa fa-check"></i></div><div class="switcher-no"><i class="fa fa-close"></i></div></div></label>' +
-            '</div>' +
-          '</div>';
-
         placeNav(demoSettings.right_nav === '1' ? 'right' : 'left');
+      }
 
-        // Off canvas nav
+      // Off canvas nav
 
-        content +=
-          '<div class="box-row">' +
-            '<div class="box-cell bg-primary p-l-3"><label for="px-demo-nav-off-canvas-toggler">Off canvas nav</label></div>' +
-            '<div class="box-cell bg-primary p-r-3" style="width: 70px;">' +
-              '<label for="px-demo-nav-off-canvas-toggler" class="switcher switcher-blank switcher-sm"><input type="checkbox" id="px-demo-nav-off-canvas-toggler"' + (demoSettings.offcanvas_nav === '1' ? ' checked' : '') + '><div class="switcher-indicator"><div class="switcher-yes bg-primary darker"><i class="fa fa-check"></i></div><div class="switcher-no"><i class="fa fa-close"></i></div></div></label>' +
-            '</div>' +
-          '</div>';
+      content +=
+        '<div class="box-row"' + (navEl ? '' : 'style="display: none;"') + '>' +
+          '<div class="box-cell bg-primary p-l-3"><label for="px-demo-nav-off-canvas-toggler">Off canvas nav</label></div>' +
+          '<div class="box-cell bg-primary p-r-3" style="width: 70px;">' +
+            '<label for="px-demo-nav-off-canvas-toggler" class="switcher switcher-blank switcher-sm"><input type="checkbox" id="px-demo-nav-off-canvas-toggler"' + (demoSettings.offcanvas_nav === '1' ? ' checked' : '') + '><div class="switcher-indicator"><div class="switcher-yes bg-primary darker"><i class="fa fa-check"></i></div><div class="switcher-no"><i class="fa fa-close"></i></div></div></label>' +
+          '</div>' +
+        '</div>';
 
-        if (demoSettings.offcanvas_nav === '1') {
-          navEl.className += ' px-nav-off-canvas';
-        }
+      if (navEl && demoSettings.offcanvas_nav === '1') {
+        navEl.className += ' px-nav-off-canvas';
       }
 
       // RTL
 
       content +=
-        '<div class="box-row">' +
+        '<div class="box-row box-row-rtl-toggler">' +
           '<div class="box-cell bg-primary p-l-3"><label for="px-demo-nav-rtl-toggler">RTL direction</label></div>' +
           '<div class="box-cell bg-primary p-r-3" style="width: 70px;">' +
             '<label for="px-demo-nav-rtl-toggler" class="switcher switcher-blank switcher-sm"><input type="checkbox" id="px-demo-nav-rtl-toggler"' + (demoSettings.rtl === '1' ? ' checked' : '') + '><div class="switcher-indicator"><div class="switcher-yes bg-primary darker"><i class="fa fa-check"></i></div><div class="switcher-no"><i class="fa fa-close"></i></div></div></label>' +
@@ -579,10 +583,11 @@
       content += '</div></div>';
 
       // Footer
+      var hasFooter = document.querySelector('body > .px-footer') || document.querySelector('body > ui-view > .px-footer');
 
-      if (document.getElementById('px-demo-footer')) {
+      if (!skipFooter) {
         content +=
-          '<div id="px-demo-footer-position"><div class="box m-a-0 border-radius-0 bg-transparent">' +
+          '<div id="px-demo-footer-position"' + (hasFooter ? '' : 'style="display: none;"') + '><div class="box m-a-0 border-radius-0 bg-transparent">' +
             '<div class="box-row">' +
               '<div class="box-cell bg-primary p-l-3"><label for="px-demo-footer-position-select">Footer</label></div>' +
               '<div class="box-cell bg-primary p-r-3">' +
@@ -591,9 +596,9 @@
             '</div>' +
           '</div></div>';
 
-        attachOnLoadHandler(function() {
+        if (hasFooter) {
           setFooterPosition(demoSettings.footer);
-        });
+        }
       }
 
       content += '</div>';
@@ -607,7 +612,7 @@
         content += '<label class="px-demo-themes-item">';
 
           content += '<input type="radio" class="px-demo-themes-toggler" name="px-demo-current-theme" value="' + THEMES[i] + '"' + (demoSettings.theme === THEMES[i] ? ' checked' : '') + '>';
-          content += '<img src="' + DIST_PATH + '/dist/demo/themes/' + THEMES[i] + '.png" class="px-demo-themes-thumbnail">';
+          content += '<img src="assets/demo/themes/' + THEMES[i] + '.png" class="px-demo-themes-thumbnail">';
           content += '<div class="px-demo-themes-title font-weight-semibold"><span class="text-white">' + capitalizeAllLetters(THEMES[i], '-') + '</span><div class="bg-primary"></div></div>';
 
         content += '</label>';
@@ -616,7 +621,7 @@
       content += '</div>';
 
       contentEl.innerHTML = content;
-      document.body.appendChild(sidebarEl);
+      (container ? document.querySelector(container) : document.body).appendChild(sidebarEl);
     }
 
     // Return
@@ -631,6 +636,7 @@
       initializeDemo:        initializeDemo,
       initializeBgsDemo:     initializeBgsDemo,
       initializeDemoSidebar: initializeDemoSidebar,
+      destroyBgsDemo:        destroyBgsDemo,
 
       loadTheme: loadTheme,
       loadRtl:   loadRtl,

@@ -3,7 +3,7 @@
 @section('headScript')
     <script>
         requirejs.config({
-            paths: { demo: '../../demo/demo' }
+            paths: { demo: '../demo/demo' }
         });
     </script>
     <script>require(['demo']);</script>
