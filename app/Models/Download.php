@@ -4,15 +4,26 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 /**
  * @package App\Models
  * @author efriandika
  */
-class Download extends Model
+class Download extends Model implements AuditableContract
 {
+    use Auditable;
+
 	protected $table = "download";
 	protected $primaryKey = 'id';
+
+    /**
+     * Audit threshold.
+     *
+     * @var int
+     */
+    protected $auditThreshold = 10;
 
 	public function category() {
 		return $this->belongsTo(DownloadCategory::class, 'download_category_id');

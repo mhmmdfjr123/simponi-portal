@@ -4,17 +4,26 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 /**
  * Class Post
  * @package App\Models
  * @author efriandika
  */
-class Post extends Model {
-    use SoftDeletes;
+class Post extends Model implements AuditableContract{
+    use SoftDeletes, Auditable;
 
     protected $table = "post";
     protected $primaryKey = 'id';
+
+    /**
+     * Audit threshold.
+     *
+     * @var int
+     */
+    protected $auditThreshold = 10;
 
     public function categories(){
         return $this->belongsToMany(PostCategory::class, 'post_category_rel', 'post_id', 'post_category_id');

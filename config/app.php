@@ -212,6 +212,7 @@ return [
         Efriandika\LaravelSettings\SettingsServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Kodeine\Acl\AclServiceProvider::class,
+        OwenIt\Auditing\AuditingServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         Yajra\Oci8\Oci8ServiceProvider::class,
     ],

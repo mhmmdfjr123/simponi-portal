@@ -1,15 +1,27 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 /**
  * Class Menu
  * @package App\Models
  * @author efriandika
  */
-class Menu extends Model {
+class Menu extends Model implements AuditableContract {
+
+    use Auditable;
+
     protected $table = "menu";
     protected $primaryKey = 'id';
+
+    /**
+     * Audit threshold.
+     *
+     * @var int
+     */
+    protected $auditThreshold = 10;
 
     public function categories(){
         return $this->belongsTo(MenuCategory::class, 'menu_category_id', 'id');

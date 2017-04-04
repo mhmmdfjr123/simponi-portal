@@ -7,15 +7,17 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\DB;
 use Kodeine\Acl\Traits\HasRole;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 /**
  * Class User
  * @package App\Models
  * @author efriandika
  */
-class User extends Authenticatable
+class User extends Authenticatable implements AuditableContract
 {
-    use Notifiable, HasRole, SoftDeletes;
+    use Notifiable, HasRole, SoftDeletes, Auditable;
 
     /**
      * The attributes that are mass assignable.
@@ -34,6 +36,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Audit threshold.
+     *
+     * @var int
+     */
+    protected $auditThreshold = 10;
+
+    /**
+     * Should the audit be strict?
+     *
+     * @var bool
+     */
+    protected $auditStrict = true;
 
     /**
      * Check username

@@ -3,6 +3,8 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 /**
  * Class Page Model
@@ -10,11 +12,19 @@ use Illuminate\Support\Facades\DB;
  * @package App\Models
  * @author efriandika
  */
-class Page extends Model {
-    use SoftDeletes;
+class Page extends Model implements AuditableContract {
+
+    use SoftDeletes, Auditable;
 
     protected $table = "page";
     protected $primaryKey = 'id';
+
+    /**
+     * Audit threshold.
+     *
+     * @var int
+     */
+    protected $auditThreshold = 10;
 
     public function parent(){
         return $this->belongsTo(Page::class, 'parent');
