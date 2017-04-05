@@ -94,7 +94,7 @@
 
     <div class="panel">
         <div class="panel-title">
-            Overview Aktifitas Pengguna
+            Statistik Registrasi Nasabah Individu dan Perusahaan
         </div>
 
         <hr class="m-a-0">
@@ -130,33 +130,8 @@
     // Initialize overview chart
 
     require(['jquery', 'demo', 'px-libs/morris'], function($, pxDemo, Morris) {
-        var data = [];
-
-        for (var i = 1; i <= 30; i++) {
-            data.push({
-                period:   '2017-02-' + (i < 10 ? '0' + i : i),
-                register:  pxDemo.getRandomData(10, 2),
-                login:     pxDemo.getRandomData(10, 2),
-            });
-        }
-
-        new Morris.Area({
-            element:        'overview-chart',
-            data:           data,
-            xkey:           'period',
-            ykeys:          ['register', 'login'],
-            labels:         ['Register', 'Login'],
-            hideHover:      'auto',
-            lineColors:     pxDemo.getRandomColors(),
-            fillOpacity:    0.1,
-            behaveLikeLine: true,
-            lineWidth:      1,
-            pointSize:      4,
-            gridLineColor:  '#cfcfcf',
-            resize:         true
-        });
-
         loadCounterAnalytics();
+        loadGraphAnalytics();
     });
 
     function loadCounterAnalytics() {
@@ -169,11 +144,52 @@
                 $('#counter-total-customer').text(response.individualAccountTotal + response.companyAccountTotal);
                 $('#counter-individual-account').text(response.individualAccountTotal);
                 $('#counter-company-account').text(response.companyAccountTotal);
-                // $('#counter-today-login').text(response.todayLogin);
+                $('#counter-today-login').text(response.todayLogin);
 
             },
             type:"get",
             dataType:"json"
+        });
+    }
+
+    function loadGraphAnalytics() {
+        $.ajax({
+            url: '{{ url('backoffice/dashboard/analytics/graph') }}',
+            beforeSend: function(){
+                console.log('Retrieving analytics counter data...');
+            },
+            success: function(response){
+                setGraph(response.data);
+            },
+            type:"get",
+            dataType:"json"
+        });
+    }
+
+    function setGraph(histories) {
+        var data = [];
+
+        histories.forEach(function(history) {
+            data.push({
+                period:   history.date,
+                register:  history.counter
+            });
+        });
+
+        new Morris.Area({
+            element:        'overview-chart',
+            data:           data,
+            xkey:           'period',
+            ykeys:          ['register'],
+            labels:         ['Register'],
+            hideHover:      'auto',
+            //lineColors:     '#005c69',
+            fillOpacity:    0.1,
+            behaveLikeLine: true,
+            lineWidth:      1,
+            pointSize:      4,
+            gridLineColor:  '#cfcfcf',
+            resize:         true
         });
     }
 </script>

@@ -58,7 +58,11 @@ abstract class ApiClient {
 			if($withAuthentication)
 				$options = $this->addAuthorizationHeader($options);
 
-			\Log::info('Send an api request by using method: '.$method.' to '.$uri.' with params: '.var_export($options, true));
+            $paramsForLog = $options;
+
+            if(array_has($paramsForLog, 'json.password'))
+                $paramsForLog['json']['password'] = '*****************';
+			\Log::info('Send an api request by using method: '.$method.' to '.$uri.' with params: '.var_export($paramsForLog, true));
 
 			return $this->client->request($method, $uri, $options);
 		} catch (RequestException $e) {

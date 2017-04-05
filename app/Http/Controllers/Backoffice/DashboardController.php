@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use App\Models\Analytics\Users;
 use App\Models\Analytics\UsersSession;
+use Carbon\Carbon;
 
 class DashboardController extends Controller {
 
@@ -22,13 +23,15 @@ class DashboardController extends Controller {
 		$data = [
 			'individualAccountTotal'  => $userAnalytics->getIndividualAccountTotal(),
 			'companyAccountTotal'  => $userAnalytics->getCompanyAccountTotal(),
-			// 'todayLogin'           => $userSessionAnalytics->getTotalLoginOnToday()
+			'todayLogin'           => $userSessionAnalytics->getTotalLoginOnToday()
 		];
 
 		return response()->json($data);
     }
 
-	public function getGraphAnalytics() {
-
+	public function getGraphAnalytics(UsersSession $userSessionAnalytics) {
+        return response()->json([
+            'data' => $userSessionAnalytics->getRegistrationHistory((new Carbon('-10days'))->format('Y-m-d'), Carbon::now()->format('Y-m-d'))
+        ]);
 	}
 }
