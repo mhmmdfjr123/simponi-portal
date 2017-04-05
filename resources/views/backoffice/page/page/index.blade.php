@@ -30,15 +30,15 @@
 
                     <ul class="nav nav-tabs nav-tabs-xs" id="navtab-status">
                         <li class="active" data-status="">
-                            <a href="#" data-toggle="tab">Semua ({{ $countListAllPage }})</a>
+                            <a href="#nav-all" data-toggle="tab">Semua ({{ $countListAllPage }})</a>
                         </li>
                         @foreach($listStatus as $statusRow)
                         <li data-status="{{ $statusRow->status }}">
-                            <a href="#" data-toggle="tab">{{ pageStatusText($statusRow->status) }} ({{ $statusRow->status_count }})</a>
+                            <a href="#nav-status" data-toggle="tab">{{ pageStatusText($statusRow->status) }} ({{ $statusRow->status_count }})</a>
                         </li>
                         @endforeach
                         <li data-status="deleted">
-                            <a href="#" data-toggle="tab">Trash ({{ $countListTrashPage }})</a>
+                            <a href="#nav-trash" data-toggle="tab">Trash ({{ $countListTrashPage }})</a>
                         </li>
                     </ul>
                 </div>

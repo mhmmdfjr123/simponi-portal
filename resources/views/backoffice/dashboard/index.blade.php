@@ -127,9 +127,7 @@
 
 @section('footScript')
 <script type="text/javascript">
-    // Initialize overview chart
-
-    require(['jquery', 'demo', 'px-libs/morris'], function($, pxDemo, Morris) {
+    require(['jquery', 'demo', 'px-libs/morris'], function($, Morris) {
         loadCounterAnalytics();
         loadGraphAnalytics();
     });
@@ -183,7 +181,7 @@
             ykeys:          ['register'],
             labels:         ['Register'],
             hideHover:      'auto',
-            //lineColors:     '#005c69',
+            lineColors:     ['#FF5722'],
             fillOpacity:    0.1,
             behaveLikeLine: true,
             lineWidth:      1,

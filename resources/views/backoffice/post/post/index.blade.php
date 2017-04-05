@@ -30,15 +30,15 @@
 
                     <ul class="nav nav-tabs nav-tabs-xs" id="navtab-status">
                         <li class="active" data-status="">
-                            <a href="#" data-toggle="tab">Semua ({{ $countListAllPage }})</a>
+                            <a href="#nav-all" data-toggle="tab">Semua ({{ $countListAllPage }})</a>
                         </li>
                         @foreach($listStatus as $statusRow)
                             <li data-status="{{ $statusRow->status }}">
-                                <a href="#" data-toggle="tab">{{ pageStatusText($statusRow->status) }} ({{ $statusRow->status_count }})</a>
+                                <a href="#nav-status" data-toggle="tab">{{ pageStatusText($statusRow->status) }} ({{ $statusRow->status_count }})</a>
                             </li>
                         @endforeach
                         <li data-status="deleted">
-                            <a href="#" data-toggle="tab">Trash ({{ $countListTrashPage }})</a>
+                            <a href="#nav-trash" data-toggle="tab">Trash ({{ $countListTrashPage }})</a>
                         </li>
                     </ul>
                 </div>
@@ -77,7 +77,7 @@
 
 @section('footScript')
     <script type="text/javascript">
-        require(['jquery', 'px/extensions/datatables', 'px-bootstrap/tab'], function($) {
+        require(['jquery', 'px-bootstrap/tab', 'px/extensions/datatables'], function($) {
             var status = "";
             var categoryId = "";
 
@@ -108,8 +108,8 @@
             $('#jq-datatable_wrapper .dataTables_filter input').attr('placeholder', 'Pencarian...');
 
             $('#navtab-status li a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                // e.target // newly activated tab
-                // e.relatedTarget // previous active tab
+                e.target // newly activated tab
+                e.relatedTarget // previous active tab
                 status = $(this).parent().data('status');
                 oTable.draw();
             });
