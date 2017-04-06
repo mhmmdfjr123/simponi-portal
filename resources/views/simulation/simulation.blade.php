@@ -4,7 +4,10 @@
     <section id="simulation-content" class="section-box">
         <div class="container">
             {{-- <!-- <img class="contentimage" src="{{ asset('theme/front/images/header/simulation.jpg') }}" alt="Content" /> --> --}}
-            <h2>Simulasi BNI Simponi Berdasarkan Iuran.</h2>
+            <h2>
+                Simulasi BNI Simponi Berdasarkan Iuran.
+                <a href="/simulation/based-on-needs" style="margin-top:10px;font-size:16px;float:right;">→ Simulasi Berdasarkan Kebutuhan</a>
+            </h2>
             <form id="simulation-form" class="col-xs-12">
                 <div class="left-side col-sm-4 col-xs-12">
                     {{-- <!-- <div class="form-group">
@@ -79,20 +82,20 @@
                     </div> --> --}}
                     <div class="form-group">
                         <label>Usia Anda</label>
-                        <input id="age" class="form-control numeric validatenow numstart" type="text" placeholder="Masukkan Usia Anda" data-value="0" data-min-value="17" data-max-value="55" data-message="Usia tidak boleh kurang dari 17 dan lebih dari 55 tahun" data-numstart-target="#retirement-age" data-numstart-message="Usia tidak boleh sama atau lebih dari Rencana Usia Pensiun" data-check="true" required />
-                        <small style="display:block"><i>Usia minimum untuk mengikuti DPLK BNI adalah 17 tahun dan maksimum 55 tahun</i></small>
+                        <input id="age" class="form-control numeric validatenow numstart" type="text" placeholder="Masukkan Usia Anda" data-value="0" data-min-value="17" data-message="Usia tidak boleh kurang dari 17 tahun" data-numstart-target="#retirement-age" data-numstart-message="Usia tidak boleh sama atau lebih dari Rencana Usia Pensiun" data-check="true" required />
+                        <small style="display:block"><i>Usia minimum pembukaan rekening BNI Simponi adalah 17 tahun.</i></small>
                     </div>
                     <div class="form-group">
                         <label>Rencana Usia Pensiun</label>
-                        <input id="retirement-age" class="form-control numeric validatenow" type="text" placeholder="Masukkan Usia Pensiun" data-value="0" data-min-value="45" data-max-value="80" data-message="Rencana Usia Pensiun tidak boleh kurang dari 45 dan lebih dari 80 tahun" data-check="true" required />
-                        <small style="display:block"><i>Usia pensiun rata-rata di Indonesia adalah 55 tahun</i></small>
+                        <input id="retirement-age" class="form-control numeric validatenow" type="text" placeholder="Masukkan Usia Pensiun" data-value="0" data-min-value="40" data-message="Rencana Usia Pensiun tidak boleh kurang dari 40 tahun" required />
+                        <small style="display:block"><i>Usia Pensiun minimum untuk nasabah baru BNI Simponi adalah 40 tahun.</i></small>
                     </div>
                 </div>
                 <div class="middle-side col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Pembayaran Dana Awal</label>
                         <div class="radio">
-                            <label>
+                            <label style="display:none">
                                 <input type="radio" name="topupRadio" required />
                                 Tidak ada
                             </label>
@@ -102,7 +105,7 @@
                             </label>
                             <label>
                                 <input type="radio" name="topupRadio" />
-                                Tiap tahun
+                                Tiap tahun*
                             </label>
                         </div>
                     </div>
@@ -110,8 +113,9 @@
                         <label>Dana Awal</label>
                         <div class="input-group">
                             <div class="input-group-addon">Rp</div>
-                            <input id="starting-balance" class="form-control currency numeric" type="text" placeholder="Masukkan Dana Awal" data-value="0" disabled />
+                            <input id="starting-balance" class="form-control currency numeric validatenow" type="text" placeholder="Masukkan Dana Awal" data-value="0" data-min-value="250000" data-message="Dana Awal tidak boleh kurang dari Rp250.000" disabled required />
                         </div>
+                        <small style="display:block"><i>Dana Awal minimum adalah Rp250.000.</i></small>
                     </div>
                     <div class="form-group">
                         <label>Tipe Pembayaran Iuran</label>
@@ -136,10 +140,10 @@
                     <div class="form-group">
                         <label>Kenaikan Iuran Per Tahun</label>
                         <div class="input-group">
-                            <input id="billing-increment" class="form-control percentage numeric validatenow" type="text" placeholder="Masukkan Kenaikan Iuran Per Tahun" data-value="0" data-min-value="1" data-max-value="20" data-message="Kenaikan Iuran Per Tahun tidak boleh lebih rendah dari 1% dan lebih tinggi dari 20%" disabled />
+                            <input id="billing-increment" class="form-control percentage numeric" type="text" placeholder="Masukkan Kenaikan Iuran Per Tahun" data-value="0" disabled />
                             <div class="input-group-addon">%</div>
                         </div>
-                        <small style="display:block"><i>Rata-rata tingkat inflasi di Indonesia adalah 3-6% per tahun</i></small>
+                        <small style="display:block"><i>Rata-rata tingkat inflasi di Indonesia adalah 3-6% per tahun. Kosongkan jika tidak ingin ada kenaikan iuran.</i></small>
                     </div>
                 </div>
                 <div class="right-side col-sm-4 col-xs-12">
@@ -157,17 +161,17 @@
                             <input id="interest-rate" class="form-control percentage numeric validatenow" type="text" placeholder="Masukkan Tingkat Bunga DPLK" data-value="0" data-min-value="1" data-max-value="25" data-message="Target Investasi tidak boleh lebih rendah dari 1% dan lebih tinggi dari 25%" required />
                             <div class="input-group-addon">%</div>
                         </div>
-                        <small style="display:block"><i>Tingkat Bunga DPLK minimum 1% dan maksimum 25%</i></small>
+                        <small style="display:block"><i>Tingkat Bunga DPLK minimum 1% dan maksimum 25%. Lihat <a href="/faq#faq-category-25" target="_blank">FAQ</a> untuk melihat tingkat bunga dari setiap paket investasi DPLK BNI.</i></small>
                     </div>
                     <div class="form-group">
-                        <label>Biaya Administrasi (Per Tahun)</label>
+                        <label>Biaya Administrasi (Per Tahun)**</label>
                         <div class="input-group">
                             <div class="input-group-addon">Rp</div>
                             <input id="administration-fee" class="form-control" type="text" value="18.000" data-value="18000" disabled />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Biaya Pengelolaan Dana</label>
+                        <label>Biaya Pengelolaan Dana**</label>
                         <input id="management-fee" class="form-control" type="text" value="0.85% dari akumulasi dana per tahun" data-value="0.0085" disabled />
                     </div>
                     <div class="form-group">
@@ -179,25 +183,28 @@
                 <canvas id="simulation" class="col-xs-12"></canvas>
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div id="total-funding" class="simulationresult section-box-item">
-                        <label>Total Iuran<a class="material-icons info" data-toggle="tooltip" title="Total iuran adalah dana awal ditambah iuran Anda (per bulan / tahun sesuai pilihan Anda) mulai dari pembukaan rekening hingga berakhirnya masa rekening Anda (sesuai usia pensiun Anda)."><i class="fa fa-info-circle"></i></a></label>
+                        <label>Total Iuran***<a class="material-icons info" data-toggle="tooltip" title="Total iuran adalah dana awal ditambah iuran Anda (per bulan / tahun sesuai pilihan Anda) mulai dari pembukaan rekening hingga berakhirnya masa rekening Anda (sesuai usia pensiun Anda)."><i class="fa fa-info-circle"></i></a></label>
                         <span>N/A</span>
                         <b></b>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div id="total-development" class="simulationresult section-box-item">
-                        <label>Hasil Pengembangan<a class="material-icons info" data-toggle="tooltip" title="Hasil pengembangan adalah jumlah perkembangan total iuran mulai dari pembukaan rekening DPLK hingga berakhirnya masa rekening DPLK Anda (sesuai usia pensiun Anda)."><i class="fa fa-info-circle"></i></a></label>
+                        <label>Hasil Pengembangan***<a class="material-icons info" data-toggle="tooltip" title="Hasil pengembangan adalah jumlah perkembangan total iuran mulai dari pembukaan rekening DPLK hingga berakhirnya masa rekening DPLK Anda (sesuai usia pensiun Anda)."><i class="fa fa-info-circle"></i></a></label>
                         <span>N/A</span>
                         <b></b>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div id="total-fund" class="simulationresult section-box-item">
-                        <label>Total Dana Manfaat<a class="material-icons info" data-toggle="tooltip" title="Total dana manfaat adalah dana yang bisa Anda klaim di akhir masa rekening DPLK Anda (sesuai usia pensiun Anda)"><i class="fa fa-info-circle"></i></a></label>
+                        <label>Total Dana Manfaat***<a class="material-icons info" data-toggle="tooltip" title="Total dana manfaat adalah dana yang bisa Anda klaim di akhir masa rekening DPLK Anda (sesuai usia pensiun Anda)"><i class="fa fa-info-circle"></i></a></label>
                         <span>N/A</span>
                         <b></b>
                     </div>
                 </div>
+                <small class="disclaimer col-xs-12"><i>* Dana Awal dapat ditambah setiap tahun dengan tetap menyetor Dana Awal minimum sebesar Rp250.000 dalam jangka waktu maksimum 3 bulan setelah pembukaan rekening BNI Simponi</i></small>
+                <small class="disclaimer col-xs-12"><i>** Seluruh biaya dapat berubah-ubah setiap tahun</i></small>
+                <small class="disclaimer col-xs-12"><i>*** Hasil simulasi merupakan estimasi, hasil akhir sebenarnya dapat berbeda</i></small>
             </form>
         </div>
     </section>
