@@ -24,7 +24,7 @@ class Page extends Model implements AuditableContract {
      *
      * @var int
      */
-    protected $auditThreshold = 10;
+    protected $auditThreshold = 50;
 
     public function parent(){
         return $this->belongsTo(Page::class, 'parent');

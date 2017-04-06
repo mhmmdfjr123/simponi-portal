@@ -23,7 +23,7 @@ class Download extends Model implements AuditableContract
      *
      * @var int
      */
-    protected $auditThreshold = 10;
+    protected $auditThreshold = 50;
 
 	public function category() {
 		return $this->belongsTo(DownloadCategory::class, 'download_category_id');

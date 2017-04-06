@@ -21,7 +21,7 @@ class Menu extends Model implements AuditableContract {
      *
      * @var int
      */
-    protected $auditThreshold = 10;
+    protected $auditThreshold = 50;
 
     public function categories(){
         return $this->belongsTo(MenuCategory::class, 'menu_category_id', 'id');

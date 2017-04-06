@@ -23,7 +23,7 @@ class Faq extends Model implements AuditableContract
      *
      * @var int
      */
-    protected $auditThreshold = 10;
+    protected $auditThreshold = 50;
 
 	public function category() {
 		return $this->belongsTo(FaqCategory::class, 'faq_category_id');

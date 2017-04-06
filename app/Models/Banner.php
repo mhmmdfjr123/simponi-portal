@@ -21,7 +21,7 @@ class Banner extends Model implements AuditableContract {
      *
      * @var int
      */
-    protected $auditThreshold = 10;
+    protected $auditThreshold = 50;
 
     function getBanners() {
         $query = $this->select(['banner.*'])->orderBy('updated_at', 'DESC');

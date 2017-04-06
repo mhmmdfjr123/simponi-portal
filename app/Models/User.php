@@ -42,7 +42,7 @@ class User extends Authenticatable implements AuditableContract
      *
      * @var int
      */
-    protected $auditThreshold = 10;
+    protected $auditThreshold = 50;
 
     /**
      * Should the audit be strict?

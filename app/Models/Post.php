@@ -23,7 +23,7 @@ class Post extends Model implements AuditableContract{
      *
      * @var int
      */
-    protected $auditThreshold = 10;
+    protected $auditThreshold = 50;
 
     public function categories(){
         return $this->belongsToMany(PostCategory::class, 'post_category_rel', 'post_id', 'post_category_id');
