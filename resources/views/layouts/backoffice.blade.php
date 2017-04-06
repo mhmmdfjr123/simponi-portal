@@ -96,6 +96,7 @@
         <li class="px-nav-item">
             <a href="{{ url('backoffice/support/faq') }}"><i class="px-nav-icon fa fa-question-circle-o"></i><span class="px-nav-label">FAQ</span></a>
         </li>
+        @role('super-administrator')
         <li class="px-nav-item px-nav-dropdown">
             <a href="#"><i class="px-nav-icon fa fa-desktop"></i><span class="px-nav-label">Tampilan</span></a>
 
@@ -105,7 +106,6 @@
                 <li class="px-nav-item"><a href="javascript:maintenance();"><span class="px-nav-label">Kelola Homepage</span></a></li>
             </ul>
         </li>
-        @role('super-administrator')
         <li class="px-nav-item px-nav-dropdown">
             <a href="#"><i class="px-nav-icon fa fa-users"></i><span class="px-nav-label">Administrasi</span></a>
 

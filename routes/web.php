@@ -31,21 +31,6 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']],
     Route::get('profile/change-password', 'Backoffice\ProfileController@showChangePasswordForm');
     Route::post('profile/change-password', 'Backoffice\ProfileController@postChangePassword');
 
-    Route::group(['is' => 'super-administrator'], function () {
-        // Administration - Users Routes
-        Route::get('administration/user', 'Backoffice\Administration\UserController@index');
-        Route::get('administration/user/list-data', 'Backoffice\Administration\UserController@listData');
-        Route::get('administration/user/add', 'Backoffice\Administration\UserController@add');
-        Route::get('administration/user/edit/{id}', 'Backoffice\Administration\UserController@edit');
-        Route::get('administration/user/delete/{id}', 'Backoffice\Administration\UserController@delete');
-        Route::get('administration/user/delete-restore/{id}', 'Backoffice\Administration\UserController@deleteRestore');
-        Route::get('administration/user/delete-permanent/{id}', 'Backoffice\Administration\UserController@deletePermanent');
-        Route::post('administration/user/submit', 'Backoffice\Administration\UserController@submit');
-    });
-
-    Route::get('administration/user/check-email/{id?}', 'Backoffice\Administration\UserController@checkEmail');
-    Route::get('administration/user/check-username/{id?}', 'Backoffice\Administration\UserController@checkUsername');
-
     // Post
     Route::get('post', 'Backoffice\Post\PostController@index');
     Route::get('post/list-data', 'Backoffice\Post\PostController@listData');
@@ -102,40 +87,51 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']],
 	Route::get('support/faq/category/{id}/delete', 'Backoffice\Support\FaqController@deleteCategory');
 	Route::post('support/faq/category/re-order', 'Backoffice\Support\FaqController@reOrderFaqCategories');
 
-    // Layout - Menu
-    Route::get('layout/menu', 'Backoffice\Layout\MenuController@index');
-    Route::get('layout/menu/list-menu', 'Backoffice\Layout\MenuController@listMenu');
-    Route::post('layout/menu/menu-index', 'Backoffice\Layout\MenuController@menuIndex');
-    Route::get('layout/menu/add', 'Backoffice\Layout\MenuController@add');
-    Route::get('layout/menu/edit/{id}', 'Backoffice\Layout\MenuController@edit');
-    Route::post('layout/menu/submit', 'Backoffice\Layout\MenuController@submit');
-    Route::get('layout/menu/delete', 'Backoffice\Layout\MenuController@delete');
-    Route::get('layout/menu/add-cat', 'Backoffice\Layout\MenuController@addCategory');
-    Route::get('layout/menu/edit-cat/{id}', 'Backoffice\Layout\MenuController@editCategory');
-    Route::get('layout/menu/delete-cat/{id}', 'Backoffice\Layout\MenuController@deleteCategory');
-    Route::post('layout/menu/submit-cat', 'Backoffice\Layout\MenuController@submitCategory');
+    Route::group(['is' => 'super-administrator'], function () {
+        // Layout - Menu
+        Route::get('layout/menu', 'Backoffice\Layout\MenuController@index');
+        Route::get('layout/menu/list-menu', 'Backoffice\Layout\MenuController@listMenu');
+        Route::post('layout/menu/menu-index', 'Backoffice\Layout\MenuController@menuIndex');
+        Route::get('layout/menu/add', 'Backoffice\Layout\MenuController@add');
+        Route::get('layout/menu/edit/{id}', 'Backoffice\Layout\MenuController@edit');
+        Route::post('layout/menu/submit', 'Backoffice\Layout\MenuController@submit');
+        Route::get('layout/menu/delete', 'Backoffice\Layout\MenuController@delete');
+        Route::get('layout/menu/add-cat', 'Backoffice\Layout\MenuController@addCategory');
+        Route::get('layout/menu/edit-cat/{id}', 'Backoffice\Layout\MenuController@editCategory');
+        Route::get('layout/menu/delete-cat/{id}', 'Backoffice\Layout\MenuController@deleteCategory');
+        Route::post('layout/menu/submit-cat', 'Backoffice\Layout\MenuController@submitCategory');
 
-    // Layout - Banner Management
-    Route::get('layout/banner', 'Backoffice\Layout\BannerController@index');
-    Route::post('layout/banner/re-order', 'Backoffice\Layout\BannerController@reOrder');
-    Route::get('layout/banner/add', 'Backoffice\Layout\BannerController@showNewForm');
-    Route::post('layout/banner/submit', 'Backoffice\Layout\BannerController@submit');
-    Route::get('layout/banner/{banner}/edit', 'Backoffice\Layout\BannerController@edit');
-    Route::get('layout/banner/{banner}/delete', 'Backoffice\Layout\BannerController@delete');
-    Route::get('layout/banner/{banner}/crop', 'Backoffice\Layout\BannerController@showCroppingCanvas');
-    Route::post('layout/banner/{banner}/crop', 'Backoffice\Layout\BannerController@cropImage');
+        // Layout - Banner Management
+        Route::get('layout/banner', 'Backoffice\Layout\BannerController@index');
+        Route::post('layout/banner/re-order', 'Backoffice\Layout\BannerController@reOrder');
+        Route::get('layout/banner/add', 'Backoffice\Layout\BannerController@showNewForm');
+        Route::post('layout/banner/submit', 'Backoffice\Layout\BannerController@submit');
+        Route::get('layout/banner/{banner}/edit', 'Backoffice\Layout\BannerController@edit');
+        Route::get('layout/banner/{banner}/delete', 'Backoffice\Layout\BannerController@delete');
+        Route::get('layout/banner/{banner}/crop', 'Backoffice\Layout\BannerController@showCroppingCanvas');
+        Route::post('layout/banner/{banner}/crop', 'Backoffice\Layout\BannerController@cropImage');
 
+        // Administration - Users Routes
+        Route::get('administration/user', 'Backoffice\Administration\UserController@index');
+        Route::get('administration/user/list-data', 'Backoffice\Administration\UserController@listData');
+        Route::get('administration/user/add', 'Backoffice\Administration\UserController@add');
+        Route::get('administration/user/edit/{id}', 'Backoffice\Administration\UserController@edit');
+        Route::get('administration/user/delete/{id}', 'Backoffice\Administration\UserController@delete');
+        Route::get('administration/user/delete-restore/{id}', 'Backoffice\Administration\UserController@deleteRestore');
+        Route::get('administration/user/delete-permanent/{id}', 'Backoffice\Administration\UserController@deletePermanent');
+        Route::post('administration/user/submit', 'Backoffice\Administration\UserController@submit');
+    });
+
+    Route::get('administration/user/check-email/{id?}', 'Backoffice\Administration\UserController@checkEmail');
+    Route::get('administration/user/check-username/{id?}', 'Backoffice\Administration\UserController@checkUsername');
 });
 
+// BackOffice Credentials
 Route::group(['middleware' => 'web'], function () {
     // Authentication Routes...
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@login');
     Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-
-    // Registration Routes...
-    // Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-    // Route::post('register', 'Auth\RegisterController@register');
 
 	// Password Reset Routes...
 	$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
