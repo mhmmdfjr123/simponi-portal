@@ -27,6 +27,7 @@ class Banner extends Model implements AuditableContract {
         $query = $this->select(['banner.*'])->orderBy('updated_at', 'DESC');
         $query->where('banner.status', 'P');
         $query->where('banner.publish_date_start', '<=', Carbon::now());
+        $query->orderBy('order');
 
         return $query->get();
     }

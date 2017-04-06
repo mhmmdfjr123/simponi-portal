@@ -22,7 +22,7 @@ class CreateBannerTable extends Migration
             $table->dateTime('publish_date_start')->nullable();
             $table->dateTime('publish_date_end')->nullable();
             $table->string('status', 3)->default('P');
-
+            $table->smallInteger('order')->nullable();
             $table->timestamps();
         });
     }

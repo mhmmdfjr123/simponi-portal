@@ -4,7 +4,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-use Yajra\Datatables\Datatables;
 
 class BannerController extends Controller {
 
@@ -14,57 +13,42 @@ class BannerController extends Controller {
         'maxSize' => 600000 // in byte
     ];
 
-    public function __construct(){
-
-    }
-
     public function index(){
         $data = [
-            'pageTitle' => 'Daftar Banner'
+            'pageTitle' => 'Daftar Banner',
+            'banners'   => Banner::orderBy('order')->get()
         ];
 
         return view('backoffice.layout.banner.index', $data);
     }
 
-    public function listData(Request $request){
-        $data = Banner::orderBy('created_at', 'DESC');
+    public function reOrder(Request $request) {
+        try {
+            \DB::beginTransaction();
 
-        $rowNum = 1;
-        $startPage = $request->get('start');
+            $index = 0;
+            $items = $request->input('items');
 
-        return Datatables::of($data)
-            ->addColumn('rownum', function () use (&$rowNum, $startPage) {
-                return $startPage + ($rowNum++);
-            })
-            ->editColumn('name', function ($model) {
-                if($model->hyperlink != '')
-                    $name = '<a href="'.$model->hyperlink.'" target="_blank">'.$model->name.'</a>';
-                else
-                    $name = $model->name;
+            foreach($items as $item){
+                $banner = Banner::find($item);
+                $banner->order = $index++;
+                $banner->save();
+            }
 
-                if($model->created_at != $model->updated_at)
-                    $name .= '<div style="font-size: 10px; font-style: italic">Diperbarui: '.$model->updated_at->format('d-m-Y H:i:s').'</div>';
+            \DB::commit();
 
-                return $name;
-            })
-            ->editColumn('status', function ($model) {
-                return pageStatusTextWithStyle($model->status, $model->publish_date_start, $model->publish_date_end);
-            })
-            ->addColumn('created_date', function ($model) {
-                return date('d-m-Y H:i:s', strtotime($model->created_at));
-            })
-            ->addColumn('action', function ($model) {
-                $button = '
-                        <div class="btn-group">
-                            <a href="'.url('backoffice/layout/banner/'.$model->id.'/edit').'" title="Ubah" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a>
-                            <a href="javascript:void(0)" onclick="confirmDirectPopUp(\''.url('backoffice/layout/banner/'.$model->id.'/delete').'\', \'Konfirmasi\', \'Apakah anda yakin ingin menghapus?\', \'Ya, Hapus Data\', \'Tidak\');" title="Hapus" class="btn btn-xs btn-default"><i class="fa fa-trash"></i></a>
-                        </div>
-                    ';
+            return response()->json([
+                'status' => 'ok',
+                'message'=> 'Data berhasil disimpan.'
+            ]);
+        } catch (QueryException $e) {
+            \DB::rollBack();
 
-                return $button;
-            })
-            ->rawColumns(['name', 'status', 'action'])
-            ->make(true);
+            return response()->json([
+                'status' => 'error',
+                'message'=> 'Data gagal disimpan. Ulangi beberapa saat lagi'
+            ]);
+        }
     }
 
     public function showNewForm(){

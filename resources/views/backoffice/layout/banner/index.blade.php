@@ -24,61 +24,91 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <div class="panel">
+
+            <div class="panel panel-faq">
                 <div class="panel-heading">
                     <span class="panel-title">Daftar Banner</span>
                 </div>
-                <div class="panel-body">
-                    <div class="table-light table-responsive">
-                        <table class="table table-striped table-hover table-bordered" id="jq-datatable">
-                            <thead>
-                            <tr>
-                                <th style="width: 30px">No.</th>
-                                <th>Judul</th>
-                                <th style="width: 150px">Tgl Buat</th>
-                                <th style="width: 110px">Status</th>
-                                <th style="width: 80px;">Aksi</th>
-                            </tr>
-                            </thead>
-                        </table>
-                    </div>
+                <div class="panel-body" id="banner-container">
+                    @if(count($banners) > 0)
+                        @foreach($banners as $banner)
+                            <div class="faq-list-item" data-id="{{ $banner->id }}">
+                                {!! pageStatusTextWithStyle($banner->status, $banner->publish_date_start, $banner->publish_date_end) !!}
+                                {{ $banner->name }}
+
+                                <div class="pull-right">
+                                    <a href="{{ url('backoffice/layout/banner/'.$banner->id.'/edit') }}" class="btn btn-xs btn-default"><i class="fa fa-edit"></i> Ubah</a>
+                                    <a href="javascript:void(0)" onclick="confirmDirectPopUp('{{ url('backoffice/layout/banner/'.$banner->id.'/delete') }}', 'Hapus Banner', 'Anda yakin akan menghapus item ini?', 'Hapus', 'Batal')" class="btn btn-xs btn-default"><i class="fa fa-close"></i> Hapus</a>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="text-center ignore-dragging">
+                            Belum ada banner.<br>
+                            Silahkan <a href="{{ url('backoffice/layout/banner/add') }}" class="btn btn-xs btn-success"><i class="fa fa-plus"></i>  Tambah Banner</a>
+                        </div>
+                    @endif
                 </div>
             </div>
+
         </div>
     </div>
 @endsection
 
 @section('footScript')
     <script type="text/javascript">
-        require(['jquery', 'px/extensions/datatables', 'px-bootstrap/tab'], function($) {
-            var categoryId = "";
+        require(['jquery', 'px-libs/Sortable', 'px-libs/toastr', 'px-libs/jquery.facebox'], function($, Sortable, toastr) {
+            var container = document.getElementById('banner-container');
+            var csrfToken = '{{ csrf_token() }}';
 
-            var oTable = $('#jq-datatable').DataTable( {
-                "processing": true,
-                "serverSide": true,
-                "paginationType": "full_numbers",
-                "ajax": {
-                    "url": "{{ url('backoffice/layout/banner/list-data') }}"
+            Sortable.create(container, {
+                group: 'banner',
+                animation: 150,
+                ghostClass: 'faq-zone-target',
+                filter: ".ignore-dragging",
+                onAdd: function (evt) {
+                    onItemChanged(evt);
                 },
-                "language": {
-                    "processing": "Mohon Tunggu.."
+                onUpdate: function (evt) {
+                    onItemChanged(evt);
                 },
-                "order": [[ 3, "desc" ]],
-                "columns": [
-                    {data: 'rownum', name: 'rownum', "searchable": false, className: "text-center", orderable: false},
-                    {data: 'name', name: 'name', "searchable": true, className: "text-left", orderable: true},
-                    {data: 'created_date', name: 'created_at', "searchable": false, className: "text-center", orderable: true},
-                    {data: 'status', name: 'status', "searchable": false, className: "text-center", orderable: false},
-                    {data: 'action', name: 'action', "searchable": false, className: "text-center", orderable: false}
-                ]
             });
 
-            $('#jq-datatable_wrapper .dataTables_filter input').attr('placeholder', 'Pencarian...');
+            function onItemChanged(evt) {
+                var bannerID = [];
 
-            $('#filter-category').on('change', function (e) {
-                categoryId = $(this).val();
-                oTable.draw();
-            });
+                [].forEach.call(evt.to.children, function (el){
+                    if($(el).data('id'))
+                        bannerID.push($(el).data('id'));
+                });
+                reOrdering('{{ url('backoffice/layout/banner/re-order') }}', bannerID);
+            }
+
+            function reOrdering(url, items) {
+                var requestBody = {
+                    '_token' : csrfToken,
+                    'items'  : items
+                };
+
+                $.ajax({
+                    url: url,
+                    data: requestBody,
+                    beforeSend: function(){
+                        popUpLoader();
+                    },
+                    success: function(response){
+                        if(response.status == 'ok'){
+                            toastr.success(response.message, 'Sukses.');
+                        }else{
+                            toastr.error(response.message, 'Oppss.');
+                        }
+
+                        jQuery.facebox.close();
+                    },
+                    type: "post",
+                    dataType: "json"
+                });
+            }
         });
     </script>
 @endsection

@@ -117,7 +117,7 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']],
 
     // Layout - Banner Management
     Route::get('layout/banner', 'Backoffice\Layout\BannerController@index');
-    Route::get('layout/banner/list-data', 'Backoffice\Layout\BannerController@listData');
+    Route::post('layout/banner/re-order', 'Backoffice\Layout\BannerController@reOrder');
     Route::get('layout/banner/add', 'Backoffice\Layout\BannerController@showNewForm');
     Route::post('layout/banner/submit', 'Backoffice\Layout\BannerController@submit');
     Route::get('layout/banner/{banner}/edit', 'Backoffice\Layout\BannerController@edit');
