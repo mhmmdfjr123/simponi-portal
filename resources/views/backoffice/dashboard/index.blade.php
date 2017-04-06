@@ -42,7 +42,7 @@
             <a href="#" class="panel box bg-white text-default">
                 <div class="box-row">
                     <div class="box-cell p-x-3 p-y-1">
-                        <div class="pull-xs-left font-weight-semibold font-size-12">NASABAH PERORANGAN</div>
+                        <div class="pull-xs-left font-weight-semibold font-size-12">NASABAH INDIVIDU</div>
                     </div>
                 </div>
                 <div class="box-row">

@@ -4,18 +4,29 @@
     <header class="sim-carousel">
         <!-- Carousel -->
         <div id="sim-carousel" class="carousel slide">
-            <ol class="carousel-indicators">
-                <li data-target="#sim-carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#sim-carousel" data-slide-to="1"></li>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <div class="carousel-image" style="background-image: url('{{ asset('theme/front/images/carousel/banner-2.jpg') }}')"></div>
+            @if(count($banners) > 0)
+                <ol class="carousel-indicators">
+                    @foreach($banners as $banner)
+                    <li data-target="#sim-carousel" data-slide-to="{{ $loop->index }}" {!! ($loop->index == 0) ? 'class="active"':'' !!}></li>
+                    @endforeach
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    @foreach($banners as $banner)
+                    <div class="item {!! ($loop->index == 0) ? 'active':'' !!}">
+                        <div class="carousel-image" style="background-image: url('{{ asset('file/banner/'.$banner->image_filename) }}')"></div>
+                    </div>
+                    @endforeach
                 </div>
-                <div class="item">
-                    <div class="carousel-image" style="background-image: url('{{ asset('theme/front/images/carousel/banner-1.jpg') }}')"></div>
+            @else
+                <ol class="carousel-indicators">
+                    <li data-target="#sim-carousel" data-slide-to="0" class="active"></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <div class="carousel-image" style="background-image: url('{{ asset('theme/front/images/header/default-carousel.jpg') }}')"></div>
+                    </div>
                 </div>
-            </div>
+            @endif
             <!--
             <a class="left carousel-control" href="#sim-carousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>

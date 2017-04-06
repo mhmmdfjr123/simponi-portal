@@ -102,7 +102,7 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']],
 	Route::get('support/faq/category/{id}/delete', 'Backoffice\Support\FaqController@deleteCategory');
 	Route::post('support/faq/category/re-order', 'Backoffice\Support\FaqController@reOrderFaqCategories');
 
-	// Layout - Menu
+    // Layout - Menu
     Route::get('layout/menu', 'Backoffice\Layout\MenuController@index');
     Route::get('layout/menu/list-menu', 'Backoffice\Layout\MenuController@listMenu');
     Route::post('layout/menu/menu-index', 'Backoffice\Layout\MenuController@menuIndex');
@@ -114,6 +114,17 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']],
     Route::get('layout/menu/edit-cat/{id}', 'Backoffice\Layout\MenuController@editCategory');
     Route::get('layout/menu/delete-cat/{id}', 'Backoffice\Layout\MenuController@deleteCategory');
     Route::post('layout/menu/submit-cat', 'Backoffice\Layout\MenuController@submitCategory');
+
+    // Layout - Banner Management
+    Route::get('layout/banner', 'Backoffice\Layout\BannerController@index');
+    Route::get('layout/banner/list-data', 'Backoffice\Layout\BannerController@listData');
+    Route::get('layout/banner/add', 'Backoffice\Layout\BannerController@showNewForm');
+    Route::post('layout/banner/submit', 'Backoffice\Layout\BannerController@submit');
+    Route::get('layout/banner/{banner}/edit', 'Backoffice\Layout\BannerController@edit');
+    Route::get('layout/banner/{banner}/delete', 'Backoffice\Layout\BannerController@delete');
+    Route::get('layout/banner/{banner}/crop', 'Backoffice\Layout\BannerController@showCroppingCanvas');
+    Route::post('layout/banner/{banner}/crop', 'Backoffice\Layout\BannerController@cropImage');
+
 });
 
 Route::group(['middleware' => 'web'], function () {

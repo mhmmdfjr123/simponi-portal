@@ -1,0 +1,49 @@
+.ezdz-dropzone {
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.ezdz-dropzone .dz-message{
+    text-align: left;
+}
+
+.ezdz-dropzone img {
+    max-width: 100%;
+    max-height: 300px;
+    opacity: 1 !important;
+}
+
+.ezdz-dropzone [type="file"] {
+    cursor: pointer;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.ezdz-focus {
+    border: 3px dotted darkgray;
+    color: darkgray;
+}
+
+.ezdz-enter {
+    border: 3px solid black;
+    color: black;
+}
+
+.ezdz-accept {
+    border: 3px solid gray;
+    color: gray;
+}
+
+.ezdz-reject {
+    border: 3px solid darkred;
+    color: darkred;
+}
