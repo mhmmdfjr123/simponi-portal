@@ -169,7 +169,7 @@
 
         histories.forEach(function(history) {
             data.push({
-                period:   history.date,
+                period:   history.date.substr(0, 10),
                 register:  history.counter
             });
         });
