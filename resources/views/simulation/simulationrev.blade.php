@@ -4,7 +4,10 @@
     <section id="simulation-content" class="section-box">
         <div class="container">
             {{-- <!-- <img class="contentimage" src="{{ asset('theme/front/images/header/simulation.jpg') }}" alt="Content" /> --> --}}
-            <h2>Simulasi BNI Simponi Berdasarkan Kebutuhan.</h2>
+            <h2>
+                Simulasi BNI Simponi Berdasarkan Kebutuhan.
+                <a href="/simulation/based-on-needs" style="margin-top:10px;font-size:16px;float:right;">→ Simulasi Berdasarkan Iuran</a>
+            </h2>
             <form id="simulation-form" class="rev col-xs-12">
                 <div class="left-side col-sm-4 col-xs-12">
                     {{-- <!-- <div class="form-group">
@@ -87,13 +90,13 @@
                     </div> --> --}}
                     <div class="form-group">
                         <label>Usia Anda</label>
-                        <input id="age" class="form-control numeric validatenow numstart" type="text" placeholder="Masukkan Usia Anda" data-target="#duration,#living-cost-after,#living-cost-total" data-value="0" data-min-value="17" data-max-value="55" data-message="Usia tidak boleh kurang dari 17 dan lebih dari 55 tahun" data-numstart-target="#retirement-age" data-numstart-message="Usia tidak boleh sama atau lebih dari Rencana Usia Pensiun" required />
-                        <small style="display:block"><i>Usia minimum untuk mengikuti DPLK BNI adalah 17 tahun dan maksimum 55 tahun</i></small>
+                        <input id="age" class="form-control numeric validatenow numstart" type="text" placeholder="Masukkan Usia Anda" data-target="#duration,#living-cost-after,#living-cost-total" data-value="0" data-min-value="17" data-message="Usia tidak boleh kurang dari 17 dan lebih dari 55 tahun" data-numstart-target="#retirement-age" data-numstart-message="Usia tidak boleh sama atau lebih dari Rencana Usia Pensiun" required />
+                        <small style="display:block"><i>Usia minimum pembukaan rekening BNI Simponi adalah 17 tahun.</i></small>
                     </div>
                     <div class="form-group">
                         <label>Rencana Usia Pensiun</label>
-                        <input id="retirement-age" class="form-control numeric validatenow numstart" type="text" placeholder="Masukkan Usia Pensiun" data-target="#duration,#duration-after,#living-cost-after,#living-cost-total" data-value="0" data-min-value="45" data-max-value="80" data-message="Rencana Usia Pensiun tidak boleh kurang dari 45 dan lebih dari 80 tahun" data-numstart-target="#life-expectancy" data-numstart-message="Rencana Usia Pensiun tidak boleh sama atau lebih dari Usia Harapan Hidup" required />
-                        <small style="display:block"><i>Usia pensiun rata-rata di Indonesia adalah 55 tahun</i></small>
+                        <input id="retirement-age" class="form-control numeric validatenow numstart" type="text" placeholder="Masukkan Usia Pensiun" data-target="#duration,#duration-after,#living-cost-after,#living-cost-total" data-value="0" data-min-value="40" data-message="Rencana Usia Pensiun tidak boleh kurang dari 40 tahun" data-numstart-target="#life-expectancy" data-numstart-message="Rencana Usia Pensiun tidak boleh sama atau lebih dari Usia Harapan Hidup" required />
+                        <small style="display:block"><i>Usia Pensiun minimum untuk nasabah baru BNI Simponi adalah 40 tahun.</i></small>
                     </div>
                     <div class="form-group" style="display:none;">
                         <label>Jangka Waktu Sebelum Pensiun</label>
@@ -101,8 +104,8 @@
                     </div>
                     <div class="form-group">
                         <label>Usia Harapan Hidup</label>
-                        <input id="life-expectancy" class="form-control numeric validatenow" type="text" placeholder="Masukkan Usia Harapan Hidup" data-target="#duration-after,#living-cost-total" data-value="0" data-min-value="60" data-max-value="90" data-message="Rencana Usia Harapan Hidup tidak boleh kurang dari 60 dan lebih dari 90 tahun" required />
-                        <small style="display:block"><i>Usia Harapan Hidup rata-rata di Indonesia adalah 80 tahun</i></small>
+                        <input id="life-expectancy" class="form-control numeric" type="text" placeholder="Masukkan Usia Harapan Hidup" data-target="#duration-after,#living-cost-total" data-value="0" required />
+                        <small style="display:block"><i>Usia Harapan Hidup rata-rata di Indonesia adalah 80 tahun.</i></small>
                     </div>
                     <div class="form-group" style="display:none;">
                         <label>Jangka Waktu Masa Pensiun</label>
@@ -116,7 +119,7 @@
                             <div class="input-group-addon">Rp</div>
                             <input id="living-cost" class="form-control currency numeric" type="text" placeholder="Masukkan Biaya Hidup Saat Ini" data-value="0" data-target="#living-cost-after,#living-cost-total" required />
                         </div>
-                        <small style="display:block"><i>Biaya Hidup Anda per bulan</i></small>
+                        <small style="display:block"><i>Biaya Hidup Anda per bulan.</i></small>
                     </div>
                     <div class="form-group">
                         <label>Asumsi Inflasi Per Tahun</label>
@@ -124,7 +127,7 @@
                             <input id="inflation-rate" class="form-control percentage numeric validatenow" type="text" placeholder="Masukkan Asumsi Inflasi Per Tahun" data-value="0" data-min-value="1" data-max-value="20" data-message="Asumsi Inflasi Per Tahun tidak boleh lebih rendah dari 1% dan lebih tinggi dari 20%" data-target="#living-cost-after,#living-cost-total" required />
                             <div class="input-group-addon">%</div>
                         </div>
-                        <small style="display:block"><i>Rata-rata tingkat inflasi di Indonesia adalah 3-6% per tahun</i></small>
+                        <small style="display:block"><i>Rata-rata tingkat inflasi di Indonesia adalah 3-6% per tahun.</i></small>
                     </div>
                     <div class="form-group" style="display:none;">
                         <label>Biaya Hidup Saat Pensiun</label>
@@ -154,7 +157,7 @@
                             <input id="investation-rate" class="form-control percentage numeric validatenow" type="text" placeholder="Masukkan Target Investasi" data-value="0" data-min-value="1" data-max-value="25" data-message="Target Investasi tidak boleh lebih rendah dari 1% dan lebih tinggi dari 25%" required />
                             <div class="input-group-addon">%</div>
                         </div>
-                        <small style="display:block"><i>Target Investasi minimum 1% dan maksimum 25%</i></small>
+                        <small style="display:block"><i>Target Investasi minimum 1% dan maksimum 25%. Lihat <a href="/faq#faq-category-25" target="_blank">FAQ</a> untuk melihat tingkat bunga dari setiap paket investasi DPLK BNI.</i></small>
                     </div>
                 </div>
                 <div class="right-side col-sm-4 col-xs-12">
@@ -168,25 +171,27 @@
                     </div>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div id="monthly-investation" class="simulationresult section-box-item">
-                            <label>Setoran Bulanan<a class="material-icons info" data-toggle="tooltip" title="Investasi Bulanan adalah iuran atau dana yang harus Anda investasikan setiap bulan sebelum pensiun untuk mencapai target investasi yang Anda inginkan"><i class="fa fa-info-circle"></i></a></label>
+                            <label>Setoran Bulanan*<a class="material-icons info" data-toggle="tooltip" title="Investasi Bulanan adalah iuran atau dana yang harus Anda investasikan setiap bulan sebelum pensiun untuk mencapai target investasi yang Anda inginkan"><i class="fa fa-info-circle"></i></a></label>
                             <span>N/A</span>
                             <b></b>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div id="annual-investation" class="simulationresult section-box-item">
-                            <label>Setoran Tahunan<a class="material-icons info" data-toggle="tooltip" title="Investasi Tahunan adalah iuran atau dana yang harus Anda investasikan setiap satu tahun sekali sebelum pensiun untuk mencapai target investasi yang Anda inginkan"><i class="fa fa-info-circle"></i></a></label>
+                            <label>Setoran Tahunan*)**)<a class="material-icons info" data-toggle="tooltip" title="Investasi Tahunan adalah iuran atau dana yang harus Anda investasikan setiap satu tahun sekali sebelum pensiun untuk mencapai target investasi yang Anda inginkan"><i class="fa fa-info-circle"></i></a></label>
                             <span>N/A</span>
                             <b></b>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div id="lumpsum" class="simulationresult section-box-item">
-                            <label>Setoran Satu Kali<a class="material-icons info" data-toggle="tooltip" title="Investasi Saat Ini / Lumpsum adalah iuran atau dana yang harus Anda investasikan satu kali sebelum pensiun untuk mencapai target investasi yang Anda inginkan"><i class="fa fa-info-circle"></i></a></label>
+                            <label>Setoran Satu Kali*<a class="material-icons info" data-toggle="tooltip" title="Investasi Saat Ini / Lumpsum adalah iuran atau dana yang harus Anda investasikan satu kali sebelum pensiun untuk mencapai target investasi yang Anda inginkan"><i class="fa fa-info-circle"></i></a></label>
                             <span>N/A</span>
                             <b></b>
                         </div>
                     </div>
+                    <small class="disclaimer col-xs-12"><i>* Hasil simulasi merupakan estimasi, hasil akhir sebenarnya dapat berbeda</i></small>
+                    <small class="disclaimer col-xs-12"><i>** Setoran tahunan dapat dilakukan dengan tetap melakukan setoran Dana Awal minimum sebesar Rp250.000 dalam jangka waktu maksimum 3 bulan setelah pembukaan rekening BNI Simponi</i></small>
                 </div>
             </form>
         </div>

@@ -45,7 +45,7 @@ $.fn.validate = function () {
                 }
                 if (tmpchecked && $(this).is('.numstart')) {
                     var targetvalue = $($(this).data('numstart-target')).val(),
-                        numstartchecked = ($(this).val() < targetvalue),
+                        numstartchecked = (parseInt($(this).val()) < parseInt(targetvalue)),
                         message = $(this).data('numstart-message');
                     checked = checked && numstartchecked;
                     numstartchecked ? (existingwarning && warning.remove()) : (!existingwarning && formgroup.append('<small class="validation-warning">' + message + '</small>'));
@@ -88,9 +88,9 @@ $.fn.validateNow = function () {
                     warning = formgroup.children('.validation-warning'),
                     existingwarning = (warning.length > 0);
                 existingwarning ? warning.text(message) : formgroup.append('<small class="validation-warning">' + message + '</small>');
-                if (value > 99) {
+                /*if (value > 99) {
                     $(this).val(tmpvalue);
-                }
+                }*/
             }
         }).blur(function () {
             var value = $(this).val(),
@@ -105,9 +105,9 @@ $.fn.validateNow = function () {
             if (!checked && (value.length > 0)) {
                 var message = $(this).data('message');
                 existingwarning ? warning.text(message) : formgroup.append('<small class="validation-warning">' + message + '</small>');
-                if (value > 99) {
+                /*if (value > 99) {
                     $(this).val(tmpvalue);
-                }
+                }*/
             } else {
                 warning.remove();
             }
