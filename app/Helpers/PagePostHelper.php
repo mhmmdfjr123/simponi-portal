@@ -14,6 +14,15 @@ if (!function_exists('pageStatusText')){
             case 'P':
                 return 'Publish';
                 break;
+            case 'PEN':
+                return 'Pending';
+                break;
+            case 'R':
+                return 'Ditolak';
+                break;
+            case 'A':
+                return 'Disetujui';
+                break;
             case 'D':
                 return 'Draft';
                 break;
@@ -36,17 +45,31 @@ if (!function_exists('pageStatusTextWithStyle')){
     function pageStatusTextWithStyle($status, $start = '', $end = ''){
         $status = strtoupper($status);
 
-        if($status == 'D'){
-            return '<span class="label label-default">Draft</span>';
-        }else if($status == 'P'){
-            if($start != '' && $start > \Carbon\Carbon::now())
-                return '<span class="label label-warning">Belum Dipublish</span>';
-            else if($end != '' && $end < \Carbon\Carbon::now())
-                return '<span class="label label-info">Telah Dipublish</span>';
-            else
-                return '<span class="label label-success">Publish</span>';
-        }else{
-            return '<span class="label label-danger">Tidak diketahui</span>';
+        switch ($status) {
+            case 'D':
+                return '<span class="label label-default">Draft</span>';
+                break;
+            case 'PEN':
+                return '<span class="label label-warning">Pending</span>';
+                break;
+            case 'R':
+                return '<span class="label label-danger">Ditolak</span>';
+                break;
+            case 'A':
+                return '<span class="label label-success">Disetujui</span>';
+                break;
+            case 'P':
+                if($start != '' && $start > \Carbon\Carbon::now())
+                    return '<span class="label label-warning">Belum Dipublish</span>';
+                else if($end != '' && $end < \Carbon\Carbon::now())
+                    return '<span class="label label-info">Telah Dipublish</span>';
+                else
+                    return '<span class="label label-success">Publish</span>';
+
+                break;
+            default:
+                return '<span class="label label-danger">Tidak diketahui</span>';
+                break;
         }
     }
 }

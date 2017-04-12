@@ -50,4 +50,13 @@ return [
             'publisher'             => 'publisher'
         ]
     ],
+
+    'page_revision' => [
+        'status' => [
+            'pending'   => 'PEN',
+            'approved'  => 'A',
+            'rejected'  => 'R',
+            'draft'     => 'D'
+        ]
+    ]
 ];
