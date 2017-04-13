@@ -143,7 +143,7 @@
                 showInputs: false
             });
 
-            tinymce.init(<?php echo json_encode(config('content.tinymce')) ?>);
+            tinymce.init(<?php echo json_encode(array_merge(config('content.tinymce'), ['content_css' => mix('theme/front/css/tinymce.css')->toHtml()])) ?>);
         });
 
         function setAlias(obj){
