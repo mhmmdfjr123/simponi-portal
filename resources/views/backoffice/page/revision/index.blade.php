@@ -13,10 +13,6 @@
 
             <hr class="page-wide-block visible-xs visible-sm">
 
-            <div class="col-xs-12 width-md-auto width-lg-auto width-xl-auto pull-md-right">
-                <a href="{{ url('backoffice/pages/add') }}" class="btn btn-primary btn-block" style="width: 100%;"><span class="btn-label-icon left fa fa-plus"></span>Buat Halaman Baru</a>
-            </div>
-
             <!-- Spacer -->
             <div class="m-b-2 visible-xs visible-sm clearfix"></div>
         </div>
@@ -26,14 +22,14 @@
         <div class="col-sm-12">
             <div class="panel">
                 <div class="panel-heading">
-                    <span class="panel-title">Daftar Halaman</span>
+                    <span class="panel-title">Daftar Revisi Halaman</span>
 
                     <ul class="nav nav-tabs nav-tabs-xs" id="navtab-status">
-                        <li class="active" data-status="">
+                        <li data-status="" {!! (count($listStatus) == 0) ? 'class="active"' : '' !!}>
                             <a href="#nav-all" data-toggle="tab">Semua ({{ $countListAllPage }})</a>
                         </li>
                         @foreach($listStatus as $statusRow)
-                        <li data-status="{{ $statusRow->status }}">
+                        <li data-status="{{ $statusRow->status }}" {!! ($statusRow->status == 'PEN') ? 'class="active"' : '' !!}>
                             <a href="#nav-status" data-toggle="tab">{{ pageStatusText($statusRow->status) }} ({{ $statusRow->status_count }})</a>
                         </li>
                         @endforeach
@@ -50,7 +46,6 @@
                                 <th style="width: 30px">No.</th>
                                 <th>Judul</th>
                                 <th style="width: 150px">Status</th>
-                                <th style="width: 150px">Waktu Publish</th>
                                 <th style="width: 90px;">Aksi</th>
                             </tr>
                             </thead>
@@ -65,14 +60,14 @@
 @section('footScript')
     <script type="text/javascript">
         require(['jquery', 'px/extensions/datatables', 'px-bootstrap/tab'], function($) {
-            var status = "";
+            var status = $('#navtab-status li.active').data('status');
 
             var oTable = $('#jq-datatable').DataTable( {
                 "processing": true,
                 "serverSide": true,
                 "paginationType": "full_numbers",
                 "ajax": {
-                    "url": "{{ url('backoffice/pages/list-data') }}",
+                    "url": "{{ route('backoffice.page.revision.list-data') }}",
                     "data": function (d) {
                         d.pageStatus = status;
                     }
@@ -84,7 +79,6 @@
                     {data: 'rownum', name: 'rownum', "searchable": false, className: "text-center", orderable: false},
                     {data: 'title', name: 'title', "searchable": true, className: "text-left", orderable: false},
                     {data: 'status', name: 'status', "searchable": false, className: "text-center", orderable: false},
-                    {data: 'publish_date', name: 'publish_date', "searchable": false, className: "text-center", orderable: false},
                     {data: 'action', name: 'action', "searchable": false, className: "text-center", orderable: false}
                 ]
             });

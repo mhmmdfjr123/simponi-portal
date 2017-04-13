@@ -5,6 +5,9 @@ namespace App\Models\Analytics;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * To handle S_USERS table from back end API directly
+ * PS: This model will be deprecated in the future, if back end API is ready for analytical API
+ *
  * @package App\Models\Analytics
  * @author efriandika
  */

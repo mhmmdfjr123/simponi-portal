@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Controller;
 use App\Models\Page;
+use App\Models\PageRevision;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Facades\Datatables;
@@ -28,7 +30,7 @@ class PageController extends Controller {
         return view('backoffice.page.page.index', $data);
     }
 
-    public function listData(Request $request, Page $page) {
+    public function listData(Request $request, Page $page, Guard $auth) {
         $status = $request->get('pageStatus');
 
         $data = $page->select(['id', 'title', 'status', 'created_at', 'deleted_at', 'publish_date_start', 'publish_date_end']);
@@ -59,15 +61,16 @@ class PageController extends Controller {
                 else
                     return '-';
             })
-            ->addColumn('action', function ($model) {
+            ->addColumn('action', function ($model) use ($auth) {
                 if($model->deleted_at == ''){
-                    $button = '
-                        <div class="btn-group">
-                            <a href="'.url('backoffice/pages/'.$model->id.'/edit').'" title="Ubah" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a>
-                            <a href="javascript:void(0)" onclick="confirmDirectPopUp(\''.url('backoffice/pages/'.$model->id.'/delete').'\', \'Konfirmasi\', \'Apakah anda yakin ingin menghapus?\', \'Ya, Hapus Data\', \'Tidak\');" title="Hapus" class="btn btn-xs btn-default"><i class="fa fa-trash"></i></a>
-                        </div>
-                    ';
-                }else{
+                    $button = '<div class="btn-group">';
+                    $button .= '<a href="'.url('backoffice/pages/'.$model->id.'/edit').'" title="Ubah" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a>';
+
+                    if($auth->user()->can('delete.page'))
+                        $button .= '<a href="javascript:void(0)" onclick="confirmDirectPopUp(\''.url('backoffice/pages/'.$model->id.'/delete').'\', \'Konfirmasi\', \'Apakah anda yakin ingin menghapus?\', \'Ya, Hapus Data\', \'Tidak\');" title="Hapus" class="btn btn-xs btn-default"><i class="fa fa-trash"></i></a>';
+
+                    $button .= '</div>';
+                } else if($auth->user()->can('delete.page')){
                     $button = '
                         <div class="btn-group btn-group-xs">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-down"></i></button>
@@ -77,6 +80,8 @@ class PageController extends Controller {
                             </ul>
                         </div>
                     ';
+                } else {
+                    $button = '-';
                 }
 
                 return $button;
@@ -85,7 +90,11 @@ class PageController extends Controller {
             ->make(true);
     }
 
-    public function showNewForm(Page $pageModel){
+    public function showNewForm(Page $pageModel, Guard $auth){
+        // Check Authorization
+        if(!$auth->user()->can('approve.page'))
+            return redirect()->route('backoffice.page.revision.add');
+
         $data = [
             'pageTitle'     => 'Tambah Halaman',
             'listParent'    => $pageModel->listParent(),
@@ -95,11 +104,24 @@ class PageController extends Controller {
         return view('backoffice.page.page.add', $data);
     }
 
-    public function showEditForm(Page $pageModel, $id){
+    public function showEditForm(Page $pageModel, Guard $auth, $id){
         $page = $pageModel->find($id);
 
         if(count($page) == 0)
             return redirect('backoffice/pages')->withErrors(['notFound', 'Data tidak ditemukan']);
+
+        // Check Authorization
+        if(!$auth->user()->can('approve.page')){
+            $revision = PageRevision::where('page_id', $page->id)->where(function($query) {
+                $query->where('status', config('enums.page_revision.status.draft'));
+                $query->orWhere('status', config('enums.page_revision.status.draft'));
+            })->first();
+
+            if($revision !== null)
+                return redirect()->route('backoffice.page.revision.edit', [$revision->id]);
+            else
+                return redirect()->route('backoffice.page.revision.add', [$page->id]);
+        }
 
         $data = [
             'pageTitle'  => 'Ubah Halaman',

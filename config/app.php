@@ -209,6 +209,7 @@ return [
          * Additional Service Provider
          */
         Arrilot\Widgets\ServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
         Efriandika\LaravelSettings\SettingsServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Kodeine\Acl\AclServiceProvider::class,
@@ -268,6 +269,7 @@ return [
          * Additional Facade Aliases
          */
         'AsyncWidget'   => Arrilot\Widgets\AsyncFacade::class,
+        'Debugbar'      => Barryvdh\Debugbar\Facade::class,
         'Image'         => Intervention\Image\Facades\Image::class,
         'Settings'      => Efriandika\LaravelSettings\Facades\Settings::class,
         'Widget'        => Arrilot\Widgets\Facade::class,

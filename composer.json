@@ -21,6 +21,7 @@
     "require": {
         "php": ">=5.6.4",
         "arrilot/laravel-widgets": "^3.7",
+        "barryvdh/laravel-debugbar": "^2.3",
         "efriandika/laravel-settings": "dev-master",
         "guzzlehttp/guzzle": "~6.0",
         "intervention/image": "^2.3",

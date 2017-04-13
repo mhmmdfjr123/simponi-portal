@@ -20,8 +20,8 @@ Route::get('backoffice', function() {
     return Redirect::to('backoffice/dashboard');
 })->name('backoffice');
 
-Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']], function(){
-    Route::get('dashboard', 'Backoffice\DashboardController@index')->name('backoffice-dashboard');
+Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl'], 'as' => 'backoffice.'], function(){
+    Route::get('dashboard', 'Backoffice\DashboardController@index')->name('dashboard');
 	Route::get('dashboard/analytics/counter', 'Backoffice\DashboardController@getCounterAnalytics');
 	Route::get('dashboard/analytics/graph', 'Backoffice\DashboardController@getGraphAnalytics');
 
@@ -49,14 +49,31 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl']],
     Route::get('post/category/{id}/delete', 'Backoffice\Post\CategoryController@delete');
 
     // Pages
-    Route::get('pages', 'Backoffice\Page\PageController@index');
-    Route::get('pages/list-data', 'Backoffice\Page\PageController@listData');
-    Route::get('pages/add', 'Backoffice\Page\PageController@showNewForm');
-    Route::get('pages/{id}/edit', 'Backoffice\Page\PageController@showEditForm');
-    Route::post('pages/submit', 'Backoffice\Page\PageController@submit');
-    Route::get('pages/{id}/delete', 'Backoffice\Page\PageController@delete');
-    Route::get('pages/{id}/delete/restore', 'Backoffice\Page\PageController@restoreDeletedData');
-    Route::get('pages/{id}/delete/force', 'Backoffice\Page\PageController@forceDelete');
+    Route::group(['prefix' => 'pages', 'as' => 'page.'], function() {
+        Route::get('/', 'Backoffice\Page\PageController@index')->name('index');
+        Route::get('/list-data', 'Backoffice\Page\PageController@listData');
+        Route::get('/add', 'Backoffice\Page\PageController@showNewForm')->name('add');
+        Route::get('/{id}/edit', 'Backoffice\Page\PageController@showEditForm')->name('edit');
+        Route::group(['can' => 'approve.page'], function() {
+            Route::post('/submit', 'Backoffice\Page\PageController@submit')->name('submit');
+        });
+        Route::group(['can' => 'delete.page'], function() {
+            Route::get('/{id}/delete', 'Backoffice\Page\PageController@delete')->name('delete');
+            Route::get('/{id}/delete/restore', 'Backoffice\Page\PageController@restoreDeletedData')->name('delete-restore');
+            Route::get('/{id}/delete/force', 'Backoffice\Page\PageController@forceDelete')->name('delete-force');
+        });
+
+        // Pages - revision
+        Route::group(['prefix' => 'revision', 'as' => 'revision.'], function() {
+            Route::get('/', 'Backoffice\Page\PageRevisionController@index')->name('index');
+            Route::get('/list-data', 'Backoffice\Page\PageRevisionController@listData')->name('list-data');
+            Route::get('/add/{pageId?}', 'Backoffice\Page\PageRevisionController@showNewForm')->name('add');
+            Route::get('/{pageRevision}/edit', 'Backoffice\Page\PageRevisionController@showEditForm')->name('edit');
+            Route::post('/submit', 'Backoffice\Page\PageRevisionController@submit')->name('submit');
+            Route::get('/{pageRevision}/delete', 'Backoffice\Page\PageRevisionController@delete')->name('delete');
+            Route::get('/approval', 'Backoffice\Page\PageController@delete')->name('approval');
+        });
+    });
 
     // File - Download
 	Route::get('file/download', 'Backoffice\File\DownloadController@index');

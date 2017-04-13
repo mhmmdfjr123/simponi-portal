@@ -19,6 +19,8 @@
     <link href="{{ asset('theme/backoffice/css/widgets.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('theme/backoffice/css/themes/bni.min.css') }}" rel="stylesheet" type="text/css">
 
+    <script src="{{ asset('theme/backoffice/ext/vendor/pace/pace.min.js') }}" data-pace-options='{ "document": false }'></script>
+
     <!-- require.js -->
     <script src="{{ asset('theme/backoffice/js/require.js') }}"></script>
     <script src="{{ asset('theme/backoffice/js/requirejs-config.js') }}"></script>
@@ -64,7 +66,7 @@
         </li>
 
         <li class="px-nav-item">
-            <a href="{{ route('backoffice-dashboard') }}"><i class="px-nav-icon ion-ios-pulse-strong"></i><span class="px-nav-label">Dashboard</span></a>
+            <a href="{{ route('backoffice.dashboard') }}"><i class="px-nav-icon ion-ios-pulse-strong"></i><span class="px-nav-label">Dashboard</span></a>
         </li>
 
         <li class="px-nav-item px-nav-dropdown">
@@ -80,8 +82,13 @@
             <a href="#"><i class="px-nav-icon fa fa-file-o"></i><span class="px-nav-label">Halaman</span></a>
 
             <ul class="px-nav-dropdown-menu">
-                <li class="px-nav-item" id="menu-page"><a href="{{ url('backoffice/pages') }}"><span class="px-nav-label">Daftar Halaman</span></a></li>
-                <li class="px-nav-item"><a href="{{ url('backoffice/pages/add') }}"><span class="px-nav-label">Tambah Halaman Baru</span></a></li>
+                <li class="px-nav-item" id="menu-page"><a href="{{ route('backoffice.page.index') }}"><span class="px-nav-label">Daftar Halaman</span></a></li>
+                @permission('approve.page')
+                    <li class="px-nav-item" id="menu-page-revision"><a href="{{ route('backoffice.page.revision.approval') }}"><span class="px-nav-label">Daftar Persetujuan Halaman</span></a></li>
+                @else
+                    <li class="px-nav-item" id="menu-page-revision"><a href="{{ route('backoffice.page.revision.index') }}"><span class="px-nav-label">Daftar Revisi Halaman</span></a></li>
+                @endpermission
+                <li class="px-nav-item" id="menu-page-new"><a href="{{ route('backoffice.page.add') }}"><span class="px-nav-label">Tambah Halaman Baru</span></a></li>
             </ul>
         </li>
         <li class="px-nav-item px-nav-dropdown">
@@ -141,7 +148,9 @@
                 <ul class="dropdown-menu">
                     <li><a href="{{ url('backoffice/post/add') }}">Buat Artikel Baru</a></li>
                     <li><a href="{{ url('backoffice/file/download/add') }}">Tambah File Download</a></li>
+                    @role('super-administrator')
                     <li><a href="{{ url('backoffice/layout/menu') }}">Kelola Menu</a></li>
+                    @endrole
                     <li role="separator" class="divider"></li>
                     <li><a href="{{ route('portal-login') }}" target="_blank">Login Portal</a></li>
                     <li><a href="{{ route('branch-login') }}" target="_blank">Login Branch</a></li>
