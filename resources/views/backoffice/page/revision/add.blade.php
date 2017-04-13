@@ -63,10 +63,16 @@
 
                         <div class="form-group">
                             <label class="control-label">Status</label>
-                            <select name="status" class="form-control required">
-                                <option value="{{ config('enums.page_revision.status.pending') }}">Publish</option>
-                                <option value="{{ config('enums.page_revision.status.Draft') }}">Draft</option>
-                            </select>
+                            <div class="radio">
+                                <label>
+                                    <input name="status" value="{{ config('enums.page_revision.status.pending') }}" checked type="radio"> Publish
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input name="status" value="{{ config('enums.page_revision.status.draft') }}" type="radio"> Draft
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div class="panel-footer">

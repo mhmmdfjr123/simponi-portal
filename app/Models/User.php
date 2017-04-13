@@ -52,6 +52,16 @@ class User extends Authenticatable implements AuditableContract
     protected $auditStrict = true;
 
     /**
+     * Route notifications for the mail channel.
+     *
+     * @return string
+     */
+    public function routeNotificationForMail()
+    {
+        return $this->email;
+    }
+
+    /**
      * Check username
      * @param String $username
      * @param String $id
