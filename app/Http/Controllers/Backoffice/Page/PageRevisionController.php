@@ -43,7 +43,7 @@ class PageRevisionController extends Controller {
 
         $data = $page->select(['id', 'title', 'status', 'created_at', 'deleted_at', 'publish_date_start', 'publish_date_end']);
 
-        $data->orderBy('order');
+        $data->orderBy('created_at', 'desc');
 
         if($status != '' && strtolower($status) == "deleted"){
             $data->onlyTrashed();
@@ -81,12 +81,13 @@ class PageRevisionController extends Controller {
             })
             ->addColumn('action', function ($model) {
                 if($model->deleted_at == ''){
-                    $button = '
-                        <div class="btn-group">
-                            <a href="'.route('backoffice.page.revision.edit', [$model->id]).'" title="Ubah" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a>
-                            <a href="javascript:void(0)" onclick="confirmDirectPopUp(\''.route('backoffice.page.revision.delete', [$model->id]).'\', \'Konfirmasi\', \'Apakah anda yakin ingin menghapus?\', \'Ya, Hapus Data\', \'Tidak\');" title="Hapus" class="btn btn-xs btn-default"><i class="fa fa-trash"></i></a>
-                        </div>
-                    ';
+                    $button = '<div class="btn-group">';
+
+                    if($model->status != config('enums.page_revision.status.approved'))
+                        $button .= '<a href="'.route('backoffice.page.revision.edit', [$model->id]).'" title="Ubah" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a>';
+
+                    $button .= '<a href="javascript:void(0)" onclick="confirmDirectPopUp(\''.route('backoffice.page.revision.delete', [$model->id]).'\', \'Konfirmasi\', \'Apakah anda yakin ingin menghapus?\', \'Ya, Hapus Data\', \'Tidak\');" title="Hapus" class="btn btn-xs btn-default"><i class="fa fa-trash"></i></a>';
+                    $button .= '</div>';
                 }else{
                     $button = '-';
                 }
@@ -269,7 +270,7 @@ class PageRevisionController extends Controller {
     public function approvalList(Request $request, PageRevision $page) {
         $data = $page->select(['id', 'title', 'created_at', 'created_by']);
         $data->where('status', config('enums.page_revision.status.pending'));
-        $data->orderBy('created_at');
+        $data->orderBy('updated_at');
 
         $rowNum = 1;
         $startPage = $request->get('start');
