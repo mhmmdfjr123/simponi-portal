@@ -122,7 +122,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-illustration">
-                    <img src="{{ asset('theme/front/images/elderly.png') }}" class="img-responsive">
+                    <img src="{{ asset('theme/front/images/youth.png') }}" class="img-responsive">
                 </div>
                 <div class="col-md-6 col-content">
                     <h2 class="section-heading">Masa depan anda ditentukan harini.</h2>
