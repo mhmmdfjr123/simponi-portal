@@ -104,7 +104,6 @@ class PageRevisionController extends Controller {
             $data = [
                 'pageTitle'     => 'Tambah Halaman',
                 'listParent'    => $pageModel->listParent(),
-                'pageId'        => $pageRevisionModel,
                 'nextSequenceOrder' => $pageRevisionModel->max('order') + 1
             ];
 
@@ -178,7 +177,7 @@ class PageRevisionController extends Controller {
                 $status = $request->input('status') ;
 
             // Set Original Page
-            if($request->input('page_id') !== '')
+            if($request->input('page_id') != '')
                 $page->page_id = $request->input('page_id');
 
             $page->title = $request->input('title');
