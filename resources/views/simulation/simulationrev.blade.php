@@ -6,7 +6,7 @@
             {{-- <!-- <img class="contentimage" src="{{ asset('theme/front/images/header/simulation.jpg') }}" alt="Content" /> --> --}}
             <h2>
                 Simulasi BNI Simponi Berdasarkan Kebutuhan.
-                <a href="/simulation/based-on-needs" style="margin-top:10px;font-size:16px;float:right;">→ Simulasi Berdasarkan Iuran</a>
+                <a href="/simulation" style="margin-top:10px;font-size:16px;float:right;">→ Simulasi Berdasarkan Iuran</a>
             </h2>
             <form id="simulation-form" class="rev col-xs-12">
                 <div class="left-side col-sm-4 col-xs-12">
