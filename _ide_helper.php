@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.4.15 on 2017-04-12.
+ * Generated for Laravel 5.4.18 on 2017-04-13.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -101,56 +101,61 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the path to the application "app" directory.
          *
+         * @param string $path Optionally, a path to append to the app path
          * @return string 
          * @static 
          */
-        public static function path()
+        public static function path($path = '')
         {
-            return \Illuminate\Foundation\Application::path();
+            return \Illuminate\Foundation\Application::path($path);
         }
         
         /**
          * Get the base path of the Laravel installation.
          *
+         * @param string $path Optionally, a path to append to the base path
          * @return string 
          * @static 
          */
-        public static function basePath()
+        public static function basePath($path = '')
         {
-            return \Illuminate\Foundation\Application::basePath();
+            return \Illuminate\Foundation\Application::basePath($path);
         }
         
         /**
          * Get the path to the bootstrap directory.
          *
+         * @param string $path Optionally, a path to append to the bootstrap path
          * @return string 
          * @static 
          */
-        public static function bootstrapPath()
+        public static function bootstrapPath($path = '')
         {
-            return \Illuminate\Foundation\Application::bootstrapPath();
+            return \Illuminate\Foundation\Application::bootstrapPath($path);
         }
         
         /**
          * Get the path to the application configuration files.
          *
+         * @param string $path Optionally, a path to append to the config path
          * @return string 
          * @static 
          */
-        public static function configPath()
+        public static function configPath($path = '')
         {
-            return \Illuminate\Foundation\Application::configPath();
+            return \Illuminate\Foundation\Application::configPath($path);
         }
         
         /**
          * Get the path to the database directory.
          *
+         * @param string $path Optionally, a path to append to the database path
          * @return string 
          * @static 
          */
-        public static function databasePath()
+        public static function databasePath($path = '')
         {
-            return \Illuminate\Foundation\Application::databasePath();
+            return \Illuminate\Foundation\Application::databasePath($path);
         }
         
         /**
@@ -213,12 +218,13 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the path to the resources directory.
          *
+         * @param string $path
          * @return string 
          * @static 
          */
-        public static function resourcePath()
+        public static function resourcePath($path = '')
         {
-            return \Illuminate\Foundation\Application::resourcePath();
+            return \Illuminate\Foundation\Application::resourcePath($path);
         }
         
         /**
@@ -1082,6 +1088,20 @@ namespace Illuminate\Support\Facades {
         {
             //Method inherited from \Illuminate\Container\Container            
             return \Illuminate\Foundation\Application::factory($abstract);
+        }
+        
+        /**
+         * Resolve the given type with the given parameter overrides.
+         *
+         * @param string $abstract
+         * @param array $parameters
+         * @return mixed 
+         * @static 
+         */
+        public static function makeWith($abstract, $parameters)
+        {
+            //Method inherited from \Illuminate\Container\Container            
+            return \Illuminate\Foundation\Application::makeWith($abstract, $parameters);
         }
         
         /**
@@ -3739,11 +3759,11 @@ namespace Illuminate\Support\Facades {
         /**
          * Get an option from the configuration options.
          *
-         * @param string $option
+         * @param string|null $option
          * @return mixed 
          * @static 
          */
-        public static function getConfig($option)
+        public static function getConfig($option = null)
         {
             //Method inherited from \Illuminate\Database\Connection            
             return \Yajra\Oci8\Oci8Connection::getConfig($option);
@@ -9410,7 +9430,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Checks if an a key is present and not null.
+         * Checks if a key is present and not null.
          *
          * @param string|array $key
          * @return bool 
@@ -10706,6 +10726,20 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Register a custom implicit validator extension.
+         *
+         * @param string $rule
+         * @param \Closure|string $extension
+         * @param string $message
+         * @return void 
+         * @static 
+         */
+        public static function extendDependent($rule, $extension, $message = null)
+        {
+            \Illuminate\Validation\Factory::extendDependent($rule, $extension, $message);
+        }
+        
+        /**
          * Register a custom implicit validator message replacer.
          *
          * @param string $rule
@@ -10794,6 +10828,21 @@ namespace Illuminate\Support\Facades {
         public static function make($view, $data = array(), $mergeData = array())
         {
             return \Illuminate\View\Factory::make($view, $data, $mergeData);
+        }
+        
+        /**
+         * Get the rendered content of the view based on a given condition.
+         *
+         * @param bool $condition
+         * @param string $view
+         * @param array $data
+         * @param array $mergeData
+         * @return string 
+         * @static 
+         */
+        public static function renderWhen($condition, $view, $data = array(), $mergeData = array())
+        {
+            return \Illuminate\View\Factory::renderWhen($condition, $view, $data, $mergeData);
         }
         
         /**
@@ -11363,7 +11412,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get an instance of the last loop in the stack.
          *
-         * @return \StdClass|null 
+         * @return \stdClass|null 
          * @static 
          */
         public static function getLastLoop()
@@ -12158,50 +12207,252 @@ namespace Intervention\Image\Facades {
     }         
 }
     
-namespace Efriandika\LaravelSettings\Facades {
+namespace Krucas\Settings\Facades {
 
     class Settings {
         
         /**
-         * Gets a value
+         * Return wrapped repository instance.
+         *
+         * @return \Krucas\Settings\Contracts\Repository 
+         * @static 
+         */
+        public static function getRepository()
+        {
+            return \Krucas\Settings\Settings::getRepository();
+        }
+        
+        /**
+         * Return repository key generator.
+         *
+         * @return \Krucas\Settings\Contracts\KeyGenerator 
+         * @static 
+         */
+        public static function getKeyGenerator()
+        {
+            return \Krucas\Settings\Settings::getKeyGenerator();
+        }
+        
+        /**
+         * Enable cache.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function enableCache()
+        {
+            \Krucas\Settings\Settings::enableCache();
+        }
+        
+        /**
+         * Disable cache.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function disableCache()
+        {
+            \Krucas\Settings\Settings::disableCache();
+        }
+        
+        /**
+         * Set cache store.
+         *
+         * @param \Illuminate\Contracts\Cache\Repository $cache
+         * @return void 
+         * @static 
+         */
+        public static function setCache($cache)
+        {
+            \Krucas\Settings\Settings::setCache($cache);
+        }
+        
+        /**
+         * Return cache store instance.
+         *
+         * @return \Illuminate\Contracts\Cache\Repository|null 
+         * @static 
+         */
+        public static function getCache()
+        {
+            return \Krucas\Settings\Settings::getCache();
+        }
+        
+        /**
+         * Determines if cache is enabled or not.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isCacheEnabled()
+        {
+            return \Krucas\Settings\Settings::isCacheEnabled();
+        }
+        
+        /**
+         * Enable value encryption.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function enableEncryption()
+        {
+            \Krucas\Settings\Settings::enableEncryption();
+        }
+        
+        /**
+         * Disable value encryption.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function disableEncryption()
+        {
+            \Krucas\Settings\Settings::disableEncryption();
+        }
+        
+        /**
+         * Set value encrypter.
+         *
+         * @param \Illuminate\Contracts\Encryption\Encrypter $encrypter
+         * @return void 
+         * @static 
+         */
+        public static function setEncrypter($encrypter)
+        {
+            \Krucas\Settings\Settings::setEncrypter($encrypter);
+        }
+        
+        /**
+         * Return encrypter instance.
+         *
+         * @return \Illuminate\Contracts\Encryption\Encrypter|null 
+         * @static 
+         */
+        public static function getEncrypter()
+        {
+            return \Krucas\Settings\Settings::getEncrypter();
+        }
+        
+        /**
+         * Determine if encryption is enabled or not.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isEncryptionEnabled()
+        {
+            return \Krucas\Settings\Settings::isEncryptionEnabled();
+        }
+        
+        /**
+         * Enable events.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function enableEvents()
+        {
+            \Krucas\Settings\Settings::enableEvents();
+        }
+        
+        /**
+         * Disable events.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function disableEvents()
+        {
+            \Krucas\Settings\Settings::disableEvents();
+        }
+        
+        /**
+         * Set events dispatcher.
+         *
+         * @param \Illuminate\Contracts\Events\Dispatcher $dispatcher
+         * @return void 
+         * @static 
+         */
+        public static function setDispatcher($dispatcher)
+        {
+            \Krucas\Settings\Settings::setDispatcher($dispatcher);
+        }
+        
+        /**
+         * Return event dispatcher instance.
+         *
+         * @return \\Illuminate\Contracts\Events\Dispatcher|null 
+         * @static 
+         */
+        public static function getDispatcher()
+        {
+            return \Krucas\Settings\Settings::getDispatcher();
+        }
+        
+        /**
+         * Determine if events is enabled or not.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isEventsEnabled()
+        {
+            return \Krucas\Settings\Settings::isEventsEnabled();
+        }
+        
+        /**
+         * Set or reset context.
+         *
+         * @param \Krucas\Settings\Context|null $context
+         * @return $this 
+         * @static 
+         */
+        public static function context($context = null)
+        {
+            return \Krucas\Settings\Settings::context($context);
+        }
+        
+        /**
+         * Determine if the given setting value exists.
          *
          * @param string $key
-         * @param string $default
+         * @return bool 
+         * @static 
+         */
+        public static function has($key)
+        {
+            return \Krucas\Settings\Settings::has($key);
+        }
+        
+        /**
+         * Get the specified setting value.
+         *
+         * @param string $key
+         * @param mixed $default
          * @return mixed 
          * @static 
          */
         public static function get($key, $default = null)
         {
-            return \Efriandika\LaravelSettings\Settings::get($key, $default);
+            return \Krucas\Settings\Settings::get($key, $default);
         }
         
         /**
-         * Checks if setting exists
-         *
-         * @param $key
-         * @return bool 
-         * @static 
-         */
-        public static function hasKey($key)
-        {
-            return \Efriandika\LaravelSettings\Settings::hasKey($key);
-        }
-        
-        /**
-         * Store value into registry
+         * Set a given setting value.
          *
          * @param string $key
          * @param mixed $value
-         * @return mixed 
+         * @return void 
          * @static 
          */
-        public static function set($key, $value)
+        public static function set($key, $value = null)
         {
-            return \Efriandika\LaravelSettings\Settings::set($key, $value);
+            \Krucas\Settings\Settings::set($key, $value);
         }
         
         /**
-         * Remove a setting
+         * Forget current setting value.
          *
          * @param string $key
          * @return void 
@@ -12209,29 +12460,7 @@ namespace Efriandika\LaravelSettings\Facades {
          */
         public static function forget($key)
         {
-            \Efriandika\LaravelSettings\Settings::forget($key);
-        }
-        
-        /**
-         * Remove all settings
-         *
-         * @return bool 
-         * @static 
-         */
-        public static function flush()
-        {
-            return \Efriandika\LaravelSettings\Settings::flush();
-        }
-        
-        /**
-         * Fetch all values
-         *
-         * @return mixed 
-         * @static 
-         */
-        public static function getAll()
-        {
-            return \Efriandika\LaravelSettings\Settings::getAll();
+            \Krucas\Settings\Settings::forget($key);
         }
         
     }         
@@ -12431,20 +12660,6 @@ namespace {
         }
         
         /**
-         * Apply the callback's query changes if the given "value" is true.
-         *
-         * @param bool $value
-         * @param \Closure $callback
-         * @param \Closure $default
-         * @return $this 
-         * @static 
-         */
-        public static function when($value, $callback, $default = null)
-        {
-            return \Illuminate\Database\Eloquent\Builder::when($value, $callback, $default);
-        }
-        
-        /**
          * Add a where clause on the primary key to the query.
          *
          * @param mixed $id
@@ -12515,7 +12730,7 @@ namespace {
          *
          * @param mixed $id
          * @param array $columns
-         * @return mixed 
+         * @return \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|static[]|static|null 
          * @static 
          */
         public static function find($id, $columns = array())
@@ -12600,18 +12815,6 @@ namespace {
         public static function updateOrCreate($attributes, $values = array())
         {
             return \Illuminate\Database\Eloquent\Builder::updateOrCreate($attributes, $values);
-        }
-        
-        /**
-         * Execute the query and get the first result.
-         *
-         * @param array $columns
-         * @return \Illuminate\Database\Eloquent\Model|static|null 
-         * @static 
-         */
-        public static function first($columns = array())
-        {
-            return \Illuminate\Database\Eloquent\Builder::first($columns);
         }
         
         /**
@@ -12700,19 +12903,6 @@ namespace {
         }
         
         /**
-         * Chunk the results of the query.
-         *
-         * @param int $count
-         * @param callable $callback
-         * @return bool 
-         * @static 
-         */
-        public static function chunk($count, $callback)
-        {
-            return \Illuminate\Database\Eloquent\Builder::chunk($count, $callback);
-        }
-        
-        /**
          * Chunk the results of a query by comparing numeric IDs.
          *
          * @param int $count
@@ -12725,19 +12915,6 @@ namespace {
         public static function chunkById($count, $callback, $column = null, $alias = null)
         {
             return \Illuminate\Database\Eloquent\Builder::chunkById($count, $callback, $column, $alias);
-        }
-        
-        /**
-         * Execute a callback over each item while chunking.
-         *
-         * @param callable $callback
-         * @param int $count
-         * @return bool 
-         * @static 
-         */
-        public static function each($callback, $count = 1000)
-        {
-            return \Illuminate\Database\Eloquent\Builder::each($callback, $count);
         }
         
         /**
@@ -12948,6 +13125,58 @@ namespace {
         }
         
         /**
+         * Chunk the results of the query.
+         *
+         * @param int $count
+         * @param callable $callback
+         * @return bool 
+         * @static 
+         */
+        public static function chunk($count, $callback)
+        {
+            return \Illuminate\Database\Eloquent\Builder::chunk($count, $callback);
+        }
+        
+        /**
+         * Execute a callback over each item while chunking.
+         *
+         * @param callable $callback
+         * @param int $count
+         * @return bool 
+         * @static 
+         */
+        public static function each($callback, $count = 1000)
+        {
+            return \Illuminate\Database\Eloquent\Builder::each($callback, $count);
+        }
+        
+        /**
+         * Execute the query and get the first result.
+         *
+         * @param array $columns
+         * @return mixed 
+         * @static 
+         */
+        public static function first($columns = array())
+        {
+            return \Illuminate\Database\Eloquent\Builder::first($columns);
+        }
+        
+        /**
+         * Apply the callback's query changes if the given "value" is true.
+         *
+         * @param mixed $value
+         * @param \Closure $callback
+         * @param \Closure $default
+         * @return mixed 
+         * @static 
+         */
+        public static function when($value, $callback, $default = null)
+        {
+            return \Illuminate\Database\Eloquent\Builder::when($value, $callback, $default);
+        }
+        
+        /**
          * Add a relationship count / exists condition to the query.
          *
          * @param string $relation
@@ -13016,7 +13245,7 @@ namespace {
          * @return \Illuminate\Database\Eloquent\Builder|static 
          * @static 
          */
-        public static function orWhereHas($relation, $callback, $operator = '>=', $count = 1)
+        public static function orWhereHas($relation, $callback = null, $operator = '>=', $count = 1)
         {
             return \Illuminate\Database\Eloquent\Builder::orWhereHas($relation, $callback, $operator, $count);
         }
@@ -13238,6 +13467,18 @@ namespace {
         public static function crossJoin($table, $first = null, $operator = null, $second = null)
         {
             return \Illuminate\Database\Query\Builder::crossJoin($table, $first, $operator, $second);
+        }
+        
+        /**
+         * Pass the query to a given callback.
+         *
+         * @param \Closure $callback
+         * @return \Illuminate\Database\Query\Builder 
+         * @static 
+         */
+        public static function tap($callback)
+        {
+            return \Illuminate\Database\Query\Builder::tap($callback);
         }
         
         /**
@@ -13768,6 +14009,18 @@ namespace {
         public static function orderBy($column, $direction = 'asc')
         {
             return \Illuminate\Database\Query\Builder::orderBy($column, $direction);
+        }
+        
+        /**
+         * Add a descending "order by" clause to the query.
+         *
+         * @param string $column
+         * @return $this 
+         * @static 
+         */
+        public static function orderByDesc($column)
+        {
+            return \Illuminate\Database\Query\Builder::orderByDesc($column);
         }
         
         /**
@@ -14326,7 +14579,7 @@ namespace {
     
     class Image extends \Intervention\Image\Facades\Image {}
     
-    class Settings extends \Efriandika\LaravelSettings\Facades\Settings {}
+    class Settings extends \Krucas\Settings\Facades\Settings {}
     
     class Datatables extends \Yajra\Datatables\Facades\Datatables {}
     

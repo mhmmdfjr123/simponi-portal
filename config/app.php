@@ -210,9 +210,9 @@ return [
          */
         Arrilot\Widgets\ServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-        Efriandika\LaravelSettings\SettingsServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Kodeine\Acl\AclServiceProvider::class,
+        Krucas\Settings\Providers\SettingsServiceProvider::class,
         OwenIt\Auditing\AuditingServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         Yajra\Oci8\Oci8ServiceProvider::class,
@@ -271,7 +271,7 @@ return [
         'AsyncWidget'   => Arrilot\Widgets\AsyncFacade::class,
         'Debugbar'      => Barryvdh\Debugbar\Facade::class,
         'Image'         => Intervention\Image\Facades\Image::class,
-        'Settings'      => Efriandika\LaravelSettings\Facades\Settings::class,
+        'Settings'      => Krucas\Settings\Facades\Settings::class,
         'Widget'        => Arrilot\Widgets\Facade::class,
     ],
 
