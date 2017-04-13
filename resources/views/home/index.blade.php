@@ -225,6 +225,9 @@
                 $simCarousel.carousel('prev')
             });
 
+            $simCarousel.carousel({
+                interval: 4000
+            });
         })
     </script>
 @endsection
