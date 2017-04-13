@@ -4,9 +4,16 @@ use App\Http\Controllers\Controller;
 use App\Models\Page;
 use App\Models\PageRevision;
 use App\Models\PageRevisionReason;
+use App\Models\User;
+use App\Notifications\PageRevisionApproved;
+use App\Notifications\PageRevisionRejected;
+use App\Notifications\PageRevisionSubmitted;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
+use Kodeine\Acl\Models\Eloquent\Role;
 use Yajra\Datatables\Facades\Datatables;
 
 /**
@@ -197,25 +204,34 @@ class PageRevisionController extends Controller {
             $reason->status = $status;
             $reason->save();
 
-            // Send Notification to Super Admin
-            if ($status == config('enums.page_revision.status.pending')) {
-                // TODO send email notif
-            }
-
             // Is revision verified?
             if($auth->user()->can('approve.page')) {
+                $createdBy = User::find($page->created_by);
+
                 if($request->input('status') == config('enums.page_revision.status.approved')) {
                     // If status is approved
                     $this->makeRevisionPageLive($page);
 
+                    // Send Notofication
+                    $createdBy->notify(new PageRevisionApproved($auth->user(), $page));
+
                     return redirect()->route('backoffice.page.index')
                         ->with('success', 'Data revisi halaman disetujui dan live.');
                 } else {
-                    // If status is rejected
+                    // If status = rejected
+
+                    // Send Notofication
+                    $createdBy->notify(new PageRevisionRejected($auth->user(), $page, $request->input('reason')));
+
                     return redirect()->route('backoffice.page.revision.approval')
                         ->with('success', 'Data revisi halaman telah ditolak.');
                 }
             } else {
+                // Send Notification to Super Admin
+                if ($status == config('enums.page_revision.status.pending')) {
+                    $this->sendNotificationToSuperAdministrator($page, $request->input('reason'));
+                }
+
                 return redirect()->route('backoffice.page.revision.index')
                     ->with('success', 'Data berhasil disimpan dan menunggu untuk diverifikasi oleh super administrator');
             }
@@ -242,7 +258,7 @@ class PageRevisionController extends Controller {
         }
     }
 
-    public function approval(PageRevision $pageModel) {
+    public function approval() {
         $data = [
             'pageTitle' => 'Persetujuan Revisi Halaman',
         ];
@@ -312,5 +328,10 @@ class PageRevisionController extends Controller {
         $page->publish_date_end = $revisionPage->publish_date_end;
 
         $page->save();
+    }
+
+    private function sendNotificationToSuperAdministrator($pageRevision, $reason) {
+        $superAdminRole = Role::where('slug', 'super-administrator')->first();
+        Notification::send($superAdminRole->users, new PageRevisionSubmitted(Auth::user(), $pageRevision, $reason));
     }
 }
