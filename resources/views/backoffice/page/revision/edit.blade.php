@@ -60,7 +60,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="panel">
+            <div class="panel panel-danger">
                 <div class="panel-heading">
                     <span class="panel-title">Approval</span>
                 </div>
@@ -72,11 +72,35 @@
 
                     <div class="form-group">
                         <label class="control-label">Status</label>
-                        <select name="status" class="form-control required">
-                            <option value="{{ config('enums.page_revision.status.pending') }}" {!! ($obj->status == config('enums.page_revision.status.pending')) ? 'selected' : '' !!}>Publish</option>
-                            <option value="{{ config('enums.page_revision.status.draft') }}" {!! ($obj->status == config('enums.page_revision.status.draft')) ? 'selected' : '' !!}>Draft</option>
-                        </select>
+                        @permission('approve.page')
+                            <div class="radio">
+                                <label>
+                                    <input name="status" class="required" value="{{ config('enums.page_revision.status.approved') }}" type="radio"> Setujui
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input name="status" class="required" value="{{ config('enums.page_revision.status.rejected') }}" type="radio"> Tolak
+                                </label>
+                            </div>
+                        @else
+                            <div class="radio">
+                                <label>
+                                    <input name="status" value="{{ config('enums.page_revision.status.pending') }}" {!! ($obj->status == config('enums.page_revision.status.pending')) ? 'checked' : '' !!} type="radio"> Publish
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input name="status" value="{{ config('enums.page_revision.status.draft') }}" {!! ($obj->status == config('enums.page_revision.status.draft')) ? 'checked' : '' !!} type="radio"> Draft
+                                </label>
+                            </div>
+                        @endpermission
                     </div>
+                </div>
+
+                <div class="panel-footer">
+                    <button type="submit" class="btn btn-primary btn-labeled btn-save" data-loading-text="Loading..."><span class="btn-label-icon left fa fa-floppy-o"></span>Submit</button>
+                    <a href="{{ route('backoffice.page.revision.index') }}" class="btn btn-default pull-right">Batal</a>
                 </div>
             </div>
 
@@ -90,10 +114,6 @@
                         <input type="text" name="publish_date_start" id="publish-date-start" placeholder="Tanggal" value="{{ date('d-m-Y', strtotime($obj->publish_date_start)) }}" class="form-control" />
                         <input type="text" name="publish_time_start" id="publish-time-start" placeholder="Jam" value="{{ date('H:i:s', strtotime($obj->publish_date_start)) }}" class="form-control" />
                     </div>
-                </div>
-                <div class="panel-footer">
-                    <button type="submit" class="btn btn-primary btn-labeled btn-save" data-loading-text="Loading..."><span class="btn-label-icon left fa fa-floppy-o"></span>Simpan</button>
-                    <a href="{{ route('backoffice.page.revision.index') }}" class="btn btn-default pull-right">Batal</a>
                 </div>
             </div>
 

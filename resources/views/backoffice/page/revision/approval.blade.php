@@ -20,38 +20,14 @@
 
     <div class="alert alert-warning">
         <h4 class="alert-heading">Informasi</h4>
-        <p>Keterangan Status:</p>
-        <ul>
-            <li>
-                {!! pageStatusTextWithStyle(config('enums.page_revision.status.pending')) !!} :
-                Menunggu untuk diverifikasi oleh super administrator.
-            </li>
-            <li>
-                {!! pageStatusTextWithStyle(config('enums.page_revision.status.draft')) !!} :
-                Sebagai draft (belum diajukan untuk diverifikasi). Hanya anda yang dapat melihat halaman ini.
-            </li>
-        </ul>
+        <p>Berikut adalah daftar halaman yang dibuat oleh pengguna (Bukan Super Administrator) untuk diverifikasi sebelum di publish</p>
     </div>
 
     <div class="row">
         <div class="col-sm-12">
             <div class="panel">
                 <div class="panel-heading">
-                    <span class="panel-title">Daftar Revisi Halaman</span>
-
-                    <ul class="nav nav-tabs nav-tabs-xs" id="navtab-status">
-                        <li data-status="" {!! (count($listStatus) == 0) ? 'class="active"' : '' !!}>
-                            <a href="#nav-all" data-toggle="tab">Semua ({{ $countListAllPage }})</a>
-                        </li>
-                        @foreach($listStatus as $statusRow)
-                        <li data-status="{{ $statusRow->status }}" {!! ($statusRow->status == 'PEN') ? 'class="active"' : '' !!}>
-                            <a href="#nav-status" data-toggle="tab">{{ pageStatusText($statusRow->status) }} ({{ $statusRow->status_count }})</a>
-                        </li>
-                        @endforeach
-                        <li data-status="deleted">
-                            <a href="#nav-trash" data-toggle="tab">Trash ({{ $countListTrashPage }})</a>
-                        </li>
-                    </ul>
+                    <span class="panel-title">Daftar Persetujuan Revisi Halaman</span>
                 </div>
                 <div class="panel-body">
                     <div class="table-light table-responsive">
@@ -60,8 +36,8 @@
                             <tr>
                                 <th style="width: 30px">No.</th>
                                 <th>Judul</th>
+                                <th style="width: 200px">Dibuat Oleh</th>
                                 <th style="width: 150px">Dibuat Pada</th>
-                                <th style="width: 150px">Status</th>
                                 <th style="width: 90px;">Aksi</th>
                             </tr>
                             </thead>
@@ -76,17 +52,12 @@
 @section('footScript')
     <script type="text/javascript">
         require(['jquery', 'px/extensions/datatables', 'px-bootstrap/tab'], function($) {
-            var status = $('#navtab-status li.active').data('status');
-
             var oTable = $('#jq-datatable').DataTable( {
                 "processing": true,
                 "serverSide": true,
                 "paginationType": "full_numbers",
                 "ajax": {
-                    "url": "{{ route('backoffice.page.revision.list-data') }}",
-                    "data": function (d) {
-                        d.pageStatus = status;
-                    }
+                    "url": "{{ route('backoffice.page.revision.approval-list') }}"
                 },
                 "language": {
                     "processing": "Mohon Tunggu.."
@@ -94,20 +65,13 @@
                 "columns": [
                     {data: 'rownum', name: 'rownum', "searchable": false, className: "text-center", orderable: false},
                     {data: 'title', name: 'title', "searchable": true, className: "text-left", orderable: false},
+                    {data: 'created_by', name: 'created_by', "searchable": false, className: "text-center", orderable: false},
                     {data: 'created_at', name: 'created_at', "searchable": false, className: "text-center", orderable: false},
-                    {data: 'status', name: 'status', "searchable": false, className: "text-center", orderable: false},
                     {data: 'action', name: 'action', "searchable": false, className: "text-center", orderable: false}
                 ]
             });
 
             $('#jq-datatable_wrapper .dataTables_filter input').attr('placeholder', 'Pencarian...');
-
-            $('#navtab-status li a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                // e.target // newly activated tab
-                // e.relatedTarget // previous active tab
-                status = $(this).parent().data('status');
-                oTable.draw();
-            });
         });
     </script>
 @endsection

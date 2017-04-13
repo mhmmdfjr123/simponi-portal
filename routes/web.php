@@ -71,7 +71,8 @@ Route::group(['prefix' => 'backoffice', 'middleware' => ['web', 'auth', 'acl'], 
             Route::get('/{pageRevision}/edit', 'Backoffice\Page\PageRevisionController@showEditForm')->name('edit');
             Route::post('/submit', 'Backoffice\Page\PageRevisionController@submit')->name('submit');
             Route::get('/{pageRevision}/delete', 'Backoffice\Page\PageRevisionController@delete')->name('delete');
-            Route::get('/approval', 'Backoffice\Page\PageController@delete')->name('approval');
+            Route::get('/approval', 'Backoffice\Page\PageRevisionController@approval')->name('approval');
+            Route::get('/approval/list', 'Backoffice\Page\PageRevisionController@approvalList')->name('approval-list');
         });
     });
 

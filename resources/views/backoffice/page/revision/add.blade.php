@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="panel">
+                <div class="panel panel-danger">
                     <div class="panel-heading">
                         <span class="panel-title">Approval</span>
                     </div>
@@ -69,6 +69,10 @@
                             </select>
                         </div>
                     </div>
+                    <div class="panel-footer">
+                        <button type="submit" class="btn btn-primary btn-labeled btn-save" data-loading-text="Loading..."><span class="btn-label-icon left fa fa-floppy-o"></span> Submit</button>
+                        <a href="{{ url('backoffice/pages') }}" class="btn btn-default pull-right">Batal</a>
+                    </div>
                 </div>
 
                 <div class="panel">
@@ -81,10 +85,6 @@
                             <input type="text" name="publish_date_start" id="publish-date-start" placeholder="Tanggal" value="{{ date('d-m-Y') }}" class="form-control" />
                             <input type="text" name="publish_time_start" id="publish-time-start" placeholder="Jam" class="form-control" />
                         </div>
-                    </div>
-                    <div class="panel-footer">
-                        <button type="submit" class="btn btn-primary btn-labeled btn-save" data-loading-text="Loading..."><span class="btn-label-icon left fa fa-floppy-o"></span> Simpan</button>
-                        <a href="{{ url('backoffice/pages') }}" class="btn btn-default pull-right">Batal</a>
                     </div>
                 </div>
 

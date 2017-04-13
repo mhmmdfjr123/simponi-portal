@@ -22,6 +22,16 @@
         </div>
     </div>
 
+    @if(!Auth::user()->can('approve.page'))
+    <div class="alert alert-warning">
+        <h4 class="alert-heading">Informasi</h4>
+        <p>Setiap halaman yang anda tambahkan / modifikasi akan diverifikasi oleh super administrator:</p>
+        <ul>
+            <li>Anda dapat melihat status verifikasi halaman yang anda ubah, Silahkan menuju menu <a href="{{ route('backoffice.page.revision.index') }}" class="alert-link">daftar revisi halaman</a></li>
+        </ul>
+    </div>
+    @endif
+
     <div class="row">
         <div class="col-sm-12">
             <div class="panel">

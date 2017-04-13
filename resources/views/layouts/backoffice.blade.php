@@ -84,7 +84,7 @@
             <ul class="px-nav-dropdown-menu">
                 <li class="px-nav-item" id="menu-page"><a href="{{ route('backoffice.page.index') }}"><span class="px-nav-label">Daftar Halaman</span></a></li>
                 @permission('approve.page')
-                    <li class="px-nav-item" id="menu-page-revision"><a href="{{ route('backoffice.page.revision.approval') }}"><span class="px-nav-label">Daftar Persetujuan Halaman</span></a></li>
+                    <li class="px-nav-item" id="menu-page-revision"><a href="{{ route('backoffice.page.revision.approval') }}"><span class="px-nav-label">Persetujuan Revisi Halaman</span></a></li>
                 @else
                     <li class="px-nav-item" id="menu-page-revision"><a href="{{ route('backoffice.page.revision.index') }}"><span class="px-nav-label">Daftar Revisi Halaman</span></a></li>
                 @endpermission

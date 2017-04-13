@@ -51,6 +51,13 @@ return [
         ]
     ],
 
+    'page' => [
+        'status' => [
+            'publish' => 'P',
+            'draft'   => 'D'
+        ]
+    ],
+
     'page_revision' => [
         'status' => [
             'pending'   => 'PEN',

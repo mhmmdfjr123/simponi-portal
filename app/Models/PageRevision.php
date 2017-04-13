@@ -26,6 +26,14 @@ class PageRevision extends Model implements AuditableContract {
      */
     protected $auditThreshold = 50;
 
+    public function createdBy(){
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function updatedBy(){
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
     public function parent(){
         return $this->belongsTo(Page::class, 'parent');
     }
@@ -36,6 +44,7 @@ class PageRevision extends Model implements AuditableContract {
 
     public function getListStatus(){
         $query = $this->select(DB::raw('status, COUNT(*) as status_count'));
+        $query->orderBy('status');
         return $query->groupBy('status')->get();
     }
 }

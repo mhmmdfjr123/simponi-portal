@@ -2,7 +2,6 @@
 
 @section('content')
     <ol class="breadcrumb page-breadcrumb">
-        <li><a href="{{ route('backoffice-dashboard') }}">Dashboard</a></li>
         <!-- Auto Breadcrumbs -->
         <li class="active"><a href="#">Ubah Profil</a></li>
     </ol>

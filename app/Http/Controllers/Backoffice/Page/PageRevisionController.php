@@ -56,7 +56,15 @@ class PageRevisionController extends Controller {
                 if($model->deleted_at != '')
                     $title .= '<div style="font-size: 10px">Dihapus pada: '.date('d-m-Y H:i:s', strtotime($model->deleted_at)).'</div>';
 
+                if($model->status == config('enums.page_revision.status.rejected') && !is_null($model->updated_by))
+                    $title .= '<div style="font-size: 10px">Ditolak oleh: '.$model->updatedBy->name.'</div>';
+                if($model->status == config('enums.page_revision.status.approved') && !is_null($model->updated_by))
+                    $title .= '<div style="font-size: 10px">Disetujui oleh: '.$model->updatedBy->name.'</div>';
+
                 return $title;
+            })
+            ->editColumn('created_at', function ($model) {
+                return $model->created_at->format('d-m-Y H:i:s');
             })
             ->editColumn('status', function ($model) {
                 if($model->deleted_at == '')
@@ -126,9 +134,15 @@ class PageRevisionController extends Controller {
     public function submit(PageRevision $pageRevisionModel, Request $request, Guard $auth){
         try{
             if($request->input('id') != ''){
-                $page = $pageRevisionModel->find($request->input('id'));
+                $page = $pageRevisionModel->findOrFail($request->input('id'));
+
+                // Set Author
+                $page->updated_by = $auth->user()->id;
             }else{
                 $page = new PageRevision();
+
+                // Set Author
+                $page->created_by = $auth->user()->id;
             }
 
             // Set alias
@@ -149,8 +163,8 @@ class PageRevisionController extends Controller {
             }
 
             // Set status
-            // Check Status. Only Super Administrator can make status = A (Approved)
-            if($request->input('status') == config('enums.page_revision.status.approved'))
+            // Validate Status. Only Super Administrator can make status = A (Approved)
+            if($request->input('status') == config('enums.page_revision.status.approved') && !$auth->user()->can('approve.page'))
                 $status = 'PEN';
             else
                 $status = $request->input('status') ;
@@ -158,9 +172,6 @@ class PageRevisionController extends Controller {
             // Set Original Page
             if($request->input('page_id') !== '')
                 $page->page_id = $request->input('page_id');
-
-            // Set Author
-            $page->created_by = $auth->user()->id;
 
             $page->title = $request->input('title');
             $page->alias = $alias;
@@ -188,10 +199,26 @@ class PageRevisionController extends Controller {
 
             // Send Notification to Super Admin
             if ($status == config('enums.page_revision.status.pending')) {
-                // TODO Send email notif
+                // TODO send email notif
             }
 
-            return redirect()->route('backoffice.page.revision.index')->with('success', 'Data berhasil disimpan dan menunggu untuk diverifikasi oleh super administrator');
+            // Is revision verified?
+            if($auth->user()->can('approve.page')) {
+                if($request->input('status') == config('enums.page_revision.status.approved')) {
+                    // If status is approved
+                    $this->makeRevisionPageLive($page);
+
+                    return redirect()->route('backoffice.page.index')
+                        ->with('success', 'Data revisi halaman disetujui dan live.');
+                } else {
+                    // If status is rejected
+                    return redirect()->route('backoffice.page.revision.approval')
+                        ->with('success', 'Data revisi halaman telah ditolak.');
+                }
+            } else {
+                return redirect()->route('backoffice.page.revision.index')
+                    ->with('success', 'Data berhasil disimpan dan menunggu untuk diverifikasi oleh super administrator');
+            }
         }catch (QueryException $e){
             \Log::error($e->getMessage());
 
@@ -201,7 +228,7 @@ class PageRevisionController extends Controller {
         }
     }
 
-    public function delete(PageRevision $pageRevision){
+    public function delete(PageRevision $pageRevision) {
         try {
             $pageRevision->delete();
 
@@ -213,5 +240,77 @@ class PageRevisionController extends Controller {
                 'Telah terjadi sesuatu kesalahan. Silahkan ulangi beberapa saat lagi atau hubungi administrator.'
             ]);
         }
+    }
+
+    public function approval(PageRevision $pageModel) {
+        $data = [
+            'pageTitle' => 'Persetujuan Revisi Halaman',
+        ];
+
+        return view('backoffice.page.revision.approval', $data);
+    }
+
+    public function approvalList(Request $request, PageRevision $page) {
+        $data = $page->select(['id', 'title', 'created_at', 'created_by']);
+        $data->where('status', config('enums.page_revision.status.pending'));
+        $data->orderBy('created_at');
+
+        $rowNum = 1;
+        $startPage = $request->get('start');
+
+        return Datatables::of($data)
+            ->addColumn('rownum', function () use (&$rowNum, $startPage) {
+                return $startPage + ($rowNum++);
+            })
+            ->editColumn('title', function ($model) {
+                $title = $model->title;
+
+                if($model->deleted_at != '')
+                    $title .= '<div style="font-size: 10px">Dihapus pada: '.date('d-m-Y H:i:s', strtotime($model->deleted_at)).'</div>';
+
+                return $title;
+            })
+            ->editColumn('created_by', function ($model) {
+                return (!is_null($model->created_by) ? $model->createdBy->name : '-');
+            })
+            ->editColumn('created_at', function ($model) {
+                return $model->created_at->format('d-m-Y H:i:s');
+            })
+            ->addColumn('action', function ($model) {
+                $button = '
+                        <div class="btn-group">
+                            <a href="'.route('backoffice.page.revision.edit', [$model->id]).'" title="Verifikasi Revisi Halaman" class="btn btn-xs btn-primary">Verifikasi</a>
+                        </div>
+                    ';
+
+                return $button;
+            })
+            ->rawColumns(['rownum', 'created_by', 'title', 'action'])
+            ->make(true);
+    }
+
+    /**
+     * Copy table from page revision into page.
+     *
+     * @param $revisionPage
+     */
+    private function makeRevisionPageLive($revisionPage) {
+        if(is_null($revisionPage->page_id))
+            $page = new Page();
+        else
+            $page = Page::findOrFail($revisionPage->page_id);
+
+        $page->alias = $revisionPage->alias;
+        $page->title = $revisionPage->title;
+        $page->content = $revisionPage->content;
+        $page->meta_key = $revisionPage->meta_key;
+        $page->meta_desc = $revisionPage->meta_desc;
+        $page->order = $revisionPage->order;
+        $page->parent = $revisionPage->parent;
+        $page->status = config('enums.page.status.publish');
+        $page->publish_date_start = $revisionPage->publish_date_start;
+        $page->publish_date_end = $revisionPage->publish_date_end;
+
+        $page->save();
     }
 }
