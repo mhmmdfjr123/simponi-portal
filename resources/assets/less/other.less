@@ -203,3 +203,31 @@
 small.disclaimer {
     color: @theme-primary;
 }
+
+.playbutton {
+    cursor: pointer;
+    &:hover {
+        text-decoration: none;
+        & > .fa {
+            color: rgba(0, 0, 0, 1);
+        }
+        & > img {
+            filter: brightness(1);
+        }
+    }
+    & > .fa {
+        .transition-all;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 400%;
+        color: rgba(0, 0, 0, .6);
+        z-index: 1;
+    }
+    & > img {
+        .transition-all;
+        width: 100%;
+        filter: brightness(.85);
+    }
+}

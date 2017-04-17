@@ -112,28 +112,24 @@
                     <div class="text-faded">
                         <p>BNI Simponi adalah <strong>layanan program pensiun</strong> yang diselenggarakan oleh Dana Pensiun Lembaga Keuangan PT. Bank Negara Indonesia (Persero) Tbk  (DPLK BNI) sejak tahun 1994 berdasarkan Undang-Undang Nomor 11 Tahun 1992 tentang Dana Pensiun. Selama 15 tahun terakhir sejak tahun 2001, DPLK BNI berhasil menjadi <strong>market leader</strong> dalam industri pengelolaan dana pensiun di Indonesia.</p>
                     </div>
-                    <a href="#services" class="page-scroll btn btn-white btn-outline btn-xl sr-button">MULAI PENELUSURAN</a>
+                    <a href="#overview" class="page-scroll btn btn-white btn-outline btn-xl sr-button">MULAI PENELUSURAN</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-left">
+    <section id="overview" class="section-left">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-illustration">
                     <img src="{{ asset('theme/front/images/youth.png') }}" class="img-responsive">
                 </div>
                 <div class="col-md-6 col-content">
-                    <h2 class="section-heading">Masa depan anda ditentukan harini.</h2>
+                    <h2 class="section-heading">Masa depan anda ditentukan hari ini.</h2>
                     <hr class="title">
-                    <ul class="fa-ul col-content-list">
-                        <li><i class="fa-li fa fa-check"></i>Lorem ipsum dolor sit amet 1</li>
-                        <li><i class="fa-li fa fa-check"></i>Lorem ipsum dolor sit amet 2</li>
-                        <li><i class="fa-li fa fa-check"></i>Lorem ipsum dolor sit amet 3</li>
-                        <li><i class="fa-li fa fa-check"></i>Lorem ipsum dolor sit amet 4</li>
-                    </ul>
-                    <a class="btn btn-md btn-primary btn-outline sr-button" href="#">Daftar Sekarang</a>
+                    <p>Pensiun adalah masa saat Anda memiliki waktu luang untuk beribadah, berkumpul dengan keluarga, berkeliling dunia, atau melakukan kegiatan menyenangkan lainnya. BNI Simponi hadir untuk membantu Anda mewujudkan masa pensiun impian Anda.</p>
+                    <a class="btn btn-md btn-primary btn-outline sr-button" href="/portal/login/register">Daftar Sekarang</a>
+                    <a class="page-scroll btn btn-md btn-primary btn-outline sr-button" href="#services">Lihat Produk & Layanan</a>
                 </div>
             </div>
         </div>
@@ -160,32 +156,20 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6 text-center">
+                <div class="col-lg-6 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
-                        <h3>Sample 1</h3>
-                        <p>Our templates are updated regularly so they don't break.</p>
+                        <i class="fa fa-4x fa-user text-primary sr-icons"></i>
+                        <h3>Individu</h3>
+                        <p>Untuk Peserta Individu, DPLK BNI menyelenggarakan Program Pensiun Iuran Pasti (PPIP) dengan produknya bernama BNI Simponi (Simpanan Pensiun BNI)...</p>
+                        <p><a class="btn btn-md btn-primary btn-outline sr-button" href="/jenis-program-peserta-individu" style="margin-top:20px">Lihat Selengkapnya</a></p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 text-center">
+                <div class="col-lg-6 col-md-6 text-center">
                     <div class="service-box">
-                        <i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
-                        <h3>Sample 2</h3>
-                        <p>You can use this theme as is, or you can make changes!</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
-                        <h3>Sample 3</h3>
-                        <p>We update dependencies to keep things fresh.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-heart text-primary sr-icons"></i>
-                        <h3>Sample 4</h3>
-                        <p>You have to make your websites with love these days!</p>
+                        <i class="fa fa-4x fa-users text-primary sr-icons"></i>
+                        <h3>Kolektif</h3>
+                        <p>Program Pensiun untuk Kompensasi Pesangon (PPUKP) merupakan produk yang dirancang untuk memenuhi kebutuhan Pemberi Kerja atas persiapan pembayaran dana pesangon karyawan...</p>
+                        <p><a class="btn btn-md btn-primary btn-outline sr-button" href="/jenis-program-peserta-kelompok" style="margin-top:20px">Lihat Selengkapnya</a></p>
                     </div>
                 </div>
             </div>
@@ -198,12 +182,17 @@
                 <div class="col-lg-6 col-content">
                     <h2 class="section-heading">Ayo daftar sekarang!</h2>
                     <hr class="title">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elementum mauris ut congue luctus. In fringilla pellentesque nibh, ac hendrerit tortor euismod vitae. Phasellus rhoncus accumsan orci, eu efficitur ante fermentum et. Nunc interdum dapibus posuere. Proin a diam venenatis, consequat lacus maximus, laoreet risus. Pellentesque consectetur sem arcu, a placerat nunc faucibus ut. </p>
+                    <p>Dapatkan kemudahan memantau saldo dana pensiun Anda melalui BNI Simponi Web Portal maupun BNI Simponi Mobile Apps (segera hadir).</p>
+                    <p><a class="btn btn-md btn-primary btn-outline sr-button" href="/portal/login/register">Daftar Sekarang</a></p>
                 </div>
                 <div class="col-lg-6 col-illustration">
                     <!-- 16:9 aspect ratio -->
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/PdhPG4SdS54" allowfullscreen></iframe>
+                        <a class="embed-responsive-item playbutton" data-src="https://www.youtube.com/embed/PdhPG4SdS54">
+                            <i class="fa fa-youtube-play"></i>
+                            <img src="{{ asset('theme/front/images/yt-dplk-bni.jpg') }}" alt="DPLK BNI YouTube Thumbnail" />
+                        </a>
+                        <!--<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/PdhPG4SdS54" allowfullscreen></iframe>-->
                     </div>
                 </div>
             </div>
@@ -227,6 +216,10 @@
 
             $simCarousel.carousel({
                 interval: 4000
+            });
+
+            $('.playbutton').click(function () {
+                $(this).css('display', 'none').after('<iframe class="embed-responsive-item" src="' + ($(this).data('src') + '?autoplay=1') + '" allowfullscreen></iframe>');
             });
         })
     </script>
