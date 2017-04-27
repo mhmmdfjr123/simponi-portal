@@ -110,7 +110,7 @@
             <ul class="px-nav-dropdown-menu">
                 <li class="px-nav-item"><a href="{{ url('backoffice/layout/menu') }}"><span class="px-nav-label">Kelola Menu</span></a></li>
                 <li class="px-nav-item" id="menu-layout-banner"><a href="{{ url('backoffice/layout/banner') }}"><span class="px-nav-label">Kelola Banner</span></a></li>
-                <li class="px-nav-item"><a href="javascript:maintenance();"><span class="px-nav-label">Kelola Homepage</span></a></li>
+                {{-- <!-- <li class="px-nav-item"><a href="javascript:maintenance();"><span class="px-nav-label">Kelola Homepage</span></a></li> --> --}}
             </ul>
         </li>
         <li class="px-nav-item px-nav-dropdown">

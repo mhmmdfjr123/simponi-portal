@@ -128,7 +128,6 @@
                     <h2 class="section-heading">Masa depan anda ditentukan hari ini.</h2>
                     <hr class="title">
                     <p>Pensiun adalah masa saat Anda memiliki waktu luang untuk beribadah, berkumpul dengan keluarga, berkeliling dunia, atau melakukan kegiatan menyenangkan lainnya. BNI Simponi hadir untuk membantu Anda mewujudkan masa pensiun impian Anda.</p>
-                    <a class="btn btn-md btn-primary btn-outline sr-button" href="/portal/login/register">Daftar Sekarang</a>
                     <a class="page-scroll btn btn-md btn-primary btn-outline sr-button" href="#services">Lihat Produk & Layanan</a>
                 </div>
             </div>
@@ -182,8 +181,7 @@
                 <div class="col-lg-6 col-content">
                     <h2 class="section-heading">Ayo daftar sekarang!</h2>
                     <hr class="title">
-                    <p>Dapatkan kemudahan memantau saldo dana pensiun Anda melalui BNI Simponi Web Portal maupun BNI Simponi Mobile Apps (segera hadir).</p>
-                    <p><a class="btn btn-md btn-primary btn-outline sr-button" href="/portal/login/register">Daftar Sekarang</a></p>
+                    <p>Silakan Hubungi Cabang terdekat bila Anda ingin membuka rekening baru BNI Simponi Anda. Atau <a href="/portal/login/register">daftarkan</a> nomor rekening Anda untuk dapat menikmati fitur lebih dari BNI Simponi Web Portal bila Anda telah memiliki rekening BNI Simponi</p>
                 </div>
                 <div class="col-lg-6 col-illustration">
                     <!-- 16:9 aspect ratio -->
