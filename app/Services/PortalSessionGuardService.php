@@ -95,7 +95,7 @@ class PortalSessionGuardService extends ApiClient implements PortalGuard {
 
 				\Session::flash(static::class, $message);
 
-				\Log::info('Access unauthorized. It caused by: '.$message, $userCredentials['username']);
+				\Log::info('Access unauthorized. It caused by: '.$message, [$userCredentials['username']]);
 
 				return null;
 			} else if($e->hasResponse()) {
