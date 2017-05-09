@@ -58,7 +58,9 @@
                     <div class="section-box-item">
                         <div class="box-header">
                             <h4 class="box-title">Berita</h4>
-                            <div class="box-title-action"><a href="#">Lihat Semua <i class="fa fa-angle-double-right"></i></a></div>
+                            <div class="box-title-action">
+                                {{--<a href="#">Lihat Semua <i class="fa fa-angle-double-right"></i></a>--}}
+                            </div>
                         </div>
                         <div class="box-body">
                             <ul class="fa-ul">
@@ -73,7 +75,9 @@
                     <div class="section-box-item">
                         <div class="box-header">
                             <h4 class="box-title">Promosi</h4>
-                            <div class="box-title-action"><a href="#">Lihat Semua <i class="fa fa-angle-double-right"></i></a></div>
+                            <div class="box-title-action">
+                                {{--<a href="#">Lihat Semua <i class="fa fa-angle-double-right"></i></a>--}}
+                            </div>
                         </div>
                         <div class="box-body">
                             <ul class="fa-ul">
