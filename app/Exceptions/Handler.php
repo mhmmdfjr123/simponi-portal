@@ -52,7 +52,10 @@ class Handler extends ExceptionHandler
 		    return redirect()->route('portal-login')->withErrors($exception->getMessage());
 	    }else if ( $exception instanceof BranchUnauthorizedException) {
 		    return redirect()->route('branch-login')->withErrors($exception->getMessage());
-	    }
+	    }else if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
+        return redirect()->back()->withInput($request->except('_token'))
+            ->with('warning', 'Your page session is expired since there is no activity in 120 minutes. Please try again.');
+    }
 
         return parent::render($request, $exception);
     }
