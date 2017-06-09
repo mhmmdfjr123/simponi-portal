@@ -1,4 +1,6 @@
 <?php
+session_save_path('../../storage/framework/sessions/');
+
 if (session_id() == '') session_start();
 
 mb_internal_encoding('UTF-8');
