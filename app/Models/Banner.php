@@ -24,10 +24,10 @@ class Banner extends Model implements AuditableContract {
     protected $auditThreshold = 50;
 
     function getBanners() {
-        $query = $this->select(['banner.*'])->orderBy('updated_at', 'DESC');
+        $query = $this->select(['banner.*']);
         $query->where('banner.status', 'P');
         $query->where('banner.publish_date_start', '<=', Carbon::now());
-        $query->orderBy('order');
+        $query->orderBy('order')->orderBy('updated_at', 'DESC');
 
         return $query->get();
     }
