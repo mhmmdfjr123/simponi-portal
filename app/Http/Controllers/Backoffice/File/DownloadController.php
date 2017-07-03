@@ -90,6 +90,10 @@ class DownloadController extends Controller {
     }
 
     public function submit(Request $request) {
+        $this->validate($request, [
+            'file' => 'max:51200'
+        ]);
+
         try{
             if($request->input('id') != ''){
                 $download = Download::findOrFail($request->input('id'));

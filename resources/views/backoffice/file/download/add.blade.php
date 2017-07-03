@@ -53,6 +53,7 @@
                                     <button type="button" class="btn btn-primary px-file-browse">Cari File</button>
                                 </div>
                             </label>
+                            <p class="help-block">Ukuran file maksimal: 50MB</p>
                         </div>
                     </div>
                 </div>
