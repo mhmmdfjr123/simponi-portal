@@ -13,7 +13,13 @@
                 <div class="carousel-inner" role="listbox">
                     @foreach($banners as $banner)
                     <div class="item {!! ($loop->index == 0) ? 'active':'' !!}">
-                        <div class="carousel-image" style="background-image: url('{{ asset('file/banner/'.$banner->image_filename) }}')"></div>
+                        @if($banner->hyperlink != '')
+                        <a href="{!! $banner->hyperlink !!}">
+                            <div class="carousel-image" style="background-image: url('{{ asset('file/banner/'.$banner->image_filename) }}')"></div>
+                        </a>
+                        @else
+                            <div class="carousel-image" style="background-image: url('{{ asset('file/banner/'.$banner->image_filename) }}')"></div>
+                        @endif
                     </div>
                     @endforeach
                 </div>
