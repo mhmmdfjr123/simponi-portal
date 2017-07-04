@@ -31,8 +31,10 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                <button class="hamburger hamburger--spin js-hamburger navbar-toggle visible-xs visible-sm" type="button">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
                 </button>
                 <a class="navbar-brand page-scroll" href="{{ route('home') }}">
                     <img src="{{ asset('theme/front/images/logo/bni-simponi-alternative.png') }}" alt="BNI Simponi" />
@@ -40,7 +42,7 @@
                 </a>
             </div>
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="navbar-collapse">
                 @widget('mainMenu', [])
             </div>
             <!-- /.navbar-collapse -->

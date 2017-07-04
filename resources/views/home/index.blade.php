@@ -65,13 +65,13 @@
                         <div class="box-header">
                             <h4 class="box-title">Berita</h4>
                             <div class="box-title-action">
-                                {{--<a href="#">Lihat Semua <i class="fa fa-angle-double-right"></i></a>--}}
+                                <a href="{{ route('post-category', $newsAlias) }}">Lihat Semua <i class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>
                         <div class="box-body">
-                            <ul class="fa-ul">
+                            <ul>
                                 @foreach($latestNews as $news)
-                                <li><i class="fa-li fa fa-check"></i> <a href="{{ url('post/'.$news->alias) }}" title="{{ $news->title }}">{{ str_limit($news->title, $featuredBoxStrLimit) }}</a></li>
+                                <li><i class="fa fa-check"></i> <a href="{{ url('post/'.$news->alias) }}" title="{{ $news->title }}">{{ $news->title }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -82,13 +82,13 @@
                         <div class="box-header">
                             <h4 class="box-title">Promosi</h4>
                             <div class="box-title-action">
-                                {{--<a href="#">Lihat Semua <i class="fa fa-angle-double-right"></i></a>--}}
+                                <a href="{{ route('post-category', $promotionAlias) }}">Lihat Semua <i class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>
                         <div class="box-body">
-                            <ul class="fa-ul">
+                            <ul>
                                 @foreach($promotions as $promotion)
-                                    <li><i class="fa-li fa fa-bullhorn"></i> <a href="{{ url('post/'.$promotion->alias) }}" title="{{ $promotion->title }}">{{ str_limit($promotion->title, $featuredBoxStrLimit) }}</a></li>
+                                    <li><i class="fa fa-bullhorn"></i> <a href="{{ url('post/'.$promotion->alias) }}" title="{{ $promotion->title }}">{{ $promotion->title }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -101,9 +101,9 @@
                             <div class="box-title-action"><a href="{{ route('download-category', $ffs->alias) }}">Lihat Semua <i class="fa fa-angle-double-right"></i></a></div>
                         </div>
                         <div class="box-body">
-                            <ul class="fa-ul">
+                            <ul>
                                 @foreach($fundFactSheet as $download)
-                                    <li><i class="fa-li fa fa-download"></i> <a href="{{ route('download-file', [$download->file_name]) }}">{{ $download->name }}</a></li>
+                                    <li><i class="fa fa-download"></i> <a href="{{ route('download-file', [$download->file_name]) }}">{{ $download->name }}</a></li>
                                 @endforeach
                             </ul>
                         </div>

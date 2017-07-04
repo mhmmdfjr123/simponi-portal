@@ -211,6 +211,12 @@ function createPasswordValidatorMessage(){
         }
     });
 
+    // Responsive Nav - Slide from right
+    $('.navbar-toggle').click(function(){
+        $(this).toggleClass('is-active');
+        $('body').toggleClass('is-navbar-toggle-on');
+    });
+
     // Initialize and Configure Scroll Reveal Animation
     window.sr = ScrollReveal();
     sr.reveal('.sr-icons', {
