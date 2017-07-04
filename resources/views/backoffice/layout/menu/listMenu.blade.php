@@ -53,7 +53,7 @@
 <script type="text/javascript">
     require(['jquery', 'px-libs/toastr', 'nestable'], function($, toastr) {
         $('#dd-<?php echo $catId ?>').nestable({
-            maxDepth    : 3,
+            maxDepth    : 2,
             dropCallback: function(details) {
                 var order = new Array();
 
