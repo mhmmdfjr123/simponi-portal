@@ -250,7 +250,8 @@ Route::group(['prefix' => 'branch', 'middleware' => 'web'], function () {
 Route::group(['middleware' => 'web'], function () {
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::get('/faq', 'FaqController@index')->name('faq');
-	Route::get('/post/{alias?}', 'PostController@index');
+    Route::get('/category/{alias?}', 'PostController@index')->name('post-category');
+    Route::get('/post/{alias}', 'PostController@detail')->name('post');
 
 	Route::get('/download', 'DownloadController@index')->name('download-list');
 	Route::get('/download/category/{categoryAlias}', 'DownloadController@index')->name('download-category');

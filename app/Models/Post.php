@@ -57,7 +57,7 @@ class Post extends Model implements AuditableContract{
     }
 
     public function listAllPostWithPagination($perPage, $catId = ''){
-        $query = $this->select('users.name as author', 'post.*')->orderBy('created_at', 'DESC');
+        $query = $this->select('users.name as author', 'post.*')->orderBy('post.created_at', 'DESC');
 
         $query->join('users', 'users.id', '=', 'post.created_by');
 

@@ -1,16 +1,43 @@
 <?php namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\PostCategory;
 
 class PostController extends Controller {
 
-	public function __construct()
-	{
-
-	}
-
 	public function index(Post $postModel, $alias = '')
 	{
+	    $catId = '';
+	    $catName = 'Semua Kategori';
+        $catDesc = 'Semua Kategori';
+
+        if($alias != ''){
+            $cat = PostCategory::where('alias', $alias)->first();
+
+            if(count($cat) == 0)
+                abort(404);
+
+            $catId = $cat->id;
+            $catName = $cat->name;
+            $catDesc = $cat->desc;
+        }
+
+        $posts = $postModel->listAllPostWithPagination(10, $catId);
+
+        $data = [
+            'pageTitle' => $catName,
+            'metaKey'   => $catName.', kategori, simponi',
+            'metaDesc'  => $catDesc,
+            'categories'=> PostCategory::where('status', 'Y')->orderBy('name')->get(),
+            'postAlias' => $alias,
+            'posts'     => $posts
+        ];
+
+		return view('post.index', $data);
+	}
+
+    public function detail(Post $postModel, $alias)
+    {
         if($alias == '')abort('404');
 
         $post = $postModel->where('alias', $alias)->first();
@@ -19,7 +46,7 @@ class PostController extends Controller {
 
         $categories = array();
         foreach($post->categories as $cat){
-            $categories[] = '<a href="'.url('category/'.$cat->alias).'" class="category-link">'.$cat->name.'</a>';
+            $categories[] = '<a href="'.route('post-category', $cat->alias).'" class="category-link">'.$cat->name.'</a>';
         }
 
         $data = [
@@ -30,7 +57,7 @@ class PostController extends Controller {
             'metaDesc'  => $post->meta_desc
         ];
 
-		return view('post.index', $data);
-	}
+        return view('post.detail', $data);
+    }
 
 }
