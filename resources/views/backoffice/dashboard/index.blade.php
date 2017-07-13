@@ -23,7 +23,7 @@
         <!-- Stats -->
 
         <div class="col-md-3">
-            <a href="#" class="box bg-success darken">
+            <div class="box bg-success darken">
                 <div class="box-row">
                     <div class="box-cell p-x-3 p-y-1 bg-success">
                         <div class="pull-xs-left font-weight-semibold font-size-12">TOTAL PENGGUNA</div>
@@ -35,11 +35,11 @@
                         <div class="pull-xs-right font-weight-semibold font-size-24 line-height-1" id="counter-total-customer">Calculating...</div>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
 
         <div class="col-md-3">
-            <a href="#" class="panel box bg-white text-default">
+            <div class="panel box bg-white text-default">
                 <div class="box-row">
                     <div class="box-cell p-x-3 p-y-1">
                         <div class="pull-xs-left font-weight-semibold font-size-12">NASABAH INDIVIDU</div>
@@ -51,11 +51,11 @@
                         <div class="pull-xs-right font-weight-semibold font-size-24 line-height-1" id="counter-individual-account">Calculating...</div>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
 
         <div class="col-md-3">
-            <a href="#" class="panel box bg-white text-default">
+            <div class="panel box bg-white text-default">
                 <div class="box-row">
                     <div class="box-cell p-x-3 p-y-1">
                         <div class="pull-xs-left font-weight-semibold font-size-12">NASABAH PERUSAHAAN</div>
@@ -67,11 +67,11 @@
                         <div class="pull-xs-right font-weight-semibold font-size-24 line-height-1" id="counter-company-account">Calculating...</div>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
 
         <div class="col-md-3">
-            <a href="#" class="panel box bg-white text-default">
+            <div class="panel box bg-white text-default">
                 <div class="box-row">
                     <div class="box-cell p-x-3 p-y-1">
                         <div class="pull-xs-left font-weight-semibold font-size-12">TOTAL LOGIN HARI INI</div>
@@ -83,7 +83,7 @@
                         <div class="pull-xs-right font-weight-semibold font-size-24 line-height-1" id="counter-today-login">Calculating...</div>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
 
         <!-- / Stats -->
