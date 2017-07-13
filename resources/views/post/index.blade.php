@@ -15,7 +15,11 @@
                             <ul class="nav nav-tabs nav-stacked" id="post-category-navigation">
                                 <li {!! $postAlias == '' ? 'class="active"' : '' !!}><a href="{{ route('post-category') }}">Semua Kategori</a></li>
                                 @foreach($categories as $category)
-                                    <li {!! $postAlias == $category->alias ? 'class="active"' : '' !!}><a href="{{ route('post-category', [$category->alias]) }}">{{ $category->name }}</a></li>
+                                    <li {!! $postAlias == $category['data']->alias ? 'class="active"' : '' !!}>
+                                        <a href="{{ route('post-category', [$category['data']->alias]) }}">
+                                            <span style="padding-left: {{ ($category['level'] - 1) * 20 }}px">{{ $category['data']->name }}</span>
+                                        </a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </div>
@@ -29,6 +33,7 @@
                                         </a>
                                         <div class="info">
                                             <span class="date">{{ $post->created_at->format('d-m-Y H:i:s') }}</span>
+
                                             @if($postAlias == '')
                                             <span class="category">
                                                 <i class="fa fa-tags" style="margin-right: 3px"></i> {{ $post->categories->implode('name', ', ') }}

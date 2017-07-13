@@ -5,7 +5,7 @@ use App\Models\PostCategory;
 
 class PostController extends Controller {
 
-	public function index(Post $postModel, $alias = '')
+	public function index(Post $postModel, PostCategory $postCategoryModel, $alias = '')
 	{
 	    $catId = '';
 	    $catName = 'Semua Kategori';
@@ -28,7 +28,7 @@ class PostController extends Controller {
             'pageTitle' => $catName,
             'metaKey'   => $catName.', kategori, simponi',
             'metaDesc'  => $catDesc,
-            'categories'=> PostCategory::where('status', 'Y')->orderBy('name')->get(),
+            'categories'=> $postCategoryModel->listHierarchy(),
             'postAlias' => $alias,
             'posts'     => $posts
         ];
