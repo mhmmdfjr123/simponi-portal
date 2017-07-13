@@ -63,9 +63,9 @@
                 <div class="col-md-4">
                     <div class="section-box-item">
                         <div class="box-header">
-                            <h4 class="box-title">Berita</h4>
+                            <h4 class="box-title">{{ $newsCat->name }}</h4>
                             <div class="box-title-action">
-                                <a href="{{ route('post-category', $newsAlias) }}">Lihat Semua <i class="fa fa-angle-double-right"></i></a>
+                                <a href="{{ route('post-category', $newsCat->alias) }}">Lihat Semua <i class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>
                         <div class="box-body">
@@ -80,9 +80,9 @@
                 <div class="col-md-4">
                     <div class="section-box-item">
                         <div class="box-header">
-                            <h4 class="box-title">Promosi</h4>
+                            <h4 class="box-title">{{ $promotionCat->name }}</h4>
                             <div class="box-title-action">
-                                <a href="{{ route('post-category', $promotionAlias) }}">Lihat Semua <i class="fa fa-angle-double-right"></i></a>
+                                <a href="{{ route('post-category', $promotionCat->alias) }}">Lihat Semua <i class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>
                         <div class="box-body">
@@ -97,8 +97,8 @@
                 <div class="col-md-4">
                     <div class="section-box-item">
                         <div class="box-header">
-                            <h4 class="box-title">Fund Fact Sheet</h4>
-                            <div class="box-title-action"><a href="{{ route('download-category', $ffs->alias) }}">Lihat Semua <i class="fa fa-angle-double-right"></i></a></div>
+                            <h4 class="box-title">{{ $ffsCat->name }}</h4>
+                            <div class="box-title-action"><a href="{{ route('download-category', $ffsCat->alias) }}">Lihat Semua <i class="fa fa-angle-double-right"></i></a></div>
                         </div>
                         <div class="box-body">
                             <ul>

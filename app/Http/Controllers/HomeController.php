@@ -28,12 +28,20 @@ class HomeController extends Controller
     {
         $newsCat = PostCategory::find(1);
         $promotionCat = PostCategory::find(2);
+        $ffsCat = DownloadCategory::find(1);
 
         if(count($newsCat) == 0) {
             echo 'Default article category has not been setup. (Cat ID = 1 :=> berita)';
             exit;
-        } else if(count($promotionCat) == 0) {
+        }
+
+        if(count($promotionCat) == 0) {
             echo 'Default article category has not been setup. (Cat ID = 2 :=> promotion)';
+            exit;
+        }
+
+        if(count($ffsCat) == 0) {
+            echo 'Default download list for fund fact sheet has not been setup. (Cat ID = 1 :=> Fund Fact Sheet)';
             exit;
         }
 
@@ -42,9 +50,9 @@ class HomeController extends Controller
     		'latestNews' => $postModel->listAllPost(4, 0, $newsCat->id),
 		    'promotions' => $postModel->listAllPost(4, 0, $promotionCat->id),
 		    'fundFactSheet' => $downloadModel->getFiles(4, 0, 1),
-		    'ffs'        => DownloadCategory::findOrFail(1),
-            'newsAlias' => $newsCat->alias,
-            'promotionAlias' => $promotionCat->alias
+		    'ffsCat'     => $ffsCat,
+            'newsCat'    => $newsCat,
+            'promotionCat' => $promotionCat
 	    ];
 
         return view('home.index', $data);
