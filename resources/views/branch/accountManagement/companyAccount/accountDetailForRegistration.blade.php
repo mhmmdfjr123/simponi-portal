@@ -53,6 +53,19 @@
                     @widget('branchAnnouncement', [])
                 </div>
 
+                @if(count($notCompleteDataAlert) > 0 ? 'disabled' : '')
+                <div class="alert alert-danger text-left">
+                    <strong>Data Belum Lengkap</strong>
+                    <ul>
+                        @foreach($notCompleteDataAlert as $alert)
+                        <li>{{ $alert }}</li>
+                        @endforeach
+                    </ul>
+
+                    <div style="margin-top: 20px">"Mohon lengkapi data perusahaan di DPLK Smile"</div>
+                </div>
+                @endif
+
                 <form method="post" action="{{ route('branch-company-registration', [$encryptedId]) }}" class="form-register text-left">
                     {{ csrf_field() }}
 
@@ -67,7 +80,7 @@
                         <input type="text" name="personInChargePhone" value="{{ old('personInChargePhone') }}" class="form-control input-lg" placeholder="Nomor Handphone PIC" required autocomplete="off">
                     </div>
 
-                    <button type="submit" class="btn btn-success btn-md-uppercase" id="btn-register" data-loading-text="Mohon tunggu...">
+                    <button type="submit" {!! (count($notCompleteDataAlert) > 0 ? 'disabled' : '') !!} class="btn btn-success btn-md-uppercase" id="btn-register" data-loading-text="Mohon tunggu...">
                         <i class="ion-android-add" style="margin-right: 5px"></i> Register
                     </button>
 

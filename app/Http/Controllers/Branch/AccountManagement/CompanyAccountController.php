@@ -112,11 +112,28 @@ class CompanyAccountController extends Controller
 
 			$response = json_decode($rawResponse->getBody());
 
+			// Check required data.
+            $customer = $response;
+            $notCompleteDataAlert = [];
+
+            if (is_null($customer->nokol) || $customer->nokol == '') {
+                $notCompleteDataAlert[] = 'Nomor akun kolektif perusahaan tidak lengkap.';
+            }
+
+            if (is_null($customer->companyName) || $customer->companyName == '') {
+                $notCompleteDataAlert[] = 'Nama perusahaan tidak lengkap.';
+            }
+
+            if (is_null($customer->identityNumber) || $customer->identityNumber == '') {
+                $notCompleteDataAlert[] = 'Nomor ID perusahaan tidak lengkap.';
+            }
+
 			$data = [
 				'pageTitle' => 'Branch Portal: Pengelolaan Akun Perusahaan',
 				'user'      => $this->auth->user(),
-				'customer'  => $response,
-				'encryptedId'   => $encryptedId
+				'customer'  => $customer,
+                'notCompleteDataAlert' => $notCompleteDataAlert,
+				'encryptedId' => $encryptedId
 			];
 
 			return view('branch.accountManagement.companyAccount.accountDetailForRegistration', $data);
