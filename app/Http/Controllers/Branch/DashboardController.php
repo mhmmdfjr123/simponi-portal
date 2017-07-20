@@ -33,7 +33,7 @@ class DashboardController extends Controller
     {
 		// Check the account's role
 	    if($this->auth->isSuperAdmin()) {
-			return redirect()->route('branch-search-branch-account');
+			return redirect()->route('branch-search-account');
 	    } else {
 		    return redirect()->route('branch-search-portal-account');
 	    }
