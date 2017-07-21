@@ -30,7 +30,13 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Jenis Kelamin</label>
                     <div class="col-sm-9">
-                        <p class="form-control-static">{{ $account->jenisKelamin }}</p>
+                        <p class="form-control-static">
+                            @if(strtoupper($account->jenisKelamin) == 'M')
+                                Laki - Laki
+                            @elseif(strtoupper($account->jenisKelamin) == 'F')
+                                Perempuan
+                            @endif
+                        </p>
                     </div>
                 </div>
                 <div class="form-group">
