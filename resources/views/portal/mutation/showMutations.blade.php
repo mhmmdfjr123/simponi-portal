@@ -8,9 +8,9 @@
 
         <div class="form-group">
             <div class="input-daterange input-group" id="input-daterange" style="max-width: 400px">
-                <input type="text" class="form-control" name="dateStart" placeholder="Tanggal awal" autocomplete="off" required value="{{ !is_null($accountTrxList) ? $accountTrxList['dateStart'] : '' }}" />
+                <input type="text" class="form-control" name="dateStart" id="mutation-date-start" placeholder="Tanggal awal" autocomplete="off" required value="{{ !is_null($accountTrxList) ? $accountTrxList['dateStart'] : '' }}" />
                 <span class="input-group-addon">hingga</span>
-                <input type="text" class="form-control" name="dateEnd" placeholder="Tanggal akhir" autocomplete="off" required value="{{ !is_null($accountTrxList) ? $accountTrxList['dateEnd'] : '' }}" />
+                <input type="text" class="form-control" name="dateEnd" id="mutation-date-end" placeholder="Tanggal akhir" autocomplete="off" required value="{{ !is_null($accountTrxList) ? $accountTrxList['dateEnd'] : '' }}" />
             </div>
         </div>
 
@@ -71,11 +71,61 @@
                 }
             });
 
+            /*
             $('.input-daterange').datepicker({
                 format: "dd-mm-yyyy",
                 autoclose: true,
                 language: 'id'
             });
+            */
+
+            var $dateOptions = {
+                format: "dd-mm-yyyy",
+                autoclose: true,
+                language: 'id'
+            };
+            var $dateStart = $('#mutation-date-start');
+            var $dateEnd = $('#mutation-date-end');
+            var tempDateStart = '';
+            var tempDateEnd = '';
+
+            // When start date was changed
+            $dateStart.datepicker($dateOptions)
+                .on("changeDate", function (e) {
+                    d = new Date(e.date);
+                    d.setDate(d.getDate() + 30);
+
+                    var splittedDate = tempDateEnd.split('-');
+                    var mergedDate = new Date(splittedDate[2] + '-' + splittedDate[1] + '-' + splittedDate[0]);
+
+                    if (tempDateEnd === '' || (splittedDate.length === 3 && mergedDate > d) || mergedDate <= new Date(e.date)) {
+                        $dateEnd.datepicker('update', d);
+                    } else {
+                        $dateEnd.datepicker('update', tempDateEnd);
+                    }
+
+                    tempDateEnd = $dateEnd.val();
+                    tempDateStart = $dateStart.val();
+                });
+
+            // When end date was changed
+            $dateEnd.datepicker($dateOptions)
+                .on("changeDate", function (e) {
+                    d = new Date(e.date);
+                    d.setDate(d.getDate() - 30);
+
+                    var splittedDate = tempDateStart.split('-');
+                    var mergedDate = new Date(splittedDate[2] + '-' + splittedDate[1] + '-' + splittedDate[0]);
+
+                    if (tempDateStart === '' || (splittedDate.length === 3 && mergedDate < d) || mergedDate > new Date(e.date)) {
+                        $dateStart.datepicker('update', d);
+                    } else {
+                        $dateStart.datepicker('update', tempDateStart);
+                    }
+
+                    tempDateEnd = $dateEnd.val();
+                    tempDateStart = $dateStart.val();
+                });
         });
     </script>
 @endpush
