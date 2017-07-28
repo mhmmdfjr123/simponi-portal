@@ -2,6 +2,7 @@
 
 use App\Contracts\PortalGuard;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 /**
  * This class handle portal dashboard
@@ -56,9 +57,17 @@ class DashboardController extends Controller
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
     private function getCompanyDashboard() {
+        $lastDayEachMonth = [];
+        for ($i = 1; $i <= 6; $i++) {
+            $lastDayEachMonth[] = Carbon::createFromDate(date('Y'), date('m'), 1)
+                ->subMonth($i-1)
+                ->subDay(1);
+        }
+
 	    $data = [
 		    'pagetTitle'    => 'Portal Dashboard',
-		    'user'          => $this->auth->user()
+		    'user'          => $this->auth->user(),
+            'lastDayEachMonth' => $lastDayEachMonth
 	    ];
 
 	    return view('portal.dashboard.company', $data);
