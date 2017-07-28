@@ -11,8 +11,13 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="portal-sidebar">
+                    <!-- Logo for Printing -->
+                    <div class="visible-print-block text-center" style="margin: 0 auto 30px auto;">
+                        <img src="{{ asset('theme/front/images/logo/BNI-logo.png') }}" style="width: 140px" alt="">
+                    </div>
+                    
                     <!-- SIDEBAR user-PIC -->
-                    <div class="portal-user-pic hidden-xs">
+                    <div class="portal-user-pic hidden-xs hidden-print">
                         <img data-name="{{ $portalGuard->user()->name }}"
                              data-font-size="30" data-height="80" data-width="80" data-char-count="2"
                              class="img-responsive name-initializer" alt="">
@@ -32,16 +37,16 @@
 
                     <!-- SIDEBAR BUTTONS -->
                     <div class="portal-user-buttons">
-                        <a href="javascript:void(0)" onclick="loadIntoBox('{{ route('portal-change-password') }}')" class="btn btn-primary btn-outline btn-sm"><i class="ion-locked"></i> Ubah Password</a>
+                        <a href="javascript:void(0)" onclick="loadIntoBox('{{ route('portal-change-password') }}')" class="btn btn-primary btn-outline btn-sm hidden-print"><i class="ion-locked"></i> Ubah Password</a>
                     </div>
                     <!-- END SIDEBAR BUTTONS -->
 
                     <!-- SIDEBAR MENU -->
-                    <div class="portal-user-menu">
+                    <div class="portal-user-menu hidden-print">
                         <ul class="nav">
                             <li>
                                 @if($portalGuard->isIndividual())
-                                <a href="{{ route('portal-dashboard') }}"><i class="fa fa-bar-chart-o"></i> Inquiry Saldo</a>
+                                    <a href="{{ route('portal-dashboard') }}"><i class="fa fa-bar-chart-o"></i> Inquiry Saldo</a>
                                 @else
                                     <a href="{{ route('portal-dashboard') }}"><i class="fa fa-download"></i> Download Laporan</a>
                                 @endif
@@ -54,9 +59,6 @@
                                 <a href="{{ route('portal-mutation') }}"><i class="fa fa-exchange"></i> Mutasi </a>
                             </li>
                             @endif
-                            {{--<li>
-                                <a href="javascript:maintenance();"><i class="fa fa-download"></i> Download </a>
-                            </li>--}}
                             <li>
                                 <a href="{{ route('portal-logout') }}" onclick="popUpLoader();"><i class="fa fa-sign-out"></i> Keluar</a>
                             </li>

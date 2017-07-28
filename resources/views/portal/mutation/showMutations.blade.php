@@ -14,9 +14,13 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary" id="btn-mutation" title="Lihat Mutasi" data-loading-text="Loading...">
+        <button type="submit" class="btn btn-primary hidden-print" id="btn-mutation" title="Lihat Mutasi" data-loading-text="Loading...">
             <small><strong>LIHAT</strong></small>
         </button>
+
+        @if(!is_null($accountTrxList) && count($accountTrxList['trxList']) > 0)
+        <a href="javascript:window.print()" class="btn btn-default hidden-print" id="btn-print"><i class="fa fa-print"></i> Print</a>
+        @endif
 
         <div class="form-group">
             <p class="help-block">Mutasi yang dapat dilihat adalah mutasi dalam rentang waktu maksimal 30 hari</p>
@@ -68,6 +72,7 @@
                 if($(this).valid()){
                     $('input.form-control').attr('readonly', true);
                     $('#btn-mutation').button('loading');
+                    $('#btn-print').hide();
                 }
             });
 

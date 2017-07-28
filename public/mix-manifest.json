@@ -1,10 +1,10 @@
 {
-  "/mix.js": "/mix.58e065928ed8ebd0b582.js",
-  "/theme/front/css/simponi.css": "/theme/front/css/simponi.95c624694019d777fe06.css",
-  "/theme/front/css/tinymce.css": "/theme/front/css/tinymce.95c624694019d777fe06.css",
-  "/theme/front/js/simponi.js": "/theme/front/js/simponi.911ddb9046ae471395d7d54341cc28c0.js",
-  "/theme/front/js/pages/customer.js": "/theme/front/js/pages/customer.d41d8cd98f00b204e9800998ecf8427e.js",
-  "/theme/front/js/pages/simulation.js": "/theme/front/js/pages/simulation.dcf853fc43e8606aa1fe81582db1cf40.js",
-  "/theme/front/js/vendor.js": "/theme/front/js/vendor.78505c8abf4c04d2b188ea181e57bf1b.js",
-  "/theme/front/css/vendor.css": "/theme/front/css/vendor.e11594761413908c31f4b7811b957130.css"
+  "/mix.js": "/mix.js",
+  "/theme/front/css/simponi.css": "/theme/front/css/simponi.css",
+  "/theme/front/css/tinymce.css": "/theme/front/css/tinymce.css",
+  "/theme/front/js/simponi.js": "/theme/front/js/simponi.js",
+  "/theme/front/js/pages/customer.js": "/theme/front/js/pages/customer.js",
+  "/theme/front/js/pages/simulation.js": "/theme/front/js/pages/simulation.js",
+  "/theme/front/js/vendor.js": "/theme/front/js/vendor.js",
+  "/theme/front/css/vendor.css": "/theme/front/css/vendor.css"
 }

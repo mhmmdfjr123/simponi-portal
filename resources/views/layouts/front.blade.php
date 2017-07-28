@@ -83,7 +83,7 @@
                         Hubungi <a href="tel:{{ trim(1500046) }}">1 5000 46</a> atau <a href="tel:{{ trim(68888) }}">68888</a> (melalui ponsel)
                     </address>
                 </div>
-                <div class="col-sm-8 contact-right">
+                <div class="col-sm-8 contact-right hidden-print">
                     <h4 class="section-heading">Investor Relations</h4>
                     <hr class="title">
                     <address class="row">
