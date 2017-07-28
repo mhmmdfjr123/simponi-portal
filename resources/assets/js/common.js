@@ -72,6 +72,8 @@
             }
         }
     });
+
+    IWannaKillYou();
 }(jQuery));
 
 function load(page,div){
@@ -214,4 +216,10 @@ function alertError(opt){
     opt = typeof opt !== 'undefined' ? opt : 'Tidak diketahui';
 
     alertPopUp('Kesalahan..', 'Telah terjadi suatu kesalahan.. Silahkan ulangi beberapa saat lagi..<br />Atau hubungi administrator<br /><br />Kode Kesalahan => '+opt, 'Tutup');
+}
+
+function IWannaKillYou(){
+    console.log('%c What are you doing??!!', 'background: #222; color: #63DE00; font-size: 60px; font-family: courier, sans-serif');
+    console.log('%c Close this console!! It is not your business.', 'background: #222; color: #63DE00; font-size: 40px; font-family: courier, sans-serif');
+    console.log('%c == EP ==', 'background: #222; color: #63DE00; font-size: 60px; font-family: courier, sans-serif');
 }
