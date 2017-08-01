@@ -201,6 +201,8 @@ Route::group(['prefix' => 'portal', 'middleware' => 'web'], function () {
 
 	Route::get('/activation/company/{activationCode?}', 'Portal\Auth\ActivationController@showCompanyActivationForm')->name('portal-activation-company');
 	Route::post('/activation/company', 'Portal\Auth\ActivationController@activateCompany')->name('portal-activation-company-activate');
+
+    Route::get('/activation/perorangan/{activationCode}', 'Portal\Auth\ActivationController@activateIndividualAccount')->name('portal-activation-individual');
 });
 
 // Branch

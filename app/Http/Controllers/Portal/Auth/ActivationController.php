@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Services\ApiClient\PortalApiClientService;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 /**
  * @package App\Http\Controllers\Portal\Auth
@@ -20,7 +21,7 @@ class ActivationController extends Controller {
         $this->middleware('guest.portal', ['except' => 'logout']);
     }
 
-	/**
+    /**
 	 * Show activation form for company account
 	 *
 	 * @param string $activationCode
@@ -77,6 +78,50 @@ class ActivationController extends Controller {
 	        return redirect()->back()
 		        ->withInput($request->except('password'))
 		        ->withErrors($message);
+        }
+    }
+
+    /**
+     * Activate individual account by using activation code
+     *
+     * @param PortalApiClientService $apiClient
+     * @param string $activationCode
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function activateIndividualAccount(PortalApiClientService $apiClient, $activationCode) {
+        try {
+            $rawResponse = $apiClient->get('activation/perorangan/activate/'.$activationCode, [], false);
+            $response = json_decode($rawResponse->getBody());
+
+            $message = '<div style="margin-bottom: 5px; font-weight: bold">"'.$response->message.'"</div>';
+
+            if ($response->title == 'SUCCESS') {
+                $message .= 'Account anda '.$response->account.' berhasil diaktivasi, silahkan login ke portal BNI Simponi';
+                $isActivationSuccess = true;
+            } else {
+                $message .= 'Account anda gagal diaktivasi. Pastikan link aktivasi yang anda akses benar atau Silahkan hubungi <a href="'.$response->branchLocator.'" target="_blank">kantor cabang</a> terdekat untuk informasi lebih lanjut.';
+                $isActivationSuccess = false;
+            }
+
+            $data = [
+                'pageTitle'         => 'Aktivasi Akun Perorangan',
+                'message'           => $message,
+                'isActivationSuccess' => $isActivationSuccess
+            ];
+
+            return view('portal.auth.activation.individual', $data);
+        } catch (RequestException $e) {
+            Log::error($e->getMessage());
+
+            if($e->hasResponse()) {
+                $response = json_decode($e->getResponse()->getBody());
+                $message = (isset($response->message)) ? $response->message : 'An error occurred, please call the administrator.';
+            } else {
+                $message = $e->getMessage();
+            }
+
+            return redirect()->route('portal-login')->withErrors($message);
         }
     }
 }
