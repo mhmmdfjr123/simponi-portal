@@ -17,6 +17,11 @@ return [
 		]
     ],
 
+    'proxy' => [
+        'scheme'    => env('PROXY_SCHEME', ''),
+        'url'       => env('PROXY_URL', '')
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
