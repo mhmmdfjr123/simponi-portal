@@ -7,7 +7,8 @@
     <title>{!! (isset($pageTitle) ? $pageTitle : Config::get('app.name') ) !!}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,800,300&subset=latin" rel="stylesheet" type="text/css">
+    {{--<link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:400,700|Open+Sans|Roboto:700,400,300" rel="stylesheet">--}}
+    
     <link href="{{ asset('theme/backoffice/ext/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('theme/backoffice/ext/vendor/ionicon/css/ionicons.min.css') }}" rel="stylesheet" type="text/css">
 

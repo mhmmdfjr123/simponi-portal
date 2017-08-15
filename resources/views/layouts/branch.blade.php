@@ -11,7 +11,7 @@
 
     <link href="{{ asset('theme/front/images/favicon.png') }}" rel="shortcut icon" type="image/x-icon">
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:400,700|Open+Sans|Roboto:700,400,300" rel="stylesheet">
+    {{--<link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:400,700|Open+Sans|Roboto:700,400,300" rel="stylesheet">--}}
 
     <link href="{{ mix('theme/front/css/vendor.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ mix('theme/front/css/simponi.css') }}" rel="stylesheet" type="text/css">

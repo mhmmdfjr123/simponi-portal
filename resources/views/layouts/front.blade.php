@@ -4,14 +4,28 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name='keywords' content='{{ $metaKey or settings('meta_key') }}' />
-    <meta name='description' content='{{ $metaDesc or e(settings('meta_desc')) }}' />
+    <meta name='keywords' content='{{ $metaKey or 'dplk, bni, pensiun, BNI, simponi' }}' />
+    <meta name='description' content='{{ $metaDesc or 'BNI Simponi adalah layanan program pensiun yang diselenggarakan oleh Dana Pensiun Lembaga Keuangan PT. Bank Negara Indonesia (Persero) Tbk (DPLK BNI) sejak tahun 1994 yang Selama 15 tahun terakhir sejak tahun 2001, DPLK BNI berhasil menjadi market leader dalam industri pengelolaan dana pensiun di Indonesia.' }}' />
+
+    <meta property="og:url"                content="{{ \Illuminate\Support\Facades\Request::url() }}" />
+    <meta property="og:type"               content="article" />
+    <meta property="og:title"              content="{{ (isset($pageTitle) ? $pageTitle : config('app.name') ) }}" />
+    <meta property="og:site_name"          content="{{ config('app.name') }}" />
+    <meta property="og:description"        content="{{ $metaDesc or 'BNI Simponi adalah layanan program pensiun yang diselenggarakan oleh Dana Pensiun Lembaga Keuangan PT. Bank Negara Indonesia (Persero) Tbk (DPLK BNI) sejak tahun 1994 yang Selama 15 tahun terakhir sejak tahun 2001, DPLK BNI berhasil menjadi market leader dalam industri pengelolaan dana pensiun di Indonesia.' }}" />
+    <meta property="og:image"              content="{{ asset('theme/front/images/logo/BNI-logo.png') }}" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="{{ '@bni' }}">
+    <meta name="twitter:creator" content="{{ '@bni' }}">
+    <meta name="twitter:title" content="{{ (isset($pageTitle) ? $pageTitle : config('app.name') ) }}">
+    <meta name="twitter:description" content="{{ $metaDesc or 'BNI Simponi adalah layanan program pensiun yang diselenggarakan oleh Dana Pensiun Lembaga Keuangan PT. Bank Negara Indonesia (Persero) Tbk (DPLK BNI) sejak tahun 1994 yang Selama 15 tahun terakhir sejak tahun 2001, DPLK BNI berhasil menjadi market leader dalam industri pengelolaan dana pensiun di Indonesia.' }}">
+    <meta name="twitter:image" content="{{ asset('theme/front/images/logo/BNI-logo.png') }}">
 
     <title>{{ $pageTitle or Config::get('app.name') }}</title>
 
     <link href="{{ asset('theme/front/images/favicon.png') }}" rel="shortcut icon" type="image/x-icon">
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:400,700|Open+Sans|Roboto:700,400,300" rel="stylesheet">
+    {{--<link href="https://fonts.googleapis.com/css?family=Lato:300,400|Merriweather:400,700|Open+Sans|Roboto:700,400,300" rel="stylesheet">--}}
 
     <link href="{{ mix('theme/front/css/vendor.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ mix('theme/front/css/simponi.css') }}" rel="stylesheet" type="text/css">
