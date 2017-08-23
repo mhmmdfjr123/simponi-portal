@@ -5,6 +5,7 @@ use App\Models\Download;
 use App\Models\DownloadCategory;
 use App\Models\Post;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
 
 /**
  * @package App\Http\Controllers
@@ -50,14 +51,13 @@ class DownloadController extends Controller
 			->where('download.publish_date_start', '<=', Carbon::now())
 			->first();
 
-		if(count($file) == 0)
-			abort(404, 'File Not Found');
+		if(!is_null($file) && File::exists(public_path('file/storage/'.$file->file_name))) {
+            $file->total_download = $file->total_download + 1;
+            $file->save();
 
-		$file->total_download = $file->total_download + 1;
-		$file->save();
-
-	    return response()->download(public_path('file/storage/'.$file->file_name), $file->name.'.'.$file->file_ext);
-
-
+            return response()->download(public_path('file/storage/'.$file->file_name), $file->name.'.'.$file->file_ext);
+        } else {
+            abort(404, 'File Not Found');
+        }
     }
 }
