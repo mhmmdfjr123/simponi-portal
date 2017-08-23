@@ -71,6 +71,10 @@ class BannerController extends Controller {
     }
 
     public function submit(Banner $bannerModel, Request $request){
+        $this->validate($request, [
+            'image' => 'mimetypes:image/*'
+        ]);
+
         try{
             if($request->input('id') != ''){
                 $banner = $bannerModel->find($request->input('id'));

@@ -91,7 +91,7 @@ class DownloadController extends Controller {
 
     public function submit(Request $request) {
         $this->validate($request, [
-            'file' => 'max:51200'
+            'file' => 'max:51200|mimes:zip,rar,doc,docx,xls,xlsx,ppt,pptx,pdf'
         ]);
 
         try{
