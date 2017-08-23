@@ -3,6 +3,7 @@
 use App\Contracts\PortalGuard;
 use App\Http\Controllers\Controller;
 use App\Services\ApiClient\PortalApiClientService;
+use App\Services\Encryption\SimponiRsaService;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
 
@@ -23,28 +24,34 @@ class LoginController extends Controller {
         $this->middleware('guest.portal', ['except' => 'logout']);
     }
 
-    public function showLoginForm() {
+    public function showLoginForm(SimponiRsaService $rsaService) {
     	$data = [
-    	    'pageTitle' => 'Login'
+    	    'pageTitle' => 'Login',
+            'publicKey' => $rsaService->getPublicKey()
 	    ];
 
         return view('portal.auth.login', $data);
     }
 
-    public function login(Request $request, PortalGuard $auth) {
+    public function login(Request $request, PortalGuard $auth, SimponiRsaService $rsaService) {
         $this->validateLogin($request);
 
-	    $credentials = [
-            'username'      => $request->get('username'),
-            'password'      => $request->get('password')
-        ];
+        try {
+            $credentials = [
+                'username'      => $rsaService->decrypt($request->input('username')),
+                'password'      => $rsaService->decrypt($request->input('password'))
+            ];
 
-        $response = $auth->login($credentials);
+            $response = $auth->login($credentials);
 
-        if($response['status'])
-        	return redirect()->route('portal-dashboard');
-        else
-        	return redirect()->back()->withInput(['username'])->withErrors($response['message']);
+            if($response['status'])
+                return redirect()->route('portal-dashboard');
+            else
+                return redirect()->back()->withInput(['username' => $credentials['username']])->withErrors($response['message']);
+        } catch (\Exception $e) {
+            // RSA General Exception
+            return redirect()->back()->withErrors($e->getMessage());
+        }
     }
 
     public function showRegistrationForm() {

@@ -5,6 +5,7 @@ use App\Contracts\PortalGuard;
 use App\Services\ApiClient\BranchApiClientService;
 use App\Services\ApiClient\PortalApiClientService;
 use App\Services\BranchSessionGuardService;
+use App\Services\Encryption\SimponiRsaService;
 use App\Services\PortalSessionGuardService;
 use Illuminate\Support\ServiceProvider;
 
@@ -54,6 +55,7 @@ class SimponiServiceProvider extends ServiceProvider
 	{
 		$this->app->singleton(BranchApiClientService::class, BranchApiClientService::class);
 		$this->app->singleton(PortalApiClientService::class, PortalApiClientService::class);
+        $this->app->singleton(SimponiRsaService::class, SimponiRsaService::class);
 	}
 
 	/**

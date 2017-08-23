@@ -13,7 +13,8 @@ return [
     'portal' => [
 		'api' => [
 			'client_type'   => 'HEAD_SIMPONIWEB',
-			'base_uri'      => env('PORTAL_API_BASE_URI', 'http://localhost')
+			'base_uri'      => env('PORTAL_API_BASE_URI', 'http://localhost'),
+            'encryption' => env('PORTAL_API_ENCRYPTION', false)
 		]
     ],
 

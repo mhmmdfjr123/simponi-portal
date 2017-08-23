@@ -1,5 +1,15 @@
 @extends('layouts.login')
 
+@section('headScript')
+    <script>
+        requirejs.config({
+            paths:{
+                "JSEncrypt": "{{ asset('theme/backoffice/ext/vendor/encryption/jsencrypt.min') }}"
+            }
+        });
+    </script>
+@endsection
+
 @section('content')
     <h2 class="m-t-0 m-b-3 text-xs-center font-weight-semibold font-size-20">
         Login ke Backoffice
@@ -37,13 +47,16 @@
             <a href="{{ url('/password/reset') }}" class="font-size-12 text-muted pull-xs-right" id="page-signin-forgot-link">Lupa password?</a>
         </div>
 
+        <input type="hidden" id="public-key" value="{{ $publicKey }}">
+        <input type="hidden" id="private-key" value="{{ $privateKey }}">
+
         <button type="submit" class="btn btn-block btn-lg btn-primary m-t-3" id="btn-login" data-loading-text="Please wait...">Login</button>
     </form>
 @endsection
 
 @section('footScript')
     <script type="text/javascript">
-        require(['jquery', 'px-bootstrap/button', 'px-bootstrap/alert', 'px/plugins/px-validate'], function($) {
+        require(['jquery', 'px-bootstrap/button', 'px-bootstrap/alert', 'px/plugins/px-validate', 'JSEncrypt'], function($) {
             var $formLogin = $("#form-login");
 
             $formLogin.pxValidate();

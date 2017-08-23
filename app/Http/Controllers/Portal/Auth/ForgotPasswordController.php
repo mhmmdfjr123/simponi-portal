@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Portal\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Services\ApiClient\PortalApiClientService;
+use App\Services\Encryption\SimponiRsaService;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
@@ -25,25 +26,26 @@ class ForgotPasswordController extends Controller {
         $this->session = $session;
     }
 
-	public function showForgotPasswordForm() {
+	public function showForgotPasswordForm(SimponiRsaService $rsaService) {
 		$data = [
-			'pageTitle' => 'Lupa Password'
+			'pageTitle' => 'Lupa Password',
+            'publicKey' => $rsaService->getPublicKey()
 		];
 		return view('portal.auth.passwords.forgot', $data);
 	}
 
-	public function requestToken(Request $request, PortalApiClientService $apiClient) {
+	public function requestToken(Request $request, PortalApiClientService $apiClient, SimponiRsaService $rsaService) {
 		$this->validate($request, [
 			'account' => 'required',
 			'username' => 'required'
 		]);
 
-		$data = [
-			'account'       => $request->get('account'),
-			'username'      => $request->get('username')
-		];
+        try {
+            $data = [
+                'account'       => $rsaService->decrypt($request->input('account')),
+                'username'      => $rsaService->decrypt($request->input('username'))
+            ];
 
-		try {
 			$rawResponse = $apiClient->post('admin/perorangan/forgotpassword', ['json' => $data], false, false);
 
 			// Save jwt token for forgot password in session
@@ -61,21 +63,24 @@ class ForgotPasswordController extends Controller {
 			}
 
 			return redirect()->back()
-			                 ->withInput($request->all())
 			                 ->withErrors($message);
-		}
+		} catch (\Exception $e) {
+		    // RSA General Exception
+            return redirect()->back()->withErrors($e->getMessage());
+        }
 	}
 
-    public function showResetPasswordForm() {
+    public function showResetPasswordForm(SimponiRsaService $rsaService) {
     	$this->validateTokenSession();
 
 	    $data = [
-		    'pageTitle' => 'Reset Password'
+		    'pageTitle' => 'Reset Password',
+            'publicKey' => $rsaService->getPublicKey()
 	    ];
 	    return view('portal.auth.passwords.reset', $data);
     }
 
-    public function resetPassword(Request $request, PortalApiClientService $apiClient) {
+    public function resetPassword(Request $request, PortalApiClientService $apiClient, SimponiRsaService $rsaService) {
 	    $this->validateTokenSession();
 
 	    $this->validate($request, [
@@ -85,19 +90,19 @@ class ForgotPasswordController extends Controller {
 
 	    $sessionData = $this->session->get($this->getForgotPasswordSessionName());
 
-	    $data = [
-		    'json'  => [
-		    	'account'       => $sessionData->account,
-			    'username'      => $sessionData->username,
-			    'temppas'       => $request->get('temppas'),
-			    'passwordNew'   => $request->get('passwordNew')
-		    ],
-		    'headers' => [
-		    	'Authorization' => 'Bearer '.$sessionData->tokenJWT
-		    ]
-	    ];
-
 	    try {
+            $data = [
+                'json'  => [
+                    'account'       => $sessionData->account,
+                    'username'      => $sessionData->username,
+                    'temppas'       => $rsaService->decrypt($request->input('temppas')),
+                    'passwordNew'   => $rsaService->decrypt($request->input('passwordNew')),
+                ],
+                'headers' => [
+                    'Authorization' => 'Bearer '.$sessionData->tokenJWT
+                ]
+            ];
+
 		    $rawResponse = $apiClient->post('api/perorangan/forgotpassword/logintoken', $data, false, false);
 		    $response = json_decode($rawResponse->getBody());
 
@@ -115,7 +120,6 @@ class ForgotPasswordController extends Controller {
 		    }
 
 		    return redirect()->back()
-		                     ->withInput($request->all())
 		                     ->withErrors($message);
 	    }
     }
