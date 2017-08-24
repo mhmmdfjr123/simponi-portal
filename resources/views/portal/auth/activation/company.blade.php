@@ -10,7 +10,7 @@
 
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="text" name="account" value="{{ old('account') }}" class="form-control input-lg" placeholder="Nomor Kolektif Perusahaan" required>
+                        <input type="text" name="account" value="{{ old('account') }}" id="account" class="form-control input-lg" placeholder="Nomor Kolektif Perusahaan" required>
                         <i class="ion-ios-personadd-outline"></i>
                     </div>
                 </div>
@@ -48,12 +48,15 @@
                 <button type="submit" class="btn btn-lg btn-primary btn-block" data-loading-text="Mohon Tunggu..." id="btn-register">
                     Aktivasi
                 </button>
+
+                <input type="hidden" id="public-key" value="{{ $publicKey }}">
             </form>
         </div>
     </div>
 @endsection
 
 @section('footScript')
+    <script src="{{ asset('theme/backoffice/ext/vendor/encryption/jsencrypt.min.js') }}"></script>
     <script type="text/javascript">
         const $formRegister = $(".form-register");
 
@@ -65,6 +68,17 @@
 
         $formRegister.submit(function(e){
             if($(this).valid()){
+                var enc = new JSEncrypt();
+                enc.setPublicKey($('#public-key').val());
+
+                // Encrypt
+                var $account = $('#account');
+                var $username = $('#username');
+                var $password = $('#password');
+                $account.val(enc.encrypt($account.val()));
+                $username.val(enc.encrypt($username.val()));
+                $password.val(enc.encrypt($password.val()));
+
                 $('input.form-control').attr('readonly', true);
                 $('#btn-register').button('loading');
             }

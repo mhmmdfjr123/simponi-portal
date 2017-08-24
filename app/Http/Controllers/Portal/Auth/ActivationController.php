@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Services\ApiClient\PortalApiClientService;
+use App\Services\Encryption\SimponiRsaService;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -24,14 +25,16 @@ class ActivationController extends Controller {
     /**
 	 * Show activation form for company account
 	 *
-	 * @param string $activationCode
+	 * @param SimponiRsaService $rsaService
+     * @param string $activationCode
 	 *
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
-    public function showCompanyActivationForm($activationCode = '') {
+    public function showCompanyActivationForm(SimponiRsaService $rsaService, $activationCode = '') {
     	$data = [
     	    'pageTitle'         => 'Aktivasi Akun Perusahaan',
-		    'activationCode'    => $activationCode
+		    'activationCode'    => $activationCode,
+            'publicKey'         => $rsaService->getPublicKey()
 	    ];
 
         return view('portal.auth.activation.company', $data);
@@ -42,10 +45,11 @@ class ActivationController extends Controller {
 	 *
 	 * @param Request $request
 	 * @param PortalApiClientService $apiClient
+     * @param SimponiRsaService $rsaService
 	 *
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
-    public function activateCompany(Request $request, PortalApiClientService $apiClient) {
+    public function activateCompany(Request $request, PortalApiClientService $apiClient, SimponiRsaService $rsaService) {
         $this->validate($request, [
             'account'   => 'required',
             'username'  => 'required',
@@ -57,9 +61,9 @@ class ActivationController extends Controller {
 
         try {
         	$apiClient->post('activation/perusahaan/activate', ['json' => [
-		        'account'       => $request->get('account'),
-		        'username'      => $request->get('username'),
-		        'password'      => $request->get('password'),
+                'account'       => $rsaService->decrypt($request->input('account')),
+                'username'      => $rsaService->decrypt($request->input('username')),
+                'password'      => $rsaService->decrypt($request->input('password')),
 		        'email'         => $request->get('email'),
 		        'phone'         => $request->get('phone'),
 		        'code'          => $request->get('code')

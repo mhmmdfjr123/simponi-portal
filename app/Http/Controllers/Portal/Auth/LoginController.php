@@ -54,15 +54,16 @@ class LoginController extends Controller {
         }
     }
 
-    public function showRegistrationForm() {
+    public function showRegistrationForm(SimponiRsaService $rsaService) {
         $data = [
-		    'pageTitle' => 'Pendaftaran'
+		    'pageTitle' => 'Pendaftaran',
+            'publicKey' => $rsaService->getPublicKey()
 	    ];
 
         return view('portal.auth.register', $data);
     }
 
-    public function register(Request $request, PortalApiClientService $apiClient) {
+    public function register(Request $request, PortalApiClientService $apiClient, SimponiRsaService $rsaService) {
         $this->validate($request, [
             'account' => 'required',
             'username' => 'required',
@@ -75,9 +76,9 @@ class LoginController extends Controller {
 
 	    try {
         	$apiClient->post('admin/perorangan/register', ['json' => [
-		        'account'       => $request->get('account'),
-		        'username'      => $request->get('username'),
-		        'password'      => $request->get('password'),
+		        'account'       => $rsaService->decrypt($request->input('account')),
+		        'username'      => $rsaService->decrypt($request->input('username')),
+		        'password'      => $rsaService->decrypt($request->input('password')),
 		        'email'         => $request->get('email'),
 		        'noId'          => $request->get('noId'),
 		        'birthdate'     => date('Y-m-d', strtotime($request->get('birthdate'))),

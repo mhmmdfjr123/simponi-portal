@@ -10,7 +10,7 @@
 
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="text" name="account" value="{{ old('account') }}" class="form-control input-lg" placeholder="Nomor Akun BNI Simponi" required>
+                        <input type="text" name="account" id="account" value="{{ old('account') }}" class="form-control input-lg" placeholder="Nomor Akun BNI Simponi" required>
                         <i class="ion-ios-personadd-outline"></i>
                     </div>
                 </div>
@@ -63,12 +63,15 @@
                 <div class="btn-register-group">
                     Sudah mempunyai akun? <a href="{{ route('portal-login') }}" class="btn btn-success btn-outline">Login</a>
                 </div>
+
+                <input type="hidden" id="public-key" value="{{ $publicKey }}">
             </form>
         </div>
     </div>
 @endsection
 
 @section('footScript')
+    <script src="{{ asset('theme/backoffice/ext/vendor/encryption/jsencrypt.min.js') }}"></script>
     <script type="text/javascript">
         const $formRegister = $(".form-register");
 
@@ -80,6 +83,17 @@
 
         $formRegister.submit(function(e){
             if($(this).valid()){
+                var enc = new JSEncrypt();
+                enc.setPublicKey($('#public-key').val());
+
+                // Encrypt
+                var $account = $('#account');
+                var $username = $('#username');
+                var $password = $('#password');
+                $account.val(enc.encrypt($account.val()));
+                $username.val(enc.encrypt($username.val()));
+                $password.val(enc.encrypt($password.val()));
+
                 $('input.form-control').attr('readonly', true);
                 $('#btn-register').button('loading');
             }
