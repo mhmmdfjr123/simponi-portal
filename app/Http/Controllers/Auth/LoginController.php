@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Services\Encryption\RsaService;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 /**
  * Class LoginController
@@ -113,7 +116,13 @@ class LoginController extends Controller
      */
     public function authenticated(Request $request, $user)
     {
-        if(count($user->roles()) == 0){
+        // Revoke another login session
+        DB::table('sessions')
+            ->where('user_id', $user->id)
+            ->where('id', '<>', Session::getId())
+            ->delete();
+
+        if(count($user->roles()) == 0) {
             return $this->revokeLogin($request)->withErrors([
                 $this->username() => 'Maaf anda tidak dapat login karena tidak memiliki hak akses. Harap hubungi administrator untuk info lebih lanjut'
             ]);
