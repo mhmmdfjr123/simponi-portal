@@ -1,6 +1,12 @@
 <!-- Default Ajax Form -->
 <script type="text/javascript">
-    require(['jquery', 'px-bootstrap/button', 'px-bootstrap/alert', 'px/plugins/px-validate'], function($) {
+    requirejs.config({
+        paths:{
+            "JSEncrypt": "{{ asset('theme/backoffice/ext/vendor/encryption/jsencrypt.min') }}"
+        }
+    });
+
+    require(['jquery', 'JSEncrypt', 'px-bootstrap/button', 'px-bootstrap/alert', 'px/plugins/px-validate'], function($, jse) {
         var $ajaxFormChangePassword = $("#ajax-form-change-password");
 
         $ajaxFormChangePassword.pxValidate({
@@ -15,7 +21,7 @@
                 'password-confirm': {
                     required: true,
                     minlength: 8,
-                    equalTo: "#password"
+                    equalTo: "#ajax-password"
                 },
                 'old-password': {
                     required: true
@@ -23,33 +29,57 @@
             }
         });
 
-        $ajaxFormChangePassword.ajaxForm({
-            beforeSubmit : function() {
-                $('fieldset').attr('disabled', true);
-                $(".fbox-footer button[type=submit]").button('loading');
-            },
-            error : function(jqXHR, statusText, errorThrown) {
-                alertError(statusText + ": " + errorThrown);
-            },
-            dataType:  'json',
-            success : function(response, statusText, xhr, $form) {
-                $('fieldset').attr('disabled', false);
-                $(".fbox-footer button[type=submit]").button('reset');
+        $ajaxFormChangePassword.submit(function (e) {
+            if ($ajaxFormChangePassword.valid()) {
+                var enc = new jse.JSEncrypt();
+                enc.setPublicKey($('#public-key').val());
 
-                if (statusText == "success") {
-                    if(response.status == 'ok'){
-                        alertPopUp('Berhasil', response.message, 'Tutup');
-                    }else{
-                        $('#change-password-alert-error').show();
-                        $('#change-password-alert-error-text').text(response.message);
+                // Encrypt
+                var $oldPassword = $('#ajax-old-password');
+                var $password = $('#ajax-password');
+                var $passwordConfirm = $('#ajax-password-confirm');
+                $oldPassword.val(enc.encrypt($oldPassword.val()));
+                $password.val(enc.encrypt($password.val()));
+                $passwordConfirm.val(enc.encrypt($passwordConfirm.val()));
 
-                        $("#ajax-form-change-password").resetForm();
+                $.ajax({
+                    url: $ajaxFormChangePassword.attr('action'),
+                    method: $ajaxFormChangePassword.attr('method'),
+                    data: $ajaxFormChangePassword.serialize(),
+                    beforeSend : function() {
+                        $('fieldset').attr('disabled', true);
+                        $(".fbox-footer button[type=submit]").button('loading');
+                    },
+                    error : function(jqXHR, statusText, errorThrown) {
+                        alertError(statusText + ": " + errorThrown);
+                    },
+                    dataType:  'json',
+                    success : function(response, statusText, jqXHR) {
+                        $('fieldset').attr('disabled', false);
+                        $(".fbox-footer button[type=submit]").button('reset');
+
+                        if (statusText === "success") {
+                            if(response.status === 'ok'){
+                                alertPopUp('Berhasil', response.message, 'Tutup');
+                            }else{
+                                $('#change-password-alert-error').show();
+                                $('#change-password-alert-error-text').text(response.message);
+
+                                resetFormChangePassword();
+                            }
+                        } else {
+                            alertError();
+                        }
                     }
-                } else {
-                    alertError();
-                }
+                });
             }
+
+            e.preventDefault();
         });
+
+        function resetFormChangePassword() {
+            $("input[type=password]").val('');
+        }
     });
 </script>
 
@@ -70,15 +100,15 @@
                 <!-- Content -->
                 <div class="form-group form-message-light">
                     <label>Password Lama</label>
-                    <input type="password" name="old-password" maxlength="30" class="form-control" />
+                    <input type="password" name="old-password" id="ajax-old-password" maxlength="30" class="form-control" />
                 </div>
                 <div class="form-group form-message-light">
                     <label>Password Baru</label>
-                    <input type="password" name="password" id="password" maxlength="30" class="form-control" />
+                    <input type="password" name="password" id="ajax-password" maxlength="30" class="form-control" />
                 </div>
                 <div class="form-group form-message-light">
                     <label>Ketik Ulang Password Baru</label>
-                    <input type="password" name="password-confirm" maxlength="30" class="form-control" />
+                    <input type="password" name="password-confirm" id="ajax-password-confirm" maxlength="30" class="form-control" />
                 </div>
                 <!-- End of Content -->
             </div>
@@ -89,6 +119,7 @@
                 </div>
             </div>
 
+            <input type="hidden" id="public-key" value="{{ $publicKey }}">
         </fieldset>
     </form>
 </div>

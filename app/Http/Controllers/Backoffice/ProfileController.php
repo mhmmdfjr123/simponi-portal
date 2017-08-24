@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Services\Encryption\RsaService;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -56,16 +57,21 @@ class ProfileController extends Controller {
         }
     }
 
-    public function showChangePasswordForm(){
-        return view('backoffice.profile.changePassword');
+    public function showChangePasswordForm(RsaService $rsaService){
+        return view('backoffice.profile.changePassword', [
+            'publicKey' => $rsaService->getPublicKey()
+        ]);
     }
 
-    public function postChangePassword(Request $request){
+    public function postChangePassword(Request $request, RsaService $rsaService){
         try {
             $account = User::find($this->auth->user()->id);
 
-            if(count($account) > 0 && Hash::check($request->input('old-password'), $account->password)){
-                $account->password = bcrypt($request->input('password'));
+            $oldPassword = $rsaService->decrypt($request->input('old-password'));
+            $password = $rsaService->decrypt($request->input('password'));
+
+            if(count($account) > 0 && Hash::check($oldPassword, $account->password)){
+                $account->password = bcrypt($password);
                 $account->save();
 
                 return response()->json([
@@ -84,6 +90,13 @@ class ProfileController extends Controller {
             return response()->json([
                 'status'        => 'error',
                 'message'       => 'Password gagal disimpan.'
+            ]);
+        } catch (\Exception $e) {
+            \Log::error($e->getMessage());
+
+            return response()->json([
+                'status'        => 'error',
+                'message'       => $e->getMessage()
             ]);
         }
     }

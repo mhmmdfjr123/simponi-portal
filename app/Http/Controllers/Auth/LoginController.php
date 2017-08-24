@@ -35,26 +35,46 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/backoffice/dashboard';
 
+    protected $rsaService;
+
     /**
      * Create a new controller instance.
+     *
+     * @param RsaService $rsaService
      */
-    public function __construct()
+    public function __construct(RsaService $rsaService)
     {
         $this->middleware('guest', ['except' => 'logout']);
+        $this->rsaService = $rsaService;
     }
 
     /**
      * Show the application's login form.
      *
-     * @param RsaService $rsaService
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showLoginForm(RsaService $rsaService)
+    public function showLoginForm()
     {
         return view('auth.login', [
-            'publicKey' => $rsaService->getPublicKey(),
-            'privateKey' => $rsaService->getPrivateKey()
+            'publicKey' => $this->rsaService->getPublicKey()
         ]);
+    }
+
+    /**
+     * Handle login
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     */
+    public function handleLogin(Request $request) {
+        $decrypted = [
+            'username' => $this->rsaService->decrypt($request->input('username')),
+            'password' => $this->rsaService->decrypt($request->input('password'))
+        ];
+
+        $request->merge($decrypted);
+
+        return $this->login($request);
     }
 
     /**

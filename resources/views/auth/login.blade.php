@@ -19,7 +19,7 @@
         {{ csrf_field() }}
 
         <fieldset class="form-group form-group-lg{{ $errors->has('username') ? ' has-error' : '' }} form-message-light">
-            <input type="text" class="form-control" placeholder="Username atau Email" name="username" value="{{ old('username') }}" required autofocus>
+            <input type="text" class="form-control" id="username" placeholder="Username atau Email" name="username" value="{{ old('username') }}" required autofocus>
 
             @if ($errors->has('username'))
                 <span class="help-block">
@@ -29,7 +29,7 @@
         </fieldset>
 
         <fieldset class="form-group form-group-lg{{ $errors->has('password') ? ' has-error' : '' }} form-message-light">
-            <input type="password" class="form-control" placeholder="Password" name="password" required>
+            <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
 
             @if ($errors->has('password'))
                 <span class="help-block">
@@ -48,7 +48,6 @@
         </div>
 
         <input type="hidden" id="public-key" value="{{ $publicKey }}">
-        <input type="hidden" id="private-key" value="{{ $privateKey }}">
 
         <button type="submit" class="btn btn-block btn-lg btn-primary m-t-3" id="btn-login" data-loading-text="Please wait...">Login</button>
     </form>
@@ -56,12 +55,21 @@
 
 @section('footScript')
     <script type="text/javascript">
-        require(['jquery', 'px-bootstrap/button', 'px-bootstrap/alert', 'px/plugins/px-validate', 'JSEncrypt'], function($) {
+        require(['jquery', 'JSEncrypt', 'px-bootstrap/button', 'px-bootstrap/alert', 'px/plugins/px-validate'], function($, jse) {
             var $formLogin = $("#form-login");
 
             $formLogin.pxValidate();
             $formLogin.submit(function(e){
                 if($(this).valid()){
+                    var enc = new jse.JSEncrypt();
+                    enc.setPublicKey($('#public-key').val());
+
+                    // Encrypt
+                    var $username = $('#username');
+                    var $password = $('#password');
+                    $username.val(enc.encrypt($username.val()));
+                    $password.val(enc.encrypt($password.val()));
+
                     $('input.form-control').attr('readonly', true);
                     $('input[type=checkbox]').attr('readonly', true);
                     $('#btn-login').button('loading');

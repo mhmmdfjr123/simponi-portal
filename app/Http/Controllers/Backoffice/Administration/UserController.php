@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Services\Encryption\RsaService;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -125,12 +126,15 @@ class UserController extends Controller {
     /**
      * To show new users form
      *
+     * @param RsaService $rsaService
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-	public function add(){
+	public function add(RsaService $rsaService){
 		$data = [
             'pageTitle' => 'Tambah Pengguna',
-			'roles' => Role::all()
+			'roles' => Role::all(),
+            'publicKey' => $rsaService->getPublicKey()
 		];
 
 		return view('backoffice.administration.user.add', $data);
@@ -140,9 +144,11 @@ class UserController extends Controller {
      * To show edit form
      *
      * @param $id
+     * @param RsaService $rsaService
+     *
      * @return mixed
      */
-	public function edit($id){
+	public function edit($id, RsaService $rsaService){
 		try {
 			$obj = User::find($id);
 
@@ -150,7 +156,8 @@ class UserController extends Controller {
 				$data = [
                     'pageTitle' => 'Ubah Pengguna',
 					'obj'       => $obj,
-					'roles'     => Role::all()
+					'roles'     => Role::all(),
+                    'publicKey' => $rsaService->getPublicKey()
 				];
 
 				return view('backoffice.administration.user.edit', $data);
@@ -269,9 +276,11 @@ class UserController extends Controller {
      * Handling data form user form
      *
      * @param Request $request
+     * @param RsaService $rsaService
+     *
      * @return mixed
      */
-	public function submit(Request $request){
+	public function submit(Request $request, RsaService $rsaService){
 		try {
 			if($request->input('id') != ""){
 				$user = User::find($request->input('id'));
@@ -288,7 +297,7 @@ class UserController extends Controller {
 			$user->username = $request->input('username');
 			$user->email    = $request->input('email');
 			if($request->input('password') != "")
-				$user->password = bcrypt($request->input('password'));
+				$user->password = bcrypt($rsaService->decrypt($request->input('password')));
 			$user->name = $request->input('name');
 			$user->date_of_birth = date('Y-m-d', strtotime($request->input('date_of_birth')));
 			$user->gender      = $request->input('gender');
@@ -312,6 +321,12 @@ class UserController extends Controller {
 			return redirect('backoffice/administration/user')->withErrors([
 					'Telah terjadi sesuatu kesalahan. Silahkan ulangi beberapa saat lagi atau hubungi administrator.'
 			]);
-		}
+		} catch (\Exception $e) {
+            \Log::error($e->getMessage());
+
+            return redirect('backoffice/administration/user')->withErrors([
+                $e->getMessage()
+            ]);
+        }
 	}
 }

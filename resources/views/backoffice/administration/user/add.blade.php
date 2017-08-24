@@ -1,5 +1,15 @@
 @extends('layouts.backoffice')
 
+@section('headScript')
+    <script>
+        requirejs.config({
+            paths:{
+                "JSEncrypt": "{{ asset('theme/backoffice/ext/vendor/encryption/jsencrypt.min') }}"
+            }
+        });
+    </script>
+@endsection
+
 @section('content')
     <ol class="breadcrumb page-breadcrumb">
         <!-- Auto Breadcrumbs -->
@@ -139,6 +149,8 @@
                                 <a class="btn btn-default" href="<?php echo url('backoffice/administration/user')?>">Batal</a>
                             </div>
                         </div>
+
+                        <input type="hidden" id="public-key" value="{{ $publicKey }}">
                     </form>
                 </div>
             </div>
@@ -148,15 +160,8 @@
 
 @section('footScript')
     <script type="text/javascript">
-        require(['jquery', 'px/extensions/bootstrap-datepicker', 'px-bootstrap/button', 'px/plugins/px-validate'], function($) {
+        require(['jquery', 'JSEncrypt', 'px/extensions/bootstrap-datepicker', 'px-bootstrap/button', 'px/plugins/px-validate'], function($, jse) {
             var $formValidate = $("#form-validate");
-
-            // Setup validation
-            $formValidate.submit(function(e){
-                if($(this).valid()){
-                    $(".btn-save").button('loading');
-                }
-            });
 
             $formValidate.pxValidate({
                 focusInvalid: false,
@@ -191,6 +196,21 @@
                     'email': {
                         remote: $.validator.format("Email '{0}' is already in use")
                     }
+                }
+            });
+
+            // Setup validation
+            $formValidate.submit(function(e){
+                if($(this).valid()){
+                    var enc = new jse.JSEncrypt();
+                    enc.setPublicKey($('#public-key').val());
+
+                    // Encrypt
+                    var $password = $('#password');
+
+                    $password.val(enc.encrypt($password.val()));
+
+                    $(".btn-save").button('loading');
                 }
             });
 
