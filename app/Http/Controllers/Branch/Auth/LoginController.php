@@ -3,6 +3,7 @@
 use App\Contracts\BranchGuard;
 use App\Http\Controllers\Controller;
 use App\Services\ApiClient\BranchApiClientService;
+use App\Services\Encryption\SimponiRsaService;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
 
@@ -23,72 +24,80 @@ class LoginController extends Controller {
         $this->middleware('guest.branch', ['except' => 'logout']);
     }
 
-    public function showLoginForm() {
+    public function showLoginForm(SimponiRsaService $rsaService) {
     	$data = [
-    	    'pageTitle' => 'Login'
+    	    'pageTitle' => 'Login',
+            'publicKey' => $rsaService->getPublicKey()
 	    ];
 
         return view('branch.auth.login', $data);
     }
 
-    public function login(Request $request, BranchGuard $auth) {
+    public function login(Request $request, BranchGuard $auth, SimponiRsaService $rsaService) {
         $this->validateLogin($request);
 
-	    $credentials = [
-            'username'      => $request->get('username'),
-            'password'      => $request->get('password')
-        ];
+        try {
+            $credentials = [
+                'username'      => $rsaService->decrypt($request->input('username')),
+                'password'      => $rsaService->decrypt($request->input('password'))
+            ];
 
-        $response = $auth->login($credentials);
+            $response = $auth->login($credentials);
 
-        if($response['status'])
-        	return redirect()->route('branch-dashboard');
-        else
-        	return redirect()->back()->withInput(['username'])->withErrors($response['message']);
+            if($response['status'])
+                return redirect()->route('branch-dashboard');
+            else
+                return redirect()->back()->withInput(['username'])->withErrors($response['message']);
+        } catch (\Exception $e) {
+            // RSA General Exception
+            return redirect()->back()->withErrors($e->getMessage());
+        }
     }
 
-    public function showRegistrationForm() {
+    public function showRegistrationForm(SimponiRsaService $rsaService) {
         $data = [
-		    'pageTitle' => 'Pendaftaran'
+		    'pageTitle' => 'Pendaftaran',
+            'publicKey' => $rsaService->getPublicKey()
 	    ];
 
         return view('branch.auth.register', $data);
     }
 
-    public function register(Request $request, BranchApiClientService $apiClient) {
+    public function register(Request $request, BranchApiClientService $apiClient, SimponiRsaService $rsaService) {
         $this->validate($request, [
             'username' => 'required',
-            'password' => 'required',
+            'password' => 'required|min:8',
             'email' => 'required|email',
             'noId' => 'required',
             'birthdate' => 'required',
             'mobilePhoneNo' => 'required'
         ]);
 
-        $data = [
-            'username'      => $request->get('username'),
-            'password'      => $request->get('password'),
-            'email'         => $request->get('email'),
-            'noId'          => $request->get('noId'),
-            'birthdate'     => date('Y-m-d', strtotime($request->get('birthdate'))),
-            'mobilePhoneNo' => $request->get('mobilePhoneNo'),
-        ];
-
         try {
-        	$apiClient->post('admin/branch/register', ['json' => $data], false);
+            $data = [
+                'username'      => $rsaService->decrypt($request->input('username')),
+                'password'      => $rsaService->decrypt($request->input('password')),
+                'email'         => $request->get('email'),
+                'noId'          => $request->get('noId'),
+                'birthdate'     => date('Y-m-d', strtotime($request->get('birthdate'))),
+                'mobilePhoneNo' => $request->get('mobilePhoneNo'),
+            ];
+            $apiClient->post('admin/branch/register', ['json' => $data], false);
 
-	        return redirect()->route('branch-login')->with('success', 'Akun anda telah berhasil didaftarkan. Silahkan login.');
+            return redirect()->route('branch-login')->with('success', 'Akun anda telah berhasil didaftarkan. Silahkan login.');
         } catch (RequestException $e) {
-	        if($e->hasResponse()) {
-		        $response = json_decode($e->getResponse()->getBody());
-		        $message = (isset($response->message)) ? $response->message : 'An error occurred, please call the administrator.';
-	        } else {
-		        $message = $e->getMessage();
-	        }
+            if($e->hasResponse()) {
+                $response = json_decode($e->getResponse()->getBody());
+                $message = (isset($response->message)) ? $response->message : 'An error occurred, please call the administrator.';
+            } else {
+                $message = $e->getMessage();
+            }
 
-	        return redirect()->route('branch-register')
-		        ->withInput($request->except('password'))
-		        ->withErrors($message);
+            return redirect()->route('branch-register')
+                ->withErrors($message);
+        } catch (\Exception $e) {
+            // RSA General Exception
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 

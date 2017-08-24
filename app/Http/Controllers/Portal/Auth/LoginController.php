@@ -67,7 +67,7 @@ class LoginController extends Controller {
         $this->validate($request, [
             'account' => 'required',
             'username' => 'required',
-            'password' => 'required',
+            'password' => 'required|min:8',
             'email' => 'required|email',
             'noId' => 'required',
             'birthdate' => 'required',
@@ -99,6 +99,9 @@ class LoginController extends Controller {
 	        return redirect()->route('portal-register')
 		        ->withInput($request->except('password'))
 		        ->withErrors($message);
+        } catch (\Exception $e) {
+            // RSA General Exception
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 

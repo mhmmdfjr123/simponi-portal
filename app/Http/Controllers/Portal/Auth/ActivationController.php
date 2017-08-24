@@ -82,6 +82,9 @@ class ActivationController extends Controller {
 	        return redirect()->back()
 		        ->withInput($request->except('password'))
 		        ->withErrors($message);
+        } catch (\Exception $e) {
+            // RSA General Exception
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 

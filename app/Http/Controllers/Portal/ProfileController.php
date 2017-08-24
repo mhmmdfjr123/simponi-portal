@@ -3,6 +3,7 @@
 use App\Contracts\PortalGuard;
 use App\Http\Controllers\Controller;
 use App\Services\ApiClient\PortalApiClientService;
+use App\Services\Encryption\SimponiRsaService;
 use Carbon\Carbon;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
@@ -84,10 +85,14 @@ class ProfileController extends Controller
 		if(!$request->ajax())
 			return redirect()->route('portal-dashboard');
 
-		return view('portal.profile.changePassword');
+		$data = [
+
+        ];
+
+		return view('portal.profile.changePassword', $data);
 	}
 
-	public function changePassword(Request $request, PortalApiClientService $apiClient, PortalGuard $auth){
+	public function changePassword(Request $request, PortalApiClientService $apiClient, PortalGuard $auth, SimponiRsaService $rsaService){
 		\Log::info($auth->user()->username.': try to change password');
 
 		try {
@@ -97,8 +102,8 @@ class ProfileController extends Controller
 				'usernameOld'   => $auth->user()->username,
 				'usernameNew'   => $auth->user()->username,
 				'changePassword'=> true,
-				'passwordOld'   => $request->get('old-password'),
-				'passwordNew'   => $request->get('password'),
+				'passwordOld'   => $rsaService->decrypt($request->input('old-password')),
+				'passwordNew'   => $rsaService->decrypt($request->input('password')),
 				'emailNew'      => $auth->user()->email,
 				'mobilePhone'   => $auth->user()->phone,
 				'type'          => $auth->getAccountType()
@@ -120,7 +125,10 @@ class ProfileController extends Controller
 				'status'        => 'error',
 				'message'       => $message
 			]);
-		}
+		} catch (\Exception $e) {
+            // RSA General Exception
+            return redirect()->back()->withErrors($e->getMessage());
+        }
 	}
 
 	private function getIndividualProfile() {

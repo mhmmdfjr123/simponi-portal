@@ -57,12 +57,15 @@
                 <div class="btn-register-group">
                     Sudah mempunyai akun? <a href="{{ route('branch-login') }}" class="btn btn-success btn-outline">Login</a>
                 </div>
+
+                <input type="hidden" id="public-key" value="{{ $publicKey }}">
             </form>
         </div>
     </div>
 @endsection
 
 @section('footScript')
+    <script src="{{ asset('theme/backoffice/ext/vendor/encryption/jsencrypt.min.js') }}"></script>
     <script type="text/javascript">
         const $formRegister = $(".form-register");
 
@@ -73,7 +76,16 @@
         });
 
         $formRegister.submit(function(e){
-            if($(this).valid()){
+            if($(this).valid()) {
+                var enc = new JSEncrypt();
+                enc.setPublicKey($('#public-key').val());
+
+                // Encrypt
+                var $username = $('#username');
+                var $password = $('#password');
+                $username.val(enc.encrypt($username.val()));
+                $password.val(enc.encrypt($password.val()));
+
                 $('input.form-control').attr('readonly', true);
                 $('#btn-register').button('loading');
             }

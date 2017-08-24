@@ -1,4 +1,5 @@
 <!-- Default Ajax Form -->
+<script src="{{ asset('theme/backoffice/ext/vendor/encryption/jsencrypt.min.js') }}"></script>
 <script type="text/javascript">
     $(function () {
         createPasswordValidatorMessage();
@@ -21,6 +22,17 @@
 
         $ajaxFormChangePassword.submit(function (e) {
             if ($ajaxFormChangePassword.valid()) {
+                var enc = new JSEncrypt();
+                enc.setPublicKey($('#public-key').val());
+
+                // Encrypt
+                var $oldPassword = $('#old-password');
+                var $password = $('#password');
+                var $passwordConfirm = $('#password-confirm');
+                $oldPassword.val(enc.encrypt($oldPassword.val()));
+                $password.val(enc.encrypt($password.val()));
+                $passwordConfirm.val(enc.encrypt($passwordConfirm.val()));
+
                 $.ajax({
                     url: $ajaxFormChangePassword.attr('action'),
                     method: $ajaxFormChangePassword.attr('method'),
@@ -37,8 +49,8 @@
                         $('fieldset').attr('disabled', false);
                         $(".fbox-footer button[type=submit]").button('reset');
 
-                        if (statusText == "success") {
-                            if(response.status == 'ok'){
+                        if (statusText === "success") {
+                            if(response.status === 'ok'){
                                 alertPopUp('Berhasil', response.message, 'Tutup');
                             }else{
                                 $('#change-password-alert-error').show();
@@ -79,7 +91,7 @@
                 <!-- Content -->
                 <div class="form-group form-message-light">
                     <label>Password Lama</label>
-                    <input type="password" name="old-password" maxlength="30" class="form-control" />
+                    <input type="password" name="old-password" id="old-password" maxlength="30" class="form-control" />
                 </div>
                 <div class="form-group form-message-light">
                     <label>Password Baru</label>
@@ -87,7 +99,7 @@
                 </div>
                 <div class="form-group form-message-light">
                     <label>Ketik Ulang Password Baru</label>
-                    <input type="password" name="password-confirm" maxlength="30" class="form-control" />
+                    <input type="password" name="password-confirm" id="password-confirm" maxlength="30" class="form-control" />
                 </div>
                 <!-- End of Content -->
             </div>
@@ -98,6 +110,7 @@
                 </div>
             </div>
 
+            <input type="hidden" id="public-key" value="{{ $publicKey }}">
         </fieldset>
     </form>
 </div>
