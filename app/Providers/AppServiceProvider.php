@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Services\Encryption\RsaService;
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,10 +29,24 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->registerLocalization();
+
         if ($this->app->environment() !== 'production') {
             $this->app->register(IdeHelperServiceProvider::class);
         }
 
         $this->app->singleton(RsaService::class, RsaService::class);
+    }
+
+    private function registerLocalization() {
+        $localeRegion = config('app.locale'); // Example => en_US
+        $lang = \Locale::getPrimaryLanguage($localeRegion); // Example => en
+
+        setlocale(LC_ALL, $localeRegion);
+        Carbon::setLocale($lang);
+
+        $this->app->singleton(Formatter::class, function () {
+            return new FormatterService(config('app.locale'));
+        });
     }
 }
