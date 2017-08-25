@@ -64,6 +64,14 @@ class LoginController extends Controller {
     }
 
     public function register(Request $request, PortalApiClientService $apiClient, SimponiRsaService $rsaService) {
+        $decrypted = [
+            'account'       => $rsaService->decrypt($request->input('account')),
+            'username'      => $rsaService->decrypt($request->input('username')),
+            'password'      => $rsaService->decrypt($request->input('password'))
+        ];
+
+        $request->merge($decrypted);
+
         $this->validate($request, [
             'account' => 'required',
             'username' => 'required',
@@ -76,9 +84,9 @@ class LoginController extends Controller {
 
 	    try {
         	$apiClient->post('admin/perorangan/register', ['json' => [
-		        'account'       => $rsaService->decrypt($request->input('account')),
-		        'username'      => $rsaService->decrypt($request->input('username')),
-		        'password'      => $rsaService->decrypt($request->input('password')),
+		        'account'       => $request->input('account'),
+		        'username'      => $request->input('username'),
+		        'password'      => $request->input('password'),
 		        'email'         => $request->get('email'),
 		        'noId'          => $request->get('noId'),
 		        'birthdate'     => date('Y-m-d', strtotime($request->get('birthdate'))),

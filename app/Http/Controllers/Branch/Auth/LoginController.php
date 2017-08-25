@@ -64,6 +64,13 @@ class LoginController extends Controller {
     }
 
     public function register(Request $request, BranchApiClientService $apiClient, SimponiRsaService $rsaService) {
+        $decrypted = [
+            'username'      => $rsaService->decrypt($request->input('username')),
+            'password'      => $rsaService->decrypt($request->input('password'))
+        ];
+
+        $request->merge($decrypted);
+
         $this->validate($request, [
             'username' => 'required',
             'password' => 'required|min:8',
@@ -75,8 +82,8 @@ class LoginController extends Controller {
 
         try {
             $data = [
-                'username'      => $rsaService->decrypt($request->input('username')),
-                'password'      => $rsaService->decrypt($request->input('password')),
+                'username'      => $request->input('username'),
+                'password'      => $request->input('password'),
                 'email'         => $request->get('email'),
                 'noId'          => $request->get('noId'),
                 'birthdate'     => date('Y-m-d', strtotime($request->get('birthdate'))),
@@ -94,6 +101,7 @@ class LoginController extends Controller {
             }
 
             return redirect()->route('branch-register')
+                ->withInput($request->except('password'))
                 ->withErrors($message);
         } catch (\Exception $e) {
             // RSA General Exception
