@@ -85,7 +85,7 @@ class ProfileController extends Controller {
                 if (!is_null($passwordHistoryTest)) {
                     return response()->json([
                         'status'    => 'error',
-                        'message'   => 'Gagal mengganti password. Anda pernah menggunakan password yang sama pada '.$passwordHistoryTest->created_at->formatLocalized('%A, %d %B %Y at %I:%M %p')
+                        'message'   => 'Gagal mengganti password. Anda pernah menggunakan password yang sama pada '.$passwordHistoryTest->created_at->formatLocalized('%A, %d %B %Y - %I:%M %p')
                     ]);
                 } else {
                     // Save to history
