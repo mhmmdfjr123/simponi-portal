@@ -61,6 +61,10 @@ class User extends Authenticatable implements AuditableContract
         return $this->email;
     }
 
+    public function passwordHistories(){
+        return $this->hasMany(PasswordHistory::class);
+    }
+
     /**
      * Check username
      * @param String $username

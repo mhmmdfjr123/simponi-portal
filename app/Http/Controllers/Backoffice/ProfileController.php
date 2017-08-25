@@ -1,12 +1,14 @@
 <?php namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
+use App\Models\PasswordHistory;
 use App\Models\User;
 use App\Services\Encryption\RsaService;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class ProfileController
@@ -71,6 +73,37 @@ class ProfileController extends Controller {
             $password = $rsaService->decrypt($request->input('password'));
 
             if(count($account) > 0 && Hash::check($oldPassword, $account->password)){
+                // Check Password History
+                $passwordHistoryTest = null;
+                foreach (PasswordHistory::where('user_id', $account->id)->get() as $history) {
+                    if (Hash::check($password, $history->password)) {
+                        $passwordHistoryTest = $history;
+                        break;
+                    }
+                };
+
+                if (!is_null($passwordHistoryTest)) {
+                    return response()->json([
+                        'status'    => 'error',
+                        'message'   => 'Gagal mengganti password. Anda pernah menggunakan password yang sama pada '.$passwordHistoryTest->created_at->formatLocalized('%A, %d %B %Y at %I:%M %p')
+                    ]);
+                } else {
+                    // Save to history
+                    $newPasswordHistory = new PasswordHistory();
+                    $newPasswordHistory->user_id = $account->id;
+                    $newPasswordHistory->password = bcrypt($password);
+                    $newPasswordHistory->save();
+
+                    // Remove > 4th histories
+                    PasswordHistory::destroy(PasswordHistory::where('user_id', $account->id)
+                        ->orderBy('created_at', 'desc')
+                        ->skip(4)
+                        ->limit(100)
+                        ->get()
+                        ->pluck('id')->toArray());
+                }
+
+                // Change Password
                 $account->password = bcrypt($password);
                 $account->save();
 
