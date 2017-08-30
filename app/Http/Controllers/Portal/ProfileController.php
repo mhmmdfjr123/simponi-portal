@@ -81,12 +81,12 @@ class ProfileController extends Controller
 	    }
     }
 
-	public function showChangePasswordForm(Request $request){
+	public function showChangePasswordForm(Request $request, SimponiRsaService $rsaService){
 		if(!$request->ajax())
 			return redirect()->route('portal-dashboard');
 
 		$data = [
-
+            'publicKey' => $rsaService->getPublicKey()
         ];
 
 		return view('portal.profile.changePassword', $data);
