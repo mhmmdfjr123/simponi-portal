@@ -6,6 +6,7 @@ use App\Services\ApiClient\BranchApiClientService;
 use App\Services\Encryption\SimponiRsaService;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Handle login for portal

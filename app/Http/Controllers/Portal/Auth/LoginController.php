@@ -74,7 +74,7 @@ class LoginController extends Controller {
 
         $this->validate($request, [
             'account' => 'required',
-            'username' => 'required',
+            'username' => 'required|min:6|max:12',
             'password' => 'required|min:8',
             'email' => 'required|email',
             'noId' => 'required',
