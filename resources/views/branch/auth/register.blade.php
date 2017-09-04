@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="password" name="password" id="password" class="form-control input-lg" maxlength="30" placeholder="Password" required>
+                        <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" required>
                         <i class="ion-ios-locked-outline"></i>
                     </div>
                 </div>
