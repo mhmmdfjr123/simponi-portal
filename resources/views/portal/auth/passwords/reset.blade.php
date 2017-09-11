@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-group">
                     <div class="input-group-login">
-                        <input type="password" name="passwordNew" id="passwordNew" class="form-control  input-lg bniPasswordValidator" data-username="rian" placeholder="Password Baru">
+                        <input type="password" name="passwordNew" id="passwordNew" class="form-control  input-lg bniPasswordValidator" placeholder="Password Baru">
                         <i class="ion-ios-locked-outline"></i>
                     </div>
                 </div>
