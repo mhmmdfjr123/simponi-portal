@@ -22,7 +22,8 @@ class PageController extends Controller {
         $page = $pageModel->where('alias', $alias)->first();
 
         if(count($page) == 0)abort('404');
-        else if($page->status != 'P' || Carbon::now() < $page->publish_date_start)abort('403', 'Forbidden');
+        else if($page->status != 'P' || Carbon::now() < $page->publish_date_start)
+            abort('403', 'Forbidden');
 
         $data = [
             'page'      => $page,
