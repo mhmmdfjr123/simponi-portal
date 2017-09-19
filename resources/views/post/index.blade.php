@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="content-header with-bg bg-wisma46-mini">
-        <h1>Kategori Artikel: {!! $pageTitle !!}</h1>
+        <h1>Kategori Artikel: {{ $pageTitle }}</h1>
         <hr class="title">
     </div>
 

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="content-header">
-        <h1>{!! $page->title !!}</h1>
+        <h1>{{ $page->title }}</h1>
         <hr class="title">
     </div>
 
