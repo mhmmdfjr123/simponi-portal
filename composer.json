@@ -23,6 +23,7 @@
         "arrilot/laravel-widgets": "^3.7",
         "barryvdh/laravel-debugbar": "^2.3",
         "edvinaskrucas/settings": "2.0.0",
+        "fideloper/proxy": "^3.3",
         "guzzlehttp/guzzle": "~6.0",
         "intervention/image": "^2.3",
         "kodeine/laravel-acl": "~1.0@dev",

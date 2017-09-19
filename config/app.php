@@ -217,6 +217,7 @@ return [
         Arrilot\Widgets\ServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Fideloper\Proxy\TrustedProxyServiceProvider::class,
         Kodeine\Acl\AclServiceProvider::class,
         Krucas\Settings\Providers\SettingsServiceProvider::class,
         OwenIt\Auditing\AuditingServiceProvider::class,

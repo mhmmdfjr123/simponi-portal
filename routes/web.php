@@ -12,6 +12,7 @@
 */
 
 // LARAVEL BEHIND PROXY
+/*
 $proxyUrl    = config('app.proxy.url');
 $proxyScheme = config('app.proxy.scheme');
 
@@ -22,6 +23,7 @@ if (!empty($proxyUrl)) {
 if (!empty($proxyScheme)) {
     URL::forceScheme($proxyScheme);
 }
+*/
 
 /*
 |--------------------------------------------------------------------------
