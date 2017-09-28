@@ -31,7 +31,9 @@
                 </div>
 
                 <div class="btn-register-group">
-                    Belum mempunyai akun branch? <a href="{{ route('branch-register') }}" class="btn btn-primary btn-outline">Daftar</a>
+                    {{--Belum mempunyai akun branch? <a href="{{ route('branch-register') }}" class="btn btn-primary btn-outline">Daftar</a>--}}
+                    Belum mempunyai login branch?
+                    <div>Silakan menghubungi Unit DLK</div>
                 </div>
 
                 <input type="hidden" id="public-key" value="{{ $publicKey }}">

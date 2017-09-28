@@ -51,8 +51,7 @@
                     </span>
                 </button>
                 <a class="navbar-brand page-scroll" href="{{ route('home') }}">
-                    <img src="{{ asset('theme/front/images/logo/bni-simponi-alternative.png') }}" alt="BNI Simponi" />
-                    <!-- <img src="{{ asset('theme/front/images/logo/BNI-logo.png') }}" alt="BNI Simponi" /> -->
+                    <img src="{{ asset('theme/front/images/logo/bni-simponi-normal.png') }}" alt="BNI Simponi" />
                 </a>
             </div>
 
@@ -137,7 +136,7 @@
                     <div>Copyright &copy; 2017 - PT. Bank Negara Indonesia (Persero) Tbk.</div>
                 </div>
                 <div class="col-md-4 footer-logo">
-                    <img src="{{ asset('theme/front/images/logo/OJK-logo.png') }}" alt="BNI Simponi Otoritas Jasa Keuangan (OJK)">
+                    <img src="{{ asset('theme/front/images/logo/BNI-logo.png') }}" alt="BNI Simponi Otoritas Jasa Keuangan (OJK)">
                 </div>
             </div>
         </div>
