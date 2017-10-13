@@ -82,12 +82,12 @@
                     </div> --> --}}
                     <div class="form-group">
                         <label>Usia Anda</label>
-                        <input id="age" class="form-control numeric validatenow numstart" type="text" placeholder="Masukkan Usia Anda" data-value="0" data-min-value="17" data-message="Usia tidak boleh kurang dari 17 tahun" data-numstart-target="#retirement-age" data-numstart-message="Usia tidak boleh sama atau lebih dari Rencana Usia Pensiun" data-check="true" required />
+                        <input id="age" class="form-control numeric validatenow numstart" type="text" placeholder="Masukkan Usia Anda" data-value="0" data-min-value="17" data-message="Usia tidak boleh kurang dari 17 tahun" data-numstart-target="#retirement-age" data-numstart-message="Usia tidak boleh sama atau lebih dari Rencana Usia Pensiun" data-check="true" autocomplete="off" autocapitalize="off" autocorrect="off" required />
                         <small style="display:block"><i>Usia minimum pembukaan rekening BNI Simponi adalah 17 tahun.</i></small>
                     </div>
                     <div class="form-group">
                         <label>Rencana Usia Pensiun</label>
-                        <input id="retirement-age" class="form-control numeric validatenow" type="text" placeholder="Masukkan Usia Pensiun" data-value="0" data-min-value="40" data-message="Rencana Usia Pensiun tidak boleh kurang dari 40 tahun" required />
+                        <input id="retirement-age" class="form-control numeric validatenow" type="text" placeholder="Masukkan Usia Pensiun" data-value="0" data-min-value="40" data-message="Rencana Usia Pensiun tidak boleh kurang dari 40 tahun" autocomplete="off" autocapitalize="off" autocorrect="off" required />
                         <small style="display:block"><i>Usia Pensiun minimum untuk nasabah baru BNI Simponi adalah 40 tahun.</i></small>
                     </div>
                 </div>
@@ -96,15 +96,15 @@
                         <label>Pembayaran Dana Awal</label>
                         <div class="radio">
                             <label style="display:none">
-                                <input type="radio" name="topupRadio" required />
+                                <input type="radio" name="topupRadio" autocomplete="off" autocapitalize="off" autocorrect="off" required />
                                 Tidak ada
                             </label>
                             <label>
-                                <input type="radio" name="topupRadio" />
+                                <input type="radio" name="topupRadio" autocomplete="off" autocapitalize="off" autocorrect="off" />
                                 Sekali
                             </label>
                             <label>
-                                <input type="radio" name="topupRadio" />
+                                <input type="radio" name="topupRadio" autocomplete="off" autocapitalize="off" autocorrect="off" />
                                 Tiap tahun*
                             </label>
                         </div>
@@ -113,7 +113,7 @@
                         <label>Dana Awal</label>
                         <div class="input-group">
                             <div class="input-group-addon">Rp</div>
-                            <input id="starting-balance" class="form-control currency numeric validatenow" type="text" placeholder="Masukkan Dana Awal" data-value="0" data-min-value="250000" data-message="Dana Awal tidak boleh kurang dari Rp250.000" disabled required />
+                            <input id="starting-balance" class="form-control currency numeric validatenow" type="text" placeholder="Masukkan Dana Awal" data-value="0" data-min-value="250000" data-message="Dana Awal tidak boleh kurang dari Rp250.000" autocomplete="off" autocapitalize="off" autocorrect="off" disabled required />
                         </div>
                         <small style="display:block"><i>Dana Awal minimum adalah Rp250.000.</i></small>
                     </div>
@@ -121,11 +121,11 @@
                         <label>Tipe Pembayaran Iuran</label>
                         <div class="radio">
                             <label>
-                                <input type="radio" name="billingRadio" required />
+                                <input type="radio" name="billingRadio" autocomplete="off" autocapitalize="off" autocorrect="off" required />
                                 Bulanan
                             </label>
                             <label>
-                                <input type="radio" name="billingRadio" />
+                                <input type="radio" name="billingRadio" autocomplete="off" autocapitalize="off" autocorrect="off" />
                                 Tahunan
                             </label>
                         </div>
@@ -134,13 +134,13 @@
                         <label>Iuran</label>
                         <div class="input-group">
                             <div class="input-group-addon">Rp</div>
-                            <input class="form-control currency numeric" type="text" placeholder="Masukkan Iuran" data-value="0" disabled required />
+                            <input class="form-control currency numeric" type="text" placeholder="Masukkan Iuran" data-value="0" autocomplete="off" autocapitalize="off" autocorrect="off" disabled required />
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Kenaikan Iuran Per Tahun</label>
                         <div class="input-group">
-                            <input id="billing-increment" class="form-control percentage numeric" type="text" placeholder="Masukkan Kenaikan Iuran Per Tahun" data-value="0" disabled />
+                            <input id="billing-increment" class="form-control percentage numeric" type="text" placeholder="Masukkan Kenaikan Iuran Per Tahun" data-value="0" autocomplete="off" autocapitalize="off" autocorrect="off" disabled />
                             <div class="input-group-addon">%</div>
                         </div>
                         <small style="display:block"><i>Rata-rata tingkat inflasi di Indonesia adalah 3-6% per tahun. Kosongkan jika tidak ingin ada kenaikan iuran.</i></small>
@@ -158,7 +158,7 @@
                     <div class="form-group">
                         <label>Tingkat Bunga DPLK</label>
                         <div class="input-group">
-                            <input id="interest-rate" class="form-control percentage numeric validatenow" type="text" placeholder="Masukkan Tingkat Bunga DPLK" data-value="0" data-min-value="1" data-max-value="25" data-message="Target Investasi tidak boleh lebih rendah dari 1% dan lebih tinggi dari 25%" required />
+                            <input id="interest-rate" class="form-control percentage numeric validatenow" type="text" placeholder="Masukkan Tingkat Bunga DPLK" data-value="0" data-min-value="1" data-max-value="25" data-message="Target Investasi tidak boleh lebih rendah dari 1% dan lebih tinggi dari 25%" autocomplete="off" autocapitalize="off" autocorrect="off" required />
                             <div class="input-group-addon">%</div>
                         </div>
                         <small style="display:block"><i>Tingkat Bunga DPLK minimum 1% dan maksimum 25%. Lihat <a href="/faq#faq-category-25" target="_blank">FAQ</a> untuk melihat tingkat bunga dari setiap paket investasi DPLK BNI.</i></small>
