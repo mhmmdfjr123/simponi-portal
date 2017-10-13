@@ -185,14 +185,13 @@ $('.calculate').click(function () {
             var today = new Date();
             var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));*/
 
-            /*var age = parseInt($('#age option:selected').attr('data-value')),
-                retirementage = parseInt($('#retirement-age option:selected').attr('data-value')),*/
             var age = parseInt($('#age').attr('data-value')),
                 retirementage = parseInt($('#retirement-age').attr('data-value')),
                 durationmonth = (retirementage - age) * 12,
                 datachart = [ [], [], [], [], [] ]; //each arrays contains 25 to 5 years before retirement age of data
-                countlast = durationmonth / 60;
-                countlast = (countlast > 4) ? 4 : (countlast - 1);
+                datachartperiod = (durationmonth < 120) ? 12 : 60;
+                countlast = durationmonth / datachartperiod;
+                countlast = (countlast > (durationmonth < 120 ? 9 : 4)) ? (durationmonth < 120 ? 9 : 4) : (countlast - 1);
                 isannualstartingbalance = $('input[name="topupRadio"]:checked').parent().is(':last-child'),
                 startingbalance = parseFloat($('#starting-balance').attr('data-value')),
                 accumulatedstartingbalance = startingbalance,
@@ -217,8 +216,8 @@ $('.calculate').click(function () {
                     accumulatedfund -= administrationfee + (accumulatedfund * managementfee);
                     billing += (billing * billingincrement);
                     var tmpcountlast = countlast - datachart[0].length;
-                    if (i == (durationmonth - (tmpcountlast * 60))) {
-                        datachart[0].push(retirementage - (tmpcountlast * 5));
+                    if (i == (durationmonth - (tmpcountlast * datachartperiod))) {
+                        datachart[0].push(retirementage - (tmpcountlast * (durationmonth < 120 ? 1 : 5)));
                         datachart[1].push(accumulatedstartingbalance);
                         datachart[2].push(accumulatedbilling);
                         datachart[3].push(accumulatedfund - (accumulatedstartingbalance + accumulatedbilling));
@@ -229,7 +228,7 @@ $('.calculate').click(function () {
             }
             var chartAnimateNumber = function (a) { return { number: a, numberStep: $.animateNumber.numberStepFactories.separator('.') } };
             $('#total-funding span').text('Rp').siblings('b').animateNumber(chartAnimateNumber(parseInt(accumulatedstartingbalance + accumulatedbilling)), 1800);
-            $('#total-development span').text('Rp').siblings('b').animateNumber(chartAnimateNumber(parseInt(datachart[3][datachart[3].length - 1])), 1800);
+            $('#total-development span').text('Rp').siblings('b').animateNumber(chartAnimateNumber(parseInt(accumulatedfund - (accumulatedstartingbalance + accumulatedbilling)), 1800);
             $('#total-fund span').text('Rp').siblings('b').animateNumber(chartAnimateNumber(parseInt(accumulatedfund)), 1800);
             $('iframe.chartjs-hidden-iframe').remove();
             ctx.after('<canvas id="simulation" class="col-xs-12" height="250"></canvas>').remove();
