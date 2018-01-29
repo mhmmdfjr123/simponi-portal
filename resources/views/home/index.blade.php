@@ -118,7 +118,6 @@
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2 text-center">
                     <h2 class="section-heading">Apa itu BNI Simponi?</h2>
-                    <hr class="title">
                     <div class="text-faded">
                         <p>BNI Simponi adalah <strong>layanan program pensiun</strong> yang diselenggarakan oleh Dana Pensiun Lembaga Keuangan PT. Bank Negara Indonesia (Persero) Tbk  (DPLK BNI) sejak tahun 1994 berdasarkan Undang-Undang Nomor 11 Tahun 1992 tentang Dana Pensiun. Selama 15 tahun terakhir sejak tahun 2001, DPLK BNI berhasil menjadi <strong>market leader</strong> dalam industri pengelolaan dana pensiun di Indonesia.</p>
                     </div>
@@ -128,15 +127,14 @@
         </div>
     </section>
 
-    <section id="overview" class="section-left">
+    <section id="overview" class="section-left" style="padding: 80px 0 0 0">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-illustration">
-                    <img src="{{ asset('theme/front/images/youth.png') }}" class="img-responsive">
+                <div class="col-md-5 col-illustration">
+                    <img src="{{ asset('theme/front/images/dplk-timer.png') }}" class="img-responsive" style="">
                 </div>
-                <div class="col-md-6 col-content">
+                <div class="col-md-7 col-content" style="padding-bottom: 50px">
                     <h2 class="section-heading">Masa depan anda ditentukan hari ini.</h2>
-                    <hr class="title">
                     <p>Pensiun adalah masa saat Anda memiliki waktu luang untuk beribadah, berkumpul dengan keluarga, berkeliling dunia, atau melakukan kegiatan menyenangkan lainnya. BNI Simponi hadir untuk membantu Anda mewujudkan masa pensiun impian Anda.</p>
                     <a class="page-scroll btn btn-md btn-primary btn-outline sr-button" href="#services">Lihat Produk & Layanan</a>
                 </div>

@@ -51,7 +51,8 @@
                     </span>
                 </button>
                 <a class="navbar-brand page-scroll" href="{{ route('home') }}">
-                    <img src="{{ asset('theme/front/images/logo/bni-simponi-normal.png') }}" alt="BNI Simponi" />
+                    {{--<img src="{{ asset('theme/front/images/logo/bni-simponi-normal.png') }}" alt="BNI Simponi" />--}}
+                    <img src="{{ asset('theme/front/images/logo/BNI-logo.png') }}" alt="BNI Simponi" />
                 </a>
             </div>
 

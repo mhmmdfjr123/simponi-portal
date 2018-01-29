@@ -2,28 +2,33 @@
     .sans-serif-font;
     .transition-all;
 
-    background-color: @theme-secondary;
-    border-bottom: 1px solid darken(@theme-secondary, 4%);
+    // background-color: @theme-secondary;
+    // border-bottom: 1px solid darken(@theme-secondary, 4%);
+    background-color: @theme-white;
+    border-bottom: 1px solid darken(@theme-white, 13%);
 
     .navbar-collapse {
-        border-color: darken(@theme-secondary, 4%);
+        // border-color: darken(@theme-secondary, 4%);
+        border-color: darken(@theme-white, 4%);
     }
 
     .navbar-header {
         .navbar-brand {
             img {
                 margin-top: -3px;
-                width: 176px;
+                width: 105px;
             }
         }
 
         .navbar-toggle {
             font-weight: 700;
             font-size: 12px;
-            color: @gray-lighter;
+            // color: @gray-lighter;
+            color: @theme-primary;
             background-color: transparent;
             text-transform: uppercase;
-            border-color: @gray-lighter;
+            // border-color: @gray-lighter;
+            border-color: @theme-primary;
         }
     }
 
@@ -31,12 +36,16 @@
         > li {
             .dropdown-menu {
                 .divider {
-                    background-color: darken(@theme-secondary, 8%);;
+                    // background-color: darken(@theme-secondary, 8%);;
+                    background-color: darken(@theme-white, 8%);;
                 }
+
+                border-top: 3px solid @theme-primary;
             }
 
             .dropdown-menu > li > a {
-                color: @gray-lighter !important;
+                // color: @gray-lighter !important;
+                color: @theme-secondary;
             }
             &.open > a,
             &.open > a:focus,
@@ -46,10 +55,12 @@
                 font-weight: 700;
                 font-size: 13px;
                 background-color: transparent;
-                color: @gray-lighter;
+                // color: @gray-lighter;
+                color: @theme-secondary;
 
                 &:hover {
-                    color: @orange-lighter;
+                    // color: @orange-lighter;
+                    color: @theme-primary;
                 }
 
                 &.login {
@@ -81,20 +92,23 @@
 
     @media (min-width: @screen-md) {
         .nav > li > .dropdown-menu {
-            background-color: darken(@theme-secondary, 4%);
+            // background-color: darken(@theme-secondary, 4%);
 
             a {
-                color: @gray-lighter;
+                // color: @gray-lighter;
+                color: @theme-secondary;
                 padding-top: 6px;
                 padding-bottom: 6px;
                 font-weight: 300;
 
                 &:hover {
                     background-color: @theme-primary;
+                    color: @theme-white;
                 }
 
                 &:focus {
                     background-color: @theme-primary;
+                    color: @theme-white;
                     outline: none;
                 }
             }
@@ -185,12 +199,13 @@
         }
 
         .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
-            background-color: darken(@theme-secondary, 10%) !important;
+            background-color: @theme-primary !important;
         }
     }
 
     .navbar-collapse{
-        background-color: @theme-secondary;
+        // background-color: @theme-secondary;
+        background-color: @theme-white;
         position: fixed;
         top: 0;
         transition: right 0.2s ease-out;
@@ -203,7 +218,7 @@
     }
 
     .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
-        background-color: @orange-light !important;
+        background-color: @theme-primary !important;
     }
 }
 
@@ -266,10 +281,12 @@
     }
 
     .nav > li > .dropdown-menu {
-        background-color: darken(@theme-secondary, 4%);
+        // background-color: darken(@theme-secondary, 4%);
+        background-color: darken(@theme-white, 4%);
+        border-top: 1px dashed @theme-primary !important;
 
         a {
-            color: @gray-lighter;
+            color: lighten(@theme-secondary, 4%);;
             padding-top: 5px;
             padding-bottom: 5px;
             font-weight: 300;
