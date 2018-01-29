@@ -1,4 +1,4 @@
-@extends('layouts.front', ['bodyClass' => 'with-affix-menu'])
+@extends('layouts.front', ['bodyClass' => ''])
 
 @section('content')
     <header class="sim-carousel">
@@ -57,7 +57,7 @@
         <!-- End of Carousel -->
     </header>
 
-    <section class="section-box featured bg-featured">
+    <section class="section-box featured bg-featured-alt">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
@@ -113,7 +113,7 @@
         </div>
     </section>
 
-    <section class="bg-secondary" id="about">
+    <section class="bg-secondary-alt" id="about">
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2 text-center">
@@ -127,7 +127,7 @@
         </div>
     </section>
 
-    <section id="overview" class="section-left" style="padding: 80px 0 0 0">
+    <section id="overview" class="section-left bg-secondary-alt2" style="padding: 80px 0 0 0">
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-illustration">
