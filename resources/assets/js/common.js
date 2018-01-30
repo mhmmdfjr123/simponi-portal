@@ -73,7 +73,7 @@
         }
     });
 
-    IWannaKillYou();
+    // IWannaKillYou();
 }(jQuery));
 
 function load(page,div){

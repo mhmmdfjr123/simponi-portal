@@ -228,7 +228,7 @@ $('.calculate').click(function () {
             }
             var chartAnimateNumber = function (a) { return { number: a, numberStep: $.animateNumber.numberStepFactories.separator('.') } };
             $('#total-funding span').text('Rp').siblings('b').animateNumber(chartAnimateNumber(parseInt(accumulatedstartingbalance + accumulatedbilling)), 1800);
-            $('#total-development span').text('Rp').siblings('b').animateNumber(chartAnimateNumber(parseInt(accumulatedfund - (accumulatedstartingbalance + accumulatedbilling)), 1800);
+            $('#total-development span').text('Rp').siblings('b').animateNumber(chartAnimateNumber(parseInt(accumulatedfund - (accumulatedstartingbalance + accumulatedbilling)), 1800));
             $('#total-fund span').text('Rp').siblings('b').animateNumber(chartAnimateNumber(parseInt(accumulatedfund)), 1800);
             $('iframe.chartjs-hidden-iframe').remove();
             ctx.after('<canvas id="simulation" class="col-xs-12" height="250"></canvas>').remove();

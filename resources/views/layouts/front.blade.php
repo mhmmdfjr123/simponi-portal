@@ -50,7 +50,7 @@
                         <span class="hamburger-inner"></span>
                     </span>
                 </button>
-                <a class="navbar-brand page-scroll" href="{{ route('home') }}">
+                <a class="navbar-brand page-scroll" href="http://www.bni.co.id">
                     {{--<img src="{{ asset('theme/front/images/logo/bni-simponi-normal.png') }}" alt="BNI Simponi" />--}}
                     <img src="{{ asset('theme/front/images/logo/BNI-logo.png') }}" alt="BNI Simponi" />
                 </a>
@@ -137,7 +137,8 @@
                     <div>Copyright &copy; 2017 - PT. Bank Negara Indonesia (Persero) Tbk.</div>
                 </div>
                 <div class="col-md-4 footer-logo">
-                    <img src="{{ asset('theme/front/images/logo/BNI-logo.png') }}" alt="BNI Simponi Otoritas Jasa Keuangan (OJK)">
+                    <img src="{{ asset('theme/front/images/logo/logo-pensiun-small.png') }}" alt="Ayo Pensiun">
+                    <img src="{{ asset('theme/front/images/logo/bni-simponi-normal-alt.png') }}" alt="BNI Simponi" style="height: 25px; margin-top: 5px">
                 </div>
             </div>
         </div>
@@ -168,9 +169,5 @@
         @endif
     </script>
 
-    <!--
-    " I hate piracy... Don't steal my works to be yours.. "
-    Author: Efriandika Pratama <efriandika.pratama[at]bni.co.id>
-    -->
 </body>
 </html>
