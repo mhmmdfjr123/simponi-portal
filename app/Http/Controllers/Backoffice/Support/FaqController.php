@@ -44,7 +44,7 @@ class FaqController extends Controller {
 		try {
 			$obj = FaqCategory::find($id);
 
-			if(count($obj) > 0){
+			if(!is_null($obj)) {
 				$data = [
 					'pageTitle'  => 'Ubah Kategori',
 					'obj'        => $obj
@@ -65,7 +65,7 @@ class FaqController extends Controller {
 		try {
 			$obj = FaqCategory::find($id);
 
-			if(count($obj) > 0){
+            if(!is_null($obj)) {
 				$obj->delete();
 
 				return redirect('backoffice/support/faq')->with('success', 'Kategori FAQ berhasil dihapus.');
@@ -215,7 +215,7 @@ class FaqController extends Controller {
 		try {
 			$obj = Faq::find($id);
 
-			if(count($obj) > 0){
+            if(!is_null($obj)) {
 				$obj->delete();
 
 				return redirect('backoffice/support/faq')->with('success', 'Item FAQ berhasil dihapus.');

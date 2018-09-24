@@ -152,7 +152,7 @@ class UserController extends Controller {
 		try {
 			$obj = User::find($id);
 
-			if(count($obj) > 0){
+			if(!is_null($obj)){
 				$data = [
                     'pageTitle' => 'Ubah Pengguna',
 					'obj'       => $obj,
@@ -185,7 +185,7 @@ class UserController extends Controller {
 		try {
 			$obj = User::find($id);
 
-			if(count($obj) > 0){
+            if(!is_null($obj)) {
 				$obj->delete();
 
 				return redirect('backoffice/administration/user')->with('success', 'Data berhasil dihapus.');
@@ -213,7 +213,7 @@ class UserController extends Controller {
 		try {
 			$obj = $userModel::onlyTrashed()->find($id);
 
-			if(count($obj) > 0){
+            if(!is_null($obj)) {
 				$obj->restore();
 
 				return redirect('backoffice/administration/user')->with('warning', 'Pengguna telah dipulihkan dari daftar hapus (trash).');
@@ -240,7 +240,7 @@ class UserController extends Controller {
 		try {
 			$obj = $userModel::onlyTrashed()->find($id);
 
-			if(count($obj) > 0){
+            if(!is_null($obj)) {
 				$obj->forceDelete();
 
 				return redirect('backoffice/administration/user')->with('success', 'Pengguna #'.$obj->id.' telah dihapus secara permanen.');

@@ -118,7 +118,7 @@ class PostController extends Controller {
     public function edit(Post $postModel, PostCategory $postCategory, $id){
         $post = $postModel->find($id);
 
-        if(count($post) == 0)
+        if(is_null($post))
             return redirect('backoffice/post')->withErrors(['notFound', 'Data tidak ditemukan']);
 
         $data = [
@@ -188,7 +188,7 @@ class PostController extends Controller {
         try {
             $obj = Post::find($id);
 
-            if(count($obj) > 0){
+            if(!is_null($obj)) {
                 $obj->delete();
                 return redirect('backoffice/post')->with('success', 'Data berhasil dihapus.');
             }else{
@@ -209,7 +209,7 @@ class PostController extends Controller {
         try {
             $obj = $postModel::onlyTrashed()->find($id);
 
-            if(count($obj) > 0){
+            if(!is_null($obj)) {
                 $obj->restore();
 
                 return redirect('backoffice/post')->with('warning', 'Data telah dipulihkan dari daftar hapus (trash).');
@@ -231,7 +231,7 @@ class PostController extends Controller {
         try {
             $obj = $postModel::onlyTrashed()->find($id);
 
-            if(count($obj) > 0){
+            if(!is_null($obj)) {
                 $obj->forceDelete();
 
                 return redirect('backoffice/post')->with('success', 'Data #'.$obj->id.' telah dihapus secara permanen.');

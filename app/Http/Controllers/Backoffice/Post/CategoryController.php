@@ -52,7 +52,7 @@ class CategoryController extends Controller {
         try {
             $obj = PostCategory::find($id);
 
-            if(count($obj) > 0){
+            if(!is_null($obj)){
                 $data = [
                     'pageTitle'  => 'Ubah Kategori',
                     'listParent' => $postCategoryModel->listParent($id),
@@ -77,7 +77,7 @@ class CategoryController extends Controller {
 	        if(in_array($obj->id, $this->protectedID))
 		        return redirect('backoffice/post/category')->with('warning', 'Kategori ini tidak dapat dihapus.');
 
-            if(count($obj) > 0){
+            if(!is_null($obj)){
                 $obj->delete();
 
                 return redirect('backoffice/post/category')->with('success', 'Data berhasil dihapus.');
@@ -102,7 +102,7 @@ class CategoryController extends Controller {
             if($id != ""){
                 $postCategory = PostCategory::find($id);
 
-                if(count($postCategory) == 0){
+                if(is_null($postCategory)){
                     return response()->json([
                         'status' => 'error',
                         'message'=> 'Data tidak ditemukan.'

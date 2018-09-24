@@ -174,7 +174,7 @@ class MenuController extends Controller {
         try {
             $obj = Menu::find($request->get('id'));
 
-            if(count($obj) > 0){
+            if(!is_null($obj)) {
                 $obj->delete();
 
                 return response()->json([
@@ -214,7 +214,7 @@ class MenuController extends Controller {
         try {
             $obj = MenuCategory::find($id);
 
-            if(count($obj) > 0){
+            if(!is_null($obj)) {
                 $data = [
                     'pageTitle'  => 'Ubah Kategori Menu',
                     'obj'        => $obj
@@ -238,7 +238,7 @@ class MenuController extends Controller {
             /*
              * Cannot delete menu category with id < 0
              */
-            if(count($obj) > 0 && $obj->id > 0){
+            if(!is_null($obj) && $obj->id > 0){
                 $obj->delete();
 
                 return redirect('backoffice/layout/menu')->with('success', 'Kategori menu berhasil dihapus.');

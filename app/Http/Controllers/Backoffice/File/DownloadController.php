@@ -150,7 +150,7 @@ class DownloadController extends Controller {
         try {
             $obj = Download::findOrFail($id);
 
-            if(count($obj) > 0){
+            if(!is_null($obj)) {
             	$filename = public_path($this->uploadPath).'/'.$obj->file_name;
 
             	if(\File::exists($filename))

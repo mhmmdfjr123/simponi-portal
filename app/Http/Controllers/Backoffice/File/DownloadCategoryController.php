@@ -51,7 +51,7 @@ class DownloadCategoryController extends Controller {
         try {
             $obj = DownloadCategory::findOrFail($id);
 
-            if(count($obj) > 0){
+            if(!is_null($obj)) {
                 $data = [
                     'pageTitle'  => 'Ubah Kategori Download',
                     'obj'        => $obj
@@ -72,7 +72,7 @@ class DownloadCategoryController extends Controller {
         try {
             $obj = DownloadCategory::find($id);
 
-            if(count($obj) > 0 && !in_array($obj->id, $this->protectedID)){
+            if(!is_null($obj) && !in_array($obj->id, $this->protectedID)){
                 $obj->delete();
 
                 return redirect('backoffice/file/download/category')->with('success', 'Data berhasil dihapus.');

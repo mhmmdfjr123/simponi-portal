@@ -122,7 +122,7 @@ class LoginController extends Controller
             ->where('id', '<>', Session::getId())
             ->delete();
 
-        if(count($user->roles()) == 0) {
+        if(is_null($user->roles())) {
             return $this->revokeLogin($request)->withErrors([
                 $this->username() => 'Maaf anda tidak dapat login karena tidak memiliki hak akses. Harap hubungi administrator untuk info lebih lanjut'
             ]);

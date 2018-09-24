@@ -107,7 +107,7 @@ class PageController extends Controller {
     public function showEditForm(Page $pageModel, Guard $auth, $id){
         $page = $pageModel->find($id);
 
-        if(count($page) == 0)
+        if(is_null($page))
             return redirect('backoffice/pages')->withErrors(['notFound', 'Data tidak ditemukan']);
 
         // Check Authorization
@@ -193,7 +193,7 @@ class PageController extends Controller {
         try {
             $obj = Page::find($id);
 
-            if(count($obj) > 0){
+            if(!is_null($obj)) {
                 $obj->delete();
 
                 // set parent of child to null
@@ -218,7 +218,7 @@ class PageController extends Controller {
         try {
             $obj = $pageModel::onlyTrashed()->find($id);
 
-            if(count($obj) > 0){
+            if(!is_null($obj)) {
                 $obj->restore();
 
                 return redirect('backoffice/pages')->with('warning', 'Data telah dipulihkan dari daftar hapus (trash).');
@@ -240,7 +240,7 @@ class PageController extends Controller {
         try {
             $obj = $pageModel::onlyTrashed()->find($id);
 
-            if(count($obj) > 0){
+            if(!is_null($obj)) {
                 $obj->forceDelete();
 
                 return redirect('backoffice/pages')->with('success', 'Data #'.$obj->id.' telah dihapus secara permanen.');
