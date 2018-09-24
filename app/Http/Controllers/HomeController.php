@@ -30,17 +30,17 @@ class HomeController extends Controller
         $promotionCat = PostCategory::find(2);
         $ffsCat = DownloadCategory::find(1);
 
-        if(count($newsCat) == 0) {
+        if(is_null($newsCat)) {
             echo 'Default article category has not been setup. (Cat ID = 1 :=> berita)';
             exit;
         }
 
-        if(count($promotionCat) == 0) {
+        if(is_null($promotionCat)) {
             echo 'Default article category has not been setup. (Cat ID = 2 :=> promotion)';
             exit;
         }
 
-        if(count($ffsCat) == 0) {
+        if(is_null($ffsCat)) {
             echo 'Default download list for fund fact sheet has not been setup. (Cat ID = 1 :=> Fund Fact Sheet)';
             exit;
         }

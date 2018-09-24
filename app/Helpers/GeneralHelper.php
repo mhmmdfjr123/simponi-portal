@@ -5,17 +5,17 @@ if (!function_exists('menuUrl')){
      * Generate Menu URL
      *
      * @param $data
-     * @param array $related
+     * @param $related
      * @return string
      */
-    function menuUrl($data, $related = array()){
+    function menuUrl($data, $related = ''){
         if($data->menu_type == 'S')
             return url($data->menu_type_param);
-        else if($data->menu_type == 'PA' && count($related) > 0)
+        else if($data->menu_type == 'PA' && !is_null($related))
             return url($related->alias);
-        else if($data->menu_type == 'PO' && count($related) > 0)
+        else if($data->menu_type == 'PO' && !is_null($related))
             return url('category/'.$related->alias);
-        else if($data->menu_type == 'GA' && count($related) > 0)
+        else if($data->menu_type == 'GA' && !is_null($related))
             return url('gallery/'.$related->alias);
         else
             return $data->menu_type_param;
