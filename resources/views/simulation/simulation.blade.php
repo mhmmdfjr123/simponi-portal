@@ -172,7 +172,7 @@
                     </div>
                     <div class="form-group">
                         <label>Biaya Pengelolaan Dana**</label>
-                        <input id="management-fee" class="form-control" type="text" value="0.85% dari akumulasi dana per tahun" data-value="0.0085" disabled />
+                        <input id="management-fee" class="form-control" type="text" value="0.95% dari akumulasi dana per tahun" data-value="0.0095" disabled />
                     </div>
                     <div class="form-group">
                         <a class="calculate col-xs-12 btn btn-lg btn-primary">Hitung</a>
