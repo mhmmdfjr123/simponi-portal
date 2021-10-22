@@ -13,7 +13,7 @@ return [
     'portal' => [
 		'api' => [
 			'client_type'   => 'HEAD_SIMPONIWEB',
-			'base_uri'      => env('PORTAL_API_BASE_URI', 'http://localhost'),
+			'base_uri'      => env('PORTAL_API_BASE_URI', 'http://34.101.73.80:8081'),
             'encryption' => env('PORTAL_API_ENCRYPTION', false)
 		]
     ],
@@ -82,7 +82,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://34.101.73.80:8081'),
 
     /*
     |--------------------------------------------------------------------------

@@ -1,14 +1,13 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.4.31 on 2017-09-19.
+ * Generated for Laravel 5.4.36 on 2021-10-21 13:16:05.
+ *
+ * This file should not be included in your code, only analyzed by your IDE!
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
  */
-namespace  {
-    exit("This file should not be included, only analyzed by your IDE");
-}
 
 namespace Illuminate\Support\Facades { 
 
@@ -416,7 +415,7 @@ namespace Illuminate\Support\Facades {
          * Register a deferred provider and service.
          *
          * @param string $provider
-         * @param string $service
+         * @param string|null $service
          * @return void 
          * @static 
          */ 
@@ -3356,21 +3355,20 @@ namespace Illuminate\Support\Facades {
          * Usage: DB::executeFunction('function_name(:binding_1,:binding_n)', [':binding_1' => 'hi', ':binding_n' =>
          * 'bye'], PDO::PARAM_LOB).
          *
-         * @author Tylerian - jairo.eog@outlook.com
-         * @param string $sql (mixed)
+         * @param string $functionName
          * @param array $bindings (kvp array)
          * @param int $returnType (PDO::PARAM_*)
          * @param int $length
          * @return mixed $returnType
          * @static 
          */ 
-        public static function executeFunction($sql, $bindings = array(), $returnType = 2, $length = null)
+        public static function executeFunction($functionName, $bindings = array(), $returnType = 2, $length = null)
         {
-            return \Yajra\Oci8\Oci8Connection::executeFunction($sql, $bindings, $returnType, $length);
+            return \Yajra\Oci8\Oci8Connection::executeFunction($functionName, $bindings, $returnType, $length);
         }
         
         /**
-         * Execute a PL/SQL Procedure and return its result.
+         * Execute a PL/SQL Procedure and return its results.
          * 
          * Usage: DB::executeProcedure($procedureName, $bindings).
          * $bindings looks like:
@@ -3380,13 +3378,71 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $procedureName
          * @param array $bindings
-         * @param mixed $returnType
+         * @return bool 
+         * @static 
+         */ 
+        public static function executeProcedure($procedureName, $bindings = array())
+        {
+            return \Yajra\Oci8\Oci8Connection::executeProcedure($procedureName, $bindings);
+        }
+        
+        /**
+         * Execute a PL/SQL Procedure and return its cursor result.
+         * 
+         * Usage: DB::executeProcedureWithCursor($procedureName, $bindings).
+         * 
+         * https://docs.oracle.com/cd/E17781_01/appdev.112/e18555/ch_six_ref_cur.htm#TDPPH218
+         *
+         * @param string $procedureName
+         * @param array $bindings
+         * @param string $cursorName
          * @return array 
          * @static 
          */ 
-        public static function executeProcedure($procedureName, $bindings, $returnType = 4)
+        public static function executeProcedureWithCursor($procedureName, $bindings = array(), $cursorName = ':cursor')
         {
-            return \Yajra\Oci8\Oci8Connection::executeProcedure($procedureName, $bindings, $returnType);
+            return \Yajra\Oci8\Oci8Connection::executeProcedureWithCursor($procedureName, $bindings, $cursorName);
+        }
+        
+        /**
+         * Creates sql command to run a procedure with bindings.
+         *
+         * @param string $procedureName
+         * @param array $bindings
+         * @param string|bool $cursor
+         * @return string 
+         * @static 
+         */ 
+        public static function createSqlFromProcedure($procedureName, $bindings, $cursor = false)
+        {
+            return \Yajra\Oci8\Oci8Connection::createSqlFromProcedure($procedureName, $bindings, $cursor);
+        }
+        
+        /**
+         * Creates statement from procedure.
+         *
+         * @param string $procedureName
+         * @param array $bindings
+         * @param string|bool $cursorName
+         * @return \PDOStatement 
+         * @static 
+         */ 
+        public static function createStatementFromProcedure($procedureName, $bindings, $cursorName = false)
+        {
+            return \Yajra\Oci8\Oci8Connection::createStatementFromProcedure($procedureName, $bindings, $cursorName);
+        }
+        
+        /**
+         * Create statement from function.
+         *
+         * @param string $functionName
+         * @param array $bindings
+         * @return \PDOStatement 
+         * @static 
+         */ 
+        public static function createStatementFromFunction($functionName, $bindings)
+        {
+            return \Yajra\Oci8\Oci8Connection::createStatementFromFunction($functionName, $bindings);
         }
         
         /**
@@ -3423,6 +3479,31 @@ namespace Illuminate\Support\Facades {
         public static function withSchemaPrefix($grammar)
         {
             return \Yajra\Oci8\Oci8Connection::withSchemaPrefix($grammar);
+        }
+        
+        /**
+         * Add bindings to statement.
+         *
+         * @param array $bindings
+         * @param \PDOStatement $stmt
+         * @return \PDOStatement 
+         * @static 
+         */ 
+        public static function addBindingsToStatement($stmt, $bindings)
+        {
+            return \Yajra\Oci8\Oci8Connection::addBindingsToStatement($stmt, $bindings);
+        }
+        
+        /**
+         * Determine if the given exception was caused by a lost connection.
+         *
+         * @param \Exception $e
+         * @return bool 
+         * @static 
+         */ 
+        public static function causedByLostConnection($e)
+        {
+            return \Yajra\Oci8\Oci8Connection::causedByLostConnection($e);
         }
         
         /**
@@ -5320,7 +5401,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function debug($message, $context = array())
@@ -5333,7 +5414,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function info($message, $context = array())
@@ -5346,7 +5427,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function notice($message, $context = array())
@@ -5359,7 +5440,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function warning($message, $context = array())
@@ -5372,7 +5453,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function error($message, $context = array())
@@ -5385,7 +5466,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function critical($message, $context = array())
@@ -5398,7 +5479,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function alert($message, $context = array())
@@ -5411,7 +5492,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $message The log message
          * @param array $context The log context
-         * @return Boolean Whether the record has been processed
+         * @return bool Whether the record has been processed
          * @static 
          */ 
         public static function emergency($message, $context = array())
@@ -6948,7 +7029,7 @@ namespace Illuminate\Support\Facades {
          * @param array $cookies The COOKIE parameters
          * @param array $files The FILES parameters
          * @param array $server The SERVER parameters
-         * @param string|resource $content The raw body data
+         * @param string|resource|null $content The raw body data
          * @static 
          */ 
         public static function initialize($query = array(), $request = array(), $attributes = array(), $cookies = array(), $files = array(), $server = array(), $content = null)
@@ -6981,7 +7062,7 @@ namespace Illuminate\Support\Facades {
          * @param array $cookies The request cookies ($_COOKIE)
          * @param array $files The request files ($_FILES)
          * @param array $server The server parameters ($_SERVER)
-         * @param string $content The raw body data
+         * @param string|resource|null $content The raw body data
          * @return static 
          * @static 
          */ 
@@ -7183,8 +7264,8 @@ namespace Illuminate\Support\Facades {
          * 
          * Order of precedence: PATH (routing placeholders or custom attributes), GET, BODY
          *
-         * @param string $key the key
-         * @param mixed $default the default value if the parameter key does not exist
+         * @param string $key The key
+         * @param mixed $default The default value if the parameter key does not exist
          * @return mixed 
          * @static 
          */ 
@@ -7281,7 +7362,7 @@ namespace Illuminate\Support\Facades {
          *
          * @return string|null The client IP address
          * @see getClientIps()
-         * @see http://en.wikipedia.org/wiki/X-Forwarded-For
+         * @see https://wikipedia.org/wiki/X-Forwarded-For
          * @static 
          */ 
         public static function getClientIp()
@@ -7628,7 +7709,7 @@ namespace Illuminate\Support\Facades {
          * Gets the mime type associated with the format.
          *
          * @param string $format The format
-         * @return string The associated mime type (null if not found)
+         * @return string|null The associated mime type (null if not found)
          * @static 
          */ 
         public static function getMimeType($format)
@@ -7685,8 +7766,8 @@ namespace Illuminate\Support\Facades {
          *  * _format request attribute
          *  * $default
          *
-         * @param string $default The default format
-         * @return string The request format
+         * @param string|null $default The default format
+         * @return string|null The request format
          * @static 
          */ 
         public static function getRequestFormat($default = 'html')
@@ -7810,13 +7891,31 @@ namespace Illuminate\Support\Facades {
          * Checks whether the method is cacheable or not.
          *
          * @see https://tools.ietf.org/html/rfc7231#section-4.2.3
-         * @return bool 
+         * @return bool True for GET and HEAD, false otherwise
          * @static 
          */ 
         public static function isMethodCacheable()
         {
             //Method inherited from \Symfony\Component\HttpFoundation\Request            
             return \Illuminate\Http\Request::isMethodCacheable();
+        }
+        
+        /**
+         * Returns the protocol version.
+         * 
+         * If the application is behind a proxy, the protocol version used in the
+         * requests between the client and the proxy and between the proxy and the
+         * server might be different. This returns the former (from the "Via" header)
+         * if the proxy is trusted (see "setTrustedProxies()"), otherwise it returns
+         * the latter (from the "SERVER_PROTOCOL" server parameter).
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getProtocolVersion()
+        {
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::getProtocolVersion();
         }
         
         /**
@@ -7924,7 +8023,7 @@ namespace Illuminate\Support\Facades {
          * It works if your JavaScript library sets an X-Requested-With HTTP header.
          * It is known to work with common JavaScript frameworks:
          *
-         * @see http://en.wikipedia.org/wiki/List_of_Ajax_frameworks#JavaScript
+         * @see https://wikipedia.org/wiki/List_of_Ajax_frameworks#JavaScript
          * @return bool true if the request is an XMLHttpRequest, false otherwise
          * @static 
          */ 
@@ -10188,6 +10287,18 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Get the full path for the file at the given "short" path.
+         *
+         * @param string $path
+         * @return string 
+         * @static 
+         */ 
+        public static function path($path)
+        {
+            return \Illuminate\Filesystem\FilesystemAdapter::path($path);
+        }
+        
+        /**
          * Get the contents of a file.
          *
          * @param string $path
@@ -10387,12 +10498,13 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $path
          * @param \DateTimeInterface $expiration
+         * @param array $options
          * @return string 
          * @static 
          */ 
-        public static function temporaryUrl($path, $expiration)
+        public static function temporaryUrl($path, $expiration, $options = array())
         {
-            return \Illuminate\Filesystem\FilesystemAdapter::temporaryUrl($path, $expiration);
+            return \Illuminate\Filesystem\FilesystemAdapter::temporaryUrl($path, $expiration, $options);
         }
         
         /**
@@ -11732,7 +11844,7 @@ namespace Arrilot\Widgets {
         /**
          * Encrypt widget params to be transported via HTTP.
          *
-         * @param array $params
+         * @param string $params
          * @return string 
          * @static 
          */ 
@@ -11746,7 +11858,7 @@ namespace Arrilot\Widgets {
          * Decrypt widget params that were transported via HTTP.
          *
          * @param string $params
-         * @return array 
+         * @return string 
          * @static 
          */ 
         public static function decryptWidgetParams($params)
@@ -11773,7 +11885,7 @@ namespace Arrilot\Widgets {
         /**
          * Encrypt widget params to be transported via HTTP.
          *
-         * @param array $params
+         * @param string $params
          * @return string 
          * @static 
          */ 
@@ -11787,7 +11899,7 @@ namespace Arrilot\Widgets {
          * Decrypt widget params that were transported via HTTP.
          *
          * @param string $params
-         * @return array 
+         * @return string 
          * @static 
          */ 
         public static function decryptWidgetParams($params)
@@ -12357,6 +12469,7 @@ namespace Intervention\Image\Facades {
          * Overrides configuration settings
          *
          * @param array $config
+         * @return self 
          * @static 
          */ 
         public static function configure($config = array())
@@ -12379,8 +12492,8 @@ namespace Intervention\Image\Facades {
         /**
          * Creates an empty image canvas
          *
-         * @param integer $width
-         * @param integer $height
+         * @param int $width
+         * @param int $height
          * @param mixed $background
          * @return \Intervention\Image\Image 
          * @static 
@@ -12395,7 +12508,7 @@ namespace Intervention\Image\Facades {
          * (requires additional package intervention/imagecache)
          *
          * @param \Closure $callback
-         * @param integer $lifetime
+         * @param int $lifetime
          * @param boolean $returnObj
          * @return \Image 
          * @static 
@@ -12865,7 +12978,7 @@ namespace  {
             /**
              * Add an "or where" clause to the query.
              *
-             * @param string|\Closure $column
+             * @param string|array|\Closure $column
              * @param string $operator
              * @param mixed $value
              * @return \Illuminate\Database\Eloquent\Builder|static 
@@ -13365,6 +13478,18 @@ namespace  {
             }
          
             /**
+             * Pass the query to a given callback.
+             *
+             * @param \Closure $callback
+             * @return \Illuminate\Database\Query\Builder 
+             * @static 
+             */ 
+            public static function tap($callback)
+            {    
+                return \Illuminate\Database\Eloquent\Builder::tap($callback);
+            }
+         
+            /**
              * Apply the callback's query changes if the given "value" is false.
              *
              * @param mixed $value
@@ -13423,6 +13548,18 @@ namespace  {
             }
          
             /**
+             * Add a relationship count / exists condition to the query with an "or".
+             *
+             * @param string $relation
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function orDoesntHave($relation)
+            {    
+                return \Illuminate\Database\Eloquent\Builder::orDoesntHave($relation);
+            }
+         
+            /**
              * Add a relationship count / exists condition to the query with where clauses.
              *
              * @param string $relation
@@ -13463,6 +13600,19 @@ namespace  {
             public static function whereDoesntHave($relation, $callback = null)
             {    
                 return \Illuminate\Database\Eloquent\Builder::whereDoesntHave($relation, $callback);
+            }
+         
+            /**
+             * Add a relationship count / exists condition to the query with where clauses and an "or".
+             *
+             * @param string $relation
+             * @param \Closure $callback
+             * @return \Illuminate\Database\Eloquent\Builder|static 
+             * @static 
+             */ 
+            public static function orWhereDoesntHave($relation, $callback = null)
+            {    
+                return \Illuminate\Database\Eloquent\Builder::orWhereDoesntHave($relation, $callback);
             }
          
             /**
@@ -13669,18 +13819,6 @@ namespace  {
             public static function crossJoin($table, $first = null, $operator = null, $second = null)
             {    
                 return \Illuminate\Database\Query\Builder::crossJoin($table, $first, $operator, $second);
-            }
-         
-            /**
-             * Pass the query to a given callback.
-             *
-             * @param \Closure $callback
-             * @return \Illuminate\Database\Query\Builder 
-             * @static 
-             */ 
-            public static function tap($callback)
-            {    
-                return \Illuminate\Database\Query\Builder::tap($callback);
             }
          
             /**

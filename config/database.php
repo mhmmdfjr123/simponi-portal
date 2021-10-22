@@ -35,14 +35,14 @@ return [
         'oracle' => [
             'driver'        => 'oracle',
 
-            'tns'           => env('DB_TNS', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=devtass)(PORT=1569)))(CONNECT_DATA=(SID=OTFDEV)))'),
+            //'tns'           => env('DB_TNS', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=simponi-dplk.c2kmaemnz44e.ap-southeast-1.rds.amazonaws.com)(PORT=1525)))(CONNECT_DATA=(SID=SIMPONI)))'),
             // You can use 3 lines bellow, if you are not using the tns configuration above
-            'host'          => env('DB_HOST', ''),
-            'port'          => env('DB_PORT', ''),
-            'database'      => env('DB_DATABASE', ''),
+            'host'          => env('DB_HOST', 'simponi-dplk.c2kmaemnz44e.ap-southeast-1.rds.amazonaws.com'),
+            'port'          => env('DB_PORT', '1525'),
+            'database'      => env('DB_DATABASE', 'SIMPONI'),
 
-            'username'      => env('DB_USERNAME', 'simponi'),
-            'password'      => env('DB_PASSWORD', 'simponi'),
+            'username'      => env('DB_USERNAME', 'SIMPONI'),
+            'password'      => env('DB_PASSWORD', 'SIMPONI'),
             'charset'       => env('DB_CHARSET', 'AL32UTF8'),
             'prefix'        => env('DB_PREFIX', 'P_'),
             'prefix_schema' => env('DB_SCHEMA_PREFIX', ''),
@@ -51,14 +51,14 @@ return [
         'oracle-analytics' => [
 	        'driver'        => 'oracle',
 
-	        'tns'           => env('DB_TNS', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=devtass)(PORT=1569)))(CONNECT_DATA=(SID=OTFDEV)))'),
+	        //'tns'           => env('DB_TNS', '(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=devtass)(PORT=1569)))(CONNECT_DATA=(SID=OTFDEV)))'),
 	        // You can use 3 lines bellow, if you are not using the tns configuration above
-	        'host'          => env('DB_HOST', ''),
-	        'port'          => env('DB_PORT', ''),
-	        'database'      => env('DB_DATABASE', ''),
+	        'host'          => env('DB_HOST', 'simponi-dplk.c2kmaemnz44e.ap-southeast-1.rds.amazonaws.com'),
+	        'port'          => env('DB_PORT', '1525'),
+	        'database'      => env('DB_DATABASE', 'SIMPONI'),
 
-	        'username'      => env('DB_USERNAME', 'simponi'),
-	        'password'      => env('DB_PASSWORD', 'simponi'),
+	        'username'      => env('DB_USERNAME', 'SIMPONI'),
+	        'password'      => env('DB_PASSWORD', 'SIMPONI'),
 	        'charset'       => env('DB_CHARSET', 'AL32UTF8'),
 	        'prefix'        => env('DB_PREFIX', 'S_'),
 	        'prefix_schema' => env('DB_SCHEMA_PREFIX', ''),
