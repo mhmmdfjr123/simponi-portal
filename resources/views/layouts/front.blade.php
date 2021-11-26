@@ -101,7 +101,7 @@
                     <h4 class="section-heading">Investor Relations</h4>
                     <hr class="title">
                     <address class="row">
-                        <div class="col-md-4" title="Telepon">
+                        {{-- <div class="col-md-4" title="Telepon">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x text-secondary"></i>
                                 <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
@@ -115,7 +115,7 @@
                                 <i class="fa fa-fax fa-stack-1x fa-inverse"></i>
                             </span>
                             (021) 2510175
-                        </div>
+                        </div> --}}
                         <div class="col-md-4" title="Email">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x text-secondary"></i>
