@@ -42,7 +42,7 @@ return [
             'database'      => env('DB_DATABASE', 'SIMPONI'),
 
             'username'      => env('DB_USERNAME', 'SIMPONI'),
-            'password'      => env('DB_PASSWORD', 'SIMPONI'),
+            'password'      => env('DB_PASSWORD', 'eOobAdj1vGzFp8pJ'),
             'charset'       => env('DB_CHARSET', 'AL32UTF8'),
             'prefix'        => env('DB_PREFIX', 'P_'),
             'prefix_schema' => env('DB_SCHEMA_PREFIX', ''),
