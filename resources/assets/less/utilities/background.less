@@ -1,0 +1,61 @@
+.bg-primary {
+    background: @theme-primary url(../images/textures/arches.png);
+    color: white;
+}
+
+.bg-secondary {
+    background: @theme-secondary url(../images/textures/arches.png);
+    color: white;
+}
+
+.bg-secondary-alt {
+    background: #1D97AE;
+    color: white;
+}
+
+.bg-secondary-alt2 {
+    background: #D0F1F8;
+    color: @theme-secondary;
+}
+
+.bg-wisma46 {
+    @wisma46-overlay: rgba(0, 0, 0, 0.7);
+
+    color: white;
+    background:
+            linear-gradient(
+                    @wisma46-overlay,
+                    @wisma46-overlay
+            ),
+            url(../images/bg/wisma46.jpg) no-repeat center bottom fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.bg-featured {
+    background: @gray-lighter url(../images/textures/batik.png);
+}
+
+.bg-featured-alt {
+    background: #75C25C;
+}
+
+.bg-aliceblue {
+    background: #F0F8FF;
+}
+
+.bg-softgray {
+    background: #F7FAFC;
+}
+
+.bg-dark {
+    background: @gray-darker url(../images/textures/black-linen.png);
+    color: white;
+}
+
+.bg-maroon {
+    background: #9B4B5A url(../images/textures/black-linen.png);
+    color: white;
+}

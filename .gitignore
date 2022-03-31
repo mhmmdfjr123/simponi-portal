@@ -1,0 +1,30 @@
+# Laravel
+/node_modules
+yarn-error.log
+npm-debug.log
+/public/storage
+/public/hot
+/vendor
+Homestead.json
+Homestead.yaml
+.env
+.phpstorm.meta.php
+.vagrant/
+ci
+
+# IntelliJ project files
+.idea/
+
+# eclipse project file
+.settings/
+.classpath
+.project
+
+# NetBeans specific
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml

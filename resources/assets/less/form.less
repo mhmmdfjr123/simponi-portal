@@ -1,0 +1,121 @@
+.form-box-shadow() {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+.form-control {
+    border-radius: @form-border-radius;
+}
+
+.form-control:focus{
+    border-color: @gray-light;
+    .form-box-shadow;
+}
+
+.input-group > .form-control,
+.input-group > .input-group-addon,
+.input-group > .input-group-btn > .btn
+.input-group-lg > .form-control,
+.input-group-lg > .input-group-addon,
+.input-group-lg > .input-group-btn > .btn {
+    border-radius: @form-border-radius;
+}
+
+.input-group-addon:last-child {
+    border-left: 0;
+}
+
+.input-group .form-control:last-child,
+.input-group-addon:last-child,
+.input-group-btn:first-child > .btn-group:not(:first-child) > .btn,
+.input-group-btn:first-child > .btn:not(:first-child),
+.input-group-btn:last-child > .btn,
+.input-group-btn:last-child > .btn-group > .btn,
+.input-group-btn:last-child > .dropdown-toggle {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.input-group-addon:first-child {
+    border-right: 0;
+}
+.input-group .form-control:first-child,
+.input-group-addon:first-child,
+.input-group-btn:first-child > .btn,
+.input-group-btn:first-child > .btn-group > .btn,
+.input-group-btn:first-child > .dropdown-toggle,
+.input-group-btn:last-child > .btn-group:not(:last-child) > .btn,
+.input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.help-block {
+    display: block;
+    margin-top: 4px;
+    margin-bottom: 0;
+    line-height: 1;
+    color: lighten(@gray-base, 63%) !important;
+}
+
+// jQuery Validation Style
+.has-error {
+    .form-control {
+        border-color: @form-has-error-color;
+
+        &:focus{
+            border-color: darken(@form-has-error-color, 10%);
+            .form-box-shadow;
+        }
+    }
+
+    span.error {
+        color: @form-has-error-color;
+    }
+}
+
+.has-success {
+    .form-control {
+        border-color: @form-has-success-color;
+        .form-box-shadow;
+
+        &:focus {
+            border-color: darken(@form-has-success-color, 10%);;
+            .form-box-shadow;
+        }
+    }
+}
+
+.alert-password-meter {
+    margin-top: 10px;
+
+    ul {
+        list-style: none;
+        margin-left: 15px;
+
+        li {
+            padding-left: 24px;
+            position: relative;
+
+            i {
+                position: absolute;
+                left: 0;
+            }
+
+            .ok {
+                display: none;
+                color: @brand-success;
+            }
+
+            .not-ok {
+                display: inherit;
+                color: @brand-danger;
+            }
+        }
+
+        li.has-password-ok {
+            .ok {display: inherit;}
+            .not-ok {display: none;}
+        }
+    }
+}

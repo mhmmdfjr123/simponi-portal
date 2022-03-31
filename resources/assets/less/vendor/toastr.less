@@ -1,0 +1,79 @@
+/**
+ * Customized Based on https://github.com/CodeSeven/toastr
+ */
+#toast-container {
+    > div {
+        width: 350px;
+    }
+
+    /*overrides*/
+    &.toast-top-center > div,
+    &.toast-bottom-center > div {
+        width: 350px;
+    }
+}
+
+.toast-title {
+    .heading-font;
+}
+
+.toast-top-center {
+    top: @toast-position-top;
+    right: 0;
+    width: 100%;
+}
+
+.toast-top-left {
+    top: @toast-position-top;
+    left: 12px;
+}
+
+.toast-top-right {
+    top: @toast-position-top;
+    right: 12px;
+}
+
+#toast-container {
+    z-index: 9999;
+
+    > div {
+        .borderRadius(3px 3px 3px 3px);
+        .boxShadow(0 0 13px @gray-light);
+        .opacity(@toast-default-container-opacity);
+    }
+
+    > div:hover {
+        .boxShadow(0 0 13px @gray-light);
+        .opacity(1);
+        cursor: pointer;
+    }
+}
+
+.toast {
+    background-color: #030303;
+}
+
+.toast-success {
+    background-color: @brand-success;
+}
+
+.toast-error {
+    background-color: @brand-danger;
+}
+
+.toast-info {
+    background-color: @brand-info;
+}
+
+.toast-warning {
+    background-color: @brand-warning;
+}
+
+.toast-progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    background-color: #000000;
+    .opacity(0.4);
+}

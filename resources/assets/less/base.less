@@ -1,0 +1,96 @@
+/*!
+ * Simponi Portal Style
+ *
+ * @author Efriandika Pratama <efriandika.pratama@bni.co.id>
+ * @version 1.0
+ */
+body {
+    position: relative;
+    .body-font;
+    padding-top: 80px;
+}
+
+ul, ol {
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+iframe {
+    border: none;
+}
+
+.above-fold {
+    z-index: 1;
+    position: relative;
+    width: 100%;
+    text-align: center;
+
+    a {
+        position: absolute;
+
+        .btn-scroll-arrow {
+            background-color: #FFF;
+            display: block;
+            width: 48px;
+            height: 48px;
+            -webkit-transition: fill .3s ease-in-out,transform .3s ease-in-out,color .3s ease-in-out;
+            -o-transition: fill .3s ease-in-out,transform .3s ease-in-out,color .3s ease-in-out;
+            transition: fill .3s ease-in-out,transform .3s ease-in-out,color .3s ease-in-out;
+            border-radius: 50%;
+            box-shadow: 0 0 7px 0 rgba(0,0,0,.13);
+            margin: -24px auto -24px -24px;
+
+            .fa {
+                font-size: 40px;
+                margin-top: 5px;
+            }
+
+            @media (max-width: 768px) {
+                width: 36px;
+                height: 36px;
+                margin: -18px auto -18px -18px;
+                .fa {
+                    font-size: 30px;
+                    margin-top: 3px;
+                }
+            }
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        &:hover .btn-scroll-arrow {
+            -webkit-transform: scale(1.1);
+            -ms-transform: scale(1.1);
+            -o-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+    }
+}
+
+// -- Highlight Color Customization
+::-moz-selection {
+    color: white;
+    text-shadow: none;
+    background: @gray-darker;
+}
+
+::selection {
+    color: white;
+    text-shadow: none;
+    background: @gray-darker;
+}
+@-webkit-keyframes moving-arrow {
+    0% {
+        bottom: 25px
+    }
+
+    50% {
+        bottom: 15px
+    }
+
+    100% {
+        bottom: 25px
+    }
+}

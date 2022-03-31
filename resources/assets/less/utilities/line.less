@@ -1,0 +1,63 @@
+hr {
+    &.title {
+        border-color: @theme-primary;
+        border-width: 3px;
+        max-width: 50px;
+        margin-bottom: 25px;
+
+        &.left {
+            margin-left: 0;
+        }
+
+        &.right {
+            margin-right: 0;
+        }
+    }
+    &.separator {
+        border-width: 1px;
+        border-style: dashed;
+        width: 50%;
+    }
+
+    &.color-graph {
+        height: 5px;
+        border-top: 0;
+        background: #c4e17f;
+        border-radius: 5px;
+        background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+        background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+        background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+        background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    }
+}
+
+.line-text {
+    position: relative;
+    font-size: 15px;
+    color: @gray-light;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    hr {
+        background-color: @gray-lighter;
+        height: 0.5px;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    span {
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: -2px;
+        margin-left: -30px;
+        background-color: #fff;
+        text-align: center;
+
+        &.w-60 {
+            width: 60px;
+        }
+    }
+}

@@ -1,0 +1,32 @@
+.article-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    > li {
+        padding: 15px 0;
+        margin: 0;
+        width: 100%;
+        border-bottom: 1px dashed #CCCCCC;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+
+        .title {
+            margin: 0 0 5px 0;
+        }
+
+        .info {
+            font-size: 12px;
+
+            .date {
+                margin-right: 30px;
+            }
+
+            .category {
+                color: @theme-secondary;
+            }
+        }
+    }
+}

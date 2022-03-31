@@ -1,0 +1,62 @@
+header.sim-carousel {
+    margin-top: -20px;
+    position: relative;
+
+    .carousel {
+        .item {
+            background-color: #777;
+
+            .carousel-image {
+                height: 600px;
+                background-position: center center;
+                background-size: cover;
+
+                @media (min-width: 1900px) {
+                    height: 890px;
+                }
+
+                @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+                    height: 460px;
+                }
+
+                @media (max-width: @screen-xs-max) {
+                    height: 310px;
+                }
+            }
+        }
+    }
+
+    .carousel-caption {
+        top: 40%;
+        left: 20%;
+        right: 20%;
+        bottom: auto;
+    }
+
+    @media (max-width: @screen-xs-max) {
+        .carousel-indicators {
+            bottom: 0;
+        }
+    }
+}
+
+@media (min-width: @screen-sm-min) {
+    header.sim-carousel {
+        #header-nav-masking {
+            height: 200px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            background-image: -webkit-linear-gradient(bottom,rgba(0,0,0,.001) 0,rgba(0,0,0,.5) 100%);
+            background-image: -o-linear-gradient(bottom,rgba(0,0,0,.001) 0,rgba(0,0,0,.5) 100%);
+            background-image: -webkit-gradient(linear,left bottom,left top,from(rgba(0,0,0,.001)),to(rgba(0,0,0,.5)));
+            background-image: linear-gradient(to top,rgba(0,0,0,.001) 0,rgba(0,0,0,.3) 100%);
+            // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=0);
+            background-repeat: repeat-x;
+
+            &.affix {
+                visibility: hidden;
+            }
+        }
+    }
+}

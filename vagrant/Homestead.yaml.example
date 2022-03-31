@@ -1,0 +1,41 @@
+# Author: Efriandika Pratama <efriandika.pratama@bni.co.id>
+---
+ip: "192.168.10.10"
+memory: 2048
+cpus: 1
+hostname: simponi-portal-box
+name: simponi-portal
+provider: virtualbox
+
+# DON'T FORGET TO SETUP FOLDER MAP
+# EXAMPLE:
+#       FOR WINDOWS     -> C:/Some_dir/some_dir_again/project
+#       FOR Mac / Linux -> /Some_dir/some_dir_again/project
+folders:
+    - map: "/Users/efriandika/P/PHP/simponi-portal" # Paste your project path to this line
+      to: "/home/vagrant/simponi-portal"
+
+sites:
+    - map: simponi.app
+      to: "/home/vagrant/simponi-portal/public"
+
+# databases:
+#    - homestead
+
+# blackfire:
+#     - id: foo
+#       token: bar
+#       client-id: foo
+#       client-token: bar
+
+# ports:
+#     - send: 50000
+#       to: 5000
+#     - send: 7777
+#       to: 777
+#       protocol: udp
+
+# authorize: ~/.ssh/id_rsa.pub
+
+# keys:
+#    - ~/.ssh/id_rsa

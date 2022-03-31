@@ -1,0 +1,32 @@
+{
+  "name": "simponi",
+  "title": "Simponi",
+  "version": "1.0.0",
+  "homepage": "http://devtass:8880/simponi/simponi-portal",
+  "author": "Efriandika Pratama & Romy Adzani (OTF)",
+  "private": true,
+  "scripts": {
+    "dev": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=webpack.config.js",
+    "watch": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=webpack.config.js",
+    "production": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=webpack.config.js"
+  },
+  "devDependencies": {
+    "bootstrap": "^3.3.7",
+    "bootstrap-datepicker": "^1.6.4",
+    "chart.js": "^2.5.0",
+    "font-awesome": "^4.6.3",
+    "gulp": "^3.9.1",
+    "ionicons": "2.0.1",
+    "jquery": "^3.1.1",
+    "jquery-facebox": "https://github.com/efriandika/jquery-facebox",
+    "jquery-numeric": "github:samwm/jquery-numeric",
+    "jquery-touch-events": "github:benmajor/jQuery-Touch-Events",
+    "jquery-validation": "^1.16.0",
+    "jquery.animate-number": "0.0.14",
+    "jquery.easing": "^1.4.1",
+    "laravel-mix": "^0.7.5",
+    "scrollreveal": "^3.1.4",
+    "scrolltofixed": "^1.0.6",
+    "toastr": "^2.1.2"
+  }
+}
