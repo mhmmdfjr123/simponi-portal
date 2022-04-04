@@ -140,14 +140,14 @@
                         <div class="col-md-3" title="Playstore">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x text-secondary"></i>
-                                <i class="fab fa-google-play fa-stack-1x fa-inverse"></i>
+                                <i class="ion-android-playstore fa-stack-1x fa-inverse"></i>
                             </span>
                             <a href="#">Simponi Apps</a>
                         </div>
                         <div class="col-md-4" title="Playstore">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x text-secondary"></i>
-                                <i class="fab fa-google-play fa-stack-1x fa-inverse"></i>
+                                <i class="ion-android-playstore fa-stack-1x fa-inverse"></i>
                             </span>
                             <a href="#">BNI Mobile Banking</a>
                         </div>

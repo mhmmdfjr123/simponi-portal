@@ -137,7 +137,7 @@
         <div class="container text-center">
             <div class="call-to-action">
                 <h2>SIMULASI</h2>
-                <p class="text-faded">Anda dapat melakukan simulasi penghitungan biaya investasi Anda dengan hasil yang akan Anda dapatkan. Silakan tekan tombol di bawah.</p>
+                <p class="text-faded">Anda dapat melakukan simulasi penghitungan biaya investasi Anda dengan hasil yang akan Anda dapatkan. Terdapat dua mode simulasi, yaitu berdarsarkan iuran dan kebutuhan.</p>
                 <a href="/simulation" class="btn btn-white btn-outline btn-xl sr-button">Lakukan Simulasi</a>
             </div>
         </div>
