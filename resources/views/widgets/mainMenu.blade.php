@@ -20,7 +20,7 @@
 
     @if(!$auth->check())
         <li>
-            <a class="login" href="{{ route('portal-login') }}"><i class="fa fa-sign-in" style="margin-right: 5px"></i> LOGIN</a>
+            <a class="login" href="{{ route('portal-login') }}"><button class="btn btn-primary" width="103" height="36" style="margin-right: 5px"> Login</button></a>
             {{--<a class="login" href="/register"><i class="material-icons">launch</i>LOGIN</a>--}}
         </li>
     @else
