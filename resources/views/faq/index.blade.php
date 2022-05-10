@@ -1,9 +1,11 @@
 @extends('layouts.front')
 
 @section('content')
-    <div class="content-header with-bg bg-wisma46-mini">
-        <h1>Frequently Asked Questions (FAQ)</h1>
-        <hr class="title">
+    <div class="content-header with-bg" style="width:1440px; height:151px; background-color:#1D97AE;">
+        <div class="" style="position:relative; top:-20px;">
+            <h1 style="color:white;">Frequently Asked Questions (FAQ)</h1>
+            <hr class="title">
+        </div>
     </div>
 
     <div class="container">

@@ -1,0 +1,211 @@
+/* Button */
+.newButton{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    color: #FFFFFF;
+
+    background: linear-gradient(to bottom, #f15e22 0%, #f68e1d 100%); 
+    padding: 8px 20px; 
+    width:103px; 
+    height:36px;
+    border-radius: 4px;
+  }
+
+  .newButton:hover{
+    color:#FFFFFF; 
+    text-decoration:none; 
+    cursor:pointer; 
+  }
+
+  /* Halaman Hubungi Kami */
+  
+  .container-satu {
+    max-width: 1200px;
+    margin: 50px auto;
+    /* padding: 20px; */
+    /* box-sizing: border-box; */
+  }
+
+  .content-satu{
+    flex: 1 ;
+    order: 1;
+  }
+  
+  .content-dua{
+      flex: 2;
+      order: 2;
+  }
+
+  .ml-minus{
+    margin-left: 0px;
+  }
+
+  .content-tiga{
+    flex: 2;
+    order: 3;
+  }
+
+.container-dua{
+  max-width: 1200px;
+  /* margin: 50px auto; */
+}
+
+.layanan{
+    /* padding: 20px; */
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    height: 500px;
+}
+
+  .element-utama{
+    max-width: 1000px;
+    /* margin: 50px auto; */
+  }
+
+  .element-satu{
+    flex: 2;
+    order: 1;
+  }
+
+  .element-dua{
+    flex: 2;
+    order: 1;
+  }
+
+  /* Halaman Hubungi Kami */
+  .divBiru{
+    position: relative;
+    height: 125px;
+    width: 245px;
+    border-top-right-radius: 90px;
+    border-bottom-right-radius: 150px;
+    background-color: #005C69;
+    left: -15px;
+  }
+
+  .marginSatu{
+    margin-bottom: 23px;
+  }
+
+  .marginDua{
+    margin-bottom: 38px;
+  }
+
+  .divOren{
+    position: static;
+    height: 125px;
+    width: 285px;
+    border-bottom-right-radius: 150px;
+    background-color: #F15E22;
+    margin-left: -15px;
+  }
+
+  .divGambar{
+    position: absolute;
+    top: 30px;
+    left: 0px;
+  }
+
+  .hubungiImg{
+    width: 285px;
+    height: 193px;
+  }
+
+  .fontRoboto{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #005C69;
+  }
+
+  .fontSize{
+    font-weight: 700;
+    size: 24px;
+    line-height: 27px;
+    letter-spacing: 1%;
+  }
+
+  .content {
+    padding: 32px;
+    box-sizing: border-box;
+
+    overflow: hidden;
+  }
+
+  
+  /* Responsive */
+  @media( min-width: 800px ){
+    .container-satu {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .container-dua {
+      display: flex;
+      justify-content: space-between;
+    }
+    .layanan{
+        width: 30%;
+    }
+
+    .element-utama{
+      display: flex;
+        justify-content: space-between;
+    }
+      
+    .element-dua{
+      margin-left: 100px;
+      white-space: nowrap;
+    }
+
+    .marginContent{
+      margin-bottom: 23px;
+    }
+
+    .hubungiImg{
+      width: 685px;
+      height: 493px;
+    }
+
+    .ml-minus{
+      margin-left: -100px;
+    }
+
+    .ml-content-satu{
+      margin-left: 64px;
+    }
+
+    .ml-content-dua{
+      margin-left: 40px;
+    }
+
+    .ml-content-tiga{
+      margin-left: 40px;
+    }
+
+    .divOren{
+      margin-left: -185px;
+      height: 325px;
+      width: 600px;
+      margin-top: 80px;
+    }
+
+    .divBiru{
+      top: 102px;
+      left: -185px;
+      height: 325px;
+      width: 600px;
+    }
+
+    .divGambar{   
+      top:214px;
+      left: -168px;
+    }
+
+    .content-dua{
+      margin-left: 54px;
+  }
+
+  }

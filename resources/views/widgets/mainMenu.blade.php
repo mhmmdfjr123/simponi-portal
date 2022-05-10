@@ -20,8 +20,10 @@
 
     @if(!$auth->check())
         <li>
-            <a class="login" href="{{ route('portal-login') }}"><i class="fa fa-sign-in" style="margin-right: 5px"></i> LOGIN</a>
-            {{--<a class="login" href="/register"><i class="material-icons">launch</i>LOGIN</a>--}}
+            <div class="" style="margin-top:19px; margin-left:16px">
+            <a  class="newButton" style="text-decoration:none;" href="{{ route('portal-login') }}">Login</a>
+            {{--<a class="newButton" href="/register"><i class="material-icons">launch</i>Login</a>--}}
+            </div>
         </li>
     @else
         <li class="dropdown">

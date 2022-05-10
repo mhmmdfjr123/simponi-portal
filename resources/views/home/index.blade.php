@@ -41,10 +41,11 @@
             <a class="right carousel-control" href="#sim-carousel" role="button" data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
-            </a>
+            </a> 
             -->
-
-            <div id="header-nav-masking"></div>
+            <a href="#" class="floatingButton">
+                <img style="width:100%; height:100%;" src="/filemanager/img/pesanfb.png" alt="">
+            </a>
 
             <div class="above-fold">
                 <a class="page-scroll" href="#about">

@@ -30,6 +30,44 @@
     <link href="{{ mix('theme/front/css/vendor.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ mix('theme/front/css/simponi.css') }}" rel="stylesheet" type="text/css">
 
+    <!-- Aji -->
+    <link rel="stylesheet" href="{{ asset('theme/front/css/test.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+    <!-- COBA CSS FLOATING BUTTON -->
+
+    <style>
+        .floatingButton{
+            /* background: #F99E30; */
+            display: block;
+            width: 70px;
+            height: 70px;
+            line-height: 50px;
+            text-align: center;
+            color: black;
+            font-size: 30px;
+            font-weight: bold;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            text-decoration: none;
+            transition: ease all 0.3s;
+            position: fixed;
+            right: 30px;
+            bottom:30px;
+            /* background: #FF0000;
+            color: #FFFFFF;
+            padding: 3px 12px;
+            border-radius: 20px;
+            position: fixed;
+            text-decoration: none;
+            font-size: 30px;
+            font-weight: bold;
+            box-shadow: 1px 3px 5px #ccc;
+            bottom: 20px;
+            right: 20px; */
+        }
+    </style>
+
     @yield('headScript')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
