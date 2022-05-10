@@ -58,7 +58,11 @@ return [
 	        'database'      => env('DB_DATABASE', 'SIMPONI'),
 
 	        'username'      => env('DB_USERNAME', 'SIMPONI'),
+<<<<<<< HEAD
 	        'password'      => env('DB_PASSWORD', 'eOobAdj1vGzFp8pJ'),
+=======
+	        'password'      => env('DB_PASSWORD', 'SIMPONI'),
+>>>>>>> b14d6eba5d5bb333f060a031ae36ac98746553db
 	        'charset'       => env('DB_CHARSET', 'AL32UTF8'),
 	        'prefix'        => env('DB_PREFIX', 'S_'),
 	        'prefix_schema' => env('DB_SCHEMA_PREFIX', ''),
