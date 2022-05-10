@@ -30,47 +30,8 @@
     <link href="{{ mix('theme/front/css/vendor.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ mix('theme/front/css/simponi.css') }}" rel="stylesheet" type="text/css">
 
-<<<<<<< HEAD
-    <!-- Aji -->
-    <link rel="stylesheet" href="{{ asset('theme/front/css/test.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-
-    <!-- COBA CSS FLOATING BUTTON -->
-
-    <style>
-        .floatingButton{
-            /* background: #F99E30; */
-            display: block;
-            width: 70px;
-            height: 70px;
-            line-height: 50px;
-            text-align: center;
-            color: black;
-            font-size: 30px;
-            font-weight: bold;
-            border-radius: 50%;
-            -webkit-border-radius: 50%;
-            text-decoration: none;
-            transition: ease all 0.3s;
-            position: fixed;
-            right: 30px;
-            bottom:30px;
-            /* background: #FF0000;
-            color: #FFFFFF;
-            padding: 3px 12px;
-            border-radius: 20px;
-            position: fixed;
-            text-decoration: none;
-            font-size: 30px;
-            font-weight: bold;
-            box-shadow: 1px 3px 5px #ccc;
-            bottom: 20px;
-            right: 20px; */
-        }
-    </style>
-
-=======
->>>>>>> b14d6eba5d5bb333f060a031ae36ac98746553db
+    <!-- CSS Aji -->
+    <link rel="stylesheet" href="/theme/front/css/test.css" type="text/css">
     @yield('headScript')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -91,15 +52,9 @@
                         <span class="hamburger-inner"></span>
                     </span>
                 </button>
-<<<<<<< HEAD
-                <a class="navbar-brand page-scroll" href="http://www.bni.co.id">
-                    {{--<img src="{{ asset('theme/front/images/logo/bni-simponi-normal.png') }}" alt="BNI Simponi" />--}}
-                    <img src="{{ asset('theme/front/images/logo/BNI-logo.png') }}" alt="BNI Simponi" />
-=======
                 <a class="navbar-brand page-scroll" href="https://dplk.bni.co.id">
                     {{--<img src="{{ asset('theme/front/images/logo/bni-simponi-normal.png') }}" alt="BNI Simponi" />--}}
                     <img src="{{ asset('theme/front/images/logo/BNI-logo-new.png') }}" alt="BNI Simponi" />
->>>>>>> b14d6eba5d5bb333f060a031ae36ac98746553db
                 </a>
             </div>
 
@@ -136,18 +91,6 @@
     <section id="contact">
         <div class="container">
             <div class="row">
-<<<<<<< HEAD
-                <div class="col-sm-4 contact-left">
-                    <h4 class="section-heading">Hubungi Kami</h4>
-                    <hr class="title">
-                    <address>
-                        <strong>Butuh bantuan?</strong><br>
-                        Hubungi <a href="tel:{{ trim(1500046) }}">1 5000 46</a> atau <a href="tel:{{ trim(68888) }}">68888</a> (melalui ponsel)
-                    </address>
-                </div>
-                <div class="col-sm-8 contact-right hidden-print">
-                    <h4 class="section-heading">Investor Relations</h4>
-=======
                 <div class="col-sm-5 contact-left">
                     <h4 class="section-heading">Temukan Kami</h4>
                     <hr class="title">
@@ -172,7 +115,6 @@
                 </div>
                 <div class="col-sm-7 contact-right hidden-print">
                     <h4 class="section-heading">Unduh Aplikasi</h4>
->>>>>>> b14d6eba5d5bb333f060a031ae36ac98746553db
                     <hr class="title">
                     <address class="row">
                         {{-- <div class="col-md-4" title="Telepon">
@@ -189,19 +131,13 @@
                                 <i class="fa fa-fax fa-stack-1x fa-inverse"></i>
                             </span>
                             (021) 2510175
-<<<<<<< HEAD
-                        </div> --}}
-=======
                         </div> 
->>>>>>> b14d6eba5d5bb333f060a031ae36ac98746553db
                         <div class="col-md-4" title="Email">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x text-secondary"></i>
                                 <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
                             </span>
                             <a href="mailto:dplk@bni.co.id">dplk@bni.co.id</a>
-<<<<<<< HEAD
-=======
                         </div> --}}
                         <div class="col-md-3" title="Playstore">
                             <span class="fa-stack fa-lg">
@@ -223,7 +159,6 @@
                                 <i class="fa fa-apple fa-stack-1x fa-inverse"></i>
                             </span>
                             <a href="#">BNI Mobile Banking</a>
->>>>>>> b14d6eba5d5bb333f060a031ae36ac98746553db
                         </div>
                     </address>
                 </div>
@@ -235,13 +170,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 copyright">
-<<<<<<< HEAD
-                    <small>DPLK BNI terdaftar dan diawasi oleh Otoritas Jasa Keuangan (OJK)</small>
-                    <div>Copyright &copy; 2017 - PT. Bank Negara Indonesia (Persero) Tbk.</div>
-=======
                     <div>DPLK BNI terdaftar dan diawasi oleh Otoritas Jasa Keuangan (OJK)</div>
                     <div>Copyright &copy; 2022 - PT. Bank Negara Indonesia (Persero) Tbk.</div>
->>>>>>> b14d6eba5d5bb333f060a031ae36ac98746553db
                 </div>
                 <div class="col-md-4 footer-logo">
                     <img src="{{ asset('theme/front/images/logo/logo-pensiun-small.png') }}" alt="Ayo Pensiun">

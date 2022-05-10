@@ -41,18 +41,10 @@
             <a class="right carousel-control" href="#sim-carousel" role="button" data-slide="next">
                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
-<<<<<<< HEAD
-            </a> 
-            -->
-            <a href="#" class="floatingButton">
-                <img style="width:100%; height:100%;" src="/filemanager/img/pesanfb.png" alt="">
-            </a>
-=======
             </a>
             -->
 
             <div id="header-nav-masking"></div>
->>>>>>> b14d6eba5d5bb333f060a031ae36ac98746553db
 
             <div class="above-fold">
                 <a class="page-scroll" href="#about">
@@ -65,9 +57,6 @@
         <!-- End of Carousel -->
     </header>
 
-<<<<<<< HEAD
-    <section class="section-box featured bg-featured-alt">
-=======
     <section class="bg-secondary-alt" id="about">
         <div class="container">
             <div class="row">
@@ -179,7 +168,6 @@
     </section>
 
     <section class="section-box featured bg-featured-alt bg-softgray">
->>>>>>> b14d6eba5d5bb333f060a031ae36ac98746553db
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
@@ -233,7 +221,6 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
     </section>
 
     <section class="bg-secondary-alt" id="about">
@@ -327,9 +314,6 @@
             </div>
         </div>
     </section>
-=======
-    </section> 
->>>>>>> b14d6eba5d5bb333f060a031ae36ac98746553db
 @endsection
 
 @section('footScript')

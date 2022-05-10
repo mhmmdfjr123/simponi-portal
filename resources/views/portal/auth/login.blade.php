@@ -28,11 +28,7 @@
                     <a href="{{ route('portal-forgot-password') }}" class="pull-right">Lupa password?</a>
                     <div class="clearfix"></div>
                 </div>
-<<<<<<< HEAD
                 <button type="submit" class="btn btn-lg btn-primary btn-block newButton" style="width:358px; height: 45px;" data-loading-text="Loading..." id="btn-login">
-=======
-                <button type="submit" class="btn btn-lg btn-primary btn-block" data-loading-text="Loading..." id="btn-login">
->>>>>>> b14d6eba5d5bb333f060a031ae36ac98746553db
                     Login
                 </button>
 
