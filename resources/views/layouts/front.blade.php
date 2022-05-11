@@ -32,6 +32,8 @@
 
     <!-- CSS Aji -->
     <link rel="stylesheet" href="/theme/front/css/test.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    
     @yield('headScript')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -144,7 +146,7 @@
                                 <i class="fa fa-circle fa-stack-2x text-secondary"></i>
                                 <i class="ion-android-playstore fa-stack-1x fa-inverse"></i>
                             </span>
-                            <a href="#">Simponi Apps</a>
+                            <a class="fontBold" href="#">Simponi Apps</a>
                         </div>
                         <div class="col-md-4" title="Playstore">
                             <span class="fa-stack fa-lg">
