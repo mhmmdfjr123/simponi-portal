@@ -21,8 +21,8 @@
     @if(!$auth->check())
         <li>
             <div class="" style="margin-top:19px; margin-left:16px">
-            <a  class="newButton" style="text-decoration:none;" href="{{ route('portal-login') }}">Login</a>
-            {{--<a class="newButton" href="/register"><i class="material-icons">launch</i>Login</a>--}}
+            <a  class="newButton" style="text-decoration:none;" href="{{ route('portal-login') }}"><text style="font-size: 14px; font-weight: bold;">Login</text></a>
+            {{--<a class="newButton" href="/register"><i class="material-icons">launch</i><text style="font-size: 14px; font-weight: bold;">Login</text></a>--}}
             </div>
         </li>
     @else
