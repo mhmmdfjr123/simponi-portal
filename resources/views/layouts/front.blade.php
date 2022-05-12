@@ -174,7 +174,6 @@
                 <div class="col-md-8 copyright">
                     <div>DPLK BNI terdaftar dan diawasi oleh Otoritas Jasa Keuangan (OJK)</div>
                     <div>Copyright &copy; 2022 - PT. Bank Negara Indonesia (Persero) Tbk.</div>
-                    <p href="" style="font-size: 12px; font-weight: bold; line-height: 20px;">Hello World!</p>
                 </div>
                 <div class="col-md-4 footer-logo">
                     <img src="{{ asset('theme/front/images/logo/logo-pensiun-small.png') }}" alt="Ayo Pensiun">
