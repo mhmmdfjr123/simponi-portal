@@ -97,7 +97,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-submit" data-loading-text="Menyimpan...">Simpan</button>
+        <button type="submit" class="newBtn newBtn-primary btn-submit loginBtn" style="width: 100px; height:30px; font-size: 15px;" data-loading-text="Menyimpan...">Simpan</button>
     </form>
 @endsection
 
