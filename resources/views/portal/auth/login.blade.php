@@ -28,7 +28,7 @@
                     <a href="{{ route('portal-forgot-password') }}" class="pull-right">Lupa password?</a>
                     <div class="clearfix"></div>
                 </div>
-                <button type="submit" class="newBtn btn-lg newBtn-primary btn-block" style="width:358px; font-size: 14px; height: 45px;" data-loading-text="Loading..." id="btn-login">
+                <button type="submit" class="newBtn btn-lg newBtn-primary btn-block" style="width:358px; font-size: 20px; height: 45px;" data-loading-text="Loading..." id="btn-login">
                     Login
                 </button>
 
@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="btn-register-group">
-                    Belum mempunyai akun? <a href="{{ route('portal-register') }}" class="btn btn-primary btn-outline">Daftar</a>
+                    Belum mempunyai akun? <a href="{{ route('portal-register') }}" class="newBtn newBtn-outline-primary" style="margin-left:10px; width: 65px;font-size: 13px; text-decoration:none;">Daftar</a>
                 </div>
 
                 <input type="hidden" id="public-key" value="{{ $publicKey }}">

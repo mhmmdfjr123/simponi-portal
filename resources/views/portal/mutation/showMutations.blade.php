@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary hidden-print" id="btn-mutation" title="Lihat Mutasi" data-loading-text="Loading...">
+        <button type="submit" class="newBtn newBtn-primary hidden-print" style="width:60px; height: 34px; font-size:14px;" id="btn-mutation" title="Lihat Mutasi" data-loading-text="Loading...">
             <small><strong>LIHAT</strong></small>
         </button>
 
