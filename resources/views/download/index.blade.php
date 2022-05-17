@@ -11,23 +11,44 @@
             <div class="col-md-12">
                 <div class="content-detail">
                     <div class="row">
-                        <div class="col-sm-3" id="sidebar">
+                        <div class="col-sm-4" id="sidebar">
                             <ul class="nav nav-tabs nav-stacked" id="faq-navigation">
-                                <li {!! $categoryAlias == '' ? 'class="active"' : '' !!}><a href="{{ route('download-list') }}">Semua Kategori</a></li>
+                                <li {!! $categoryAlias == '' ? 'class="active"' : '' !!}><a href="{{ route('download-list') }}">SEMUA KATEGORI</a></li>
                                 @foreach($categories as $category)
                                     <li {!! $categoryAlias == $category->alias ? 'class="active"' : '' !!}><a href="{{ route('download-category', [$category->alias]) }}">{{ $category->name }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
-                        <div class="col-sm-9">
+                        <div class="col-sm-8">
+                            <!-- Search -->
+                            <div class="row" style="display: flex;align-items: center;">
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <!-- <span class="input-group-addon"><i class="bi bi-search"></i></span> -->
+                                        <!-- <i class="bi bi-search"> -->
+                                        <input class="searchBox" type="text" name="search" placeholder="Cari dokumen anda disini">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <!-- Example single danger button -->
+                                    <div class="dropdown">
+                                        <button onclick="myFunction()" class="dropbtn">Urutkan</button>
+                                        <div id="myDropdown" class="dropdown-content">
+                                            <a href="#home">Home</a>
+                                            <a href="#about">About</a>
+                                            <a href="#contact">Contact</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Search -->
                             <!-- Download List -->
                             <ul class="download-list">
                                 @foreach($files as $file)
-                                    <li class="borderDownload" >
-                                    <!-- display: flex; align-items: center; justify-content: center; -->
-                                        <div class="" style="">
+                                    <li class="borderDownload">
+                                        <div style="display: flex; height: 100%; align-items: center;">
                                             <div class="file-type hidden-xs">
-                                                <div style="margin-top:12px;">
+                                                <div style="margin-top:12px;" class="pdfSVG">
                                                     @if($file->file_ext == 'pdf')
                                                     <svg width="92" height="92" viewBox="0 0 92 92" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                                         <rect x="0.188477" y="0.188477" width="91.6235" height="91.6235" fill="url(#pattern0)"/>
@@ -53,15 +74,16 @@
                                             <div class="info">
                                                 <h4 class="title">{{ $file->name }}</h4>
                                                 <!-- <p class="desc">{{ $file->desc }}</p> -->
-                                                <div class="date" style="float:right;">
-                                                    Diunggah pada: {{ $file->created_at->format('d-m-Y H:i:s') }}
-                                                </div>
+                                                
                                             </div>
                                             <div class="action">
                                                 <a class="newBtn btn-sm newBtn-primary loginBtn" style="width:103px; height:36px; line-height: 20px; font-size: 12px;" href="{{ route('download-file', [$file->file_name]) }}">Download</a>
                                                 <!-- <div class="download-info">{{ $file->total_download }} download</div> -->
                                             </div>
                                         </div>
+                                        <div class="date">
+                                                    Diunggah pada: {{ $file->created_at->format('d-m-Y H:i:s') }}
+                                            </div>
                                     </li>
                                 @endforeach
                             </ul>
@@ -79,6 +101,30 @@
 @section('footScript')
     <script src="{{ asset('theme/front/vendor/scrolltofixed/jquery-scrolltofixed-min.js') }}"></script>
 
+    <!-- js dropdown -->
+    <script>
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+            }
+        }
+        }
+    </script>
+    <!-- end js dropdown -->
+
     <script type="text/javascript">
         $(document).ready(function() {
             const offsetTop = 75;
@@ -89,7 +135,12 @@
                 },
                 marginTop: offsetTop,
                 zIndex: 100,
-                removeOffsets: true
+                removeOffsets: true,
+
+                preFixed: function() { $(this).css('width', '340px'); },
+                preAbsolute: function() { $(this).css('width', '340px'); },
+                postFixed: function() { $(this).css('width', '340px'); },
+                postAbsolute: function() { $(this).css('width', '340px'); }
             });
         });
     </script>
