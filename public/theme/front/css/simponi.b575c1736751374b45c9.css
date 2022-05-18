@@ -2583,7 +2583,7 @@ text.fontBold {
 .dropbtn {
     background-image: url(/theme/front/images/logo/dropdown.png);
     background-repeat: no-repeat;
-    background-position: 9px 6px;
+    background-position: 12px 11px;
     color: #838383;
     background-color: white;
     font-size: 16px;
@@ -2593,11 +2593,13 @@ text.fontBold {
     width: 105px;
     height: 34px;
     padding-left: 37px;
+    font-weight: 500;
   }
   
   .dropbtn:hover, .dropbtn:focus {
-    background-color: #838383;
-    color: white;
+    color: #838383;
+    font-weight: 500;
+    background-color: #dbd8d6;
   }
   
   .dropdown {
@@ -2628,3 +2630,48 @@ text.fontBold {
   
   .show {display: block;}
 /* End dropdown */
+
+/* newPagination */
+
+.newPagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+  }
+
+.newPagination li{
+    display: inline-block;
+}
+  
+  .newPagination li {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
+  .newPagination li.active {
+    color: white;
+    background: linear-gradient(to bottom, #f15e22 0%, #f68e1d 100%);
+    border-radius: 2px;
+    width: 21px;
+    height: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .newPagination li:hover:not(.active) {background-color: #ddd;}
+
+  .newPagination .vektor{
+    background: linear-gradient(180deg, #F15E22 0%, #F68E1D 100%);
+    background-image: linear-gradient(180deg, #F15E22 0%, #F68E1D 100%);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+  }
+
+/* end newPagination */

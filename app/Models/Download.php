@@ -50,6 +50,6 @@ class Download extends Model implements AuditableContract
 		$query->where('download.status', 'P');
 		$query->where('download.publish_date_start', '<=', Carbon::now());
 
-		return $query->simplePaginate($perPage);
+		return $query->paginate($perPage);
 	}
 }
