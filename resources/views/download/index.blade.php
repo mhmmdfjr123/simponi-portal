@@ -13,9 +13,18 @@
                     <div class="row">
                         <div class="col-sm-4" id="sidebar">
                             <ul class="nav nav-tabs nav-stacked" id="faq-navigation">
-                                <li {!! $categoryAlias == '' ? 'class="active"' : '' !!}><a href="{{ route('download-list') }}">SEMUA KATEGORI</a></li>
+                                @if($categoryAlias == '')
+                                    <li {!! $categoryAlias == '' ? 'class="active"' : '' !!}><a href="{{ route('download-list') }}" style="border-top-right-radius: 5px;border-top-left-radius: 5px;">SEMUA KATEGORI</a></li>
+                                @else
+                                    <li {!! $categoryAlias == '' ? 'class="active"' : '' !!}><a href="{{ route('download-list') }}">SEMUA KATEGORI</a></li>
+                                @endif
+                                
                                 @foreach($categories as $category)
-                                    <li {!! $categoryAlias == $category->alias ? 'class="active"' : '' !!}><a href="{{ route('download-category', [$category->alias]) }}">{{ $category->name }}</a></li>
+                                    @if($categories[$countData - 1]['name'] == $category->name)
+                                        <li {!! $categoryAlias == $category->alias ? 'class="active"' : '' !!}><a href="{{ route('download-category', [$category->alias]) }}" style="border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;">{{ $category->name }}</a></li>
+                                    @else
+                                        <li {!! $categoryAlias == $category->alias ? 'class="active"' : '' !!}><a href="{{ route('download-category', [$category->alias]) }}">{{ $category->name }}</a></li>
+                                    @endif
                                 @endforeach
                             </ul>
                         </div>
@@ -24,9 +33,11 @@
                             <div class="row" style="display: flex;align-items: center;">
                                 <div class="col-sm-6">
                                     <div class="input-group">
-                                        <!-- <span class="input-group-addon"><i class="bi bi-search"></i></span> -->
-                                        <!-- <i class="bi bi-search"> -->
-                                        <input class="searchBox" type="text" name="search" placeholder="Cari dokumen anda disini">
+                                        <form action="" method="GET">
+                                            <!-- <span class="input-group-addon"><i class="bi bi-search"></i></span> -->
+                                            <!-- <i class="bi bi-search"> -->
+                                            <input class="searchBox" type="text" name="keyword" placeholder="Cari dokumen anda disini" value="{{ request('keyword') }}">
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -34,9 +45,10 @@
                                     <div class="dropdown">
                                         <button onclick="myFunction()" class="dropbtn">Urutkan</button>
                                         <div id="myDropdown" class="dropdown-content">
-                                            <a href="#home">Home</a>
-                                            <a href="#about">About</a>
-                                            <a href="#contact">Contact</a>
+                                            <a href="#">A ke Z</a>
+                                            <a href="#">Z ke A</a>
+                                            <a href="#">Terbaru</a>
+                                            <a href="#">Terlama</a>
                                         </div>
                                     </div>
                                 </div>
@@ -44,6 +56,7 @@
                             <!-- End Search -->
                             <!-- Download List -->
                             <ul class="download-list">
+                                @if($countFiles != 0)
                                 @foreach($files as $file)
                                     <li class="borderDownload">
                                         <div style="display: flex; height: 100%; align-items: center;">
@@ -82,13 +95,17 @@
                                             </div>
                                         </div>
                                         <div class="date">
-                                                    Diunggah pada: {{ $file->created_at->format('d-m-Y H:i:s') }}
+                                                    Diunggah pada:{{   date('d-m-Y', strtotime($file->created_at))  }}
                                             </div>
                                     </li>
                                 @endforeach
                             </ul>
 
                             {{ $files->links() }}
+                            
+                            @else
+                                Data not found!
+                                @endif
                             <!-- End of Download List -->
                         </div>
                     </div>

@@ -5,7 +5,9 @@ use App\Models\Download;
 use App\Models\DownloadCategory;
 use App\Models\Post;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Http\Request;
 
 /**
  * @package App\Http\Controllers
@@ -21,9 +23,11 @@ class DownloadController extends Controller
 
     }
 
-    public function index(Download $downloadModel, $categoryAlias = '')
+    public function index(Download $downloadModel, $categoryAlias = '', Request $Request)
     {
 		$catId = '';
+
+        $search = $Request->input('keyword');
 
 	    if($categoryAlias != ''){
 		    $cat = DownloadCategory::where('alias', $categoryAlias)->first();
@@ -34,12 +38,18 @@ class DownloadController extends Controller
 		    $catId = $cat->id;
 	    }
 
-    	$files = $downloadModel->getFilesWithPagination(5, $catId);
+        $category = DownloadCategory::where('status', 'Y')->orderBy('name')->get();
+        $countData = count($category);
+        
+    	// $files = $downloadModel->getFilesWithPagination(5, $catId);
 
     	$data = [
     		'categoryAlias'     => $categoryAlias,
-		    'categories'        => DownloadCategory::where('status', 'Y')->orderBy('name')->get(),
-		    'files'             => $files
+		    'categories'        => $category,
+		    // 'files'             => $files,
+            'files' => DB::table('download')->where('name', 'like', '%' . $search . '%')->paginate(5),
+            'countFiles' => DB::table('download')->where('name', 'like', '%' . $search . '%')->count(),
+            'countData'=> $countData
 	    ];
 
         return view('download.index', $data);
