@@ -41,8 +41,38 @@ class Download extends Model implements AuditableContract
 		return $query->take($limit)->skip($offset)->get();
 	}
 
-	public function getFilesWithPagination($perPage, $catId = ''){
-		$query = $this->select(['download.*'])->orderBy('updated_at', 'DESC');
+	public function getFilesWithPagination($perPage, $catId = '', $search =''){
+		$query = $this->select(['download.*'])
+				->where('name', 'like', '%' . $search . '%')
+				->orderBy('updated_at', 'DESC');
+
+		if($catId != '')
+			$query->where('download_category_id', $catId);
+
+		$query->where('download.status', 'P');
+		$query->where('download.publish_date_start', '<=', Carbon::now());
+
+		return $query->paginate($perPage);
+	}
+
+	public function getAscNameFilesWithPagination($perPage, $catId = '', $search =''){
+		$query = $this->select(['download.*'])
+				->where('name', 'like', '%' . $search . '%')
+				->orderBy('name', 'ASC');
+
+		if($catId != '')
+			$query->where('download_category_id', $catId);
+
+		$query->where('download.status', 'P');
+		$query->where('download.publish_date_start', '<=', Carbon::now());
+
+		return $query->paginate($perPage);
+	}
+
+	public function getDescNameFilesWithPagination($perPage, $catId = '', $search =''){
+		$query = $this->select(['download.*'])
+				->where('name', 'like', '%' . $search . '%')
+				->orderBy('name', 'DESC');
 
 		if($catId != '')
 			$query->where('download_category_id', $catId);

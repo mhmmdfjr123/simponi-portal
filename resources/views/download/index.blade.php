@@ -41,14 +41,15 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <!-- Example single danger button -->
+                                    <!-- Dropdown Urutkan -->
                                     <div class="dropdown">
-                                        <button onclick="myFunction()" class="dropbtn">Urutkan</button>
-                                        <div id="myDropdown" class="dropdown-content">
-                                            <a href="#">A ke Z</a>
-                                            <a href="#">Z ke A</a>
-                                            <a href="#">Terbaru</a>
-                                            <a href="#">Terlama</a>
+                                        <button class="dropbtn">Urutkan</button>
+                                        <div class="dropdown-content">
+                                            <a href="{!! $categoryAlias == '' ? route('download-list') : route('download-category', [$categoryAlias]) !!}?urutkan=atoz">A - Z</a>
+                                            <a href="{!! $categoryAlias == '' ? route('download-list') : route('download-category', [$categoryAlias]) !!}?urutkan=ztoa">Z - A</a>
+<!-- 
+                                            <a href="{{ route('download-category', [$categoryAlias]) }}?urutkan=atoz">A - Z</a>
+                                            <a href="{{ route('download-category', [$categoryAlias]) }}?urutkan=ztoa">Z - A</a> -->
                                         </div>
                                     </div>
                                 </div>
@@ -100,12 +101,11 @@
                                     </li>
                                 @endforeach
                             </ul>
-
-                            {{ $files->links() }}
+                            {{ $files->appends(request()->query())->links() }}
                             
                             @else
                                 Data not found!
-                                @endif
+                            @endif
                             <!-- End of Download List -->
                         </div>
                     </div>

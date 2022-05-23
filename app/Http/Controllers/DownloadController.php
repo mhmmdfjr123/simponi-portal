@@ -25,9 +25,10 @@ class DownloadController extends Controller
 
     public function index(Download $downloadModel, $categoryAlias = '', Request $Request)
     {
+        $sorting = $Request->input('urutkan');
 		$catId = '';
-
-        $search = $Request->input('keyword');
+        $ffsCat = DownloadCategory::find(1);
+        $search = ucwords($Request->input('keyword'));
 
 	    if($categoryAlias != ''){
 		    $cat = DownloadCategory::where('alias', $categoryAlias)->first();
@@ -40,17 +41,26 @@ class DownloadController extends Controller
 
         $category = DownloadCategory::where('status', 'Y')->orderBy('name')->get();
         $countData = count($category);
-        
-    	// $files = $downloadModel->getFilesWithPagination(5, $catId);
 
+        // $getDatas = DB::table('download')->where('name', 'like', '%' . $search . '%')->paginate(5);
+        // dd($getDatas);
+        if($sorting == 'atoz'){
+            $files = $downloadModel->getAscNameFilesWithPagination(5, $catId, $search);
+        } elseif($sorting == 'ztoa') {
+            $files = $downloadModel->getDescNameFilesWithPagination(5, $catId);
+        } else {
+            $files = $downloadModel->getFilesWithPagination(5, $catId);
+        }
+        // dd($files);
     	$data = [
     		'categoryAlias'     => $categoryAlias,
 		    'categories'        => $category,
-		    // 'files'             => $files,
-            'files' => DB::table('download')->where('name', 'like', '%' . $search . '%')->paginate(5),
+            'ffsCat'     => $ffsCat,
+		    'files'             => $files,
             'countFiles' => DB::table('download')->where('name', 'like', '%' . $search . '%')->count(),
             'countData'=> $countData
 	    ];
+
 
         return view('download.index', $data);
     }
