@@ -45,8 +45,8 @@
                                     <div class="dropdown">
                                         <button class="dropbtn">Urutkan</button>
                                         <div class="dropdown-content">
-                                            <a href="{!! $categoryAlias == '' ? route('download-list') : route('download-category', [$categoryAlias]) !!}?urutkan=atoz">A - Z</a>
-                                            <a href="{!! $categoryAlias == '' ? route('download-list') : route('download-category', [$categoryAlias]) !!}?urutkan=ztoa">Z - A</a>
+                                            <a href="{!! $categoryAlias == '' ? route('download-list') : route('download-category', [$categoryAlias]) !!}?{{ $searchParams }}&urutkan=atoz">A - Z</a>
+                                            <a href="{!! $categoryAlias == '' ? route('download-list') : route('download-category', [$categoryAlias]) !!}?{{ $searchParams }}&urutkan=ztoa">Z - A</a>
 <!-- 
                                             <a href="{{ route('download-category', [$categoryAlias]) }}?urutkan=atoz">A - Z</a>
                                             <a href="{{ route('download-category', [$categoryAlias]) }}?urutkan=ztoa">Z - A</a> -->
